@@ -297,17 +297,22 @@ the underlying logic of the menu.
               {%- render 'localization-selector', type: 'locale', popover_vertical_position: 'end' -%}
             </li>
           {%- endif -%}
-
-          <li>
-            <a href="{{ routes.search_url }}" class="hidden tap-area sm:block" aria-controls="search-drawer">
+          {%- assign country_list = section.blocks | where: 'type', 'country_select'  -%}
+          {%- if country_list.size > 0 -%}
+            <li>
+                {%- render 'country-selector', list: country_list -%}
+            </li>
+          {%- endif -%}
+          <li class="hidden sm:block">
+            <a href="{{ routes.search_url }}" class="tap-area" aria-controls="search-drawer">
               <span class="sr-only">{{ 'header.general.search' | t }}</span>
               {%- render 'icon' with 'header_search' -%}
             </a>
           </li>
           
           {%- if shop.customer_accounts_enabled -%}
-            <li>
-              <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="hidden tap-area sm:block">
+            <li class="hidden sm:block">
+              <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="tap-area">
                 <span class="sr-only">{% if customer %}{{ 'header.general.account' | t }}{% else %}{{ 'header.general.login' | t }}{% endif %}</span>
                 {%- render 'icon' with 'header_account' -%}
               </a>
@@ -790,7 +795,30 @@ the underlying logic of the menu.
           "visible_if": "{{ block.settings.layout == 'drawer' }}"
         }
       ]
-    }
+    },
+   {
+    "type": "country_select",
+    "name": "Country selector",
+    "settings": [
+      {
+        "type": "text",
+        "id": "country_name",
+        "label": "Country name",
+        "default": "United States"
+      },
+      {
+        "type": "text",
+        "id": "country_code",
+        "label": "Country code",
+        "default": "US"
+      },
+      {
+        "type": "text",
+        "id": "country_url",
+        "label": "Country url"
+      }
+    ]
+   }
   ]
 }
 {% endschema %}

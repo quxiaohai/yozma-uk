@@ -6123,6 +6123,7 @@ product-rerender {
 
 .header__main-nav {
   grid-area: main-nav;
+  margin-left: -9%;
 }
 
 .header__secondary-nav {

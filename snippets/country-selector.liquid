@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="{{ 'country-flags.css' | asset_url }}" media="print"
+      onload="this.media='all'; this.onload = null">
+{%- capture country_popover_id -%}country-popover-id-{{ section.id }}{%- endcapture -%}
+<div class="relative">
+    <button type="button" class="text-with-icon gap-2.5 group" aria-label="Change country"
+            aria-controls="{{ country_popover_id }}" aria-expanded="false">
+        <div class="h-stack gap-2">
+            <span class="country-flags country-flags--GB"></span>
+        </div>
+        {%- render 'icon' with 'chevron-bottom' -%}
+    </button>
+    <x-popover id="{{ country_popover_id }}" initial-focus="[aria-selected='true']"
+               anchor-horizontal="end" anchor-vertical="end"
+               class="popover">
+        <p class="h5" slot="title">{{ 'general.localization.country' | t }}</p>
+
+        <x-listbox class="popover-listbox popover-listbox--sm" role="listbox">
+            {%- for block in section.blocks -%}
+                {%- assign bs = block.settings -%}
+                <a
+                    {% if bs.country_code == 'GB' %}aria-selected="true"{% endif %}
+                    href="{% if bs.country_url != blank %}{{ bs.country_url }}{% else %}javascript:void(0);{% endif %}"
+                    class="popover-listbox__option">
+                    <span class="country-flags country-flags--{{ bs.country_code }}"></span>
+                    <span>{{ bs.country_name }}</span>
+                </a>
+            {%- endfor -%}
+        </x-listbox>
+    </x-popover>
+</div>
