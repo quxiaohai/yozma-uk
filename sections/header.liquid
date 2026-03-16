@@ -286,6 +286,12 @@ the underlying logic of the menu.
         {%- endif -%}
 
         <ul class="header__icon-list">
+          {%- assign country_list = section.blocks | where: 'type', 'country_select'  -%}
+          {%- if country_list.size > 0 -%}
+            <li>
+                {%- render 'country-selector', list: country_list -%}
+            </li>
+          {%- endif -%}
           {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
             <li class="hidden md:block shrink-0">
               {%- render 'localization-selector', type: 'country', show_country_name: section.settings.show_country_name, show_country_flag: section.settings.show_country_flag, popover_vertical_position: 'end' -%}
@@ -297,19 +303,12 @@ the underlying logic of the menu.
               {%- render 'localization-selector', type: 'locale', popover_vertical_position: 'end' -%}
             </li>
           {%- endif -%}
-          {%- assign country_list = section.blocks | where: 'type', 'country_select'  -%}
-          {%- if country_list.size > 0 -%}
-            <li>
-                {%- render 'country-selector', list: country_list -%}
-            </li>
-          {%- endif -%}
           <li class="hidden sm:block">
             <a href="{{ routes.search_url }}" class="tap-area" aria-controls="search-drawer">
               <span class="sr-only">{{ 'header.general.search' | t }}</span>
               {%- render 'icon' with 'header_search' -%}
             </a>
           </li>
-          
           {%- if shop.customer_accounts_enabled -%}
             <li class="hidden sm:block">
               <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="tap-area">
@@ -318,7 +317,6 @@ the underlying logic of the menu.
               </a>
             </li>
           {%- endif -%}
-
           <li>
             <a href="{{ routes.cart_url }}" data-no-instant class="relative block tap-area" {% if settings.cart_type != 'page' and request.page_type != 'cart' %}aria-controls="cart-drawer"{% endif %}>
               <span class="sr-only">{{ 'header.general.cart' | t }}</span>
