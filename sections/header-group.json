@@ -1,0 +1,170 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "message_Hm9xjY": {
+          "type": "message",
+          "settings": {
+            "text": "Up to $400 OFF — Ride for love, don’t miss out!",
+            "url": "shopify://products/in-10"
+          }
+        },
+        "message_43xPMD": {
+          "type": "message",
+          "settings": {
+            "text": "Thanks for your support! Extra $400 OFF!",
+            "url": "https://www.yozmasport.com/products/in-10?_pos=1&_psq=IN+10&_ss=e&_v=1.0"
+          }
+        }
+      },
+      "block_order": [
+        "message_Hm9xjY",
+        "message_43xPMD"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_sticky": false,
+        "navigation_mode": "arrows",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "scrolling_speed": 10,
+        "text_size": "text-base",
+        "background": "#8c0000",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "announcement-slide-bar": {
+      "type": "announcement-slide-bar",
+      "blocks": {
+        "message_48xPMD": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "shopify://shop_images/yozma-bar-icon.png",
+            "text": "<p>The IN 10 Pro will launch on March 3rd</p>",
+            "url": "https://www.yozmasport.com/products/in-10?_pos=1&_psq=IN+10&_ss=e&_v=1.0"
+          }
+        },
+        "message_Hm9xjY": {
+          "type": "message",
+          "settings": {
+            "icon": "shopify://shop_images/yozma-bar-icon.png",
+            "text": "<p>IN 10: Up to £400 OFF — Ride for love, don’t miss out!</p>",
+            "url": "shopify://products/in-10"
+          }
+        },
+        "message_Hm9xjS": {
+          "type": "message",
+          "settings": {
+            "icon": "shopify://shop_images/yozma-bar-icon.png",
+            "text": "<p>Buy Two IN 10 Save An Extra £800!</p>",
+            "url": "shopify://products/in-10"
+          }
+        },
+        "message_43xPMD": {
+          "type": "message",
+          "settings": {
+            "icon": "shopify://shop_images/yozma-bar-icon.png",
+            "text": "<p>Over £<em><strong>49 </strong></em>Free Shipping on All Dirt Bikes!</p>",
+            "url": "https://www.yozmasport.com/products/in-10?_pos=1&_psq=IN+10&_ss=e&_v=1.0"
+          }
+        }
+      },
+      "block_order": [
+        "message_48xPMD",
+        "message_Hm9xjY",
+        "message_Hm9xjS",
+        "message_43xPMD"
+      ],
+      "settings": {
+        "padding": 12,
+        "enable_bar": true,
+        "enable_sticky": false,
+        "background": "#d30000",
+        "background_gradient": "linear-gradient(255deg, rgba(NaN, NaN, NaN, 0), rgba(211, 0, 0, 1) 18%, rgba(211, 0, 0, 1) 100%)",
+        "background_image": "shopify://shop_images/98ffbf206c1474774b84c692bd2a5615.jpg",
+        "message_color": "#000000",
+        "message_bold_color": "#000000",
+        "message_size": 16,
+        "message_mb_size": 14,
+        "slide_direction": "normal",
+        "loop_speed": 1
+      }
+    },
+    "announcement-timer-bar": {
+      "type": "announcement-timer-bar",
+      "disabled": true,
+      "settings": {
+        "padding": 5,
+        "enable_bar": true,
+        "enable_sticky": false,
+        "background": "#000000",
+        "background_gradient": "",
+        "text_color": "#ffffff",
+        "text_bold_color": "#f77fc1",
+        "title": "<p>Up to <strong>$400</strong> OFF — Love for riding, don’t miss out!</p>",
+        "title_pc_size": 18,
+        "title_mb_size": 14,
+        "text": "Hurry Up! Sale Ends Soon",
+        "message_size": 16,
+        "url": "shopify://products/in-10",
+        "countdown_fill_color": "#f77fc1",
+        "countdown_num_color": "#ffffff",
+        "countdown_text_color": "#ffffff",
+        "show_bar_image": true,
+        "bar_image": "shopify://shop_images/bar-image.jpg",
+        "show_mb_bar_image": false,
+        "show_countdown": true,
+        "end_date": "2026-2-14 00:00:00",
+        "day": "Days",
+        "hour": "Hours",
+        "minute": "Mins",
+        "second": "Secs"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "enable_sticky": true,
+        "hide_on_scroll": true,
+        "logo": "shopify://shop_images/1eae7ae6ce239862c44d09c80b59d31e.png",
+        "logo_max_width": 130,
+        "logo_mobile_max_width": 100,
+        "menu": "main-menu-26-2-10",
+        "sidebar_menu": "",
+        "secondary_menu": "",
+        "menu_open_trigger": "hover",
+        "opening_from": "bottom",
+        "layout": "logo_left_navigation_center",
+        "show_social_media": true,
+        "show_locale_selector": true,
+        "show_country_selector": true,
+        "show_country_flag": true,
+        "show_country_name": false,
+        "transparent_header_text_color": "#ffffff",
+        "reduce_padding": false,
+        "background_opacity": 100,
+        "background_blur_radius": 0
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "announcement-slide-bar",
+    "announcement-timer-bar",
+    "header"
+  ]
+}

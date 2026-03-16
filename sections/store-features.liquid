@@ -1,0 +1,195 @@
+{%- render 'section-spacing-collapsing' -%}
+
+{%- if section.settings.image -%}
+  <style>
+    #shopify-section-{{ section.id }} {
+      {%- if section.settings.background_gradient != blank or section.settings.background != blank and section.settings.background != 'rgba(0,0,0,0)' -%}
+        --section-spacing-block: 0px;
+      {%- endif -%}
+
+      --section-spacing-inline: 0px;
+    }
+
+    {%- if section.settings.full_width -%}
+      #shopify-section-{{ section.id }} .section {
+        padding-inline-start: 0;
+      }
+    {%- endif -%}
+  </style>
+{%- endif -%}
+
+
+<div class="section tw-py-0">
+    <div class="store-features-box tw-flex  -md:tw-flex-col-reverse md:tw-gap-8 tw-gap-16 md:tw-justify-between tw-justify-center tw-mx-auto tw-max-w-[1560px] md:tw-h-full tw-items-center tw-py-8">
+      <div class="tw-grid-cols-2 xl:tw-gap-6 tw-gap-2 tw-grid xl:tw-w-[45%] md:tw-w-5/8 tw-w-full ">
+          {% for block in section.blocks %}
+          {% assign bk_stts = block.settings %}
+          {% assign content_arr = bk_stts.content | strip | newline_to_br | strip_newlines | split: "<br />"  %}
+          <div class="tw-col-span-1 tw-text-white">
+            <div class="tw-flex tw-h-full tw-items-center xl:tw-px-4 xl:tw-py-6 md:tw-p-4 tw-p-2 xl:tw-gap-6 tw-gap-2 tw-border-solid tw-border tw-border-white tw-rounded-2xl tw-col-span-1">
+              {% if bk_stts.icon != blank %}
+              <div class="tw-bg-vi tw-shrink-0 tw-rounded-full xl:tw-p-4 tw-p-2 tw-aspect-square tw-flex tw-justify-center tw-items-cente -md:tw-w-1/4">
+                  {{ bk_stts.icon | image_url: width: '50' | image_tag: width: '50'}} 
+              </div>
+              {% endif %}
+              <div class="">
+                <p class="h5 tw-text-white -md:tw-text-sm">{{content_arr[0]}}</p>
+                <p class="md:tw-text-sm tw-leading-tight tw-text-[10px]">{{content_arr[1]}} </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+      <div class="md:tw-w-[37%] tw-w-full -md:tw-text-center">
+        <h5 class="tw-font-medium xl:tw-text-6xl tw-text-2xl md:tw-mb-8 tw-mb-4 tw-text-white">
+          {{section.settings.title}}</h5>
+        <a href="{{section.settings.link}}" class="tw-bg-white tw-rounded-full tw-p-2 tw-pr-4 tw-gap-3 tw-inline-flex tw-items-center button button--blur -md:tw-w-[200px] tw-text-base" is="hover-link">
+          <span class="tw-bg-vi tw-rounded-full tw-p-2 md:tw-w-12 md:tw-h-12 tw-w-8 tw-h-8 tw-aspect-square tw-flex tw-justify-center tw-items-center btn-text">
+            <svg class="icon icon-user icon-md" viewBox="0 0 22 22" fill="currentColor">
+              <g clip-path="url(#clip0_1168_3512)">
+              <path d="M18.3335 5.5C18.3335 2.46254 15.871 0 12.8335 0C9.79604 0 7.3335 2.46254 7.3335 5.5C7.3335 8.53746 9.79604 11 12.8335 11C15.8697 10.997 18.3305 8.53617 18.3335 5.5ZM9.16697 5.5C9.16697 3.47488 10.8088 1.83348 12.8335 1.83348C14.8582 1.83348 16.5 3.47531 16.5 5.5C16.5 7.52469 14.8582 9.16652 12.8335 9.16652C10.8088 9.16652 9.16697 7.52469 9.16697 5.5Z" fill="currentColor"></path>
+              <path d="M15.5835 12.833H10.0835C6.54117 12.8369 3.67086 15.7076 3.66699 19.2495V21.083C3.66699 21.5892 4.07734 21.9995 4.58352 21.9995C5.08969 21.9995 5.50004 21.5892 5.50004 21.083V19.2495C5.50305 16.7195 7.55352 14.6691 10.0835 14.6661H15.5835C18.1135 14.6691 20.164 16.7195 20.167 19.2495V21.083C20.167 21.5892 20.5773 21.9995 21.0835 21.9995C21.5897 21.9995 22 21.5892 22 21.083V19.2495C21.9962 15.7072 19.1254 12.8369 15.5835 12.833Z" fill="currentColor"></path>
+              <path d="M3.66652 6.41699C3.16035 6.41699 2.75 6.82734 2.75 7.33352V9.16699H0.916523C0.410352 9.16699 0 9.57734 0 10.0835C0 10.5897 0.410352 11 0.916523 11H2.75V12.8335C2.75 13.3397 3.16035 13.75 3.66652 13.75C4.1727 13.75 4.58305 13.3397 4.58305 12.8335V11H6.41652C6.92269 11 7.33305 10.5897 7.33305 10.0835C7.33305 9.57734 6.92269 9.16699 6.41652 9.16699H4.58305V7.33352C4.58305 6.82734 4.1727 6.41699 3.66652 6.41699Z" fill="currentColor"></path>
+              </g>
+              <defs>
+              <clipPath id="clip0_1168_3512">
+              <rect width="22" height="22" fill="currentColor"></rect>
+              </clipPath>
+              </defs>
+            </svg>
+          </span>
+          <span class="btn-text tw-text-nowrap tw-text-black -md:tw-w-full">{{section.settings.btn_txt}}</span>
+        </a>
+      </div>
+    </div>
+</div>
+
+
+
+{% if section.settings.bg_img %}
+  <style>
+    #shopify-section-{{ section.id }} .section{
+      background-image:url({{ section.settings.bg_img | image_url: width: '1920'}} );
+      background-repeat: no-repeat;
+      aspect-ratio:{{ section.settings.bg_img.aspect_ratio }};
+      background-size: cover;
+      background-position: bottom;
+      margin-block-start: calc(var(--background-differs-from-previous) * var(--calculated-section-spacing-block-start));
+      margin-block-end: var(--calculated-section-spacing-block-end);
+    }
+
+
+
+    @media screen and (max-width: 769px) {
+      #shopify-section-{{ section.id }} .section{
+        {% if section.settings.bg_img_mb != blank %}
+        background-image:url({{ section.settings.bg_img_mb | image_url: width: '769'}} );
+        background-position:center;
+        background-size: cover;
+        padding-block-end: var(--sp-10);
+        {% else %}
+        background-image:none;
+        {% endif %}
+      }
+    }
+  </style>
+{% endif %}
+
+
+
+{% schema %}
+{
+    "name": "Store Features",
+    "class": "shopify-section--store-features",
+    "tag": "section",
+    "settings": [
+        {
+          "type": "header",
+          "content": "Content",
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "default": "Join the jasion Facebook group ",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "btn_txt",
+          "default": "Join Now",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+        "type": "header",
+        "content": "Colors",
+        "info": "Gradient replaces solid colors when set."
+        },
+        {
+        "type": "color",
+        "id": "background",
+        "label": "Background"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "Background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_img_mb",
+          "label": "Background image (mobile)"
+        },
+        {
+        "type": "color_background",
+        "id": "background_gradient",
+        "label": "Background gradient"
+        },
+        {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text"
+        },
+        {
+        "type": "color",
+        "id": "button_background",
+        "label": "Button background"
+        },
+        {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button text color"
+        }
+    ],
+    "blocks": [ 
+      {
+        "type": "icon",
+        "name":"icon",
+        "settings": [
+          {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+          }, 
+          {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "14-Day Trial\nDon't love it? Send it back to us!",
+          "info": "Title[enter]contetn"
+          }
+        ]
+      }
+    ],
+    "presets": [
+        {
+        "category": "Customize",
+        "name": "Store Features"
+        }
+    ]
+}
+{% endschema %}

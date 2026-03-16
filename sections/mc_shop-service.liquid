@@ -1,0 +1,164 @@
+{% assign ss = section.settings %}
+<style>
+  .mc_shop-service {
+    padding: 80px 0;
+    background-color: #FFFFFF;
+    gap: 160px;
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1920px) {
+    .mc_shop-service {
+      gap: 8.3333333333vw;
+    }
+  }
+  .mc_shop-service .card {
+    width: 249px;
+  }
+  .mc_shop-service .card .image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+  .mc_shop-service .card .info {
+    padding-top: 10px;
+  }
+  .mc_shop-service .card .name {
+    color: {{ ss.card_nama_color }};
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .mc_shop-service .card .desc {
+    color: {{ ss.card_text_color }};
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  @media screen and (max-width: 1440px) {
+    .mc_shop-service {
+      padding: 64px 0;
+    }
+    .mc_shop-service .card {
+      width: 199px;
+    }
+    .mc_shop-service .card .image {
+      width: 64px;
+      height: 64px;
+    }
+    .mc_shop-service .card .info {
+      padding-top: 8px;
+    }
+    .mc_shop-service .card .name {
+      font-size: 19px;
+    }
+    .mc_shop-service .card .desc {
+      font-size: 13px;
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    .mc_shop-service {
+      padding: 2.5rem 0;
+      gap: 1rem 2.34375rem;
+      flex-wrap: wrap;
+    }
+    .mc_shop-service .card {
+      width: 7.78125rem;
+    }
+    .mc_shop-service .card .image {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    .mc_shop-service .card .info {
+      padding-top: 0.3125rem;
+    }
+    .mc_shop-service .card .name {
+      font-size: 0.75rem;
+    }
+    .mc_shop-service .card .desc {
+      font-size: 0.5rem;
+    }
+  }
+    {% render 'page-wrap-style' %}
+</style>
+<section class="mc_shop-service overflow-hidden flex-center section--page w-full">
+    {%- for block in section.blocks -%}
+        {%- assign bs = block.settings -%}
+        <div class="card">
+            {% render 'global-image', media_type: 'icon', desktop_img: bs.image_icon, desktop_size: 200 %}
+            <div class="info text-center">
+                <div class="name">{{ bs.title }}</div>
+                <div class="desc">
+                    {{ bs.text }}
+                </div>
+            </div>
+        </div>
+    {%- endfor -%}
+</section>
+{% schema %}
+{
+  "name": "Mc Shop Service",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "Mc Shop Service"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Service card"
+    },
+    {
+      "type": "color",
+      "id": "card_nama_color",
+      "label": "Card name Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text Color",
+      "default": "#7A7A7A"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Service card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

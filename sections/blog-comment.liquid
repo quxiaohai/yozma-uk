@@ -1,0 +1,171 @@
+<style>
+    .blog-comment {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px 0 360px;
+        box-sizing: border-box;
+    }
+    @media screen and (max-width: 768px) {
+        .blog-comment {
+            padding: 0 16px;
+        }
+    }
+</style>
+
+<div class="blog-comment">
+    {%- for block in section.blocks -%}
+        {%- case block.type -%}
+            {%- when 'comments' -%}
+                {%- render 'article-comments', show_gravatar: block.settings.show_gravatar, comments_pagination: block.settings.comments_per_page, block_attributes: block.shopify_attributes -%}
+        {%- endcase -%}
+    {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Blog Comment",
+  "class": "shopify-section--main-article",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "allow_transparent_header",
+      "label": "Allow transparent header",
+      "info": "This setting only applies when this section is the first one.",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Banner"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "label": "Content first",
+          "value": "content_first"
+        },
+        {
+          "label": "Image with text overlay",
+          "value": "image_text_overlay"
+        },
+        {
+          "label": "Image left content right",
+          "value": "image_left_text_right"
+        }
+      ],
+      "default": "content_first"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "If none is set, blog post image is used."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comments_count",
+      "label": "Show comments count",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Show share buttons",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "banner_background",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Body"
+    },
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "Content width",
+      "options": [
+        {
+          "label": "Small",
+          "value": "750px"
+        },
+        {
+          "label": "Medium",
+          "value": "950px"
+        },
+        {
+          "label": "Large",
+          "value": "1150px"
+        }
+      ],
+      "default": "750px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comments",
+      "name": "Comments",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Configure your blog to allow comments. [Learn more](https://help.shopify.com/en/manual/online-store/blogs/managing-comments#allow-or-disable-comments-on-a-blog)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_gravatar",
+          "label": "Show comments gravatar",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "comments_per_page",
+          "label": "Comments per page",
+          "min": 5,
+          "max": 50,
+          "step": 5,
+          "default": 5
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

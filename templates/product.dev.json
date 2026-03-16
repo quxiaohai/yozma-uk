@@ -1,0 +1,845 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "text_rwUgwC": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "text_LDxwdH": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.custom.yozma_in_10_electric_mini_dirt_bike_for_kids_adults_presale.value }}</p>"
+          }
+        },
+        "badges": {
+          "type": "badges",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {
+            "show_empty": false
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "offer_3WrFW3": {
+          "type": "offer",
+          "disabled": true,
+          "settings": {
+            "text_alignment": "start",
+            "icon_position": "aligned",
+            "icon": "picto-coupon",
+            "icon_width": 20,
+            "title": "Free Shipping",
+            "content": "<p>Short content about your shipping rates or discounts.</p>",
+            "background": "#eaf2ed",
+            "text_color": "#00a341"
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "collapse_content": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "icons_list_nBGpAq": {
+          "type": "icons_list",
+          "settings": {
+            "icon_1": "shopify://shop_images/shipping_1_40x_5f0f61cd-7600-4f10-ae8f-0fe080438718.webp",
+            "icon_2": "shopify://shop_images/shipping_1_40x_5f0f61cd-7600-4f10-ae8f-0fe080438718.webp",
+            "icon_3": "shopify://shop_images/shipping_1_40x_5f0f61cd-7600-4f10-ae8f-0fe080438718.webp",
+            "icon_4": "shopify://shop_images/shipping_1_40x_5f0f61cd-7600-4f10-ae8f-0fe080438718.webp"
+          }
+        },
+        "inventory_MgbrVk": {
+          "type": "inventory",
+          "settings": {
+            "low_inventory_threshold": 0
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "share_buttons_yzh6EB": {
+          "type": "share_buttons",
+          "settings": {
+            "alignment": "start"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "text_rwUgwC",
+        "text_LDxwdH",
+        "badges",
+        "price",
+        "rating",
+        "payment_terms",
+        "offer_3WrFW3",
+        "separator",
+        "description",
+        "variant_picker",
+        "icons_list_nBGpAq",
+        "inventory_MgbrVk",
+        "quantity_selector",
+        "buy_buttons",
+        "share_buttons_yzh6EB"
+      ],
+      "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "desktop_media_width": 65,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "text_with_icons_2508_qYKNzF": {
+      "type": "text-with-icons-2508",
+      "blocks": {
+        "item_AAzJeQ": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/tets.webp",
+            "title": "30+ Mph",
+            "content": "Top Speed"
+          }
+        },
+        "item_XwGGJY": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/tets.webp",
+            "title": "30+ Mph",
+            "content": "Top Speed"
+          }
+        },
+        "item_cyaGic": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/tets.webp",
+            "title": "30+ Mph",
+            "content": "Top Speed"
+          }
+        },
+        "item_Vmcd4J": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/tets.webp",
+            "title": "30+ Mph",
+            "content": "Top Speed"
+          }
+        },
+        "item_LMkz3G": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/tets.webp",
+            "title": "30+ Mph",
+            "content": "Top Speed"
+          }
+        },
+        "item_aAcU3C": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/tets.webp",
+            "title": "30+ Mph",
+            "content": "Top Speed"
+          }
+        }
+      },
+      "block_order": [
+        "item_AAzJeQ",
+        "item_XwGGJY",
+        "item_cyaGic",
+        "item_Vmcd4J",
+        "item_LMkz3G",
+        "item_aAcU3C"
+      ],
+      "name": "Icon list",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "multicolumn_slide_2508_4Uj4Me": {
+      "type": "multicolumn-slide-2508",
+      "blocks": {
+        "item_UQ37Wa": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Rectangle_49916.png",
+            "title": "53 Miles Range",
+            "content": "1123Wh High-Capacity Battery"
+          }
+        },
+        "item_Mfi9TA": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Rectangle_49926.png",
+            "title": "53 Miles Range",
+            "content": "1123Wh High-Capacity Battery"
+          }
+        },
+        "item_GCbn4R": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Rectangle_49917.png",
+            "title": "53 Miles Range",
+            "content": "1123Wh High-Capacity Battery"
+          }
+        },
+        "item_xRxkyV": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Rectangle_49917.png",
+            "title": "53 Miles Range",
+            "content": "1123Wh High-Capacity Battery"
+          }
+        },
+        "item_6NDrAH": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Rectangle_49917.png",
+            "title": "53 Miles Range",
+            "content": "1123Wh High-Capacity Battery"
+          }
+        },
+        "item_nmFLMF": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Rectangle_49917.png",
+            "title": "53 Miles Range",
+            "content": "1123Wh High-Capacity Battery"
+          }
+        },
+        "item_R7cCCw": {
+          "type": "item",
+          "settings": {
+            "img": "shopify://shop_images/Rectangle_49928.png",
+            "title": "53 Miles Range",
+            "content": "1123Wh High-Capacity Battery"
+          }
+        }
+      },
+      "block_order": [
+        "item_UQ37Wa",
+        "item_Mfi9TA",
+        "item_GCbn4R",
+        "item_xRxkyV",
+        "item_6NDrAH",
+        "item_nmFLMF",
+        "item_R7cCCw"
+      ],
+      "name": "Multicolumn slide",
+      "settings": {
+        "col_num": "3",
+        "txt_size": "lg",
+        "item_bg_gd": "linear-gradient(180deg, rgba(88, 88, 88, 1), rgba(38, 38, 38, 1) 100%)",
+        "full_width": true,
+        "text_alignment_title": "start",
+        "subheading": "About",
+        "title": "Featured content",
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "#000000",
+        "background_gradient": "",
+        "text_color": "#eeeeee"
+      }
+    },
+    "multiple_images_with_text_8ApdYh": {
+      "type": "multiple-images-with-text",
+      "blocks": {
+        "item_TDRX6g": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/11.jpg",
+            "image_rotation_degrees": -2,
+            "subheading": "",
+            "title": "Heading 1",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "button_url": "",
+            "button_text": ""
+          }
+        },
+        "item_jqyKke": {
+          "type": "item",
+          "settings": {
+            "image_rotation_degrees": 1.5,
+            "subheading": "",
+            "title": "Heading 2",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "button_url": "",
+            "button_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_TDRX6g",
+        "item_jqyKke"
+      ],
+      "name": "Multiple images with text",
+      "settings": {
+        "full_width": true,
+        "img_pos": "tw-order-1",
+        "images_layout": "stacked",
+        "collage_images_alignment": "middle",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "images_with_text_scrolling_iB7iVb": {
+      "type": "images-with-text-scrolling",
+      "blocks": {
+        "item_MaiCDm": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Heading",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "item_DcjTn7": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Heading 1",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "item_6d6Vmx": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Heading 2",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_MaiCDm",
+        "item_DcjTn7",
+        "item_6d6Vmx"
+      ],
+      "disabled": true,
+      "name": "Images and text scrolling",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "show_counter": true,
+        "desktop_image_effect": "reveal",
+        "image_position": "end",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "media_grid_efRcKK": {
+      "type": "media-grid",
+      "blocks": {
+        "image_Lmmdgf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Springiscalling_areyoureadytorideBeforeyouhittheroad_makesureyoure-bikeisspring-readywiththesequickchecks-ChargeyourbatteryformaxpowerCheckyourtiresforproperpressureTes.jpg",
+            "title": "",
+            "heading_tag": "h4",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 2,
+            "desktop_row_span": 1,
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_hB6cDV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/10_50d66bad-f062-44b3-b505-8b2957f877d1.webp",
+            "title": "Promote your products",
+            "heading_tag": "h4",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 2,
+            "desktop_row_span": 2,
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_XBVyJU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC00375.jpg",
+            "title": "Promote your products",
+            "heading_tag": "h4",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 2,
+            "desktop_row_span": 2,
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_wcHpJj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Horizon_5_1.png",
+            "title": "Promote your products",
+            "heading_tag": "h4",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 2,
+            "desktop_row_span": 1,
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_Lmmdgf",
+        "image_hB6cDV",
+        "image_XBVyJU",
+        "image_wcHpJj"
+      ],
+      "disabled": true,
+      "name": "Media grid",
+      "settings": {
+        "full_width": true,
+        "reduce_width": false,
+        "grid_gap": "md",
+        "desktop_row_height": 290,
+        "mobile_row_height": 150,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "tabs_7qHD7e": {
+      "type": "tabs",
+      "blocks": {
+        "liquid_M9j4Vd": {
+          "type": "liquid",
+          "settings": {
+            "title": "Tab",
+            "liquid": "<p>Write Liquid code to create advanced customizations.</p>"
+          }
+        },
+        "tab_fNrjKK": {
+          "type": "tab",
+          "settings": {
+            "title": "Performance",
+            "content": "<ul><li>Top Speed: 40Mph (60Km/h)<br/>Range: 40Miles（65Km）<br/>Motor: 48V，3000W Peak，Brushless Motor<br/>Battery: 48V 23Ah Lithium-ion Battery<br/>Suspension Type: ‎Hydraulic Suspension</li></ul>",
+            "page": ""
+          }
+        },
+        "tab_yECCfT": {
+          "type": "tab",
+          "settings": {
+            "title": "Tab 2",
+            "content": "<p>Describe a product, share announcements, or welcome customers to your store.</p>",
+            "page": ""
+          }
+        },
+        "tab_tMxCXa": {
+          "type": "tab",
+          "settings": {
+            "title": "Tab 3",
+            "content": "<p>Share information about your shipping rates, return policy or contact information.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "liquid_M9j4Vd",
+        "tab_fNrjKK",
+        "tab_yECCfT",
+        "tab_tMxCXa"
+      ],
+      "disabled": true,
+      "name": "Tabs",
+      "settings": {
+        "full_width": true,
+        "content_size": "medium",
+        "subheading": "Subheading",
+        "title": "Heading",
+        "text_alignment": "center",
+        "first_tab_open": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "specification_table_efdmkD": {
+      "type": "specification-table",
+      "blocks": {
+        "row_7B6iWr": {
+          "type": "row",
+          "settings": {
+            "heading": "Performance",
+            "value": "<p>Top Speed: 40Mph (60Km/h)<br/>Range: 40Miles（65Km）<br/>Motor: 48V，3000W Peak，Brushless Motor<br/>Battery: 48V 23Ah Lithium-ion Battery<br/>Suspension Type: ‎Hydraulic Suspension</p>"
+          }
+        },
+        "row_9mNPUx": {
+          "type": "row",
+          "settings": {
+            "heading": "Electronics",
+            "value": "<p>Charger: 48V 2.5A Charger<br/>Charger Voltage: 100-230V, 50-60Hz<br/>Charging Time: 0%-100% 5.0-6.0 Hours<br/>Display: Black & White Display<br/>Ride Mode: Three-speed Zero Start<br/>Drivetrain: Chain Drive</p>"
+          }
+        },
+        "row_WWDHfm": {
+          "type": "row",
+          "settings": {
+            "heading": "Components",
+            "value": "<p>Frame:  ‎High Carbon Steel<br/>Chain: 116 links (420 chain) Heavy Duty Chain<br/>Max Climbing: 30 degrees<br/>Front Suspension: Hydraulic Suspension<br/>Rear Suspension:  待村长确认<br/>Waterproof: IPX6</p>"
+          }
+        },
+        "row_AnRmVC": {
+          "type": "row",
+          "settings": {
+            "heading": "Geometry",
+            "value": "<p>Suitable Height: 3.94ft（120CM）- 5.9ft（175CM）<br/>Seat Height: 28\" (72cm)<br/>Wheelbase: 41.7\"(106cm)<br/>Ground Clearance: 9\"(23cm)<br/>Handlebar Width: 28.34\"(72cm)<br/>Bike Weight: 123lbs (56kg)<br/>Maximum Load: 265lbs (120kg)</p>"
+          }
+        }
+      },
+      "block_order": [
+        "row_7B6iWr",
+        "row_9mNPUx",
+        "row_WWDHfm",
+        "row_AnRmVC"
+      ],
+      "disabled": true,
+      "name": "Specification table",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "Product specification",
+        "content": "<p>Showcase specifications about a product to help your customers making an informed decision about their purchase.</p>",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "start",
+        "max_rows": 5,
+        "view_all_text": "View all",
+        "view_less_text": "View less",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "chart_background": "",
+        "chart_text_color": "",
+        "chart_true_false_color": ""
+      }
+    },
+    "impact_text_VQee44": {
+      "type": "impact-text",
+      "blocks": {
+        "item_qxEqn4": {
+          "type": "item",
+          "settings": {
+            "title": "200W",
+            "subheading": "Showcase a benefit of your product",
+            "content": "",
+            "button_text": "",
+            "button_url": "",
+            "animate_impact_text": false,
+            "animate_impact_text_duration": 2
+          }
+        },
+        "item_L3mNyX": {
+          "type": "item",
+          "settings": {
+            "title": "100%",
+            "subheading": "Showcase a benefit of your product",
+            "content": "",
+            "button_text": "",
+            "button_url": "",
+            "animate_impact_text": false,
+            "animate_impact_text_duration": 2
+          }
+        },
+        "item_68p8ea": {
+          "type": "item",
+          "settings": {
+            "title": "100%",
+            "subheading": "Showcase a benefit of your product",
+            "content": "",
+            "button_text": "",
+            "button_url": "",
+            "animate_impact_text": false,
+            "animate_impact_text_duration": 2
+          }
+        }
+      },
+      "block_order": [
+        "item_qxEqn4",
+        "item_L3mNyX",
+        "item_68p8ea"
+      ],
+      "disabled": true,
+      "name": "Impact text",
+      "settings": {
+        "full_width": true,
+        "stack_mobile": true,
+        "text_alignment": "center",
+        "impact_text_style": "fill",
+        "text_divider": "none",
+        "impact_text_size_ratio": 1,
+        "background": "",
+        "background_gradient": "",
+        "heading_text_color": "",
+        "heading_gradient": "",
+        "text_color": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "text_with_icons_hhgH8X": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_TzAMmc": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-coupon",
+            "mobile_icon_width": 24,
+            "icon_width": 32,
+            "icon_background_type": "circle",
+            "icon_background": "",
+            "icon_color": "",
+            "title": "2000W",
+            "content": "<p>Motor</p>"
+          }
+        },
+        "item_n9nbpE": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-coupon",
+            "mobile_icon_width": 24,
+            "icon_width": 32,
+            "icon_background_type": "circle",
+            "icon_background": "",
+            "icon_color": "",
+            "title": "Customer service",
+            "content": "<p>We are available from monday to friday to answer your questions.</p>"
+          }
+        },
+        "item_rn83pd": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-coupon",
+            "mobile_icon_width": 24,
+            "icon_width": 32,
+            "icon_background_type": "circle",
+            "icon_background": "",
+            "icon_color": "",
+            "title": "Secure payment",
+            "content": "<p>Your payment information is processed securely.</p>"
+          }
+        },
+        "item_M7h9VX": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-coupon",
+            "mobile_icon_width": 24,
+            "icon_width": 32,
+            "icon_background_type": "circle",
+            "icon_background": "",
+            "icon_color": "",
+            "title": "Heading",
+            "content": "<p>Short content about your store</p>"
+          }
+        },
+        "item_XjLN4m": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-coupon",
+            "mobile_icon_width": 24,
+            "icon_width": 32,
+            "icon_background_type": "circle",
+            "icon_background": "",
+            "icon_color": "",
+            "title": "Heading",
+            "content": "<p>Short content about your store</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_TzAMmc",
+        "item_n9nbpE",
+        "item_rn83pd",
+        "item_M7h9VX",
+        "item_XjLN4m"
+      ],
+      "disabled": true,
+      "name": "Text with icons",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "title": "",
+        "heading_tag": "h5",
+        "text_alignment": "center",
+        "icon_spacing": "medium",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "recommendations_count": 3,
+        "products": [],
+        "full_width": false,
+        "stack_products": true,
+        "show_progress_bar": false,
+        "products_per_row_mobile": "1",
+        "products_per_row_desktop": 3,
+        "subheading": "",
+        "title": "You may also like",
+        "content": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "text_with_icons_2508_qYKNzF",
+    "multicolumn_slide_2508_4Uj4Me",
+    "multiple_images_with_text_8ApdYh",
+    "images_with_text_scrolling_iB7iVb",
+    "media_grid_efRcKK",
+    "tabs_7qHD7e",
+    "specification_table_efdmkD",
+    "impact_text_VQee44",
+    "text_with_icons_hhgH8X",
+    "related-products"
+  ]
+}

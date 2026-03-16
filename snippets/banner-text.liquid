@@ -1,0 +1,162 @@
+{% assign secId = section.id | split: '__' | last %}
+<style>
+    {%- if info.text_show_type == 'all' or info.text_show_type == 'pc' -%}
+    .{{ secId }}-text-{{ order }} {
+        width: 100%;
+        padding: {{ info.pc_top }}px {{ info.pc_right }}px {{ info.pc_bottom }}px {{ info.pc_left }}px;
+    }
+
+    .{{ secId }}-text-{{ order }} ._text-content {
+        line-height: {{ info.pc_line | divided_by: 100.0 }};
+        font-size: {{ info.pc_size }}px;
+        font-weight: {{ info.pc_weight }};
+        color: {{ info.pc_color }};
+        text-align: {{ info.pc_align }};
+    {%- if info.prefix_url != blank or info.suffix_url != blank -%} display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    {%- endif -%}
+    }
+
+    {%- if info.pc_emphasize_color != blank -%}
+    .{{ secId }}-text-{{ order }} ._text-content strong,
+    .{{ secId }}-text-{{ order }} ._text-content b {
+        color: {{ info.pc_emphasize_color }};
+    }
+
+    {%- endif -%}
+
+    .{{ secId }}-text-{{ order }} ._text-content .prefix-img,
+    .{{ secId }}-text-{{ order }} ._text-content .suffix-img {
+        height: {{ info.pc_size | plus: 4 }}px;
+        vertical-align: middle;
+    }
+
+    .{{ secId }}-text-{{ order }} ._text-content .prefix-img {
+        margin-right: 8px;
+    }
+
+    .{{ secId }}-text-{{ order }} ._text-content .suffix-img {
+        margin-left: 8px;
+    }
+
+    @media screen and (max-width: 1850px) {
+        .{{ secId }}-text-{{ order }} {
+            padding: {{ info.pc_top | times: 0.8 }}px {{ info.pc_right | times: 0.8 }}px {{ info.pc_bottom | times: 0.8 }}px {{ info.pc_left | times: 0.8 }}px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content {
+        {%- assign size = info.pc_size | times: 0.8 -%}{%- if size < 12 -%}{%- assign size = 12 -%}{%- endif -%} font-size: {{ size }}px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content .prefix-img,
+        .{{ secId }}-text-{{ order }} ._text-content .suffix-img {
+            height: {{ info.pc_size | plus: 4 | times: 0.8 }}px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content .prefix-img {
+            margin-right: 6.5px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content .suffix-img {
+            margin-left: 6.5px;
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        .{{ secId }}-text-{{ order }} {
+            padding: {{ info.pc_top | times: 0.7 }}px {{ info.pc_right | times: 0.7 }}px {{ info.pc_bottom | times: 0.7 }}px {{ info.pc_left | times: 0.7 }}px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content {
+        {%- assign size = info.pc_size | times: 0.7 -%}{%- if size < 12 -%}{%- assign size = 12 -%}{%- endif -%} font-size: {{ size }}px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content .prefix-img,
+        .{{ secId }}-text-{{ order }} ._text-content .suffix-img {
+            height: {{ info.pc_size | plus: 4 | times: 0.7 }}px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content .prefix-img {
+            margin-right: 5.5px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content .suffix-img {
+            margin-left: 6.5px;
+        }
+    }
+
+    @media screen and (max-width: 1080px) {
+        .{{ secId }}-text-{{ order }} {
+            padding: {{ info.pc_top | times: 0.6 }}px {{ info.pc_right | times: 0.6 }}px {{ info.pc_bottom | times: 0.6 }}px {{ info.pc_left | times: 0.6 }}px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content {
+        {%- assign size = info.pc_size | times: 0.6 -%}{%- if size < 12 -%}{%- assign size = 12 -%}{%- endif -%} font-size: {{ size }}px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content .prefix-img,
+        .{{ secId }}-text-{{ order }} ._text-content .suffix-img {
+            height: {{ info.pc_size | plus: 4 | times: 0.6 }}px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content .prefix-img {
+            margin-right: 4.5px;
+        }
+
+        .{{ secId }}-text-{{ order }} ._text-content .suffix-img {
+            margin-left: 4.5px;
+        }
+    }
+
+    {%- endif -%}
+    {%- if info.text_show_type == 'all' or info.text_show_type == 'h5' -%}
+    {%- if info.mb_emphasize_color != blank -%}
+    @media screen and (max-width: 768px) {
+        .{{ secId }}-text-{{ order }} ._text-content strong,
+        .{{ secId }}-text-{{ order }} ._text-content b {
+            color: {{ info.mb_emphasize_color }};
+        }
+    }
+    {%- endif -%}
+    {%- endif -%}
+</style>
+{% if info.text_show_type == 'all' or info.text_show_type == 'pc' %}
+    <div class="_mc-text {{ secId }}-text-{{ order }} flex-{{ info.pc_align }} desktop-done">
+        <div class="_text-content">
+            {% if info.prefix_url != blank %}
+                <img class="prefix-img" src="{{ info.prefix_url | img_url: '100x' }}" alt=""/>
+            {% endif %}
+            {{ info.pc_text }}
+            {% if info.suffix_url != blank %}
+                <img class="suffix-img" src="{{ info.suffix_url | img_url: '100x' }}" alt=""/>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+{% if info.text_show_type == 'all' or info.text_show_type == 'h5' %}
+    <div
+        style="padding: {{ info.mb_top }}px {{ info.mb_right }}px {{ info.mb_bottom }}px {{ info.mb_left }}px;"
+        class="_mc-text {{ secId }}-text-{{ order }} flex-{{ info.mb_align }} mobile-done">
+        <div
+            class="_text-content"
+            style="color: {{ info.mb_color }}; line-height: {{ info.h5_line | divided_by: 100.0 }}; font-size: {{ info.mb_size }}px; font-weight: {{ info.mb_weight }}; text-align: {{ info.mb_align }}">
+            {% if info.prefix_url != blank %}
+                <img
+                    class="prefix-img"
+                    style="height: {{ info.mb_size | plus: 4 }}px; vertical-align: middle; margin-right: 7px;"
+                    src="{{ info.prefix_url | img_url: '100x' }}"
+                    alt=""/>
+            {% endif %}
+            {{ info.mb_text }}
+            {% if info.suffix_url != blank %}
+                <img
+                    class="suffix-img"
+                    style="height: {{ info.mb_size | plus: 4 }}px; vertical-align: middle; margin-left: 7px;"
+                    src="{{ info.suffix_url | img_url: '100x' }}"
+                    alt=""/>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,133 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_link_blocks_8WVqid": {
+      "type": "image-link-blocks",
+      "blocks": {
+        "item_7jzR3n": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/kv_607608ab-cbf9-4301-9883-24f7cc08d65a.png",
+            "stretch_image": true,
+            "link_text": "IN 10 User Manual",
+            "link_url": "https://cdn.shopify.com/s/files/1/0682/5646/5034/files/YOZMA_IN10_User_Manual_20250828.pdf?v=1756352409",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "item_7jzR3n"
+      ],
+      "name": "Image link blocks",
+      "settings": {
+        "full_width": false,
+        "block_size": "medium",
+        "subheading": "",
+        "title": "User Manual",
+        "content": "",
+        "link_url": "",
+        "link_text": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "multicolumn_slide_2508_rbd6DA": {
+      "type": "multicolumn-slide-2508",
+      "blocks": {
+        "video_jXCGGC": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=KR598kDXgAo",
+            "poster_image": "shopify://shop_images/KR598kDXgAo-HD.jpg",
+            "show_video_controls": false,
+            "title": "Installation Tutorial",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_jXCGGC"
+      ],
+      "name": "Multicolumn slide",
+      "settings": {
+        "col_num": "3",
+        "txt_size": "md",
+        "item_bg_gd": "linear-gradient(180deg, rgba(240, 240, 240, 1) 100%, rgba(82, 218, 236, 1) 100%)",
+        "full_width": true,
+        "text_alignment_title": "start",
+        "subheading": "",
+        "title": "Unbox & Ride the Yozma IN 10",
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "1756368287419776d6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f1d53cb_VVKWza": {
+          "type": "ai_gen_block_f1d53cb",
+          "disabled": true,
+          "settings": {
+            "video_url": "",
+            "video_border_radius": 8,
+            "heading": "Watch our story",
+            "text": "<p>Discover the passion and craftsmanship behind our products in this exclusive behind-the-scenes video.</p>",
+            "button_text": "Learn more",
+            "button_url": "",
+            "gap": 40,
+            "section_padding": 40,
+            "content_padding": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#000000",
+            "text_color": "#666666",
+            "heading_size": 32,
+            "text_size": 16,
+            "heading_margin": 16,
+            "text_margin": 24,
+            "button_background": "#000000",
+            "button_hover_background": "#333333",
+            "button_text_color": "#ffffff",
+            "button_text_size": 14,
+            "button_padding": 12,
+            "button_border_radius": 6
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f1d53cb_VVKWza"
+      ],
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    }
+  },
+  "order": [
+    "image_link_blocks_8WVqid",
+    "multicolumn_slide_2508_rbd6DA",
+    "1756368287419776d6",
+    "main"
+  ]
+}

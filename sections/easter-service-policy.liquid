@@ -1,0 +1,227 @@
+{% assign ss = section.settings %}
+<style>
+    .easter-service-policy {
+        padding: 80px 0;
+        background-color: #000000;
+    }
+    .easter-service-policy .title-box {
+        max-width: 1200px;
+        padding: 0 48px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    .easter-service-policy .title-box .title {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #ffffff;
+        padding-bottom: 40px;
+    }
+    .easter-service-policy .easter-content {
+        gap: 12px;
+        align-items: stretch;
+        margin: 0 auto;
+        flex-wrap: wrap;
+    }
+    .easter-service-policy .item {
+        background: #fff;
+        border-radius: 18px;
+        padding: 2.75% 1%;
+        width: calc(16% - 9px);
+    }
+    .easter-service-policy .text {
+        color: #000000;
+        font-weight: 600;
+        line-height: 1.4;
+        font-size: 14px;
+    }
+    .easter-service-policy .image {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        margin-bottom: 10px;
+    }
+    @media screen and (max-width: 1023px) {
+        .easter-service-policy {
+            padding: 2.5rem 0;
+        }
+        .easter-service-policy .title-box {
+            max-width: 100%;
+            padding: 0 1.5rem;
+        }
+        .easter-service-policy .title-box .title {
+            font-size: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+        .easter-service-policy .item {
+            border-radius: 0.625rem;
+            padding: 5% 2%;
+            width: calc((100% - 24px) / 3);
+            box-sizing: border-box;
+        }
+        .easter-service-policy .text {
+            font-size: 0.75rem;
+        }
+        .easter-service-policy .image {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin-bottom: 0.625rem;
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<section class="easter-service-policy section--page">
+    {% render 'easter-title', info: ss %}
+    <div class="easter-content flex-center page-container">
+        {%- for block in section.blocks -%}
+            {%- assign bs = block.settings -%}
+            <div class="item" style="background: {{ bs.card_color }};">
+                {% render 'global-image', media_type: 'icon', desktop_img: bs.image_icon %}
+                <span style="color: {{ bs.title_color }};" class="text tw-leading-[1.2] tw-text-base">{{ bs.title }}</span>
+            </div>
+        {%- endfor -%}
+    </div>
+</section>
+{% schema %}
+{
+  "name": "Easter Service Policy",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "easter-service-policy"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Service Card",
+      "settings": [
+        {
+          "type": "color",
+          "id": "card_color",
+          "label": "Service card color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Service name",
+          "default": "<p>14-Day Trial</p>"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Service name color",
+          "default": "#000000"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Service icon"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

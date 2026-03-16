@@ -1,0 +1,163 @@
+<style>
+    .mc_discount-code {
+        width: 100%;
+        min-height: 20px;
+        border-radius: 5px;
+    {%- if info.bg_color != blank -%} background-color: {{ info.bg_color }};
+    {%- endif -%} overflow: hidden;
+        position: relative;
+        margin: {{ info.top }}px 0 {{ info.bottom }}px 0;
+    }
+
+    {%- if info.bg_image != blank -%}
+    .mc_discount-code .image {
+        width: 100%;
+        aspect-ratio: var(--aspect-ratio);
+        object-fit: contain;
+    }
+
+    {%- endif -%}
+
+    .mc_discount-code .sales-info {
+        padding: 16px {{ info.padding_right | divided_by: 19.2 }}vw 16px {{ info.padding_left | divided_by: 19.2 }}vw;
+        color: {{ info.copy_text_color }};
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        position: absolute;
+        z-index: 2;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .mc_discount-code .sales-info .discount-text {
+        font-size: 25px;
+        font-weight: 700;
+        color: {{ info.discount_text_color }};
+    }
+
+    .mc_discount-code .sales-info .discount-code {
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .mc_discount-code .sales-info .discount-code .success-icon {
+        display: none;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+    .mc_discount-code .sales-info .discount-code .success-icon .svg-icon {
+        width: 100%;
+        height: 100%;
+    }
+
+    .mc_discount-code .sales-info .discount-code:hover .code {
+        text-decoration: underline;
+    }
+
+    .mc_discount-code .sales-info .code {
+        font-weight: 700;
+        margin-top: 5px;
+        color: {{ info.discount_code_color }};
+    }
+
+    .mc_discount-code .sales-info .discount-code.disabled {
+        flex-direction: row;
+    }
+
+    .mc_discount-code .sales-info .discount-code.disabled .code {
+        display: none;
+    }
+
+    .mc_discount-code .sales-info .discount-code.disabled .success-icon {
+        display: block;
+    }
+
+    .mc_discount-code .sales-info .discount-code.disabled .copy {
+        cursor: not-allowed;
+        color: {{ info.copy_success_color }};
+    }
+
+    @media screen and (max-width: 768px) {
+        .mc_discount-code {
+            width: 100%;
+            border-radius: 0.3125rem;
+        }
+
+        .mc_discount-code .sales-info {
+            padding: 12px {{ info.mb_padding_right }}px 12px {{ info.mb_padding_left }}px;
+        }
+
+        .mc_discount-code .sales-info .discount-text {
+            font-size: 20px;
+        }
+
+        .mc_discount-code .sales-info .discount-code {
+            cursor: pointer;
+            font-size: 15px;
+        }
+    }
+</style>
+<div class="mc_discount-code" id="{{ section.id }}-sales">
+    {%- if info.bg_image != blank -%}
+        {% render 'global-image',
+            image: info.bg_image,
+            show_size: true
+        %}
+    {%- endif -%}
+    <div class="sales-info flex-between">
+        <div class="discount-text">
+            {{ info.discount_text }}
+        </div>
+        <div class="discount-code flex-center-col">
+            <div class="success-icon">
+                <svg class="svg-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+                    <path
+                        d="M512 1013.76c-277.11488 0-501.76-224.64512-501.76-501.76S234.88512 10.24 512 10.24s501.76 224.64512 501.76 501.76-224.64512 501.76-501.76 501.76z m0-51.02592c248.9344 0 450.73408-201.79968 450.73408-450.73408 0-248.9344-201.79968-450.73408-450.73408-450.73408-248.9344 0-450.73408 201.79968-450.73408 450.73408 0 248.9344 201.79968 450.73408 450.73408 450.73408z m-89.22112-361.0112c60.928-74.33216 195.9424-222.67904 382.08512-340.16256l15.616 37.4784c-171.14624 161.8944-311.36768 322.23744-355.45088 438.76864l-256.8704-201.6 65.82784-54.48704 148.7872 119.99744z"
+                        fill="{{ info.copy_success_color }}"></path>
+                </svg>
+            </div>
+            <div class="copy" id="{{ section.id }}-copy">{{ info.copy_text }}</div>
+            <div class="code">{{ info.discount_code }}</div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        const node = document.getElementById('{{ section.id }}-copy');
+        const copyText = (text) => {
+            const node = document.createElement('INPUT');
+            node.style.cssText = 'position: fixed; top: -100000px;';
+            document.body.appendChild(node);
+            node.value = text;
+            node.focus();
+            node.select();
+            let range = document.createRange();
+            range.selectNodeContents(node);
+            let sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            node.setSelectionRange(0, 9999);
+            document.execCommand('copy');
+            node.blur();
+            document.body.removeChild(node);
+        };
+        const parent = node.parentNode;
+        parent.addEventListener('click', () => {
+            if (parent.classList.contains('disabled')) {
+                return false;
+            }
+            copyText('{{ info.discount_code }}');
+            node.innerHTML = '{{ info.copy_success }}';
+            parent.classList.add('disabled');
+            setTimeout(() => {
+                node.innerHTML = '{{ info.copy_text }}';
+                parent.classList.remove('disabled');
+            }, 2000);
+        });
+    })();
+</script>

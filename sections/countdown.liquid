@@ -1,0 +1,207 @@
+  <style>
+    #shopify-section-{{ section.id }} {
+      {% if section.settings.remove_vertical_spacing %}--section-spacing-block: 0px;{% endif %}
+      {% if section.settings.remove_horizontal_spacing %}--section-spacing-inline: 0px;{% endif %}
+    }
+    #shopify-section-{{ section.id }}.sticky-section{
+      z-index: 9;
+      position: sticky;
+    }
+  </style>
+
+  {%- render 'section-spacing-collapsing' -%}
+
+  <div>
+
+    {% for block in section.blocks %}
+      <div class="bg-gradient" {% render 'surface', class: 'countdown-wrapper tw-mx-auto', background: section.settings.background, background_gradient: section.settings.background_gradient, %} >
+
+          {% assign meta = block.settings.countdown_date %}
+          {% assign countdown_days = block.settings.countdown_days %}
+          {% assign countdown_hours = block.settings.countdown_hours %}
+          {% assign countdown_minutes = block.settings.countdown_minutes %}
+          {% assign countdown_seconds = block.settings.countdown_seconds %}
+          <div class="tw-flex md:tw-flex-row tw-flex-col tw-items-center tw-justify-center md:tw-gap-6 section md:tw-py-0 tw-py-2">
+            <div class="md:tw-text-left tw-text-center" style="color:{{ block.settings.text_color }}">
+              <p id="countdownLbl" class="block-label tw-text-2xl tw-font-semibold md:tw-mb-2 tw-leading-tight">
+                {{ block.settings.countdown_lbl }}
+              </p> 
+              {% if block.settings.countdown_lbl_content != blank %}
+              <p class="tw-leading-tight tw-text-base">{{ block.settings.countdown_lbl_content }}</p> 
+              {% endif %}
+            </div>
+            <div class="tw-w-[1px] tw-h-[75px] -md:tw-hidden" style="background:{{ block.settings.text_color }}"></div>
+            <div id="countdown" class="prcountdown tw-flex tw-gap-4 tw-mx-0 tw-my-2 tw-py-4 -md:tw-pb-0 tw-text-black"></div>
+          </div>
+      </div>
+    {% endfor %}
+
+  </div>
+
+
+  <script type="text/javascript">
+    // 使用 Liquid 渲染服务器端时间
+    var storeNow = new Date("{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}").getTime(); // 初始店铺时间
+    var clientNow = new Date().getTime(); // 当前浏览器时间
+    var timeOffset = storeNow - clientNow; // 计算店铺时间与浏览器时间的偏移
+
+    // 目标时间
+    var countDownDate = new Date("{{ meta }}").getTime(); // Liquid 提供的目标时间
+
+    var x = setInterval(function() {
+        // 获取当前浏览器时间并加上偏移以模拟店铺时间
+        var now = new Date().getTime() + timeOffset;
+
+        // 计算剩余时间
+        var distance = countDownDate - now;
+
+        // 计算天、小时、分钟、秒
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // 格式化为两位数
+        days = ("0" + days).slice(-2);
+        hours = ("0" + hours).slice(-2);
+        minutes = ("0" + minutes).slice(-2);
+        seconds = ("0" + seconds).slice(-2);
+
+        // 更新页面倒计时显示
+        document.getElementById("countdown").innerHTML = 
+            "<span class='days tw-countdown-item'>" + days + 
+            "<span class='countdown-unit tw-block '>{{ countdown_days }}</span></span> " +
+            "<span class='hours tw-countdown-item'>" + hours + 
+            "<span class='countdown-unit'>{{ countdown_hours }}</span></span> " +
+            "<span class='minutes tw-countdown-item'>" + minutes + 
+            "<span class='countdown-unit'>{{ countdown_minutes }}</span></span> " +
+            "<span class='seconds tw-countdown-item'>" + seconds + 
+            "<span class='countdown-unit'>{{ countdown_seconds }}</span></span>";
+
+        // 如果倒计时完成
+        if (distance < 0) {
+            clearInterval(x);
+            document.querySelector(".countdown-wrapper").style.display = "none";
+            document.getElementById("countdownLbl").style.display = "none";
+            document.getElementById("countdown").style.display = "none";
+        }
+    }, 1000);
+
+  </script>
+
+
+{% schema %}
+{
+  "name": "Countdown",
+  "class": "shopify-section shopify-section--countdown ",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_vertical_spacing",
+      "label": "Remove vertical spacing",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_horizontal_spacing",
+      "label": "Remove horizontal spacing",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_img",
+      "label": "background image"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "countdown",
+      "name": "Countdown",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "countdown_lbl",
+          "label": "Countdown title",
+          "default": "Hurry up!"
+        },
+        {
+          "type": "text",
+          "id": "countdown_lbl_content",
+          "label": "Countdown content",
+          "default": "Sale Ends In"
+        },
+        {
+          "type": "text",
+          "id": "countdown_date",
+          "label": "Select end date for countdown",
+          "default": "2024-12-02T00:00:00",
+          "info": "2024-12-02T00:00:00"
+        },
+        {
+          "type": "text",
+          "id": "countdown_days",
+          "label": "Countdown Days",
+          "default": "DAYS"
+        },
+        {
+          "type": "text",
+          "id": "countdown_hours",
+          "label": "Countdown Hours",
+          "default": "HRS"
+        },
+        {
+          "type": "text",
+          "id": "countdown_minutes",
+          "label": "Countdown Minutes",
+          "default": "MIN"
+        },
+        {
+          "type": "text",
+          "id": "countdown_seconds",
+          "label": "Countdown Seconds",
+          "default": "SEC"
+        },
+        {
+          "type": "header",
+          "content": "Colors",
+          "info": "Gradient replaces solid colors when set."
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text"
+        }
+      ]
+    },
+  ],
+  "presets": [
+    {
+      "category": "Customize",
+      "name": "Countdown"
+    }
+  ]
+}
+{% endschema %}

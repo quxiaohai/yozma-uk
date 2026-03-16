@@ -1,0 +1,138 @@
+<div class="tw-fixed md:tw-right-2 tw-bottom-2 tw-px-2 tw-z-10 -md:tw-w-full" >
+  <div class="tw-bg-white tw-rounded-lg tw-shadow-lg newsletter-popup-fix-js tw-transition-all tw-opacity-0">
+    {%- assign newsletter_id = 'newsletter-popup-' | append: section.id -%}
+    <button is="close-button" aria-label="{{ 'general.accessibility.close' | t | escape }}" class="tw-absolute md:tw-right-4 md:tw-top-4 tw-right-2 tw-top-2">
+      {%- render 'icon' with 'close', width: 30, height: 30 -%}
+    </button>
+
+    {%- if section.settings.image != blank -%}
+      {%- capture sizes -%}min(calc(100vw - 16px), 445px){%- endcapture -%}
+      {%- capture widths -%}{{ section.settings.image.width }}, {{ section.settings.image.width | times: 2 | at_most: section.settings.image.width }}{%- endcapture -%}
+      {{- section.settings.image | image_url: width: section.settings.image.width | image_tag: loading: 'lazy', widths: widths, sizes: sizes -}}
+    {%- endif -%}
+
+    <div class="newsletter-drawer__content v-stack gap-4 text-center ">
+      <div class="v-stack gap-6">
+        {%- if section.settings.title != blank -%}
+          <p class="h5">{{- section.settings.title -}}</p>
+        {%- endif -%}
+
+        {%- form 'customer', id: newsletter_id, class: 'form' -%}
+          {%- if form.posted_successfully? -%}
+            {%- capture success_message -%}{{ 'general.newsletter.subscribed_successfully' | t }}{%- endcapture -%}
+            {%- render 'banner', content: success_message, status: 'success' -%}
+
+            <script>
+              localStorage.setItem('theme:popup-filled', 'true');
+            </script>
+          {%- else -%}
+            {%- if form.errors -%}
+              {%- assign content = form.errors | default_errors -%}
+              {%- render 'banner', status: 'error', content: content -%}
+            {%- endif -%}
+
+            <div class="fieldset">
+              <input type="hidden" name="contact[tags]" value="newsletter">
+
+              {%- assign label = 'blog.comments.email' | t -%}
+              {%- render 'input', type: 'email', name: 'contact[email]', label: label, value: customer.email, required: true, autocomplete: 'email' -%}
+            </div>
+
+            {%- render 'button', content: section.settings.button_text, icon: 'picto-envelope', type: 'submit', size: 'xl' -%}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+
+      {%- if section.settings.subtext != blank -%}
+        <p class="text-xs text-subdued">{{- section.settings.subtext -}}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  const closeButton = document.querySelector(`#shopify-section-{{section.id}} [is="close-button"]`);
+  const section = document.querySelector(`.newsletter-popup-fix-js`);
+
+  // 检查是否已经订阅过
+  const hasSubscribed = localStorage.getItem('theme:popup-filled') === 'true';
+  
+  // 只有未订阅过的用户才显示弹窗
+  if (!hasSubscribed) {
+    setTimeout(() => {
+      if (section) {
+        section.style.transition = 'opacity 0.5s ease-in-out';
+        void section.offsetWidth; // 触发重排
+        section.style.opacity = 1;
+      }
+    }, 10000);
+  }
+
+  closeButton.addEventListener('click', function() {
+    const section = this.closest(`#shopify-section-{{section.id}}`);
+    if (section) {
+      section.style.opacity = 0;
+      setTimeout(() => section.remove(), 500); // 等待过渡动画完成
+    }
+  });
+
+  // 监听表单提交成功事件
+  document.addEventListener('theme:popup-filled', function() {
+    // 设置本地存储标记
+    localStorage.setItem('theme:popup-filled', 'true');
+    
+    // 关闭弹窗
+    if (section) {
+      section.style.opacity = 0;
+      setTimeout(() => {
+        if (section.parentNode) {
+          section.remove();
+        }
+      }, 500);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Newsletter popup fixed",
+  "class": "shopify-section--popup shopify-section--popup-fixed ",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Customers who subscribe will have their email address added to the \"accepts marketing\" [customer list](/admin/customers?query=&accepts_marketing=1)."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "1000 x 600px .jpg recommended"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Signup for our newsletter"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button",
+      "default": "Subscribe"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Describe what your customers will receive when subscribing to your newsletter."
+    }
+  ],
+  "presets": [
+    {
+      "category": "Customize",
+      "name": "Newsletter popup fixed"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,575 @@
+{%- assign newsletter_block = section.blocks | where: 'type', 'newsletter' | first -%}
+
+{%- if section.blocks.size > 3 -%}
+<style>
+  @media screen and (min-width: 1000px) {
+    #shopify-section-{{ section.id }} {
+      {%- if newsletter_block != blank -%}
+        --footer-block-list-gap: var(--spacing-10);
+      {%- endif -%}
+
+      --footer-block-list-justify-content: space-between;
+    }
+  }
+
+  .footer__policy-links .contents:before {
+    opacity: 0;
+  }
+
+  .footer-our:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    opacity: 0.12;
+    background: #FFF;
+    bottom: -20px;
+    left: 0;
+  }
+
+  .footer-our .our-title {
+    color: #FFF;
+    font-size: 32px;
+    padding-right: 3.75vw;
+  }
+  .footer-our > img {
+    height: 28px;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+  }
+  .footer-our .our-img-items {
+    gap: 0 10px;
+  }
+  .footer-our .our-more,
+  .footer-our .image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+  .footer-our .our-more {
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    right: 0;
+    top: 0;
+  }
+  .footer__wrapper .social-media svg {
+    color: #888888;
+  }
+  @media screen and (max-width: 1023px) {
+    .footer-our,
+    .footer-our .our-info{
+    align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .footer-our:before {
+      bottom: auto;
+      top: -10px;
+    }
+
+    .footer-our > img {
+      display: none;
+    }
+
+    .footer-our .our-more,
+    .footer-our .image {
+      width: calc((100% - 30px) / 4);
+      max-width: 100px;
+      height: auto;
+      aspect-ratio: 1;
+    }
+
+    .footer-our .our-more {
+      transform: scale(1.02);
+    }
+
+    .footer-our .our-title {
+      font-size: 1.5rem;
+      padding: 1.25rem 0 1.5rem 0;
+      text-align: left;
+    }
+  }
+
+   @media screen and (max-width: 768px) {
+   .footer__aside {
+    margin-top: -0.4rem;
+   }
+   .footer__wrapper .social-media {
+      gap: 1rem;
+   }
+   .footer__wrapper .social-media svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    .footer-links-box {
+      margin-top: -0.7rem;
+    }
+    .footer-links-box .accordion__toggle .circle-chevron {
+      background: none !important;
+      color: #FFFFFF !important;
+    }
+
+    .footer-links-box .accordion__toggle {
+      font-size: 1rem;
+      padding: 0.95rem 0;
+    }
+
+    .footer__aside-bottom {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.6rem 0;
+      text-align: center;
+    }
+    .footer__policy-links {
+      justify-content: center;
+      gap: 0 0.5rem;
+    }
+    .footer__policy-links .contents:before {
+      display: none;
+    }
+   }
+</style>
+{%- endif -%}
+
+<div class="footer">
+  <div class="container">
+    <div class="footer__wrapper">
+      {%- comment -%}
+      ------------------------------------------------------------------------------------------------------------------
+      BLOCK AREA
+      ------------------------------------------------------------------------------------------------------------------
+      {%- endcomment -%}
+
+      {%- if section.blocks.size > 0 -%}
+       {%- if section.settings.show_social_media -%}
+          {%- capture social_media -%}{%- render 'social-media' -%}{%- endcapture -%}
+        {%- endif -%}
+        <div class="footer__block-list empty:hidden">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                <div class="footer__block footer__block--app">
+                  {%- render block -%}
+                </div>
+
+              {%- when 'text' -%}
+                {%- if block.settings.title != blank or block.settings.content != blank or shop.features.follow_on_shop? and block.settings.enable_follow_on_shop -%}
+                  <div class="footer__block footer__block--text" {{ block.shopify_attributes }}>
+                    {%- if block.settings.title != blank -%}
+                      <p class="bold">{{ block.settings.title | escape }}</p>
+                    {%- endif -%}
+
+                    {%- if block.settings.content != blank -%}
+                      <div class="prose text-subdued">
+                        {{- block.settings.content -}}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if shop.features.follow_on_shop? and block.settings.enable_follow_on_shop -%}
+                      <div class="follow-on-shop">
+                        {{- shop | login_button: action: 'follow' -}}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+              {%- when 'links' -%}
+                {%- if block.settings.menu != blank -%}
+                  <div class="footer__block md:block hidden footer__block--menu" {{ block.shopify_attributes }}>
+                    {%- if block.settings.show_menu_title -%}
+                      <p class="bold">{{ block.settings.menu_title | default: block.settings.menu.title }}</p>
+                    {%- endif -%}
+
+                    <ul class="v-stack gap-3" role="list">
+                      {%- for link in block.settings.menu.links -%}
+                        <li>
+                          <a href="{{ link.url }}" class="inline-block link-faded break-all">{{ link.title }}</a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+
+              {%- when 'newsletter' -%}
+                <div class="footer__block footer__block--newsletter" {{ block.shopify_attributes }}>
+                  {%- if social_media != blank -%}
+                   {{- social_media -}}
+                  {%- endif -%}
+
+                  <div class="v-stack gap-6">
+                    {%- if block.settings.title != blank -%}
+                      <p class="{{ block.settings.heading_size }}">{{- block.settings.title | escape -}}</p>
+                    {%- endif -%}
+
+                    {%- if block.settings.content != blank -%}
+                      <div class="prose text-subdued">
+                        {{- block.settings.content -}}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="footer-our relative flex-between">
+      {%- liquid
+        assign block = section.blocks |where:'type','newsletter' |first
+        assign our = section.blocks |where:'type','our' | first
+      -%}
+        {%- if block.settings.image != blank -%}
+          {%- capture sizes -%}{{ block.settings.image_width }}px{%- endcapture -%}
+          {%- capture widths -%}{{ block.settings.image_width }}, {{ block.settings.image_width | times: 2 | at_most: block.settings.image.width }}{%- endcapture -%}
+          {%- capture style -%}max-width: {{ block.settings.image_width }}px{%- endcapture -%}
+          {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', style: style, sizes: sizes, widths: widths -}}
+        {%- endif -%}
+        {%- if our != blank -%}
+          {%- assign bs = our.settings -%}
+          <div class="flex-left our-info">
+            <div class="our-title lh-2 fw-600">{{ bs.title }}</div>
+            <div class="our-img-items relative flex-left">
+              {%- for v in (1..5) -%}
+                {%- assign img = 'image' | append: v -%}
+                {%- if bs[img] != blank -%}
+                  {%- render 'global-image', image: bs[img], image_size: 120 -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if bs.url != blank -%}
+                <a href="{{ bs.url }}" target="_blank" class="our-more absolute flex-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M0.91667 0V1.52954H7.03404L0 8.5635L1.09228 9.65581L8.12632 2.62186V8.73942H9.65581V0H0.91667Z" fill="white"/>
+                  </svg>
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="md:hidden footer-links-box">
+        {%- assign links = section.blocks | where: 'type', 'links' -%}
+        {%- for block in links -%}
+            {%- assign bs = block.settings -%}
+            {%- if bs.menu != blank -%}
+              {%- assign title = bs.menu_title | default: bs.menu.title -%}
+              {%- capture content -%}
+                <ul class="v-stack gap-3" role="list">
+                  {%- for link in block.settings.menu.links -%}
+                    <li>
+                      <a href="{{ link.url }}" class="inline-block link-faded break-all">{{ link.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endcapture -%}
+              {%- render 'accordion', title: title, content: content, icon_type: 'plus' -%}
+            {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%}
+      ------------------------------------------------------------------------------------------------------------------
+      SECONDARY AREA
+      ------------------------------------------------------------------------------------------------------------------
+      {%- endcomment -%}
+
+      <div class="footer__aside empty:hidden">
+        {%- comment -%}
+        ----------------------------------------------------------------------------------------------------------------
+        SOCIAL MEDIA + LOCALIZATION
+        ----------------------------------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+          {%- assign country_selector = true -%}
+        {%- endif -%}
+
+        {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+          {%- assign locale_selector = true -%}
+        {%- endif -%}
+
+        {%- if country_selector or locale_selector -%}
+          <div class="footer__aside-top">
+            {%- if country_selector or locale_selector -%}
+              <div class="h-stack gap-6">
+                {%- if social_media == blank -%}
+                  {%- assign popover_horizontal_position = 'start' -%}
+                {%- else -%}
+                  {%- assign popover_horizontal_position = 'end' -%}
+                {%- endif -%}
+
+                {%- if country_selector -%}
+                  {%- render 'localization-selector', type: 'country', show_country_name: section.settings.show_country_name, show_country_flag: section.settings.show_country_flag, popover_horizontal_position: popover_horizontal_position -%}
+                {%- endif -%}
+
+                {%- if locale_selector -%}
+                  {%- render 'localization-selector', type: 'locale', popover_horizontal_position: popover_horizontal_position -%}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}
+        ----------------------------------------------------------------------------------------------------------------
+        COPYRIGHT + PAYMENT METHODS
+        ----------------------------------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        <div class="footer__aside-bottom">
+          {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+            <ul class="footer__payment-icons h-stack wrap gap-2">
+              {%- for type in shop.enabled_payment_types -%}
+                <li class="contents">{{ type | payment_type_svg_tag }}</li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          <div class="footer__copyright v-stack gap-1">
+            {%- if section.settings.show_policy_links and shop.policies.size > 0 -%}
+              <ul class="footer__policy-links unstyled-list">
+                {%- for policy in shop.policies -%}
+                  <li class="contents"><a href="{{ policy.url }}" class="text-sm link-faded">{{ policy.title }}</a></li>
+                {%- endfor -%}
+                <li class="contents text-sm link-faded">© {{ 'now' | date: '%Y' }}, {{ shop.name }}</li>
+              </ul>
+            {%- endif -%}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "shopify-section--footer",
+  "tag": "footer",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_social_media",
+      "label": "Show social media",
+      "info": "To configure social media, go to your social media settings.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy_links",
+      "label": "Show policy links",
+      "info": "To add store policies, go to your [policy settings](/admin/settings/legal)."
+    },
+    {
+      "type": "header",
+      "content": "Country/region selector",
+      "info": "To add a country/region, go to your [markets settings.](/admin/settings/markets)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "Show country/region selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_flag",
+      "label": "Show country flag",
+      "default": true,
+      "visible_if": "{{ section.settings.show_country_selector }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_name",
+      "label": "Show country name",
+      "default": true,
+      "visible_if": "{{ section.settings.show_country_selector }}"
+    },
+    {
+      "type": "header",
+      "content": "Language selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "Show language selector",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "About our store"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_follow_on_shop",
+          "label": "Show Follow on Shop",
+          "info": "To allow customers to follow your store on the Shop app from your storefront, Shop Pay must be enabled. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/follow-on-shop)",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "links",
+      "name": "Links",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "info": "This menu won't show dropdown items.",
+          "default": "footer"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_menu_title",
+          "label": "Show menu title",
+          "default": true
+        },
+        {
+          "type": "inline_richtext",
+          "id": "menu_title",
+          "label": "Menu title",
+          "info": "Replaces the default menu title"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Customers who subscribe will have their email address added to the \"accepts marketing\" [customer list](/admin/customers?query=&accepts_marketing=1)."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "600 x 600px .png recommended"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 300,
+          "step": 10,
+          "unit": "px",
+          "label": "Image width",
+          "default": 150
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Title size",
+          "options": [
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h3"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Sign up to our newsletter"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "our",
+      "name": "Our community",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Our Community #YOZMA"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        },
+        {
+          "type": "image_picker",
+          "id": "image1",
+          "label": "Image #1",
+          "info": "100 x 100 .jpg recommended"
+        },
+         {
+          "type": "image_picker",
+          "id": "image2",
+          "label": "Image #2",
+          "info": "100 x 100 .jpg recommended"
+        },
+         {
+          "type": "image_picker",
+          "id": "image3",
+          "label": "Image #3",
+          "info": "100 x 100 .jpg recommended"
+        },
+         {
+          "type": "image_picker",
+          "id": "image4",
+          "label": "Image #4",
+          "info": "100 x 100 .jpg recommended"
+        },
+         {
+          "type": "image_picker",
+          "id": "image5",
+          "label": "Image #5",
+          "info": "100 x 100 .jpg recommended"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

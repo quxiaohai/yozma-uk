@@ -1,0 +1,466 @@
+{%- liquid
+    assign ss = section.settings
+    assign cid = section.id | split: '__' | last
+    assign aspect_ratio = '16 / 9'
+    if ss.video_ratio != blank
+        assign aspect_ratio = ss.video_ratio
+    elsif ss.show_border_image and ss.pc_border_image != blank
+        assign aspect_ratio = ss.pc_border_image.aspect_ratio
+    elsif ss.video != blank
+        assign aspect_ratio = ss.video.aspect_ratio
+    endif
+
+    assign mb_aspect_ratio = aspect_ratio
+    if ss.mb_video_ratio != blank
+        assign mb_video_ratio = ss.mb_video_ratio
+    elsif ss.show_border_image and ss.mb_border_image != blank
+        assign mb_aspect_ratio = ss.mb_border_image.aspect_ratio
+    elsif ss.video_mobile != blank
+        assign mb_aspect_ratio = ss.video_mobile.aspect_ratio
+    endif
+
+    if section.index == 1
+        assign loading = 'eager'
+        assign fetchpriority = 'high'
+        assign lazyimage = null
+    else
+        assign loading = 'lazy'
+        assign fetchpriority = 'low'
+        assign lazyimage = 'lazy-image'
+    endif
+-%}
+<style>
+    .{{ cid }} {
+        background-color: #171717;
+        padding: 80px 0;
+    }
+
+    .{{ cid }} .media-content {
+        width: {{ ss.video_width }}%;
+        box-sizing: border-box;
+        aspect-ratio: {{ aspect_ratio }};
+        padding: {% if ss.show_border_image %}{{ ss.pc_border_thickness }}{% else %}0{% endif %};
+    }
+
+    {%- if ss.video_fill -%}
+    @media screen and (min-width: 1024px) {
+        .{{ cid }} .page-width {
+            padding: 0;
+        }
+    }
+    {%- endif -%}
+
+    {%- if ss.show_border_image -%}
+    .{{ cid }} .media-content > .image {
+        position: assolute;
+        top: 0;
+        left: 0;
+    }
+
+    .{{ cid }} .media-content .image {
+        object-fit: fill;
+    }
+
+    {%- endif -%}
+    .{{ cid }} .media-content .media-info,
+    .{{ cid }} .media-content .media-info .media,
+    .{{ cid }} .media-content .media-info .media video {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+    }
+
+    .{{ cid }} .media-content .media-info .media .play-button {
+        position: static;
+        background-color: transparent;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        min-width: var(--icon-min-size);
+        min-height: var(--icon-min-size);
+    }
+
+    .{{ cid }} .media-content .media-info .media[playing] .play-button {
+        opacity: 0;
+    }
+
+    .{{ cid }} .media-content .media-info {
+        background-color: {% if ss.page_color != blank %}{{ ss.page_color }}{% else %}#000000{% endif %};
+        z-index: 2;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .{{ cid }} {
+            padding: 40px 0;
+        }
+
+        .{{ cid }} .media-content {
+            width: 100%;
+            aspect-ratio: {{ mb_aspect_ratio }};
+            padding: {% if ss.show_border_image %}{{ ss.mb_border_thickness }}{% else %}0{% endif %};
+        }
+
+    {%- if ss.mb_video_fill -%}
+        .{{ cid }} .page-width {
+            padding: 0;
+        }
+    {%- endif -%}
+        .{{ cid }} .media-content .media-info .media .play-button {
+            width: var(--icon-mb-size);
+            height: var(--icon-mb-size);
+            min-width: var(--icon-mb-size);
+            min-height: var(--icon-mb-size);
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="{{ cid }} section--page w-full">
+    {%- render 'section-title', info: ss -%}
+    <div class="page-width flex-center">
+        <animate-element data-repeat class="media-content relative">
+            {%- if ss.show_border_image -%}
+                {%- render 'global-image',
+                    desktop_img: ss.pc_border_image,
+                    mobile_img: ss.mb_border_image
+                -%}
+            {%- endif -%}
+            {%- liquid
+                capture style
+                    if ss.play_button_size == 'small'
+                        echo '--icon-size:5vw;--icon-min-size:80px;--icon-mb-size:36px;'
+                    else
+                        echo '--icon-size:9.58vw;--icon-min-size:100px;--icon-mb-size:46px;'
+                    endif
+                endcapture
+            -%}
+            <div class="media-info relative"
+                 style="{{ style }}">
+                {%- if ss.video_mobile or ss.video_url_mobile -%}
+                    {%- render 'video',
+                        loading: loading,
+                        fetchpriority: fetchpriority,
+                        lazyimage: lazyimage,
+                        video: ss.video_mobile,
+                        video_url: ss.video_url_mobile,
+                        muted: ss.enable_video_autoplay,
+                        autoplay: ss.enable_video_autoplay,
+                        loop: ss.enable_video_looping,
+                        cover_image: ss.cover_image_mobile,
+                        is_mobile: true,
+                        play_icon: ss.play_button_icon,
+                        class: 'media'
+                    -%}
+                {%- endif -%}
+                {%- render 'video',
+                    loading: loading,
+                    fetchpriority: fetchpriority,
+                    lazyimage: lazyimage,
+                    video: ss.video,
+                    video_url: ss.video_url,
+                    muted: ss.enable_video_autoplay,
+                    autoplay: ss.enable_video_autoplay,
+                    loop: ss.enable_video_looping,
+                    description: ss.description,
+                    cover_image: ss.cover_image,
+                    play_icon: ss.play_button_icon,
+                    class: 'media'
+                -%}
+            </div>
+        </animate-element>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "MC Media Video",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Media Video"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Media video"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_autoplay",
+      "label": "Enable video autoplay",
+      "info": "Video are muted automatically to allow autoplay",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Enable video looping",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border_image",
+      "label": "Show video border image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "play_button_icon",
+      "label": "Play button icon"
+    },
+    {
+      "type": "select",
+      "id": "play_button_size",
+      "label": "Play button size",
+      "options": [
+        {
+          "label": "Large",
+          "value": "large"
+        },
+        {
+          "label": "Small",
+          "value": "small"
+        }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "image_picker",
+      "id": "pc_border_image",
+      "label": "Desktop video border image"
+    },
+    {
+      "type": "text",
+      "id": "pc_border_thickness",
+      "label": "Desktop video border thickness",
+      "default": "27px 27px"
+    },
+    {
+      "type": "image_picker",
+      "id": "mb_border_image",
+      "label": "Mobile video border image"
+    },
+    {
+      "type": "text",
+      "id": "mb_border_thickness",
+      "label": "Mobile video border thickness",
+      "default": "10px 10px"
+    },
+    {
+      "type": "header",
+      "content": "Shopify-hosted video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "header",
+      "content": "Or embed video from URL",
+      "info": "Shows when no Shopify-hosted video is selected."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "URL",
+      "info": "Use a YouTube or Vimeo URL"
+    },
+    {
+      "type": "range",
+      "id": "video_width",
+      "label": "Desktop video width",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "text",
+      "id": "video_ratio",
+      "label": "Video ratio(w/h)"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_fill",
+      "label": "Desktop video fill",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Cover image"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Mobile video"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url_mobile",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "label": "Or embed video from URL",
+      "info": "Use a YouTube or Vimeo URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image_mobile",
+      "label": "Mobile cover image"
+    },
+    {
+      "type": "text",
+      "id": "mb_video_ratio",
+      "label": "Mobile video ratio(w/h)"
+    },
+    {
+      "type": "checkbox",
+      "id": "mb_video_fill",
+      "label": "Mobile video fill",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

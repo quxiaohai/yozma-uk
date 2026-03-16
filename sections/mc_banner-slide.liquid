@@ -1,0 +1,600 @@
+{%- liquid
+    assign ss = section.settings
+    assign size = section.blocks.size
+    assign cid = section.id | split: '__' | last
+    assign color = ss.slide_tab_active_color
+-%}
+<style>
+    .{{ cid }} {
+        height: auto;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    {%- if ss.overlay_show -%}
+    .{{ cid }} .tns-item:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: {{ ss.overlay_color }};
+        opacity: {{ ss.overlay_opacity | divided_by: 100.0 }};
+        z-index: 1;
+    }
+
+    {%- endif -%}
+    .{{ cid }}:hover .control-buttons {
+        opacity: 1;
+    }
+
+    .{{ cid }} .control-buttons {
+        top: 50%;
+        transform: translateY(-50%);
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .{{ cid }} .control-buttons.disabled {
+        cursor: not-allowed;
+    }
+
+    .{{ cid }} .control-buttons.disabled .image {
+        filter: grayscale(1);
+        transform: scale(1) !important;
+    }
+
+    .{{ cid }} .prev-button {
+        left: 20px;
+        right: auto;
+        transform: rotate(180deg);
+    }
+
+    .{{ cid }} .control-buttons .image {
+        object-fit: fill;
+        transition: transform 0.3s;
+    }
+
+    .{{ cid }} .control-buttons:hover .image {
+        transform: scale(1.05);
+    }
+
+    .{{ cid }} .backdrop-img {
+        aspect-ratio: var(--desktop-aspect-ratio);
+    }
+
+    .{{ cid }} .tns-inner .slide-content {
+        overflow: hidden;
+        display: flex;
+    }
+
+    .{{ cid }} .tns-inner .slide-content .tns-item {
+        min-width: auto;
+    }
+
+    .{{ cid }} .slide-content {
+        white-space: nowrap;
+        overflow-x: hidden;
+    }
+
+    .{{ cid }} .slide-content .media-info {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 40%;
+        transform: translateY(-50%);
+    }
+
+    .{{ cid }} .slide-content .tns-item {
+        min-width: 100%;
+    }
+
+    .{{ cid }} .slide-content .subhead, .{{ cid }} .slide-content .head {
+        max-width: 740px;
+        word-break: break-word;
+        white-space: wrap;
+    }
+
+    .{{ cid }} .slide-content .subhead {
+        color: #fff;
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .{{ cid }} .slide-content .head {
+        padding-top: 12px;
+        color: #fff;
+        font-size: 60px;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    .{{ cid }} .slide-content .btn-group {
+        padding: 60px 0 0;
+    }
+
+    @keyframes barTranslateY {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    .{{ cid }} .control-box {
+        position: absolute;
+        left: 0;
+        bottom: 24px;
+        color: {{ ss.slide_tab_color }};
+        line-height: 2;
+        font-size: 14px;
+        height: 84px;
+    }
+
+    .{{ cid }} .control-box .item {
+        transition: color 0.5s;
+    }
+
+    .{{ cid }} .control-box .tns-nav-active {
+        color: {{ color }};
+        font-weight: 600;
+    }
+
+    .{{ cid }} .slide-items {
+        padding-left: 30px;
+        transform: translateY(28px);
+        transition: transform 0.3s;
+    }
+
+    .{{ cid }} .progress-bar {
+        width: 2px;
+        height: 12px;
+        border-radius: 2px;
+        background: rgba({{ color.red }}, {{ color.green }}, {{ color.blue }}, 0.2);
+        margin-top: 37px;
+    }
+
+    .{{ cid }} .progress-bar .bar {
+        background: {{ color }};
+        transform: translateY({% if ss.auto_slide %}-100%{% else %}0%{% endif %});
+    }
+
+    .{{ cid }} .progress-bar .bar.start {
+        animation: barTranslateY {{ ss.duration }}s linear forwards;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .{{ cid }} .backdrop-img {
+            aspect-ratio: var(--mobile-aspect-ratio);
+        }
+
+        .{{ cid }} .slide-content .media-info {
+            top: 3.125rem;
+            text-align: center;
+            transform: translateY(0);
+        }
+
+        .{{ cid }} .slide-content .subhead, .{{ cid }} .slide-content .head {
+            max-width: 100%;
+        }
+
+        .{{ cid }} .slide-content .subhead {
+            font-size: 0.75rem;
+        }
+
+        .{{ cid }} .slide-content .head {
+            padding-top: 0.25rem;
+            font-size: 1.875rem;
+            font-style: italic;
+        }
+
+        .{{ cid }} .slide-content .btn-group {
+            justify-content: center;
+            padding: 2.1875rem 0 0;
+        }
+
+        .{{ cid }} .slide-content .btn-group .image-button {
+            --button-width: 6.875rem;
+            --button-height: 2.5rem;
+            --button-size: 0.75rem;
+        }
+
+        .{{ cid }} .control-box {
+            bottom: 1.375rem;
+            font-size: 0.4375rem;
+            height: 0.1875rem;
+            justify-content: center;
+        }
+
+        .{{ cid }} .control-box .item {
+            height: 100%;
+            width: 1.40625rem;
+            transition: none;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.5);
+            color: transparent;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .{{ cid }} .control-box .item:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: #FFFFFF;
+            transform: translateX(-100%);
+        }
+
+        @keyframes barTranslateX {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        .{{ cid }} .control-box .tns-nav-active:before {
+        {% if ss.auto_slide %} animation: barTranslateX {{ ss.duration }}s linear forwards;
+        {% else %} transform: translateX(0);
+        {% endif %}
+        }
+
+        .{{ cid }} .slide-items {
+            height: 100%;
+            padding-left: 0;
+            display: flex;
+            gap: 0 0.40625rem;
+            transform: translateY(0);
+        }
+
+        .{{ cid }} .progress-bar {
+            display: none;
+        }
+    }
+</style>
+<div class="{{ cid }} relative" id="{{ section.id }}-slide">
+    <div class="control-buttons z-3 desktop-done disabled absolute prev-button" node-name="prev">
+        <img loading="lazy" alt="Slide Prev Button"
+             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-icon.png?v=1769744963&amp;width=70"
+             class="image">
+    </div>
+    <div class="control-buttons z-3 desktop-done absolute next-button" node-name="next">
+        <img loading="lazy" alt="Slide Next Button"
+             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-icon.png?v=1769744963&amp;width=70"
+             class="image">
+    </div>
+    <div class="slide-content flex-top tns-slider" node-name="slider">
+        {%- for block in section.blocks -%}
+            {%- liquid
+                assign index = forloop.index0
+                assign preload = false
+                if forloop.first and section.index == 1
+                    assign preload = true
+                endif
+            -%}
+            {%- assign bs = block.settings -%}
+            <div
+                class="tns-item w-full{% if bs.image_link != blank %} cursor-pointer{% endif %} relative"{% if bs.image_link != blank %} data-proxy="link" data-link="{{ bs.image_link }}"{% endif %}>
+                {% render 'global-image',
+                    desktop_img: bs.pc_image_url,
+                    mobile_img: bs.mb_image_url,
+                    mobile_size: 750,
+                    desktop_class: 'backdrop-img',
+                    mobile_class: 'backdrop-img',
+                    preload: preload,
+                    fetchpriority: preload,
+                    show_size: true
+                %}
+                <div class="media-info z-2 page-width">
+                    {%- if bs.show_subtitle -%}
+                        <div class="subhead" style="color: {{ bs.subtitle_color }};">{{ bs.subtitle }}</div>
+                    {%- endif -%}
+                    {%- if bs.show_title -%}
+                        <div class="head" style="color: {{ bs.title_color }};">{{ bs.title }}</div>
+                    {%- endif -%}
+                    {%- if bs.show_button -%}
+                        <div class="btn-group flex-left">
+                            <a
+                                hover
+                                style="--button-color: {{ bs.button_color }}; --button-hover-color: {{ bs.button_hover_color }};"
+                                href="{{ bs.url }}" class="image-button relative flex-center">
+                                {% render 'global-image',
+                                    image: bs.button_bg_image,
+                                    image_size: 300,
+                                    preload: preload,
+                                    fetchpriority: preload
+                                %}
+                                <span class="text z-1 relative">{{ bs.button_text }}</span>
+                            </a>
+                        </div>
+                    {%- endif -%}
+                </div>
+            </div>
+        {%- endfor -%}
+    </div>
+    {%- if ss.show_slide and size > 1 -%}
+        <div class="control-box z-3 w-full overflow-hidden absolute flex-top page-width">
+            <div class="progress-bar flex-top overflow-hidden">
+                <div class="bar w-full h-full" node-name="bar">&nbsp;</div>
+            </div>
+            <div class="slide-items relative" node-name="control">
+                {%- for block in section.blocks -%}
+                    {%- assign bs = block.settings -%}
+                    <div class="item cursor-pointer">{{ bs.slide_tab }}</div>
+                {%- endfor -%}
+            </div>
+        </div>
+    {%- endif -%}
+</div>
+<script>
+    $heybike.on('DOMContentLoaded', () => {
+        const node = document.getElementById('{{ section.id }}-slide');
+        $heybike.proxy(node, 'link', ({elem}) => {
+            location.href = elem.dataset.link;
+        });
+        {%- if size > 1 -%}
+        const nodeList = $heybike.getNodeList(node);
+        let timer = null, current = 0;
+        const initSlide = () => {
+            {%- if ss.auto_slide -%}
+            const onStart = () => {
+                !$heybike.isMobile && nodeList.bar.classList.add('start');
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    if (current === {{ size | minus: 1 }}) {
+                        slider.goTo('first');
+                    } else {
+                        slider.goTo('next');
+                    }
+                }, {{ ss.duration | times: 1000 }});
+            };
+            const onEnd = () => {
+                clearTimeout(timer);
+            };
+            {%- endif -%}
+            const slider = tns({
+                container: nodeList.slider,
+                items: 1,
+                nav: true,
+                controls: false,
+                loop: false,
+                mouseDrag: true,
+                navContainer: nodeList.control,
+                onInit: () => {
+                    {%- if ss.auto_slide -%}
+                    onStart();
+                    {%- endif -%}
+                }
+            });
+
+            slider.events.on('transitionEnd', () => {
+                current = slider.getInfo().index;
+                if (!$heybike.isMobile) {
+                    {%- if ss.auto_slide -%}
+                    nodeList.bar.classList.remove('start');
+                    {%- endif -%}
+                    nodeList.control.style.transform = `translateY(${(1 - current) * 28}px)`;
+                    nodeList.prev.classList.toggle('disabled', current === 0);
+                    nodeList.next.classList.toggle('disabled', current === {{ size | minus: 1 }});
+                }
+                {%- if ss.auto_slide -%}
+                setTimeout(() => {
+                    onStart();
+                }, 10);
+                {%- endif -%}
+            });
+
+            {%- if ss.auto_slide -%}
+            $heybike.inView(node, () => {
+                onStart();
+                return () => {
+                    onEnd();
+                }
+            });
+            {%- endif -%}
+
+            nodeList.prev.addEventListener('click', () => {
+                slider.goTo('prev');
+            });
+            nodeList.next.addEventListener('click', () => {
+                slider.goTo('next');
+            });
+        };
+        $heybike.inView(node, () => $heybike.load({type: 'TNS'}, initSlide), {margin: '200px 0px 200px 0px'})
+        {%- endif -%}
+    });
+</script>
+{% schema %}
+{
+  "name": "MC Banner Slide",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Banner Slide"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background color"
+    },
+    {
+      "label": "Show overlay",
+      "type": "checkbox",
+      "id": "overlay_show",
+      "default": false
+    },
+    {
+      "label": "Overlay color",
+      "type": "color",
+      "id": "overlay_color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "sec",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Media slide"
+    },
+    {
+      "label": "Show slide tab",
+      "type": "checkbox",
+      "id": "show_slide",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_slide",
+      "label": "Auto slide",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "duration",
+      "label": "Slide speed duration",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "slide_tab_color",
+      "label": "Slide tab color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "slide_tab_active_color",
+      "label": "Slide tab active color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "media",
+      "name": "Media slide",
+      "settings": [
+        {
+          "label": "Desktop image",
+          "type": "image_picker",
+          "info": "Please upload an image no larger than 2 megabytes.",
+          "id": "pc_image_url"
+        },
+        {
+          "label": "Mobile image",
+          "type": "image_picker",
+          "info": "Please upload an image no larger than 2 megabytes.",
+          "id": "mb_image_url"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image link"
+        },
+        {
+          "label": "Slide tab",
+          "type": "text",
+          "id": "slide_tab"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "label": "Show subtitle",
+          "type": "checkbox",
+          "id": "show_subtitle",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "color",
+          "id": "subtitle_color",
+          "label": "Subtitle color",
+          "default": "#ffffff"
+        },
+        {
+          "label": "Show title",
+          "type": "checkbox",
+          "id": "show_title",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "title"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "title color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "label": "Show button",
+          "type": "checkbox",
+          "id": "show_button",
+          "default": true
+        },
+        {
+          "label": "Button background color",
+          "type": "image_picker",
+          "id": "button_bg_image"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button text color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_color",
+          "label": "Button text hover color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button url"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

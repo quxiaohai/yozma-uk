@@ -1,0 +1,12 @@
+{%- liquid
+    assign image_width = image.width | append: '.0'
+    assign scale = image.height | divided_by: image_width
+    assign unit = unit | default: 'px'
+    assign height = width | times: scale
+    if unit == 'px'
+        echo height | append: 'px;'
+    elsif unit == 'vw'
+        assign v_height = height | divided_by: vw
+        echo v_height | append: 'vw;'
+    endif
+-%}

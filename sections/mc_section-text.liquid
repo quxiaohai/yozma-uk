@@ -1,0 +1,375 @@
+{%- liquid
+    assign cid = section.id | split: '__' | last
+    assign ss = section.settings
+    assign is_row = false
+    if ss.layout == 'row'
+        assign is_row = true
+    endif
+    assign is_mb_row = false
+    if ss.mb_layout == 'row'
+        assign is_mb_row = true
+    endif
+-%}
+<style>
+    .{{ cid }} {
+        justify-content: {% if is_row %}space-between{% else %}flex-start{% endif %};
+        align-items: {% if is_row %}center{% else %}flex-start{% endif %};
+        flex-direction: {% if is_row %}row{% else %}column{% endif %};
+    }
+
+    .{{ cid }} .image {
+        width: auto;
+        object-fit: contain;
+        position: absolute;
+        z-index: 1;
+    }
+
+    {%- for block in section.blocks -%}
+    {%- liquid
+        assign index = forloop.index
+        assign bs = block.settings
+    -%}
+    .{{ cid }} .sec-text-{{ index }} {
+        font-size: {{ bs.pc_size }}px;
+        padding: {{ bs.padding }};
+        font-weight: {{ bs.weight }};
+        font-style: {{ bs.style }};
+        text-align: {{ bs.alignment }};
+        width: {{ bs.width }}%;
+        line-height: {{ bs.line_height | divided_by: 100.0 }};
+    }
+
+    {%- if bs.text_decorate_image != blank -%}
+    .{{ cid }} .sec-text-{{ index }} .image {
+        height: {{ bs.image_height }}px;
+        {%- if bs.position_left != blank -%}left: {{ bs.position_left }}px;{%- endif -%}
+        {%- if bs.position_top != blank -%}top: {{ bs.position_top }}px;{%- endif -%}
+        {%- if bs.position_right != blank -%}right: {{ bs.position_right }}px;{%- endif -%}
+        {%- if bs.position_bottom != blank -%}bottom: {{ bs.position_bottom }}px;{%- endif -%}
+    }
+    {%- endif -%}
+    .{{ cid }} .sec-text-{{ index }} strong {
+        color: {{ bs.bold_color }};
+    }
+    {%- endfor -%}
+    @media screen and (max-width: 1440px) {
+    {%- for block in section.blocks -%}
+    {%- liquid
+        assign index = forloop.index
+        assign bs = block.settings
+        assign size = bs.pc_size | times: 0.85 | round
+        if size < 12
+        assign size = 12
+        endif
+    -%}
+        .{{ cid }} .sec-text-{{ index }} {
+            font-size: {{ size }}px;
+        }
+        {%- if bs.text_decorate_image != blank -%}
+        .{{ cid }} .sec-text-{{ index }} .image {
+            height: {{ bs.image_height | times: 0.85 | round }}px;
+            {%- if bs.position_left != blank -%}left: {{ bs.position_left | times: 0.85 | round }}px;{%- endif -%}
+            {%- if bs.position_top != blank -%}top: {{ bs.position_top | times: 0.85 | round }}px;{%- endif -%}
+            {%- if bs.position_right != blank -%}right: {{ bs.position_right | times: 0.85 | round }}px;{%- endif -%}
+            {%- if bs.position_bottom != blank -%}bottom: {{ bs.position_bottom | times: 0.85 | round }}px;{%- endif -%}
+        }
+        {%- endif -%}
+    {%- endfor -%}
+    }
+    @media screen and (max-width: 1023px) {
+        .{{ cid }} {
+            justify-content: {% if is_mb_row %}space-between{% else %}flex-start{% endif %};
+            align-items: {% if is_mb_row %}center{% else %}flex-start{% endif %};
+            flex-direction: {% if is_mb_row %}row{% else %}column{% endif %};
+        }
+
+    {%- for block in section.blocks -%}
+    {%- liquid
+        assign index = forloop.index
+        assign bs = block.settings
+    -%}
+        .{{ cid }} .sec-text-{{ index }} {
+            font-size: {{ bs.mb_size }}px;
+            padding: {{ bs.mb_padding }};
+            width: {{ bs.mb_width }}%;
+            text-align: {{ bs.mb_alignment }};
+        }
+        {%- if bs.text_decorate_image != blank -%}
+        .{{ cid }} .sec-text-{{ index }} .image {
+            height: {{ bs.mb_image_height }}px;
+            left: {% if bs.mb_position_left != blank %}{{ bs.mb_position_left }}px{% else %}auto{% endif %};
+            top: {% if bs.mb_position_top != blank %}{{ bs.mb_position_top }}px{% else %}auto{% endif %};
+            right: {% if bs.mb_position_right != blank %}{{ bs.mb_position_right }}px{% else %}auto{% endif %};
+            bottom: {% if bs.mb_position_bottom != blank %}{{ bs.mb_position_bottom }}px{% else %}auto{% endif %};
+        }
+        {%- endif -%}
+    {%- endfor -%}
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="{{ cid }} flex section--page page-width">
+    {%- for block in section.blocks -%}
+        {%- assign bs = block.settings -%}
+        <div class="relative sec-text-{{ forloop.index }}{% if bs.gradient_color != blank %} text-gradient{% endif %}"
+             style="{% if info.title_gradient_color != blank %}--background: {{ info.title_color.rgb }}; --gradient: {{ bs.gradient_color }};{% else %}color: {{ bs.color }};{% endif %}">
+            {%- if bs.text_decorate_image != blank -%}
+                <div class="relative z-2">{{ bs.text }}</div>
+                {%- render 'global-image', image: bs.text_decorate_image, image_size: 300 -%}
+            {%- else -%}
+                {{ bs.text }}
+            {%- endif -%}
+        </div>
+    {%- endfor -%}
+</div>
+{% schema %}
+{
+  "name": "MC Section Text",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Section Text"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Desktop layout show",
+      "options": [
+        {
+          "label": "Column",
+          "value": "column"
+        },
+        {
+          "label": "Row",
+          "value": "row"
+        }
+      ],
+      "default": "column"
+    },
+    {
+      "type": "select",
+      "id": "mb_layout",
+      "label": "Mobile layout show",
+      "options": [
+        {
+          "label": "Column",
+          "value": "column"
+        },
+        {
+          "label": "Row",
+          "value": "row"
+        }
+      ],
+      "default": "column"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "0px 0px 0px 0px",
+          "info": "Top, Right, Bottom, Left -> (10px 0px 10px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "0px 0px 0px 0px",
+          "info": "Top, Right, Bottom, Left -> (10px 0px 10px 0px)"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "label": "Text decorate image",
+          "type": "image_picker",
+          "id": "text_decorate_image"
+        },
+        {
+          "type": "number",
+          "id": "image_height",
+          "label": "Desktop decorate image height",
+          "default": 40
+        },
+        {
+          "type": "number",
+          "id": "mb_image_height",
+          "label": "Mobile decorate image height",
+          "default": 32
+        },
+        {
+          "type": "number",
+          "id": "position_left",
+          "label": "Desktop position left"
+        },
+        {
+          "type": "number",
+          "id": "position_top",
+          "label": "Desktop position top"
+        },
+        {
+          "type": "number",
+          "id": "position_right",
+          "label": "Desktop position right"
+        },
+        {
+          "type": "number",
+          "id": "position_bottom",
+          "label": "Desktop position bottom"
+        },
+        {
+          "type": "number",
+          "id": "mb_position_left",
+          "label": "Mobile position left"
+        },
+        {
+          "type": "number",
+          "id": "mb_position_top",
+          "label": "Mobile position top"
+        },
+        {
+          "type": "number",
+          "id": "mb_position_right",
+          "label": "Mobile position right"
+        },
+        {
+          "type": "number",
+          "id": "mb_position_bottom",
+          "label": "Mobile position bottom"
+        },
+        {
+          "type": "text_alignment",
+          "id": "alignment",
+          "label": "Desktop text alignment",
+          "default": "center"
+        },
+        {
+          "type": "text_alignment",
+          "id": "mb_alignment",
+          "label": "Mobile text alignment",
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Font style",
+          "options": [
+            {
+              "label": "Normal",
+              "value": "normal"
+            },
+            {
+              "label": "italic",
+              "value": "italic"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "weight",
+          "label": "Text weight",
+          "min": 200,
+          "max": 900,
+          "step": 100,
+          "unit": "w",
+          "default": 400
+        },
+        {
+          "type": "range",
+          "id": "line_height",
+          "label": "Text line weight",
+          "min": 100,
+          "max": 500,
+          "step": 10,
+          "unit": "%",
+          "default": 120
+        },
+        {
+          "type": "range",
+          "id": "pc_size",
+          "label": "Desktop text size",
+          "min": 12,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "mb_size",
+          "label": "Mobile text size",
+          "min": 6,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "width",
+          "label": "Desktop width",
+          "min": 10,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 100
+        },
+        {
+          "type": "range",
+          "id": "mb_width",
+          "label": "Mobile width",
+          "min": 10,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 100
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "bold_color",
+          "label": "Bold color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color_background",
+          "id": "gradient_color",
+          "label": "Gradient color"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

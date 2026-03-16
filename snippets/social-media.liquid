@@ -1,0 +1,175 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+SOCIAL MEDIA
+----------------------------------------------------------------------------------------------------------------------
+
+Output a list of social media icons based on the social URL settings.
+
+********************************************
+Supported variables
+********************************************
+
+* size: can be "sm" or nothing. When setting is set to "sm", this only impacts the mobile (desktop uses the same size)
+{%- endcomment -%}
+
+{%- capture social_media -%}
+  {%- if settings.social_facebook != blank or shop.brand.metafields.social_links.facebook != blank -%}
+    <li>
+      <a href="{{ settings.social_facebook | default: shop.brand.metafields.social_links.facebook }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Facebook' }}">
+        {%- render 'icon' with 'facebook' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_twitter != blank or shop.brand.metafields.social_links.twitter != blank -%}
+    <li>
+      <a href="{{ settings.social_twitter | default: shop.brand.metafields.social_links.twitter }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Twitter' }}">
+        {%- render 'icon' with 'twitter' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_instagram != blank or shop.brand.metafields.social_links.instagram != blank -%}
+    <li>
+      <a href="{{ settings.social_instagram | default: shop.brand.metafields.social_links.instagram }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Instagram' }}">
+        {%- render 'icon' with 'instagram' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_threads != blank or shop.brand.metafields.social_links.threads != blank -%}
+    <li>
+      <a href="{{ settings.social_threads | default: shop.brand.metafields.social_links.threads }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Threads' }}">
+        {%- render 'icon' with 'threads' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_pinterest != blank or shop.brand.metafields.social_links.pinterest != blank -%}
+    <li>
+      <a href="{{ settings.social_pinterest | default: shop.brand.metafields.social_links.pinterest }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Pinterest' }}">
+        {%- render 'icon' with 'pinterest' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_youtube != blank or shop.brand.metafields.social_links.youtube != blank -%}
+    <li>
+      <a href="{{ settings.social_youtube | default: shop.brand.metafields.social_links.youtube }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'YouTube' }}">
+        {%- render 'icon' with 'youtube' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_tiktok != blank or shop.brand.metafields.social_links.tiktok != blank -%}
+    <li>
+      <a href="{{ settings.social_tiktok | default: shop.brand.metafields.social_links.tiktok }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'TikTok' }}">
+        {%- render 'icon' with 'tiktok' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_vimeo != blank or shop.brand.metafields.social_links.vimeo != blank -%}
+    <li>
+      <a href="{{ settings.social_vimeo | default: shop.brand.metafields.social_links.vimeo }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Vimeo' }}">
+        {%- render 'icon' with 'vimeo' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_linkedin != blank -%}
+    <li>
+      <a href="{{ settings.social_linkedin }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'LinkedIn' }}">
+        {%- render 'icon' with 'linkedin' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_snapchat != blank or shop.brand.metafields.social_links.snapchat != blank -%}
+    <li>
+      <a href="{{ settings.social_snapchat | default: shop.brand.metafields.social_links.snapchat }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Snapchat' }}">
+        {%- render 'icon' with 'snapchat' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_whatsapp != blank -%}
+    <li>
+      <a href="{{ settings.social_whatsapp }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'WhatsApp' }}">
+        {%- render 'icon' with 'whatsapp' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_tumblr != blank or shop.brand.metafields.social_links.tumblr != blank -%}
+    <li>
+      <a href="{{ settings.social_tumblr | default: shop.brand.metafields.social_links.tumblr }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Tumblr' }}">
+        {%- render 'icon' with 'tumblr' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_fancy != blank -%}
+    <li>
+      <a href="{{ settings.social_fancy }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Fancy' }}">
+        {%- render 'icon' with 'fancy' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_wechat != blank -%}
+    <li>
+      <a href="{{ settings.social_wechat }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'WeChat' }}">
+        {%- render 'icon' with 'wechat' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_reddit != blank -%}
+    <li>
+      <a href="{{ settings.social_reddit }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Reddit' }}">
+        {%- render 'icon' with 'reddit' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_line != blank -%}
+    <li>
+      <a href="{{ settings.social_line }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'LINE' }}">
+        {%- render 'icon' with 'line' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_spotify != blank -%}
+    <li>
+      <a href="{{ settings.social_spotify }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: 'Spotify' }}">
+        {%- render 'icon' with 'spotify' -%}
+      </a>
+    </li>
+  {%- endif -%}
+
+  {%- if settings.social_21buttons != blank -%}
+    <li>
+      <a href="{{ settings.social_21buttons }}" class="tap-area" target="_blank" rel="noopener" aria-label="{{ 'general.social.follow_on' | t: social_media: '21 Buttons' }}">
+        {%- render 'icon' with '21buttons' -%}
+      </a>
+    </li>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if social_media != blank -%}
+  <ul class="social-media {% if size == 'sm' %}social-media--sm{% endif %}" role="list">
+    {{- social_media -}}
+    <li>
+      <a href="https://www.quora.com/profile/Yozma-Sport" class="tap-area" target="_blank" rel="noopener" aria-label="follow on quora">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-reddit" width="27" height="27" viewBox="0 0 6.554 6.557" preserveAspectRatio="xMidYMid" fill="#888888"><path d="M13.038 4.512c-.113-.222-.245-.446-.503-.446a.32.32 0 0 0-.144.03l-.088-.176c.107-.092.28-.164.502-.164.345 0 .523.166.663.38.084-.18.123-.426.123-.73 0-.758-.237-1.147-.8-1.147-.545 0-.78.4-.78 1.147s.236 1.14.78 1.14a.88.88 0 0 0 .237-.03zm.135.264a1.45 1.45 0 0 1-.373.05c-.726 0-1.437-.58-1.437-1.422 0-.85.7-1.43 1.437-1.43.738 0 1.443.576 1.443 1.43 0 .476-.222.862-.544 1.112.104.156.212.26.36.26.163 0 .23-.126.24-.225h.212c.012.132-.053.678-.647.678-.36 0-.55-.208-.692-.453zm1.537-.723V3.08c0-.1-.04-.16-.168-.16h-.136v-.26h.887v1.38c0 .233.126.336.318.336.157 0 .315-.07.4-.23V3.08c0-.1-.04-.16-.168-.16H15.7v-.26h.895v1.447c0 .144.053.2.218.2h.03v.267l-.8.127v-.275h-.016a.84.84 0 0 1-.684.316c-.35 0-.63-.177-.63-.7zm3.293.44c.315 0 .435-.274.44-.826.006-.54-.126-.8-.44-.8-.275 0-.448.262-.448.8 0 .552.17.826.448.826zm0 .26a1.07 1.07 0 0 1-1.084-1.085c0-.637.502-1.06 1.084-1.06.607 0 1.093.432 1.093 1.06 0 .65-.486 1.085-1.093 1.085zm1.112-.04v-.26h.086c.214 0 .234-.062.234-.247V3.08c0-.1-.058-.16-.2-.16h-.115v-.26h.812l.04.423H20c.1-.304.333-.465.56-.465.188 0 .334.107.334.323 0 .15-.072.3-.275.3-.182 0-.218-.123-.37-.123-.134 0-.238.128-.238.315v.76c0 .185.045.247.255.247h.12v.26h-1.273zm2.705-.3c.26 0 .366-.245.366-.492v-.33c-.2.196-.63.203-.63.552 0 .17.102.27.263.27zm.378-.001c-.107.206-.326.344-.633.344-.356 0-.586-.2-.586-.522 0-.67.933-.492 1.207-.936V3.25c0-.34-.134-.395-.282-.395-.415 0-.226.446-.608.446-.184 0-.255-.1-.255-.235 0-.252.3-.456.867-.456.536 0 .865.148.865.68v.85c0 .132.048.203.163.203a.21.21 0 0 0 .122-.036l.07.167c-.056.086-.206.238-.5.238-.247 0-.4-.115-.422-.303H22.2zm-18.724.7c-.227-.447-.494-.9-1.014-.9a.76.76 0 0 0-.3.058l-.177-.354c.215-.185.563-.33 1-.33.695 0 1.052.335 1.336.763.168-.365.248-.858.248-1.47 0-1.526-.477-2.3-1.592-2.3-1.1 0-1.573.784-1.573 2.3s.475 2.293 1.573 2.293a1.7 1.7 0 0 0 .478-.062zm.272.533a2.92 2.92 0 0 1-.75.1C1.533 5.746.1 4.578.1 2.88.1 1.167 1.533 0 2.996 0 4.483 0 5.9 1.16 5.9 2.88a2.79 2.79 0 0 1-1.095 2.24c.2.314.426.523.727.523.328 0 .46-.254.483-.453h.428c.025.265-.108 1.366-1.303 1.366-.724 0-1.107-.42-1.394-.912z"/></svg>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.threads.com/@yozma_sport" class="tap-area" target="_blank" rel="noopener" aria-label="follow on quora">
+        <svg aria-label="Threads" class="x1ypdohk x13dflua x11xpdln xk4oym4 xus2keu" fill="#888888" height="27" role="img" viewBox="0 0 192 192" width="27" xmlns="http://www.w3.org/2000/svg"><path d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.2328C81.6116 63.5383 90.6052 61.6848 97.2286 61.6848C97.3051 61.6848 97.3819 61.6848 97.4576 61.6855C105.707 61.7381 111.932 64.1366 115.961 68.814C118.893 72.2193 120.854 76.925 121.825 82.8638C114.511 81.6207 106.601 81.2385 98.145 81.7233C74.3247 83.0954 59.0111 96.9879 60.0396 116.292C60.5615 126.084 65.4397 134.508 73.775 140.011C80.8224 144.663 89.899 146.938 99.3323 146.423C111.79 145.74 121.563 140.987 128.381 132.296C133.559 125.696 136.834 117.143 138.28 106.366C144.217 109.949 148.617 114.664 151.047 120.332C155.179 129.967 155.42 145.8 142.501 158.708C131.182 170.016 117.576 174.908 97.0135 175.059C74.2042 174.89 56.9538 167.575 45.7381 153.317C35.2355 139.966 29.8077 120.682 29.6052 96C29.8077 71.3178 35.2355 52.0336 45.7381 38.6827C56.9538 24.4249 74.2039 17.11 97.0132 16.9405C119.988 17.1113 137.539 24.4614 149.184 38.788C154.894 45.8136 159.199 54.6488 162.037 64.9503L178.184 60.6422C174.744 47.9622 169.331 37.0357 161.965 27.974C147.036 9.60668 125.202 0.195148 97.0695 0H96.9569C68.8816 0.19447 47.2921 9.6418 32.7883 28.0793C19.8819 44.4864 13.2244 67.3157 13.0007 95.9325L13 96L13.0007 96.0675C13.2244 124.684 19.8819 147.514 32.7883 163.921C47.2921 182.358 68.8816 191.806 96.9569 192H97.0695C122.03 191.827 139.624 185.292 154.118 170.811C173.081 151.866 172.51 128.119 166.26 113.541C161.776 103.087 153.227 94.5962 141.537 88.9883ZM98.4405 129.507C88.0005 130.095 77.1544 125.409 76.6196 115.372C76.2232 107.93 81.9158 99.626 99.0812 98.6368C101.047 98.5234 102.976 98.468 104.871 98.468C111.106 98.468 116.939 99.0737 122.242 100.233C120.264 124.935 108.662 128.946 98.4405 129.507Z"></path></svg>
+      </a>
+    </li>
+  </ul>
+{%- endif -%}

@@ -1,0 +1,1319 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "liquid_AQyQic": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<div style=\"\n  background-color: #f5f5f5; \n  color: #333333; \n  padding: 12px 16px; \n  border: 2px solid #cccccc; \n  border-radius: 8px; \n  font-size: 16px; \n  font-weight: 700;\n  line-height: 1.6;\n  text-align: left;\n  letter-spacing: 0.5px;\n\">\n  🎃 Pre-order now!<br> Shipping starts within 14 business days.<br>Limited Offer: Free Handlebar Bag for First 30 Orders!\n</div>"
+          }
+        },
+        "offer_NfBXqc": {
+          "type": "offer",
+          "disabled": true,
+          "settings": {
+            "text_alignment": "start",
+            "icon_position": "aligned",
+            "icon": "picto-gift",
+            "icon_width": 20,
+            "title": "Code：YOZMA100",
+            "content": "<p>Thanks for your amazing support! Enjoy an extra $100 OFF as our gift to early fans.</p>",
+            "background": "#f0f0f0",
+            "text_color": "#f83a3a"
+          }
+        },
+        "badges": {
+          "type": "badges",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "inventory_PMqcYg": {
+          "type": "inventory",
+          "disabled": true,
+          "settings": {
+            "low_inventory_threshold": 50
+          }
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {
+            "show_empty": false
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "collapse_content": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#ff0000",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "icons_list_jWPkpY": {
+          "type": "icons_list",
+          "settings": {
+            "icon_1": "shopify://shop_images/Priority_Customer_Support.svg",
+            "icon_2": "shopify://shop_images/Free_Shipping.svg",
+            "icon_3": "shopify://shop_images/1_Year_Warranty.svg",
+            "icon_4": "shopify://shop_images/Secure_Payment.svg"
+          }
+        },
+        "collapsible_text_idrPXF": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "What‘s in the box?",
+            "content": "<p>-Yozma E-bike*1<br/>-48V 23.4Ah Lithium-Ion*1<br/>-Battery Charger*1<br/>-Assembly Tools*1<br/>-Pedals*2<br/>-Handle Bars Shipped Installed On Bike*1<br/>-User Manual*1<br/>-Number plate decals*1<br/>Note: Please keep this box for at least 30 days in case of return or after-sales service.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_TDxfg9": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "F&Q",
+            "content": "<p>1. How long does shipping take? When will my order been dispatched?<br/><br/>Yozma IN 10 ebikes are shipped from our California warehouse, and delivery typically takes 2 to 5 business days depending on your location. You’ll receive a tracking number once your order is on the way.<br/></p><p>2. What if the package is broken/missing?<br/><br/>Due to FedEx's failure to deliver the bike as required during transportation, parts of the wear and scratch may cause by the parts crashing together, although we have packed all the parts to prevent these situations as much as we can. Please send us the related pictures via support@yozmasport.com, we will solve it for you.<br/><br/>3. Can I return my order for personal reasons ?<br/><br/>To be eligible for a return, your item must be in the same condition that you received it, unworn, unused, or the ebike must have less than ten (10) miles on the odometer and must include all items that were inside the box (charger, keys, hardware, etc.), and in its original packaging.For specific fees, please click HERE.</p>",
+            "page": ""
+          }
+        },
+        "text_MpdJHg": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Important Notice</strong>: <br/>Before placing your order, please confirm that you are <strong>14</strong> years of age or older. When riding, always follow local laws and regulations, wear a helmet, and prioritize safety at all times.</p>"
+          }
+        },
+        "share_buttons_yzh6EB": {
+          "type": "share_buttons",
+          "settings": {
+            "alignment": "start"
+          }
+        },
+        "cycle_countdown_6DXjxD": {
+          "type": "countdown",
+          "settings": {
+            "countdown_lbl": "Hurry up!",
+            "countdown_lbl_content": "Sale Ends In",
+            "countdown_start_date": "2024-12-02T00:00:00",
+            "duration": 1,
+            "countdown_days": "DAYS",
+            "countdown_hours": "HRS",
+            "countdown_minutes": "MIN",
+            "countdown_seconds": "SEC",
+            "background": "#ff9b2b",
+            "background_gradient": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "bundled_sale_m69hF9": {
+          "type": "bundled_sale",
+          "settings": {
+            "heading": "Compatible Accessories",
+            "product_list": [
+              "yozma-keychain",
+              "yozma-in-10-controller",
+              "yozma-in-10-front-fender",
+              "yozma-in-10-chains-for-dirt-bike",
+              "yozma-in-10-handlebar"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "liquid_AQyQic",
+        "offer_NfBXqc",
+        "badges",
+        "price",
+        "cycle_countdown_6DXjxD",
+        "inventory_PMqcYg",
+        "rating",
+        "payment_terms",
+        "separator",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "bundled_sale_m69hF9",
+        "buy_buttons",
+        "icons_list_jWPkpY",
+        "collapsible_text_idrPXF",
+        "collapsible_text_TDxfg9",
+        "text_MpdJHg",
+        "share_buttons_yzh6EB"
+      ],
+      "custom_css": [
+        "@media (min-width: 767px) {.product-gallery {position: sticky; top: 10px; }}"
+      ],
+      "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "fixed_content": "In Stock—Estimated delivery in 5-15 business days.",
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "text_with_icons_2508_VYhjtW": {
+      "type": "text-with-icons-2508",
+      "blocks": {
+        "item_HtBJ4L": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/56a85e16a046cb332aca2019e675a194_fde38af0-df30-4a1e-9557-b961e1509a7e.png",
+            "title": "2600W",
+            "content": "Motor"
+          }
+        },
+        "item_6MB9ML": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/56b14fbb1da9c3fef30b29b868a65c48.png",
+            "title": "146N.M",
+            "content": "Torque"
+          }
+        },
+        "item_46Kd7P": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/bfe670e2c212b2ca7129014495caea82_7574a88a-eddf-45b7-97ce-24f40b4d54a0.png",
+            "title": "28-40Mph",
+            "content": "Top Speed"
+          }
+        },
+        "item_6z7VY8": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/b37921b961e5adb84e66048a85bbee72_ed0bd5cf-03cb-44c7-bee9-6b9232a3cdd3.png",
+            "title": "23.4Ah",
+            "content": "Lithium Battery"
+          }
+        },
+        "item_MFg3Fd": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/465495c77d2cce5dfa5ab16369ed06cd.png",
+            "title": "53Miles",
+            "content": "Max Range"
+          }
+        },
+        "item_TANbnJ": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/b9b66352b3587cefc1c8600dc4175210.png",
+            "title": "265Ibs",
+            "content": "Max Load"
+          }
+        },
+        "item_Xq3jem": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/7313a4a346412fb9901d028a94702ac1.png",
+            "title": "≤30 Mins",
+            "content": "Easy Assembly"
+          }
+        },
+        "item_waW97C": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_22.png",
+            "title": "UL",
+            "content": "Certified"
+          }
+        }
+      },
+      "block_order": [
+        "item_HtBJ4L",
+        "item_6MB9ML",
+        "item_46Kd7P",
+        "item_6z7VY8",
+        "item_MFg3Fd",
+        "item_TANbnJ",
+        "item_Xq3jem",
+        "item_waW97C"
+      ],
+      "name": "Icon list",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "#000000"
+      }
+    },
+    "video_7KTgK9": {
+      "type": "video",
+      "blocks": {
+        "play_AWJyhT": {
+          "type": "play",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "play_AWJyhT"
+      ],
+      "name": "Video",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "autoplay": true,
+        "video_size": "lg",
+        "video": "shopify://files/videos/YOZMA-IN10-b(1)-0828-15秒.mp4",
+        "external_video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "multi_column_slide_Lf4Qra": {
+      "type": "multi-column-slide",
+      "blocks": {
+        "item_79AXFi": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/e28a42c4475362c949415a1c17dcc923.jpg",
+            "show_controls": false,
+            "column_size": "3",
+            "title": "2600W Mid-drive Motor",
+            "heading_tag": "h5",
+            "content": "<p>Our electric motorcycles are equipped with high-performance motors(mid-drive motor)that deliver more powerful performance than similar products on the market.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_rB33db": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/7ecc40279fd871bac0e0d11e210a632b.jpg",
+            "show_controls": false,
+            "column_size": "3",
+            "title": "Automotive Grade Chip Battery",
+            "heading_tag": "h5",
+            "content": "<p>The battery module can only be disassembled using a dedicated key, which eliminates the risk of unauthorized disassembly.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_DiYNPz": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/af44032b90374e0b22a4e0995a8872ff.jpg",
+            "show_controls": false,
+            "column_size": "3",
+            "title": "Nitrogen Air Shock Absorber",
+            "heading_tag": "h5",
+            "content": "<p>Featuring an independent suspension paired with a high-stiffness air spring shock absorber, it effortlessly absorbs shocks and elevates your riding comfort to a whole new level.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_EDFb9C": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/e995b0ca9bf3913beacb2fdc5ded1b00.jpg",
+            "show_controls": false,
+            "column_size": "3",
+            "title": "Heavy-duty Hydraulic Brakes",
+            "heading_tag": "h5",
+            "content": "<p>Hydraulic brakes for confident control. Advanced suspension with oil-hydraulic nitrogen shocks keeps your ride smooth—even when the road gets wild.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_brXime": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/810a8a9d308e487c64e8273045771c01.jpg",
+            "show_controls": false,
+            "column_size": "3",
+            "title": "Front Hydraulic Suspension",
+            "heading_tag": "h5",
+            "content": "<p>The front hydraulic suspension fork smooths out bumps and rough trails, keeping your ride steady and comfortable wherever you go.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_xWQbjA": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/01015e06a73ed3af9db636c83b4596cf.jpg",
+            "show_controls": false,
+            "column_size": "3",
+            "title": "Dual-size Puncture Resistant Fat Tires",
+            "heading_tag": "h5",
+            "content": "<p>The tires are made with a highly wear-resistant formula that offers an additional 2,000 kilometers of mileage compared to similar models.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_gmtxrx": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/0cdc11940874c6e4edb16b027f443614.jpg",
+            "show_controls": false,
+            "column_size": "3",
+            "title": "More readable Smart Display",
+            "heading_tag": "h5",
+            "content": "<p>It has an innovative split design with an independent handlebar and instrument layout.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_QCEbzc": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/5e1cfa007d9edd0c511e754398cedb5a.jpg",
+            "show_controls": false,
+            "column_size": "3",
+            "title": "Motor Style Seat with Quick Release",
+            "heading_tag": "h5",
+            "content": "<p>The IN10’s 72 cm seat height suits riders from 120 to 175 cm. Combined with a lightweight body and superior load capacity, it delivers standout performance in its class.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_Cij7n6": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/fb5503765821ab69c2789f65123a00a2.jpg",
+            "show_controls": false,
+            "column_size": "3",
+            "title": "Stable Kickstand",
+            "heading_tag": "h5",
+            "content": "<p>The sturdy, cast-steel foot pedals provide stability and peace of mind on every trip.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_79AXFi",
+        "item_rB33db",
+        "item_DiYNPz",
+        "item_EDFb9C",
+        "item_brXime",
+        "item_xWQbjA",
+        "item_gmtxrx",
+        "item_QCEbzc",
+        "item_Cij7n6"
+      ],
+      "name": "Multi-column-slide",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "medium",
+        "text_alignment_title": "start",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Features",
+        "content": "",
+        "title_width": "default",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "slideshow_gMx3Da": {
+      "type": "slideshow",
+      "blocks": {
+        "image_tWh4mA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/146nm_9c9e0f55-a56b-46a4-8a42-96a7cbaee2d5.png",
+            "mobile_image": "shopify://shop_images/kv1-146Nm.png",
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_tWh4mA"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "multiple_images_with_text_epUVmW": {
+      "type": "multiple-images-with-text",
+      "blocks": {
+        "item_f64m6i": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/kv_607608ab-cbf9-4301-9883-24f7cc08d65a.png",
+            "image_rotation_degrees": 0,
+            "subheading": "",
+            "title": "Image with text",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "button_url": "",
+            "button_text": ""
+          }
+        },
+        "item_TKqyHb": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/YR20-1.webp",
+            "image_rotation_degrees": -2,
+            "subheading": "",
+            "title": "Heading 1",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "button_url": "",
+            "button_text": ""
+          }
+        },
+        "item_UDNACj": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/DSC00375.jpg",
+            "image_rotation_degrees": 1.5,
+            "subheading": "",
+            "title": "Heading 2",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "button_url": "",
+            "button_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_f64m6i",
+        "item_TKqyHb",
+        "item_UDNACj"
+      ],
+      "disabled": true,
+      "name": "Multiple images with text",
+      "settings": {
+        "full_width": true,
+        "img_pos": "tw-order-1",
+        "images_layout": "stacked",
+        "collage_images_alignment": "middle",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "slideshow_RPwxRp": {
+      "type": "slideshow",
+      "blocks": {
+        "image_3gTMUc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/813.jpg",
+            "mobile_image": "shopify://shop_images/M_-0813_16ecbecf-eb8a-4df1-9721-ab5250e1a9ef.jpg",
+            "content_max_width": 400,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_3gTMUc"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "slideshow_MQ3Er4": {
+      "type": "slideshow",
+      "blocks": {
+        "image_JY7E8A": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/0815.png",
+            "mobile_image": "shopify://shop_images/M_-0815.jpg",
+            "content_max_width": 400,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_JY7E8A"
+      ],
+      "disabled": true,
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "specifications_parameters_2509_JcDPRn": {
+      "type": "specifications-parameters-2509",
+      "blocks": {
+        "img_list_3JXbCB": {
+          "type": "img_list",
+          "settings": {
+            "order_title": "Performance",
+            "img_w": 50,
+            "list": "|Top Speed | 28-40 Mph\n|Range |53 Miles\n|Motor | 48V, 2600W Peak, Brushless Motor\n|Battery| 48V23.4Ah Lithium-ion Battery\n|Suspension Type | Hydraulic Suspension\n|Brakes | Heavy-duty Hydraulic Brakes",
+            "item_justify": "tw-justify-start",
+            "list_border": true,
+            "list_col": "2"
+          }
+        },
+        "img_list_FwJxJL": {
+          "type": "img_list",
+          "settings": {
+            "order_title": "Electronics",
+            "img_w": 50,
+            "list": "|Charger | 48V5A Charger\n|Charger Voltage |100-230V, 50-60Hz\n|Charging Time | 0%-100% 5.0-6.0 Hours\n|Display| LCD Display\n|Ride Mode | Three-speed Zero Start\n|Drivetrain | Chain Drive",
+            "item_justify": "tw-justify-start",
+            "list_border": true,
+            "list_col": "2"
+          }
+        },
+        "img_list_ABCcQ4": {
+          "type": "img_list",
+          "settings": {
+            "order_title": "Components",
+            "img_w": 50,
+            "list": "|Frame|High Carbon Steel\n|Chain|116links（420 chain）Heavy Duty Chain\n|Max Climbing|30 degrees\n|Front Suspension|Hydraulic Suspension\n|Rear Suspension| Nitrogen Shock Absorber\n|Waterproof|IPX6",
+            "item_justify": "tw-justify-start",
+            "list_border": true,
+            "list_col": "2"
+          }
+        },
+        "img_list_RQrFPk": {
+          "type": "img_list",
+          "settings": {
+            "order_title": "Geometry",
+            "img_w": 50,
+            "list": "|Suitable Height|3.94ft (120CM)-5.9ft（175CM)\n|Seat Height|28\"（72cm)\n|Wheelbase|41.7\"(106cm)\n|Ground Clearance|9(23cm)\n|Handlebar Width|28.34\"(72cm)\n|Bike Weight|121lbs（55kg)\n|Maximum Load|265lbs（120kg)\n|Tires|14/12\"",
+            "item_justify": "tw-justify-start",
+            "list_border": true,
+            "list_col": "2"
+          }
+        }
+      },
+      "block_order": [
+        "img_list_3JXbCB",
+        "img_list_FwJxJL",
+        "img_list_ABCcQ4",
+        "img_list_RQrFPk"
+      ],
+      "name": "Spec & Par",
+      "settings": {
+        "mb_full": true,
+        "full_width": true,
+        "text_alignment_title": "start",
+        "subheading": "",
+        "title": "Specs & Geometry",
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "slideshow_A7En4Q": {
+      "type": "slideshow",
+      "blocks": {
+        "image_7HWiVY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/17f753a41376ced5fcf8a0aeea5f987d_408670b4-1665-4061-9bcd-da215873b110.jpg",
+            "mobile_image": "shopify://shop_images/17f753a41376ced5fcf8a0aeea5f987d_408670b4-1665-4061-9bcd-da215873b110.jpg",
+            "content_max_width": 400,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_7HWiVY"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "multicolumn_slide_2508_Gaq7Yt": {
+      "type": "multicolumn-slide-2508",
+      "blocks": {
+        "video_yKeLWX": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=aE6JMTf3sE4&t=78s",
+            "poster_image": "shopify://shop_images/aE6JMTf3sE4-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/aE6JMTf3sE4-HD.jpg",
+            "title": "Rawstuntz",
+            "content": ""
+          }
+        },
+        "video_NFfkcg": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=1BWf9zQho1g",
+            "poster_image": "shopify://shop_images/1BWf9zQho1g-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/1BWf9zQho1g-HD.jpg",
+            "title": "oneway_lilman",
+            "content": ""
+          }
+        },
+        "video_R6fAQB": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://youtu.be/xkNauLlRgjs",
+            "poster_image": "shopify://shop_images/xkNauLlRgjs-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/xkNauLlRgjs-HD.jpg",
+            "title": "oneway_lilman",
+            "content": ""
+          }
+        },
+        "video_AdL6k8": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=q5yuYyrjNA8",
+            "poster_image": "shopify://shop_images/q5yuYyrjNA8-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/q5yuYyrjNA8-HD.jpg",
+            "title": "Pat Outdoors",
+            "content": ""
+          }
+        },
+        "video_UPyDpm": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://youtu.be/UIFm5cPpgBs",
+            "poster_image": "shopify://shop_images/UIFm5cPpgBs-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/UIFm5cPpgBs-HD.jpg",
+            "title": "ENDOPRYSM",
+            "content": ""
+          }
+        },
+        "video_Ax783q": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=kEY9Swu_WsM&t=4s",
+            "poster_image": "shopify://shop_images/kEY9Swu_WsM-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/kEY9Swu_WsM-HD.jpg",
+            "title": "Talaria Boys",
+            "content": ""
+          }
+        },
+        "video_xTdqzN": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=cozJD_tbc8w&t=335s",
+            "poster_image": "shopify://shop_images/cozJD_tbc8w-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/cozJD_tbc8w-HD.jpg",
+            "title": "RunPlayBack",
+            "content": ""
+          }
+        },
+        "video_nPHfgV": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=OOfKD0pgGNw&t=6s",
+            "poster_image": "shopify://shop_images/OOfKD0pgGNw-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/OOfKD0pgGNw-HD.jpg",
+            "title": "Voltron Watts",
+            "content": ""
+          }
+        },
+        "video_cb97YV": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=nX09VC134F4",
+            "poster_image": "shopify://shop_images/nX09VC134F4-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/nX09VC134F4-HD.jpg",
+            "title": "Rozzy",
+            "content": ""
+          }
+        },
+        "video_XzFqQ9": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=2znTSsjJzwo&t=77s",
+            "poster_image": "shopify://shop_images/2znTSsjJzwo-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/2znTSsjJzwo-HD.jpg",
+            "title": "dns",
+            "content": ""
+          }
+        },
+        "video_4K977R": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=qQTwlrbZO3E",
+            "poster_image": "shopify://shop_images/qQTwlrbZO3E-SD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/qQTwlrbZO3E-HD.jpg",
+            "title": "szamuca",
+            "content": ""
+          }
+        },
+        "video_qa4EAt": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://youtu.be/hhh1sNrdGG4",
+            "poster_image": "shopify://shop_images/hhh1sNrdGG4-HD.jpg",
+            "show_video_controls": false,
+            "avatar": "shopify://shop_images/hhh1sNrdGG4-HD.jpg",
+            "title": "Caleb Moll",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_yKeLWX",
+        "video_NFfkcg",
+        "video_R6fAQB",
+        "video_AdL6k8",
+        "video_UPyDpm",
+        "video_Ax783q",
+        "video_xTdqzN",
+        "video_nPHfgV",
+        "video_cb97YV",
+        "video_XzFqQ9",
+        "video_4K977R",
+        "video_qa4EAt"
+      ],
+      "name": "Multicolumn slide",
+      "settings": {
+        "col_num": "3",
+        "txt_size": "md",
+        "item_bg_gd": "linear-gradient(180deg, rgba(240, 240, 240, 1) 100%, rgba(82, 218, 236, 1) 100%)",
+        "full_width": true,
+        "text_alignment_title": "start",
+        "subheading": "",
+        "title": "Rider Reviews",
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "feature_chart_Y7mifj": {
+      "type": "feature-chart",
+      "blocks": {
+        "headings_Jh8cXr": {
+          "type": "headings",
+          "settings": {
+            "heading_1": "Brand",
+            "heading_2": "Motor",
+            "heading_3": "Max Speed",
+            "heading_4": "Range",
+            "heading_5": "Battery",
+            "heading_6": "Charging Time",
+            "heading_7": "Warranty",
+            "heading_8": "",
+            "heading_9": "",
+            "heading_10": "",
+            "heading_11": "",
+            "heading_12": "",
+            "heading_13": "",
+            "heading_14": "",
+            "heading_15": "",
+            "heading_16": "",
+            "heading_17": "",
+            "heading_18": "",
+            "heading_19": "",
+            "heading_20": ""
+          }
+        },
+        "values_cgprWp": {
+          "type": "values",
+          "settings": {
+            "product": "yozma-in-10",
+            "value_1": "<p>Yozma IN 10</p>",
+            "value_2": "<p>2600W Peak</p><p>Mid-drive motor</p>",
+            "value_3": "<p>28-40MPH</p>",
+            "value_4": "<p>53Miles</p>",
+            "value_5": "<p>48V 23.4AH</p>",
+            "value_6": "<p>5-6 Hours</p>",
+            "value_7": "<p>12 Months</p>",
+            "value_8": "",
+            "value_9": "",
+            "value_10": "",
+            "value_11": "",
+            "value_12": "",
+            "value_13": "",
+            "value_14": "",
+            "value_15": "",
+            "value_16": "",
+            "value_17": "",
+            "value_18": "",
+            "value_19": "",
+            "value_20": "",
+            "view_button_background": "",
+            "view_button_text_color": ""
+          }
+        },
+        "values_U7UkJ7": {
+          "type": "values",
+          "settings": {
+            "product": "txxxxx-brand",
+            "value_1": "<p>Txxxxx Brand</p>",
+            "value_2": "<p>2000W Peak</p><p> Rear hub motor</p>",
+            "value_3": "<p>37MPH</p>",
+            "value_4": "<p>43Miles</p>",
+            "value_5": "<p>48V 21AH</p>",
+            "value_6": "<p>6-7 Hours</p>",
+            "value_7": "<p>6 Months</p>",
+            "value_8": "",
+            "value_9": "",
+            "value_10": "",
+            "value_11": "",
+            "value_12": "",
+            "value_13": "",
+            "value_14": "",
+            "value_15": "",
+            "value_16": "",
+            "value_17": "",
+            "value_18": "",
+            "value_19": "",
+            "value_20": "",
+            "view_button_background": "",
+            "view_button_text_color": ""
+          }
+        },
+        "values_pmJ96A": {
+          "type": "values",
+          "settings": {
+            "product": "rxxx-txxxx-brand",
+            "value_1": "<p>Rxxxxx Txxxx Brand</p>",
+            "value_2": "<p>2000W Peak</p><p>Hub motor</p>",
+            "value_3": "<p>40MPH</p>",
+            "value_4": "<p>62Miles</p>",
+            "value_5": "<p>48V 27AH</p>",
+            "value_6": "<p>8.5-9 Hours</p>",
+            "value_7": "<p>18 Months</p>",
+            "value_8": "",
+            "value_9": "",
+            "value_10": "",
+            "value_11": "",
+            "value_12": "",
+            "value_13": "",
+            "value_14": "",
+            "value_15": "",
+            "value_16": "",
+            "value_17": "",
+            "value_18": "",
+            "value_19": "",
+            "value_20": "",
+            "view_button_background": "",
+            "view_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "headings_Jh8cXr",
+        "values_cgprWp",
+        "values_U7UkJ7",
+        "values_pmJ96A"
+      ],
+      "settings": {
+        "full_width": true,
+        "subheading": "Compare",
+        "title": "Product Differences at a Glance.",
+        "content": "<p><strong>Unleash the Beast | </strong><em>More Power. More Stability. Total Freedom.</em></p>",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "start",
+        "max_rows": 5,
+        "view_all_text": "",
+        "view_less_text": "",
+        "view_product": "",
+        "viewing_product": "",
+        "show_product_swatch": true,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "chart_background": "",
+        "chart_text_color": "",
+        "chart_true_false_color": ""
+      }
+    },
+    "faq_Ld7yCC": {
+      "type": "faq",
+      "blocks": {
+        "item_7kpVea": {
+          "type": "item",
+          "settings": {
+            "title": "What is the top speed of the Yozma IN10?",
+            "content": "<p>The Yozma IN10 reaches up to 28-40 MPH (about 64 km/h) in the third speed mode.</p>"
+          }
+        },
+        "item_fcVKfM": {
+          "type": "item",
+          "settings": {
+            "title": "How long is the battery range on a full charge?",
+            "content": "<p>The 48V/23.4AH lithium battery offers a range of 35–53 miles (56–85 km) depending on load, terrain, speed, and temperature.</p>"
+          }
+        },
+        "item_UrTPVR": {
+          "type": "item",
+          "settings": {
+            "title": "What rider height is the IN10 suitable for?",
+            "content": "<p>Recommended for users 120–175 cm tall and aged 14 years and above.</p>"
+          }
+        },
+        "item_kjznVh": {
+          "type": "item",
+          "settings": {
+            "title": "How long does it take to fully charge the battery?",
+            "content": "<p>With the included 48V/5A charger, a full charge typically takes 5–6 hours.</p>"
+          }
+        },
+        "item_LezKXa": {
+          "type": "item",
+          "settings": {
+            "title": "What type of motor does it use?",
+            "content": "<p>The IN10 features a 1200W rated / 2600W peak direct drive brushless motor, offering strong acceleration and climbing power.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_7kpVea",
+        "item_fcVKfM",
+        "item_UrTPVR",
+        "item_kjznVh",
+        "item_LezKXa"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "FAQ",
+        "content": "",
+        "team_avatar_width": 160,
+        "support_hours": "",
+        "answer_time": "",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "",
+        "accordion_text_color": ""
+      }
+    },
+    "multi_column_M79E73": {
+      "type": "multi-column",
+      "blocks": {
+        "item_kz6AdL": {
+          "type": "item",
+          "settings": {
+            "show_controls": false,
+            "column_size": "3",
+            "title": "📦 Delivery Guarantee",
+            "heading_tag": "h5",
+            "content": "<p>We’re committed to delivering your order promptly and reliably. All our products are pre-manufactured and stocked in our warehouse, so delays are rare. However, if your order takes longer than <strong>15 business days</strong> to arrive, we’ll send you a <strong>complimentary motorcycle handlebar</strong> as a token of our appreciation.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_tiF8zM": {
+          "type": "item",
+          "settings": {
+            "show_controls": false,
+            "column_size": "3",
+            "title": "📩 Disclaimer of Liability",
+            "heading_tag": "h5",
+            "content": "<p>YozmaSport is not responsible for any accidents, injuries, or damages resulting from the use of our e-bikes. By purchasing, customers accept all associated risks. <strong>Riders should wear safety gear, follow local laws, and operate responsibly.</strong></p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_j6GCP8": {
+          "type": "item",
+          "settings": {
+            "show_controls": false,
+            "column_size": "3",
+            "title": "🔁Refund Policy",
+            "heading_tag": "h5",
+            "content": "<p>All orders are final once production is complete. YozmaSport does not offer refunds without a valid reason. <strong>Please review your order details and our cancellation policy carefully before checkout. </strong>By placing an order, you agree to these terms.<br/><br/><br/><br/><br/></p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_kz6AdL",
+        "item_tiF8zM",
+        "item_j6GCP8"
+      ],
+      "name": "Multi-column",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": true,
+        "gap": "medium",
+        "text_alignment_title": "center",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "title_width": "default",
+        "background": "#f0f0f0",
+        "background_gradient": "",
+        "text_color": "#1a1a1a"
+      }
+    },
+    "specification_table_efdmkD": {
+      "type": "specification-table",
+      "blocks": {
+        "row_7B6iWr": {
+          "type": "row",
+          "settings": {
+            "heading": "Heading 1",
+            "value": "<p>Value 1</p>"
+          }
+        },
+        "row_9mNPUx": {
+          "type": "row",
+          "settings": {
+            "heading": "Heading 2",
+            "value": "<p>Value 2</p>"
+          }
+        },
+        "row_WWDHfm": {
+          "type": "row",
+          "settings": {
+            "heading": "Heading 3",
+            "value": "<p>Value 3</p>"
+          }
+        }
+      },
+      "block_order": [
+        "row_7B6iWr",
+        "row_9mNPUx",
+        "row_WWDHfm"
+      ],
+      "disabled": true,
+      "name": "Specification table",
+      "settings": {
+        "full_width": true,
+        "subheading": "Learn more",
+        "title": "Product specification",
+        "content": "<p>Showcase specifications about a product to help your customers making an informed decision about their purchase.</p>",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "start",
+        "max_rows": 5,
+        "view_all_text": "View all",
+        "view_less_text": "View less",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "chart_background": "",
+        "chart_text_color": "",
+        "chart_true_false_color": ""
+      }
+    },
+    "1759995049e645d62a": {
+      "type": "apps",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "text_with_icons_2508_VYhjtW",
+    "video_7KTgK9",
+    "multi_column_slide_Lf4Qra",
+    "slideshow_gMx3Da",
+    "multiple_images_with_text_epUVmW",
+    "slideshow_RPwxRp",
+    "slideshow_MQ3Er4",
+    "specifications_parameters_2509_JcDPRn",
+    "slideshow_A7En4Q",
+    "multicolumn_slide_2508_Gaq7Yt",
+    "feature_chart_Y7mifj",
+    "faq_Ld7yCC",
+    "multi_column_M79E73",
+    "specification_table_efdmkD",
+    "1759995049e645d62a"
+  ]
+}

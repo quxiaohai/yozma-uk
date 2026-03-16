@@ -1,0 +1,355 @@
+{% assign ss = section.settings %}
+<style>
+    .easter-spin-wheel {
+        padding: 76px 0 80px;
+        background-color: #000000;
+        overflow: hidden;
+    }
+
+    .easter-spin-wheel .easter-content {
+        background-color: {{ ss.spin_wheel_background_color }};
+        border-radius: 16px;
+        padding: 10px 33px;
+        box-sizing: border-box;
+    }
+
+    .easter-spin-wheel .easter-content .prize-box {
+        width: 60%;
+        padding: 60px 0 40px;
+    }
+
+    .easter-spin-wheel .easter-content .prize-box .prize-title {
+        margin-bottom: 24px;
+        font-size: 18px;
+        line-height: 1.2;
+        color: #FFFFFF;
+        background-image: {{ ss.prize_title_color }};
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .easter-spin-wheel .easter-content .prize-box .remark {
+        color: {% if ss.prize_remark_color != blank %}{{ ss.prize_remark_color }}{% else %}rgba(255, 255, 255, 0.65){% endif %};
+        font-size: 12px;
+        line-height: 1.4;
+        padding-top: 16px;
+    }
+
+    .easter-spin-wheel .easter-content .prize-items {
+        flex-wrap: wrap;
+        gap: 8px 10px;
+    }
+
+    .easter-spin-wheel .easter-content .prize-items .item {
+        width: 30%;
+        height: 100px;
+        border-radius: 8px;
+    }
+
+    .easter-spin-wheel .easter-content .prize-items .item .image-wrapper {
+        height: 74px;
+    }
+
+    .easter-spin-wheel .easter-content .prize-items .item .image {
+        max-height: 80%;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .easter-spin-wheel .easter-content .prize-items .item .name {
+        height: 26px;
+        font-size: 12px;
+        color: {{ ss.card_text_color }};
+        background-image: {{ ss.card_text_bg_color }};
+    }
+
+    .easter-spin-wheel .easter-content .spin-wheel {
+        width: 40%;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .easter-spin-wheel {
+            padding: 2.5rem 0;
+        }
+
+        .easter-spin-wheel .easter-content {
+            border-radius: 1rem;
+            padding: 0 0.9375rem;
+            flex-direction: column;
+        }
+
+        .easter-spin-wheel .easter-content .prize-box {
+            width: 100%;
+            padding: 0.9375rem 0 1.5rem;
+        }
+        .easter-spin-wheel .easter-content .prize-box.last {
+            padding-top: 0;
+        }
+
+        .easter-spin-wheel .easter-content .prize-box .remark {
+            font-size: 10px;
+            padding-top: 0;
+        }
+
+        .easter-spin-wheel .easter-content .prize-items {
+            flex-wrap: wrap;
+            gap: 8px 0;
+            justify-content: space-between;
+        }
+
+        .easter-spin-wheel .easter-content .prize-items .item {
+            width: 48.5%;
+            height: 6.25rem;
+            border-radius: 0.5rem;
+        }
+
+        .easter-spin-wheel .easter-content .prize-items .item .image-wrapper {
+            height: 4.625rem;
+        }
+
+        .easter-spin-wheel .easter-content .prize-items .item .name {
+            height: 1.625rem;
+            font-size: 10px;
+        }
+
+        .easter-spin-wheel .easter-content .spin-wheel {
+            width: 100%;
+        }
+
+        .easter-spin-wheel .easter-content .spin-wheel form > div.needsclick.kl-private-reset-css-Xuajs1:nth-child(1) {
+            flex-direction: column-reverse !important;
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="easter-spin-wheel section--page">
+    {% render 'easter-title', info: ss %}
+    <div class="page-container">
+        <div class="easter-content flex-center">
+            <div class="prize-box">
+                <div class="prize-title tw-text-center tw-font-bold">
+                    {{ ss.prize_title }}
+                </div>
+                <div class="prize-items flex-left">
+                    {%- for block in section.blocks -%}
+                        {%- assign bs = block.settings -%}
+                        <div {% render 'surface', class: 'item flex-center-col tw-overflow-hidden', background_gradient: ss.card_background_gradient, background: ss.card_background %}>
+                            <div class="image-wrapper flex-center">
+                                {% render 'global-image', media_type: 'icon', desktop_img: bs.image_icon %}
+                            </div>
+                            <div class="name flex-center w-full">{{ bs.title }}</div>
+                        </div>
+                    {%- endfor -%}
+                </div>
+                <div class="remark desktop-done">
+                    {{ ss.prize_remark }}
+                </div>
+            </div>
+            <div class="spin-wheel flex-center">
+                {{ ss.klaviyo_code }}
+            </div>
+            <div class="prize-box last mobile-done">
+                <div class="remark">
+                    {{ ss.prize_remark }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "Easter Spin Wheel",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "easter-spin-wheel"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color",
+      "default": "linear-gradient(to right, #7F1200, #BF0000)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Spin Wheel"
+    },
+    {
+      "type": "color",
+      "id": "spin_wheel_background_color",
+      "label": "Spin wheel background color",
+      "default": "#25231F"
+    },
+    {
+      "type": "text",
+      "id": "prize_title",
+      "label": "Prize title",
+      "default": "What’s on the Wheel?"
+    },
+    {
+      "type": "color_background",
+      "id": "prize_title_color",
+      "label": "Prize title color",
+      "default": "linear-gradient(to right, #7F1200, #BF0000)"
+    },
+    {
+      "type": "richtext",
+      "id": "prize_remark",
+      "label": "Prize remark"
+    },
+    {
+      "type": "color",
+      "id": "prize_remark_color",
+      "label": "Prize remark color"
+    },
+    {
+      "label": "Klaviyo code",
+      "type": "textarea",
+      "id": "klaviyo_code"
+    },
+    {
+      "type": "header",
+      "content": "Prize Card"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "card_background_gradient",
+      "label": "Card background gradient"
+    },
+    {
+      "type": "color_background",
+      "id": "card_text_bg_color",
+      "label": "Card text background color",
+      "default": "linear-gradient(to right, #7F1200, #BF0000)"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Prize card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Card Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

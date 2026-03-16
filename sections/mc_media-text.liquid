@@ -1,0 +1,608 @@
+{%- liquid
+    assign ss = section.settings
+    assign cid = section.id | split: '__' | last
+-%}
+<style>
+    .mc_media-text {
+        padding: 80px 0;
+        background: #171717;
+        display: flex;
+        flex-direction: column;
+        gap: 95px 0;
+    }
+    .mc_media-text .text-content {
+        width: 100%;
+    }
+    .mc_media-text .text-content.reverse .card-item {
+        flex-direction: row-reverse;
+    }
+    .mc_media-text .text-content.reverse .info-wrap {
+        padding-left: 60px;
+        padding-right: 0;
+    }
+    .mc_media-text .card-item {
+        height: auto;
+    }
+    .mc_media-text .card-item .info-wrap {
+        flex: 1;
+        padding-right: 60px;
+    }
+    .mc_media-text .card-item .head,
+    .mc_media-text .card-item .intro {
+        word-break: break-word;
+        color: #ffffff;
+    }
+    .mc_media-text .card-item .subhead {
+        color: #F00;
+        font-size: {{ ss.pc_card_subhead_size }}px;
+    }
+    .mc_media-text .card-item .head {
+        padding-top: 8px;
+        font-size: {{ ss.pc_card_head_size }}px;
+    }
+    .mc_media-text .card-item .intro {
+        font-size: {{ ss.pc_card_text_size }}px;
+        padding-top: 56px;
+        line-height: 1.33;
+        color: #B2B2B2;
+    }
+    .mc_media-text .card-item .intro strong {
+        color: var(--bold-color);
+    }
+    .mc_media-text .card-item .intro li {
+        padding-left: 32px;
+        position: relative;
+    }
+    .mc_media-text .card-item .intro li:before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: #B2B2B2;
+        border-radius: 50%;
+        position: absolute;
+        left: 13px;
+        top: 13px;
+    }
+    .mc_media-text .card-item .media-wrap {
+        width: 49.48vw;
+        aspect-ratio: 1.578;
+    }
+    .mc_media-text .card-item .image-wrap {
+        padding-top: 40px;
+    }
+    .mc_media-text .card-item .image-wrap .image {
+        max-width: 100%;
+        height: auto;
+        width: var(--width);
+        object-fit: contain;
+    }
+    @media screen and (min-width: 2601px) {
+        .mc_media-text .card-item .media-wrap {
+            width: 50%;
+        }
+    }
+    @media screen and (min-width: 1024px) and (max-width: 2600px) {
+        .mc_media-text .text-content.normal {
+            padding-right: 0;
+        }
+        .mc_media-text .text-content.reverse {
+            padding-left: 0;
+        }
+    }
+    @media screen and (max-width: 1600px) {
+        .mc_media-text {
+            padding: 64px 0;
+            gap: 4.9479166667vw 0;
+        }
+        .mc_media-text .text-content {
+            width: 100%;
+        }
+        .mc_media-text .text-content.reverse .info-wrap {
+            padding-left: 48px;
+            padding-right: 0;
+        }
+        .mc_media-text .card-item .info-wrap {
+            padding-right: 48px;
+        }
+        .mc_media-text .card-item .subhead {
+            font-size: {{ ss.pc_card_subhead_size | divided_by: 19.2 }}vw;
+        }
+        .mc_media-text .card-item .head {
+            padding-top: 6px;
+            font-size: {{ ss.pc_card_head_size | divided_by: 19.2 }}vw;
+        }
+        .mc_media-text .card-item .intro {
+            font-size: {{ ss.pc_card_text_size | divided_by: 19.2 }}vw;
+            padding-top: 2.9166666667vw;
+        }
+        .mc_media-text .card-item .intro li {
+            padding-left: 26px;
+        }
+        .mc_media-text .card-item .intro li:before {
+            width: 5px;
+            height: 5px;
+            left: 10px;
+            top: 10px;
+        }
+        .mc_media-text .card-item .image-wrap {
+            padding-top: 2.0833333333vw;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .mc_media-text {
+            padding: 2.5rem 0;
+            gap: 2.03125rem 0;
+        }
+        .mc_media-text .text-content {
+            width: 100%;
+        }
+        .mc_media-text .text-content.reverse .card-item {
+            flex-direction: column;
+        }
+        .mc_media-text .text-content.reverse .info-wrap {
+            padding-left: 0;
+        }
+        .mc_media-text .card-item {
+            flex-direction: column;
+        }
+        .mc_media-text .card-item .info-wrap {
+            padding-right: 0;
+        }
+        .mc_media-text .card-item .subhead {
+            font-size: {{ ss.mb_card_subhead_size }}px;
+        }
+        .mc_media-text .card-item .head {
+            padding-top: 0.125rem;
+            font-size: {{ ss.mb_card_head_size }}px;
+        }
+        .mc_media-text .card-item .intro {
+            font-size: {{ ss.mb_card_text_size }}px;
+            padding-top: 0.375rem;
+        }
+        .mc_media-text .card-item .intro li {
+            padding-left: 1rem;
+        }
+        .mc_media-text .card-item .intro li:before {
+            width: 0.1875rem;
+            height: 0.1875rem;
+            left: 0.375rem;
+            top: 0.40625rem;
+        }
+        .mc_media-text .card-item .media-wrap {
+            width: 100%;
+            aspect-ratio: 1.578;
+            margin-top: 0.75rem;
+        }
+        .mc_media-text .card-item .image-wrap {
+            padding-top: 1.25rem;
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_media-text section--page w-full">
+    {%- render 'section-title', info: ss -%}
+    {%- for block in section.blocks -%}
+        {%- assign bs = block.settings -%}
+        <div class="text-content{% if bs.media_position == 'right' %} normal{% else %} reverse{% endif %} page-width">
+            <animate-element class="card-item flex-between">
+                <div class="info-wrap">
+                    {%- if bs.show_subhead -%}
+                        <div class="subhead fw-500 lh-2" style="color: {{ bs.subhead_color }};">
+                            {{ bs.subhead }}
+                        </div>
+                    {%- endif -%}
+                    <div class="head italic fw-900 lh-2" style="color: {{ bs.head_color }}">
+                        <span{% if bs.head_gradient_color != blank %} class="text-gradient" style="--gradient: {{ bs.head_gradient_color }}"{% endif %}>{{ bs.head }}</span>
+                    </div>
+                    <div class="intro" style="color:{{ bs.text_color }}; --bold-color: {{ bs.text_bold_color }};">
+                        {{ bs.text }}
+                    </div>
+                    {%- if bs.param_image != blank -%}
+                        <div class="image-wrap">
+                            {%- render 'global-image',
+                                image: bs.param_image,
+                                image_size: 800,
+                                show_size: true
+                            -%}
+                        </div>
+                    {%- endif -%}
+                </div>
+                <div class="media-wrap"
+                     style="--media-ratio: {% if bs.media_ratio != blank %}{{ bs.media_ratio }}{% else %}1.578{% endif %}">
+                    {%- if bs.media_type == 'video' -%}
+                        {%- capture sizes -%}{% if bs.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
+                        {%- if bs.video_mobile -%}
+                            {%- render 'video',
+                                sizes: sizes,
+                                video: bs.video_mobile,
+                                muted: true,
+                                autoplay: true,
+                                loop: true,
+                                cover_image: bs.mobile_image,
+                                show_play_button: false,
+                                is_mobile: true,
+                                controls: false,
+                                class: 'w-full h-full relative'
+                            -%}
+                        {%- endif -%}
+                        {%- render 'video',
+                            sizes: sizes,
+                            video: bs.video_desktop,
+                            muted: true,
+                            autoplay: true,
+                            loop: true,
+                            show_play_button: false,
+                            cover_image: bs.desktop_image,
+                            controls: false,
+                            class: 'w-full h-full relative'
+                        -%}
+                    {%- else -%}
+                        {%- render 'global-image',
+                            desktop_img: bs.pc_image,
+                            desktop_size: 750,
+                            mobile_img: bs.mb_image,
+                            mobile_size: 750
+                        -%}
+                    {%- endif -%}
+                </div>
+            </animate-element>
+        </div>
+    {%- endfor -%}
+</div>
+{% schema %}
+{
+  "name": "MC Media Text",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Media Text"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Slide card"
+    },
+    {
+      "type": "range",
+      "id": "pc_card_subhead_size",
+      "label": "Desktop card subhead size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mb_card_subhead_size",
+      "label": "Mobile card subhead size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "pc_card_head_size",
+      "label": "Desktop card head size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mb_card_head_size",
+      "label": "Mobile card head size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "pc_card_text_size",
+      "label": "Desktop card text size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mb_card_text_size",
+      "label": "Mobile card text size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title"
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "label": "Video",
+              "value": "video"
+            },
+            {
+              "label": "image",
+              "value": "Image"
+            }
+          ],
+          "default": "video"
+        },
+        {
+          "type": "image_picker",
+          "id": "pc_image",
+          "label": "Desktop image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mb_image",
+          "label": "Mobile image"
+        },
+        {
+          "type": "select",
+          "id": "media_position",
+          "label": "Desktop media position",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop video cover"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile video cover"
+        },
+        {
+          "type": "video",
+          "id": "video_desktop",
+          "label": "Video (Desktop)"
+        },
+        {
+          "type": "video",
+          "id": "video_mobile",
+          "label": "Video (Mobile)"
+        },
+        {
+          "type": "text",
+          "id": "media_ratio",
+          "label": "Desktop media ratio(w/h)"
+        },
+        {
+          "type": "text",
+          "id": "mb_media_ratio",
+          "label": "Mobile media ratio(w/h)"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_subhead",
+          "label": "Show subhead",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "subhead",
+          "label": "Subhead",
+          "default": "Engineered Comfort"
+        },
+        {
+          "type": "color",
+          "id": "subhead_color",
+          "label": "Subhead color",
+          "default": "#FF0000"
+        },
+        {
+          "type": "text",
+          "id": "head",
+          "label": "Head"
+        },
+        {
+          "type": "color",
+          "id": "head_color",
+          "label": "Head color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color_background",
+          "id": "head_gradient_color",
+          "label": "Head gradient color"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Desc"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Desc color",
+          "default": "#B2B2B2"
+        },
+        {
+          "type": "color",
+          "id": "text_bold_color",
+          "label": "Text bold color",
+          "default": "#b2b2b2"
+        },
+        {
+          "type": "image_picker",
+          "id": "param_image",
+          "label": "Param image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

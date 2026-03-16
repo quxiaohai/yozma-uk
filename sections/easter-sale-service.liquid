@@ -1,0 +1,108 @@
+{% assign ss = section.settings %}
+<style>
+    .easter-sale-service {
+        height: {% if ss.pc_height > 0 %}{{ ss.pc_height }}px{% else %}49px{% endif %};
+        background-color: {{ ss.page_color }};
+        gap: 110px;
+    }
+    .easter-sale-service .item {
+        gap: 16px;
+    }
+    .easter-sale-service .text {
+        color: #FFFFFF;
+    }
+    .easter-sale-service .image {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+    }
+    @media screen and (max-width: 1376px) {
+        .easter-sale-service {
+            gap: 93.5px;
+        }
+        .easter-sale-service .item {
+            gap: 13.6px;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .easter-sale-service {
+            height: {% if ss.pc_height > 0 %}{{ ss.mb_height }}px {% else %}3.9279513889rem{% endif %};
+            gap: 0.9765625rem;
+        }
+        .easter-sale-service .item {
+            gap: 0.3472222222rem 0;
+            flex-direction: column;
+        }
+        .easter-sale-service .item .text {
+            font-size: 0.6076388889rem;
+        }
+        .easter-sale-service .image {
+            width: 1.3020833333rem;
+            height: 1.3020833333rem;
+        }
+    }
+</style>
+<section class="easter-sale-service w-full flex-center">
+  {%- for block in section.blocks -%}
+    {%- assign bs = block.settings -%}
+    <div class="item flex-center">
+      {% render 'global-image', preload: ss.image_preload, media_type: 'icon', desktop_img: bs.image_icon %}
+      <span class="text tw-leading-[1.2] tw-text-base">{{ bs.title }}</span>
+    </div>
+  {%- endfor -%}
+</section>
+{% schema %}
+{
+  "name": "Easter Sale Service",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "easter-sale-service"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "pc_height",
+      "label": "Desktop height"
+    },
+    {
+      "type": "number",
+      "id": "mb_height",
+      "label": "Mobile height"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_preload",
+      "label": "Image preload",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Service Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Item Name",
+          "default": "14-Day Trial"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Item Icon"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

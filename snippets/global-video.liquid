@@ -1,0 +1,66 @@
+{%- if desktop_size == blank -%}
+    {%- assign desktop_size = '1920x' -%}
+{%- endif -%}
+{%- if mobile_size == blank -%}
+    {%- assign mobile_size = '750x' -%}
+{%- endif -%}
+{%- assign desktop_video_url = '' -%}
+{%- assign mobile_video_url = '' -%}
+{%- if desktop_video != blank -%}
+    {%- assign desktop_size = desktop_size | replace: 'x', '' | plus: 0 -%}
+    {%- for source in desktop_video.sources -%}
+        {%- if source.format == 'mp4' -%}
+            {%- assign desktop_video_url = source.url -%}
+        {%- endif -%}
+    {%- endfor -%}
+    <video
+        preload="none"
+        x5-video-player-type="h5-page"
+        x5-video-player-fullscreen="true"
+        x-webkit-airplay="allow"
+        playsinline
+        x5-playsinline
+        webkit-playsinline
+        t7-video-player-type
+        aria-hidden
+        data-inline-media
+        poster="{% if desktop_cover != blank %}{{ desktop_cover | image_url: width: desktop_size }}{% else %}{{ desktop_video | image_url: width: desktop_size }}{% endif %}"
+        {% if desktop_node != blank %}node-name="{{ desktop_node }}"{% endif %}
+        class="video desktop-done {{ desktop_class }}"
+        {% if loop == true %}loop{% endif %}
+        {% if controls != blank %}controls{% endif %}
+        {% if muted != false %}muted="muted"{% endif %}>
+        <source
+            src="{{ desktop_video_url }}"
+            type="video/mp4">
+    </video>
+{%- endif -%}
+{%- if mobile_video != blank -%}
+    {%- assign mobile_size = mobile_size | replace: 'x', '' | plus: 0 -%}
+    {%- for source in mobile_video.sources -%}
+        {%- if source.format == 'mp4' -%}
+            {%- assign mobile_video_url = source.url -%}
+        {%- endif -%}
+    {%- endfor -%}
+    <video
+        preload="none"
+        x5-video-player-type="h5-page"
+        x5-video-player-fullscreen="true"
+        x-webkit-airplay="allow"
+        playsinline
+        x5-playsinline
+        webkit-playsinline
+        t7-video-player-type
+        aria-hidden
+        data-inline-media
+        poster="{% if mobile_cover != blank %}{{ mobile_cover | image_url: width: mobile_size }}{% else %}{{ mobile_video | image_url: width: mobile_size }}{% endif %}"
+        {% if mobile_node != blank %}node-name="{{ mobile_node }}"{% endif %}
+        class="video mobile-done {{ mobile_class }}"
+        {% if controls != blank %}controls{% endif %}
+        {% if loop == true %}loop{% endif %}
+        {% if muted != false %}muted="muted"{% endif %}>
+        <source
+            src="{{ mobile_video_url }}"
+            type="video/mp4">
+    </video>
+{%- endif -%}

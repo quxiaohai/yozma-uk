@@ -1,0 +1,704 @@
+{% assign ss = section.settings %}
+<style>
+    .main-faq {
+        background-color: #ffffff;
+    }
+    .main-faq .faq-menus {
+        width: 300px;
+    }
+    .main-faq .faq-content {
+        flex: 1;
+    }
+    .main-faq .nav-wrapper {
+        border-left: 1px solid #d5d5d5;
+    }
+    .main-faq .nav-wrapper .nav-item {
+        position: relative;
+        padding-left: 20px;
+        line-height: 32px;
+    }
+    .main-faq .nav-wrapper .nav-item:before {
+        content: "";
+        position: absolute;
+        left: -1.5px;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background: #000000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .main-faq .nav-wrapper .nav-item.active .nav-handler, .main-faq .nav-wrapper .nav-item:hover .nav-handler {
+        font-weight: 600;
+        opacity: 1;
+    }
+    .main-faq .nav-wrapper .nav-item.active:before, .main-faq .nav-wrapper .nav-item:hover:before {
+        opacity: 1;
+    }
+    .main-faq .nav-wrapper .nav-handler {
+        color: #000000;
+        transition: 0.3s ease all;
+        opacity: 0.5;
+        font-weight: 400;
+        font-size: 15px;
+    }
+    .main-faq .faq-wrapper .title {
+        font-size: 30px;
+        line-height: 1.3;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+    .main-faq .faq-wrapper .accordion {
+        border-top: 1px solid #d5d5d5;
+    }
+    .main-faq .faq-wrapper .problem-box {
+        padding: 20px 0 18px;
+        cursor: pointer;
+    }
+    .main-faq .faq-wrapper .problem-box .problem {
+        line-height: 1.2;
+        font-size: 15px;
+        color: #000000;
+        font-weight: 600;
+        padding-right: 10px;
+    }
+    .main-faq .faq-wrapper .problem-box.active .plus {
+        display: flex;
+    }
+    .main-faq .faq-wrapper .problem-box.active .minus {
+        display: none;
+    }
+    .main-faq .faq-wrapper .problem-box.active + .answer {
+        padding-right: 40px;
+        margin-bottom: 20px;
+        height: auto;
+    }
+    .main-faq .faq-wrapper .problem-box .plus,
+    .main-faq .faq-wrapper .problem-box .minus {
+        width: 12px;
+        height: 12px;
+        transform: translateY(2px);
+    }
+    .main-faq .faq-wrapper .problem-box .plus svg,
+    .main-faq .faq-wrapper .problem-box .minus svg {
+        width: 100%;
+        height: 100%;
+    }
+    .main-faq .faq-wrapper .problem-box .plus {
+        display: none;
+    }
+    .main-faq .faq-wrapper .answer {
+        font-size: 15px;
+        color: #5a5a5a;
+        line-height: 1.6;
+        word-break: break-word;
+        font-weight: 400;
+        height: 0;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+    @media screen and (max-width: 1440px) {
+        .main-faq .faq-menus {
+            width: 240px;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .main-faq .faq-section {
+            flex-direction: column;
+        }
+        .main-faq .faq-menus {
+            width: 100%;
+        }
+        .main-faq .faq-content {
+            flex: 1;
+        }
+        .main-faq .nav-wrapper {
+            border-left: 0 none;
+            border-bottom: 1px solid #d5d5d5;
+            display: flex;
+            white-space: wrap;
+            overflow-x: auto;
+            gap: 0 1.25rem;
+            padding: 0 0.625rem;
+            box-sizing: border-box;
+        }
+        .main-faq .nav-wrapper .nav-item {
+            padding-left: 0;
+            line-height: 2.625rem;
+        }
+        .main-faq .nav-wrapper .nav-item:before {
+            left: 0;
+            top: auto;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+        }
+        .main-faq .nav-wrapper .nav-item:hover .nav-handler {
+            font-weight: 400;
+            opacity: 0.5;
+        }
+        .main-faq .nav-wrapper .nav-item.active .nav-handler {
+            font-weight: 600 !important;
+            opacity: 1 !important;
+        }
+        .main-faq .nav-wrapper .nav-item:hover:before {
+            opacity: 0;
+        }
+        .main-faq .nav-wrapper .nav-item.active:before {
+            opacity: 1 !important;
+        }
+        .main-faq .nav-wrapper .nav-handler {
+            font-size: 0.875rem;
+        }
+        .main-faq .faq-wrapper .title {
+            display: none;
+        }
+        .main-faq .faq-wrapper .accordion {
+            overflow: hidden;
+            border-top: 0 none;
+            border-bottom: 1px solid #d5d5d5;
+        }
+        .main-faq .faq-wrapper .accordion:last-of-type {
+            border-bottom: 0 none;
+        }
+        .main-faq .faq-wrapper .problem-box {
+            padding: 1.25rem 0 1.125rem;
+            cursor: pointer;
+        }
+        .main-faq .faq-wrapper .problem-box .problem {
+            font-size: 0.875rem;
+        }
+        .main-faq .faq-wrapper .problem-box.active + .answer {
+            padding-right: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+        .main-faq .faq-wrapper .answer {
+            font-size: 0.875rem;
+        }
+    }
+    {% render 'page-wrap-style', info: ss, class: '.main-faq' %}
+</style>
+<div class="main-faq" id="{{ section.id }}-faq">
+    <div class="section section-full">
+        {%- assign faqList = section.blocks | where: 'type', 'faq' -%}
+        <div class="faq-section w-full flex-between-top">
+            <div class="faq-menus">
+                <ul class="nav-wrapper">
+                    {%- for block in faqList -%}
+                        {%- assign bs = block.settings -%}
+                        <li class="nav-item{% if forloop.first %} active{% endif %}" node-name="nav">
+                            <a href="#" class="nav-handler">{{ bs.title }}</a>
+                        </li>
+                    {%- endfor -%}
+                </ul>
+            </div>
+            <div class="faq-content">
+                {%- assign faqInfo = faqList[0].settings -%}
+                {%- if faqInfo != blank -%}
+                    <div class="faq-wrapper">
+                        <h4 class="title" node-name="title">{{ faqInfo.title }}</h4>
+                        <div class="accordion-wrapper-inner" node-name="content">
+                            {%- for j in (1..10) -%}
+                                {%- assign title = 'title_' | append: j -%}
+                                {%- assign title = faqInfo[title] -%}
+                                {%- assign desc_html = 'answer_' | append: j -%}
+                                {% assign desc_html = faqInfo[desc_html] %}
+                                {% assign default_active = false %}
+                                {%- assign default_open = 'default_open_' | append: j -%}
+                                {%- assign default_open = faqInfo[default_open] -%}
+                                {% if default_open == "Yes" %}
+                                    {% assign default_active = true %}
+                                {% endif %}
+                                {%- if title != blank -%}
+                                    <div class="accordion">
+                                        <div class="problem-box flex-between-top {% if default_active %}active{% endif %}">
+                                            <div class="problem">{{ title }}</div>
+                                            <div class="icon-wrapper">
+                                                <div class="plus flex-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                                         viewBox="0 0 13 13">
+                                                        <g transform="translate(0.5 0.5)">
+                                                            <path
+                                                                    d="M7.5,18h12"
+                                                                    transform="translate(-7.5 -12)"
+                                                                    fill="none"
+                                                                    stroke="#181623"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    stroke-width="1"
+                                                            ></path>
+                                                            <path
+                                                                    d="M0,0H12"
+                                                                    transform="translate(6) rotate(90)"
+                                                                    fill="none"
+                                                                    stroke="#181623"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    stroke-width="1"
+                                                            ></path>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                <div class="minus flex-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="1"
+                                                         viewBox="0 0 13 1">
+                                                        <g transform="translate(0.5 -5.5)">
+                                                            <path
+                                                                    d="M7.5,18h12"
+                                                                    transform="translate(-7.5 -12)"
+                                                                    fill="none"
+                                                                    stroke="#181623"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    stroke-width="1"
+                                                            ></path>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="answer">
+                                            {{ desc_html }}
+                                        </div>
+                                    </div>
+                                {%- endif -%}
+                            {%- endfor -%}
+                        </div>
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        const faqList = [
+            {%- for block in faqList -%}
+            {%- assign bs = block.settings -%}
+            {
+                title: `{{ bs.title }}`,
+                childList: [
+                    {%- for j in (1..10) -%}
+                    {%- assign title = 'title_' | append: j -%}
+                    {%- assign title = bs[title] -%}
+                    {%- assign desc_html = 'answer_' | append: j -%}
+                    {% assign desc_html = bs[desc_html] %}
+
+                    {% assign default_active = false %}
+                    {%- assign default_open = 'default_open_' | append: j -%}
+                    {%- assign default_open = bs[default_open] -%}
+                    {% if default_open == "Yes" %}
+                    {% assign default_active = true %}
+                    {% endif %}
+                    {%- if title != blank -%}
+                    {
+                        title: `{{ title }}`,
+                        answer: `{{ desc_html }}`,
+                        open: '{% if default_active %}active{% endif %}',
+                    },
+                    {%- endif -%}
+                    {%- endfor -%}
+                ]
+            }{% if forloop.last != true %},{% endif %}
+            {%- endfor -%}
+        ];
+        const node = document.getElementById('{{ section.id }}-faq');
+        const nodeList = $heybike.getNodeList(node);
+        const navList = [].concat(nodeList.nav);
+
+        const renderHTML = (index) => {
+            const faqInfo = faqList[index];
+            const list = [];
+            faqInfo.childList.forEach(child => {
+                list.push(`<div class="accordion">
+                                        <div class="problem-box flex-between-top ${child.open}">
+                                            <div class="problem">${child.title}</div>
+                                            <div class="icon-wrapper">
+                                                <div class="plus flex-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                                         viewBox="0 0 13 13">
+                                                        <g transform="translate(0.5 0.5)">
+                                                            <path
+                                                                    d="M7.5,18h12"
+                                                                    transform="translate(-7.5 -12)"
+                                                                    fill="none"
+                                                                    stroke="#181623"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    stroke-width="1"
+                                                            ></path>
+                                                            <path
+                                                                    d="M0,0H12"
+                                                                    transform="translate(6) rotate(90)"
+                                                                    fill="none"
+                                                                    stroke="#181623"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    stroke-width="1"
+                                                            ></path>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                <div class="minus flex-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="1"
+                                                         viewBox="0 0 13 1">
+                                                        <g transform="translate(0.5 -5.5)">
+                                                            <path
+                                                                    d="M7.5,18h12"
+                                                                    transform="translate(-7.5 -12)"
+                                                                    fill="none"
+                                                                    stroke="#181623"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    stroke-width="1"
+                                                            ></path>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="answer">
+                                            ${child.answer}
+                                        </div>
+                                    </div>`)
+            });
+            nodeList.title.innerHTML = faqInfo.title;
+            return list.join('');
+        }
+
+        navList.forEach((elem, index) => {
+            elem.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!elem.classList.contains('active')) {
+                    navList.forEach((elem) => {
+                        elem.classList.remove('active');
+                    });
+                    elem.classList.add('active');
+                    nodeList.content.innerHTML = renderHTML(index);
+                }
+            });
+        });
+
+        nodeList.content.addEventListener('click', (e) => {
+            const box = e.target.closest('.problem-box');
+            if (!box) {
+                return false;
+            }
+
+            const next = box.nextElementSibling;
+            if (box.classList.contains('active')) {
+                next.style.height = '0px';
+                box.classList.remove('active');
+            } else {
+                next.style.height = `${next.scrollHeight}px`;
+                box.classList.add('active');
+            }
+        })
+    })()
+</script>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#f9f7f6"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Faq label"
+        },
+        {
+          "type": "header",
+          "content": "General FAQ"
+        },
+        {
+          "type": "select",
+          "id": "default_open_1",
+          "label": "Default Open #1",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_1",
+          "label": "Question #1"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_1",
+          "label": "Answer #1"
+        },
+        {
+          "type": "select",
+          "id": "default_open_2",
+          "label": "Default Open #2",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_2",
+          "label": "Question #2"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_2",
+          "label": "Answer #2"
+        },
+        {
+          "type": "select",
+          "id": "default_open_3",
+          "label": "Default Open #3",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_3",
+          "label": "Question #3"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_3",
+          "label": "Answer #3"
+        },
+        {
+          "type": "select",
+          "id": "default_open_4",
+          "label": "Default Open #4",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_4",
+          "label": "Question #4"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_4",
+          "label": "Answer #4"
+        },
+        {
+          "type": "select",
+          "id": "default_open_5",
+          "label": "Default Open #5",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_5",
+          "label": "Question #5"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_5",
+          "label": "Answer #5"
+        },
+        {
+          "type": "select",
+          "id": "default_open_6",
+          "label": "Default Open #6",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_6",
+          "label": "Question #6"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_6",
+          "label": "Answer #6"
+        },
+        {
+          "type": "select",
+          "id": "default_open_7",
+          "label": "Default Open #7",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_7",
+          "label": "Question #7"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_7",
+          "label": "Answer #7"
+        },
+        {
+          "type": "select",
+          "id": "default_open_8",
+          "label": "Default Open #8",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_8",
+          "label": "Question #8"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_8",
+          "label": "Answer #8"
+        },
+        {
+          "type": "select",
+          "id": "default_open_9",
+          "label": "Default Open #9",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_9",
+          "label": "Question #9"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_9",
+          "label": "Answer #9"
+        },
+        {
+          "type": "select",
+          "id": "default_open_10",
+          "label": "Default Open #10",
+          "options": [
+            {
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "value": "No",
+              "label": "No"
+            }
+          ],
+          "default": "No"
+        },
+        {
+          "type": "textarea",
+          "id": "title_10",
+          "label": "Question #10"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_10",
+          "label": "Answer #10"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ"
+    }
+  ]
+}
+{% endschema %}

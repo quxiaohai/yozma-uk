@@ -1,0 +1,57 @@
+{%- liquid
+  assign loading = loading | default: 'lazy'
+  assign fetchpriority = fetchpriority | default: 'auto'
+  assign sizes = sizes | default: 'min(100vw, var(--page-width))'
+
+  assign video_id = video.id | default: video_url.id
+  assign video_alt = video.alt | default: description
+  assign alt = 'general.accessibility.load_video' | t: description: video_alt | escape
+  assign preview_image = video.preview_image | default: cover_image
+  if show_play_button != false
+    assign show_play_button = true
+  endif
+  -%}
+
+  {% capture poster %}
+    {% if preview_image != blank %}
+      {{ preview_image | image_url: width: preview_image.width | image_tag: loading: loading, fetchpriority: fetchpriority, sizes: sizes, widths: '300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', is: 'lazy-image', alt: alt }}
+    {% elsif video_url != blank %}
+      {% assign video_id = video_url | split: 'v=' | last | split: '&' | first %}
+      {% assign thumbnail_url = 'https://img.youtube.com/vi/' | append: video_id | append: '/sddefault.jpg' %}
+      <img src="{{ thumbnail_url }}" class="tw-aspect-video tw-object-cover" width="900" height="400" loading="lazy"/>
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
+    {% endif %}
+  {% endcapture %}
+
+{%- if video != blank or video_url != blank -%}
+  <video-media class="media{% if play_icon != blank %} deferred-media-custom{% endif %} deferred-media{% if is_mobile %} mobile-video-media mobile:deferred-media{% else %} desktop-video-media{% endif %} block {{ class }}"
+    style="--aspect-ratio: {{ video.aspect_ratio }}"
+    {%- unless video %} host="{{ video_url.type }}"{% endunless -%}
+    {%- if once == false -%}on-once{%- endif -%}
+    {%- if autoplay %} autoplay{% else -%} {% if show_youtube_button %} show-youtube-button{% elsif show_play_button %} show-play-button{% endif %}{% endif %}>
+    {{- poster -}}
+    <template>
+      {%- if video != blank -%}
+        {{- video | video_tag: playsinline: true, muted: muted, autoplay: true, loop: loop, controls: controls, preload: 'metadata', image_size: '800x' -}}
+      {%- else -%}
+        {%- if video_url.type == 'youtube' -%}
+          <iframe src="https://www.youtube.com/embed/{{ video_url.id }}?playsinline=1&controls={% if controls == true %}1{% else %}0{% endif %}{% if autoplay %}&autoplay=1{% endif %}{% if muted %}&mute=1{% endif %}{% if loop %}&loop=1{% endif %}&playlist={{ video_url.id }}&enablejsapi=1&rel=0&modestbranding=1&origin={{ 'https://' | append: request.host | url_encode }}" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"></iframe>
+        {%- elsif video_url.type == 'vimeo' -%}
+          <iframe src="https://player.vimeo.com/video/{{ video_url.id }}?autopause=1{% if autoplay %}&autoplay=1{% endif %}{% if muted %}&background=1&muted=1{% endif %}{% if loop %}&loop=1{% endif %}&transparent=0&responsive=1&portrait=0&title=0&byline=0&color={{ settings.color_text | remove_first: '#' }}" allow="autoplay; encrypted-media;" allowfullscreen="allowfullscreen"></iframe>
+        {%- endif -%}
+      {%- endif -%}
+    </template>
+    {%- if play_icon != blank -%}
+      <button type="button" class="flex-center custom-play-button absolute w-full h-full" aria-label="{{ 'general.accessibility.play_video' | t | escape }}">
+        <span class="play-button flex-center rounded-full pointer-events-auto z-10">
+          {%- render 'global-image', image: play_icon, class: 'icon-play' -%}
+        </span>
+      </button>
+    {%- endif -%}
+  </video-media>
+{%- else -%}
+  <div class="deferred-media{% if is_mobile %} mobile:deferred-media{% endif %} h-full {{ class }}">
+    {{- poster -}}
+  </div>
+{%- endif -%}

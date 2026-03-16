@@ -1,0 +1,715 @@
+{%- assign ss = section.settings -%}
+<style>
+    .mc_product-list {
+        padding: 80px 0;
+        background-color: #ffffff;
+    }
+
+    .mc_product-list .page-width {
+        gap: 0 20px;
+    }
+
+    .mc_product-list .hover-media-wrap {
+        left: 0;
+        top: 0;
+        display: none;
+    }
+
+    .mc_product-list .hover-media-wrap .video {
+        object-fit: cover;
+    }
+
+    .mc_product-list .ani-color {
+        transition: color 0.5s;
+    }
+
+    .mc_product-list ._product-card {
+        flex: 1;
+        max-width: 550px;
+        aspect-ratio: 0.684;
+        background-color: #ffffff;
+        border-radius: 0 0 2px 2px;
+        padding: 0 48px;
+        color: #000000;
+    }
+
+    .mc_product-list ._product-card .image {
+        top: 0;
+        left: 0;
+    }
+
+    .mc_product-list ._product-card:before {
+        content: "";
+        width: 100%;
+        height: 10px;
+        top: 0;
+        left: 0;
+        position: absolute;
+        background: #000000;
+        z-index: 1;
+    }
+
+    .mc_product-list ._product-card .cover {
+        padding-top: 40px;
+    }
+
+    .mc_product-list ._product-card .cover .image {
+        aspect-ratio: 1.2;
+        object-fit: contain;
+    }
+
+    .mc_product-list ._product-card .text-items {
+        padding-top: 40px;
+    }
+
+    .mc_product-list ._product-card .text-item .image {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+    }
+
+    .mc_product-list ._product-card .text-item .info {
+        padding-top: 16px;
+    }
+
+    .mc_product-list ._product-card .text-item .num {
+        font-size: 24px;
+    }
+
+    .mc_product-list ._product-card .text-item .text {
+        font-size: 16px;
+    }
+
+    .mc_product-list ._product-card .head-info {
+        padding-top: 28px;
+    }
+
+    .mc_product-list ._product-card .head-info .name {
+        font-size: 48px;
+    }
+
+    .mc_product-list ._product-card .head-info .intro {
+        font-size: 14px;
+    }
+
+    .mc_product-list ._product-card .btn-group {
+        padding-top: 32px;
+        gap: 0 14px;
+    }
+
+    .mc_product-list ._product-card .btn-group .image-button {
+        flex: 1;
+        --button-color: #ffffff;
+        --button-width: 100%;
+        --button-height: auto;
+        --button-size: 26px;
+        aspect-ratio: 3.6;
+    }
+
+    .mc_product-list .active {
+        color: #ffffff;
+    }
+
+    .mc_product-list .active .hover-media-wrap {
+        display: block;
+    }
+
+    @media screen and (max-width: 1600px) {
+        .mc_product-list {
+            padding: 64px 0;
+        }
+
+        .mc_product-list .page-width {
+            gap: 0 16px;
+        }
+
+        .mc_product-list ._product-card {
+            padding: 0 38px;
+        }
+
+        .mc_product-list ._product-card:before {
+            height: 8px;
+        }
+
+        .mc_product-list ._product-card .cover {
+            padding-top: 2.0833333333vw;
+        }
+
+        .mc_product-list ._product-card .text-items {
+            padding-top: 2.0833333333vw;
+        }
+
+        .mc_product-list ._product-card .text-item .image {
+            width: 38px;
+            height: 38px;
+        }
+
+        .mc_product-list ._product-card .text-item .info {
+            padding-top: 0.8333333333vw;
+        }
+
+        .mc_product-list ._product-card .text-item .num {
+            font-size: 1.25vw;
+        }
+
+        .mc_product-list ._product-card .text-item .text {
+            font-size: 0.8333333333vw;
+        }
+
+        .mc_product-list ._product-card .head-info {
+            padding-top: 1.4583333333vw;
+        }
+
+        .mc_product-list ._product-card .head-info .name {
+            font-size: 2.5vw;
+        }
+
+        .mc_product-list ._product-card .head-info .intro {
+            font-size: 12px;
+        }
+
+        .mc_product-list ._product-card .btn-group {
+            padding-top: 1.6666666667vw;
+            gap: 0 0.7291666667vw;
+        }
+
+        .mc_product-list ._product-card .btn-group .image-button {
+            --button-size: 1.4vw;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .mc_product-list {
+            padding: 2.5rem 0;
+        }
+
+        .mc_product-list .page-width {
+            overflow-x: auto;
+            gap: 0 0.625rem;
+            white-space: nowrap;
+        }
+
+        .mc_product-list ._product-card {
+            flex: none;
+            width: 18.90625rem;
+            max-width: none;
+            padding: 0 1.6875rem;
+        }
+
+        .mc_product-list ._product-card:before {
+            height: 0.375rem;
+        }
+
+        .mc_product-list ._product-card .cover {
+            padding-top: 1.875rem;
+        }
+
+        .mc_product-list ._product-card .text-items {
+            padding-top: 0.75rem;
+        }
+
+        .mc_product-list ._product-card .text-item .image {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .mc_product-list ._product-card .text-item .info {
+            padding-top: 0.5rem;
+        }
+
+        .mc_product-list ._product-card .text-item .num {
+            font-size: 0.84375rem;
+        }
+
+        .mc_product-list ._product-card .text-item .text {
+            font-size: 0.65625rem;
+        }
+
+        .mc_product-list ._product-card .head-info {
+            padding-top: 1rem;
+        }
+
+        .mc_product-list ._product-card .head-info .name {
+            font-size: 1.5625rem;
+        }
+
+        .mc_product-list ._product-card .head-info .intro {
+            font-size: 0.78125rem;
+        }
+
+        .mc_product-list ._product-card .btn-group {
+            padding-top: 1rem;
+            gap: 0 0.53125rem;
+        }
+
+        .mc_product-list ._product-card .btn-group .image-button {
+            --button-size: 0.8125rem;
+        }
+
+        .mc_product-list .progress {
+            height: 2px;
+            background: #D9D9D9;
+            margin-top: 0.625rem;
+        }
+
+        .mc_product-list .progress .bar {
+            transform: translateX(-100%);
+            border-radius: 4px;
+            background: #A90000;
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_product-list section--page" id="{{ section.id }}-list">
+    {%- render 'section-title', info: ss -%}
+    <div class="page-width hide-scroll-bar w-full flex-top" node-name="scroll">
+        {%- for block in section.blocks -%}
+            {%- liquid
+                assign bs = block.settings
+                assign product = bs.product
+                assign variant = bs.product.selected_or_first_available_variant
+                assign image = bs.product_image | default: product.featured_image
+            -%}
+            {%- if product != blank -%}
+                <div
+                    class="_product-card relative overflow-hidden"{%- if bs.video != blank -%} node-name="card"{% endif %}>
+                    {%- render 'global-image',
+                        desktop_img: ss.card_bg_image,
+                        desktop_size: 500,
+                        desktop_class: 'absolute'
+                    -%}
+                    {%- if bs.video != blank -%}
+                        <div class="hover-media-wrap w-full h-full z-2 absolute">
+                            <template>
+                                {%- render 'global-video',
+                                    desktop_video: bs.video,
+                                    desktop_class: 'w-full h-full',
+                                    loop: true
+                                -%}
+                            </template>
+                        </div>
+                    {%- endif -%}
+                    <div class="head-info relative z-2 text-center">
+                        <a
+                            href="{{ product.url }}"
+                            class="name block truncate-text ani-color italic lh-2 fw-900">{{ bs.product_title | default: product.title }}</a>
+                        <a
+                            href="{{ product.url }}"
+                            class="intro block truncate-text ani-color lh-2">{{ bs.product_description | default: product.description | truncate: 50 }}</a>
+                    </div>
+                    <a href="{{ product.url }}" class="cover block relative z-1">
+                        {% render 'global-image', image: image, image_size: 650 %}
+                    </a>
+                    <div class="btn-group relative z-2 flex-between">
+                        <button
+                            is="custom-button"
+                            data-proxy="buy"
+                            hover
+                            style="--button-color: {{ ss.button1_color }}; --button-hover-color: {{ ss.button1_hover_color }};"
+                            data-variant="{{ variant.id }}"
+                            class="image-button relative flex-center">
+                            {% render 'global-image', image: ss.button1_bg_image, image_size: 300 %}
+                            <span class="text z-1 relative">{{ ss.button1_text }}</span>
+                        </button>
+                        <button
+                            is="custom-button"
+                            data-proxy="cart"
+                            hover
+                            style="--button-color: {{ ss.button2_color }}; --button-hover-color: {{ ss.button2_hover_color }};"
+                            data-variant="{{ variant.id }}"
+                            class="image-button relative flex-center">
+                            {% render 'global-image', image: ss.button2_bg_image, image_size: 300 %}
+                            <span class="text z-1 relative">{{ ss.button2_text }}</span>
+                        </button>
+                    </div>
+                    <ul class="text-items relative z-2 w-full flex-between-top">
+                        {%- for v in (1..3) -%}
+                            {%- liquid
+                                assign icon = 'icon' | append: v
+                                assign title = 'title' | append: v
+                                assign text = 'content' | append: v
+                            -%}
+                            {%- if bs[icon] != blank -%}
+                                <li class="text-item flex-center-col">
+                                    {% render 'global-image', image: bs[icon], image_size: 120 %}
+                                    <div class="info text-center">
+                                        <div class="num ani-color  lh-2 italic fw-600">{{ bs[title] }}</div>
+                                        <div class="text ani-color lh-2">{{ bs[text] }}</div>
+                                    </div>
+                                </li>
+                            {%- endif -%}
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+    <div class="page-width mobile-done">
+        <div class="progress overflow-hidden w-full" node-name="progress">
+            <div class="bar w-full h-full" node-name="bar">&nbsp;</div>
+        </div>
+    </div>
+</div>
+<script>
+    $heybike.on('DOMContentLoaded', () => {
+        const node = document.getElementById('{{ section.id }}-list');
+        const nodeList = $heybike.getNodeList(node);
+        let undebounce = null;
+        [].concat(nodeList.card).forEach((elem, index) => {
+            elem.addEventListener('mouseenter', () => {
+                if ($heybike.isMobile) {
+                    return false;
+                }
+                undebounce = $heybike.debounce(() => {
+                    if (!nodeList[`video${index}`]) {
+                        const templateElement = elem.querySelector("template");
+                        if (templateElement) {
+                            templateElement.replaceWith(templateElement.content.firstElementChild.cloneNode(true));
+                        }
+                        nodeList[`video${index}`] = elem.querySelector("video");
+                    }
+                    elem.classList.add('active');
+                    nodeList[`video${index}`].play();
+                }, 80, '{{ section.id }}');
+            });
+
+            elem.addEventListener('mouseleave', () => {
+                if ($heybike.isMobile) {
+                    return false;
+                }
+                undebounce && undebounce();
+                undebounce = null;
+                nodeList[`video${index}`].pause();
+                elem.classList.remove('active');
+            });
+        });
+
+        $heybike.proxy(node, ['buy', 'cart'], ({elem, type}) => {
+            $heybike.addToCart({
+                items: [{id: elem.dataset.variant, quantity: 1}],
+                button: elem
+            }, type === 'buy');
+        });
+
+        const initBoxScroll = () => {
+            const elem = nodeList.scroll;
+            const sw = elem.scrollWidth;
+            const ew = elem.offsetWidth;
+            if (!elem.hasAttribute('scroll')) {
+                nodeList.bar.style.transform = `translateX(${ew * 100 / sw - 100}%)`;
+                elem.addEventListener('scroll', function (ev) {
+                    if ($heybike.isMobile) {
+                        nodeList.bar.style.transform = `translateX(${(ev.target.scrollLeft + ew) * 100 / sw - 100}%)`;
+                    }
+                });
+            }
+
+            elem.setAttribute('scroll', 'true');
+        };
+        $heybike.on('resize:mobile', initBoxScroll);
+
+    });
+</script>
+{% schema %}
+{
+  "name": "MC Product List",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Product List"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Product card"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_bg_image",
+      "label": "Product card background image"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Product card text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Product button"
+    },
+    {
+      "label": "Button #1 background color",
+      "type": "image_picker",
+      "id": "button1_bg_image"
+    },
+    {
+      "type": "text",
+      "id": "button1_text",
+      "label": "Button #1 text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "color",
+      "id": "button1_color",
+      "label": "Button #1 text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button1_hover_color",
+      "label": "Button #1 text hover color",
+      "default": "#D30000"
+    },
+    {
+      "label": "Button #2 background color",
+      "type": "image_picker",
+      "id": "button2_bg_image"
+    },
+    {
+      "type": "text",
+      "id": "button2_text",
+      "label": "Button #2 text",
+      "default": "Add To Cart"
+    },
+    {
+      "type": "color",
+      "id": "button2_color",
+      "label": "Button #2 text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button2_hover_color",
+      "label": "Button #2 text hover color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product title"
+        },
+        {
+          "type": "textarea",
+          "id": "product_description",
+          "label": "Product description"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product cover"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Product hover video"
+        },
+        {
+          "type": "header",
+          "content": "Product icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon1",
+          "label": "Icon #1"
+        },
+        {
+          "type": "textarea",
+          "id": "title1",
+          "label": "Text #1",
+          "default": "2600W"
+        },
+        {
+          "type": "textarea",
+          "id": "content1",
+          "label": "Content #1",
+          "default": "Motor"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon2",
+          "label": "Icon #2"
+        },
+        {
+          "type": "textarea",
+          "id": "title2",
+          "label": "Text #2",
+          "default": "146N.M"
+        },
+        {
+          "type": "textarea",
+          "id": "content2",
+          "label": "Content #2",
+          "default": "Torque"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon3",
+          "label": "Icon #3"
+        },
+        {
+          "type": "textarea",
+          "id": "title3",
+          "label": "Text #3",
+          "default": "28-40Mph"
+        },
+        {
+          "type": "textarea",
+          "id": "content3",
+          "label": "Content #3",
+          "default": "Top Speed"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

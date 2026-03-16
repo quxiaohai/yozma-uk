@@ -1,0 +1,159 @@
+  <style>
+    #shopify-section-{{ section.id }} {
+      {% if section.settings.remove_vertical_spacing %}--section-spacing-block: 0px;{% endif %}
+      {% if section.settings.remove_horizontal_spacing %}--section-spacing-inline: 0px;{% endif %}
+    }
+  </style>
+
+  {%- render 'section-spacing-collapsing' -%}
+
+  <div {% render 'section-properties' %}>
+
+    <div class="tw-overflow-auto">
+      <div class="tw-flex tw-gap-4">
+        <div class="">
+          <div class="tw-flex tw-flex-col tw-gap-2 table-list">
+            {% assign th_arr = section.settings.first_list  | strip | newline_to_br | strip_newlines | split: "<br />"  %}
+            <div class="pr-header">
+            </div>
+            {%- for content in th_arr -%}
+              <div class="md:tw-py-4 tw-p-2 tw-font-semibold tw-text-nowrap">
+                {{content}}
+              </div>
+            {% endfor %}
+          </div> 
+        </div>
+
+        {%- for block in section.blocks -%}
+        {% assign bk_stts = block.settings %}
+        {% assign content_arr = bk_stts.list  | strip | newline_to_br | strip_newlines | split: "<br />"  %}
+        
+        <div class="tw-flex-1 tw-shrink-0 tw-min-w-[225px]" style="background-color:{{ bk_stts.bg_color }}">
+          <div class="tw-flex tw-flex-col tw-gap-2 table-list"> 
+            <div class="md:tw-py-4 tw-p-2 pr-header tw-flex tw-flex-col">
+              {% if bk_stts.pr_img != blank %}
+                {{ bk_stts.pr_img | image_url: width: '500' | image_tag: width: '500',class:'tw-min-h-0 tw-object-contain'}}
+              {% else %}
+                {{ bk_stts.pr.featured_image | image_url: width: '500' | image_tag: width: '500',class:'tw-min-h-0 tw-object-contain'}}
+              {% endif %}
+              
+              <h5 class="2xl:tw-text-xl tw-text-lg tw-font-semibold"> 
+              {% if bk_stts.pr_img != blank %}
+                {{bk_stts.pr_img.alt}}
+              {% else %}
+                {{bk_stts.pr.title }}
+              {% endif %}
+              </h5>
+              {% if bk_stts.pr_price != blank %}
+              <p class="tw-font-semibold">{{bk_stts.pr_price}}</p>
+              {% endif %}
+            
+            </div>
+            {%- for content in content_arr -%}
+            <div class="md:tw-py-4 tw-p-2 tw-text-nowrap -md:tw-text-sm">
+              {{content}}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+
+
+<style>
+  @media screen and (min-width: 1281px) {
+    .pr-header{
+      height: {{section.settings.pc_h }}px;
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    .pr-header{
+      height: {{section.settings.pc_h | times:0.85 }}px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .pr-header{
+      height: {{section.settings.mb_h }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name":"Products compare",
+  "class": "shopify-section--products-compare",
+  "tag": "section",
+  "settings": [
+      {
+          "type":"header",
+          "content":"Table header settings"
+      },
+      { "id": "first_list", "type": "textarea", "label": "First list" },
+      { "id": "pc_h", "type": "text","default":"300", "label": "Img block height" },
+      { "id": "mb_h", "type": "text","default":"200", "label": "Img block height(mobile)" },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_vertical_spacing",
+      "label": "Remove vertical spacing",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_horizontal_spacing",
+      "label": "Remove horizontal spacing",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    }
+  ],
+  "blocks":[
+    {
+        "type":"item",
+        "name":"Item",
+        "settings":[
+          { "id": "pr", "type": "product", "label": "Product", },
+          { "id": "list", "type": "textarea", "label": "table list", },
+          { "type": "color", "id": "bg_color", "label": "Background color" },
+          { "type": "image_picker", "id": "pr_img", "label": "Product image", "info":"Title use image alt" },
+          { "type": "text", "id": "pr_price", "label": "Product price" },
+        ]
+    }
+  ], 
+  "presets": [
+    {
+      "category": "Customize",
+      "name": "Products compare"
+    }
+  ]
+}
+{% endschema %}

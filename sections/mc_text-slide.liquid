@@ -1,0 +1,347 @@
+{%- assign ss = section.settings -%}
+<style>
+    .mc_text-slide {
+        background: #ffffff;
+        padding: 150px 0;
+    }
+    .mc_text-slide .backdrop-image {
+        left: 0;
+        top: 0;
+    }
+    .mc_text-slide .head-box {
+        width: 51%;
+        padding-right: 8.75vw;
+    }
+    .mc_text-slide .head-box .title, .mc_text-slide .head-box .description {
+        text-align: left;
+    }
+    .mc_text-slide .slide-box {
+        width: 49%;
+    }
+    .mc_text-slide .icon-slide-items {
+        gap: 8px;
+    }
+    .mc_text-slide .icon-slide-items .item {
+        flex: 1;
+        aspect-ratio: 2.2;
+        background-color: #ffffff;
+    }
+    .mc_text-slide .icon-slide-items .item .image {
+        height: auto;
+        width: auto;
+        max-height: 57%;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: filter 0.5s ease-in-out;
+        transition-property: filter, opacity;
+    }
+    .mc_text-slide .icon-slide-items .active .image {
+        opacity: 1;
+        filter: grayscale(0);
+    }
+    .mc_text-slide .text-slide-items {
+        padding-top: 8px;
+    }
+    .mc_text-slide .text-slide-items .slide-item {
+        background: #ffffff;
+        display: none;
+        min-height: 346px;
+        padding: 54px 60px;
+        color: #000;
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 1.2;
+    }
+    .mc_text-slide .text-slide-items .slide-item.active {
+        display: block;
+    }
+    .mc_text-slide .text-slide-items .remark {
+        color: #000;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 1.2;
+        bottom: 16px;
+        left: 0;
+    }
+    @media screen and (max-width: 1440px) {
+        .mc_text-slide {
+            padding: 120px 0;
+        }
+        .mc_text-slide .head-box {
+            padding-right: 8.75vw;
+        }
+        .mc_text-slide .icon-slide-items {
+            gap: 6px;
+        }
+        .mc_text-slide .text-slide-items {
+            padding-top: 6px;
+        }
+        .mc_text-slide .text-slide-items b .slide-item {
+            min-height: 277px;
+            padding: 43px 48px;
+            font-size: 26px;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .mc_text-slide {
+            padding: 4.6875rem 0;
+        }
+        .mc_text-slide .page-width {
+            flex-direction: column;
+        }
+        .mc_text-slide .head-box {
+            width: 100%;
+            padding-right: 0;
+        }
+        .mc_text-slide .head-box .title, .mc_text-slide .head-box .description {
+            text-align: center;
+        }
+        .mc_text-slide .slide-box {
+            width: 100%;
+        }
+        .mc_text-slide .icon-slide-items {
+            gap: 0.25rem;
+        }
+        .mc_text-slide .text-slide-items {
+            padding-top: 0.25rem;
+        }
+        .mc_text-slide .text-slide-items .slide-item {
+            min-height: 9.6875rem;
+            padding: 1.5625rem 1.6875rem 1.875rem;
+            font-size: 1rem;
+        }
+        .mc_text-slide .text-slide-items .remark {
+            font-size: 0.625rem;
+            bottom: 0.75rem;
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_text-slide section--page" id="{{ section.id }}-slide">
+    {%- if ss.desktop_image != blank or ss.mobile_image != blank -%}
+        {%- render 'global-image',
+            desktop_img: ss.desktop_image,
+            desktop_class: 'backdrop-image absolute',
+            mobile_img: ss.mobile_image,
+            mobile_class: 'backdrop-image absolute'
+        -%}
+    {%- endif -%}
+    <div class="flex-between relative z-1 w-full page-width">
+        <div class="head-box">
+            {%- render 'section-title', info: ss -%}
+        </div>
+        <div class="slide-box">
+            <div class="icon-slide-items w-full flex-center">
+                {%- for block in section.blocks -%}
+                    {%- assign bs = block.settings -%}
+                    <div
+                        node-name="tab"
+                        data-proxy="tab"
+                        class="item flex-center cursor-pointer{% if forloop.first %} active{% endif %}">
+                        {%- render 'global-image', image: bs.icon, image_size: 300 -%}
+                    </div>
+                {%- endfor -%}
+            </div>
+            <div class="text-slide-items w-full">
+                {%- for block in section.blocks -%}
+                    {%- assign bs = block.settings -%}
+                    <animate-element data-repeat
+                        node-name="panel"
+                        data-proxy="panel"
+                        class="slide-item block relative text-center{% if forloop.first %} active{% endif %}">
+                        {{ bs.content }}
+                        <div class="remark w-full absolute">{{ bs.remark }}</div>
+                    </animate-element>
+                {%- endfor -%}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $heybike.tabSwitch({
+        root: document.getElementById('{{ section.id }}-slide')
+    });
+</script>
+{% schema %}
+{
+  "name": "MC Text Slide",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Text Slide"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 38
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Slide card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "text",
+          "id": "remark",
+          "label": "Remark"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

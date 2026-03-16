@@ -1,0 +1,75 @@
+{%- if style == true -%}
+    <style>
+        .product-icons {
+            flex-wrap: wrap;
+            gap: 1rem 0;
+            padding-top: 18px;
+        }
+
+        .product-icons .product-icon {
+            width: 33%;
+            gap: 12px;
+        }
+
+        .product-icons .product-icon .image {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .product-icons .product-icon .param {
+            font-size: 20px;
+        }
+
+        .product-icons .product-icon .text {
+            font-size: 16px;
+            color: #999999;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .product__media {
+                height: auto;
+            }
+            .product-icons {
+                gap: 0.7rem 0;
+                padding-top: 0;
+            }
+            .product-icons .product-icon {
+                width: 50%;
+                gap: 8px;
+            }
+            .product-icons .product-icon .image {
+                width: 30px;
+                height: 30px;
+            }
+
+            .product-icons .product-icon .param {
+                font-size: 14px;
+            }
+
+            .product-icons .product-icon .text {
+                font-size: 12px;
+            }
+        }
+    </style>
+{%- endif -%}
+<div
+    class="product-icons w-full flex {% if show_on == 'pc' %}md:flex hidden{% elsif show_on == 'mb' %}md:hidden{% endif %}">
+    {% for i in ( 0..specs.title_list.value.size ) limit: section.settings.specs_limit %}
+        {% if specs.title_list.value[i] != blank %}
+            <div class="product-icon flex-left">
+                {% for url in specs.icon_list.value %}
+                    {% assign i_2 = forloop.index | minus: 1 %}
+                    {% if i_2 == i and url != blank %}
+                        {%- render 'global-image', image: url, media_type: 'icon' -%}
+                    {% endif %}
+                {% endfor %}
+                <div>
+                    <p class="param fw-600 lh-2">{{ specs.title_list.value[i] }}</p>
+                    <p class="text lh-2">{{ specs.content_list.value[i] }}</p>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

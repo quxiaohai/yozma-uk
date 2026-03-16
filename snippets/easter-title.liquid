@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="{{ 'easter-title.css' | asset_url }}">
+<div class="easter--title tw-text-center" style="
+        --desktop-title-size: {{ info.title_pc_size }}px;
+        --desktop-sm-title-size: {{ info.title_pc_size | times: 0.8 }}px;
+        --mobile-title-size: {{ info.title_mb_size }}px;
+        --desktop-desc-size: {{ info.description_pc_size }}px;
+        --desktop-sm-desc-size: {{ info.description_pc_size | times: 0.8 }}px;
+        --mobile-desc-size: {{ info.description_mb_size }}px;
+        ">
+    {%- if info.show_title -%}
+        <div class="title{% if info.title_gradient_color != blank %} text-gradient{% endif %}"
+             style="{% if info.title_gradient_color != blank %}--background: {{ info.title_color.rgb }}; --gradient: {{ info.title_gradient_color }};{% else %}color: {{ info.title_color }};{% endif %}">{{ info.title }}</div>
+    {%- endif -%}
+    {%- if info.show_description -%}
+        <div class="description" style="color: {{ info.description_color }};">
+            {{ info.description }}
+        </div>
+    {%- endif -%}
+</div>

@@ -1,0 +1,239 @@
+{% assign ss = section.settings %}
+{%- assign size = section.blocks.size -%}
+<style>
+  .mc_loop-image {
+    padding: 80px 0;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+  @keyframes desktop-loop-image {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-{{ 386 | times: size }}px);
+    }
+  }
+  .mc_loop-image .image-content {
+    width: auto;
+  }
+  .mc_loop-image .image-content .scroll-box {
+    width: 10000px;
+    display: flex;
+    animation: {{ size | times: 3 | times: ss.loop_speed }}s linear 1s infinite normal none running desktop-loop-image;
+    flex-wrap: nowrap;
+  }
+  .mc_loop-image .image-content .scroll-box:hover {
+    animation-play-state: paused;
+  }
+  .mc_loop-image .image-content .image {
+    width: 374px;
+    aspect-ratio: {{ ss.image_ratio }};
+    border-radius: 4px;
+    margin: 0 6px;
+  }
+  @media screen and (max-width: 1023px) {
+    .mc_loop-image {
+      padding: 2.5rem 0;
+    }
+    @keyframes mobile-loop-image {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-{{ 324 | times: size }}px);
+      }
+    }
+    .mc_loop-image .image-content {
+      width: auto;
+    }
+    .mc_loop-image .image-content .scroll-box {
+      animation: {{ size | times: 1.7 | times: ss.loop_speed }}s linear 1s infinite normal none running mobile-loop-image;
+    }
+    .mc_loop-image .image-content .image {
+      width: 318px;
+      margin: 0 3px;
+    }
+  }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_loop-image section--page">
+    {% render 'section-title', info: ss %}
+    <div class="image-content">
+        <div class="scroll-box">
+            <div class="image-items flex-left">
+                {%- for block in section.blocks -%}
+                    {%- render 'global-image', desktop_img: block.settings.image, sizes: '(min-width: 1024px) 400w, 600w' -%}
+                {%- endfor -%}
+            </div>
+            <div class="image-items flex-left">
+                {%- for block in section.blocks -%}
+                    {%- render 'global-image', desktop_img: block.settings.image, sizes: '(min-width: 1024px) 400w, 600w' -%}
+                {%- endfor -%}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% schema %}
+{
+  "name": "MC Loop Image",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Loop Image"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "range",
+      "id": "loop_speed",
+      "label": "Loop speed",
+      "min": 0.1,
+      "max": 2,
+      "step": 0.1,
+      "unit": "s",
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "16/9"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,516 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "mc_banner_slide": {
+      "type": "mc_banner-slide",
+      "blocks": {
+        "media_Yi7pih": {
+          "type": "media",
+          "settings": {
+            "pc_image_url": "shopify://shop_images/kv_d534ae51-64db-4b58-bb2f-5dafbaa4db7e.jpg",
+            "mb_image_url": "shopify://shop_images/13f1406ea0571d88d4ee1669228e85fb.jpg",
+            "image_link": "shopify://products/in-10-pro",
+            "slide_tab": "",
+            "show_subtitle": true,
+            "subtitle": "",
+            "subtitle_color": "#ffffff",
+            "show_title": true,
+            "title": "",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
+            "button_text": "",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        },
+        "media2": {
+          "type": "media",
+          "settings": {
+            "pc_image_url": "shopify://shop_images/3840_1599333.jpg",
+            "mb_image_url": "shopify://shop_images/1500_x_2180111.jpg",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "",
+            "show_subtitle": false,
+            "subtitle": "<p>Limited 3-Day Offer</p>",
+            "subtitle_color": "#ffffff",
+            "show_title": false,
+            "title": "<p>Redefine Urban Commutes with Ease</p>",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        },
+        "media3": {
+          "type": "media",
+          "disabled": true,
+          "settings": {
+            "pc_image_url": "shopify://shop_images/2800.1166_81af56d5-cff0-4a3e-ba54-e55bb311d45a.jpg",
+            "mb_image_url": "shopify://shop_images/2026.1.13_1200_1600px_1.png",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "Yozma IN 10",
+            "show_subtitle": false,
+            "subtitle": "<p>Limited 3-Day Offer</p>",
+            "subtitle_color": "#ffffff",
+            "show_title": false,
+            "title": "<p>Redefine Urban Commutes with Ease</p>",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        },
+        "media1": {
+          "type": "media",
+          "disabled": true,
+          "settings": {
+            "pc_image_url": "shopify://shop_images/yozma-banner-image.jpg",
+            "mb_image_url": "shopify://shop_images/yozma-mb-banner-image.jpg",
+            "image_link": "",
+            "slide_tab": "Yozma IN 10 Pro",
+            "show_subtitle": true,
+            "subtitle": "<p>IN 10 Pro</p>",
+            "subtitle_color": "#ffffff",
+            "show_title": true,
+            "title": "<p>New Coming Soon</p>",
+            "title_color": "#ffffff",
+            "show_button": true,
+            "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_Yi7pih",
+        "media2",
+        "media3",
+        "media1"
+      ],
+      "name": "MC Banner Slide",
+      "settings": {
+        "page_color": "",
+        "overlay_show": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "show_slide": true,
+        "auto_slide": true,
+        "duration": 4,
+        "slide_tab_color": "#999999",
+        "slide_tab_active_color": "#ffffff"
+      }
+    },
+    "mc_product_list": {
+      "type": "mc_product-list",
+      "blocks": {
+        "card3": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "in-10-pro",
+            "product_title": "IN 10 Pro",
+            "product_description": "High-Performance Electric Mini Dirt Bike",
+            "product_image": "shopify://shop_images/IN_10_PRO-_-_118.png",
+            "video": "shopify://files/videos/2月12日.mp4",
+            "icon1": "shopify://shop_images/param-icon-1.png",
+            "title1": "5500W",
+            "content1": "Motor",
+            "icon2": "shopify://shop_images/param-icon-2.png",
+            "title2": "220N.M",
+            "content2": "Torque",
+            "icon3": "shopify://shop_images/param-icon-3.png",
+            "title3": "50Mph",
+            "content3": "Top Speed"
+          }
+        },
+        "card1": {
+          "type": "product",
+          "settings": {
+            "product": "in-10",
+            "product_title": "IN 10",
+            "product_description": "Electric Mini Dirt Bike For Teens & Adults",
+            "product_image": "shopify://shop_images/118_5e507202-c482-4530-bba7-a265dbdc9bfc.png",
+            "video": "shopify://files/videos/Yozma IN 10  lilman1.mp4",
+            "icon1": "shopify://shop_images/param-icon-1.png",
+            "title1": "2600W",
+            "content1": "Motor",
+            "icon2": "shopify://shop_images/param-icon-2.png",
+            "title2": "146N.M",
+            "content2": "Torque",
+            "icon3": "shopify://shop_images/param-icon-3.png",
+            "title3": "20Km/h",
+            "content3": "Top Speed"
+          }
+        },
+        "card2": {
+          "type": "product",
+          "settings": {
+            "product": "yozma-in-10-combo",
+            "product_title": "IN 10 Combo",
+            "product_description": "Combo Pack – Best Value Dual Set",
+            "product_image": "shopify://shop_images/combo.png",
+            "video": "shopify://files/videos/connor_stitt_reel_2025_11_27_06_02_173774657813202242219.mp4",
+            "icon1": "shopify://shop_images/param-icon-1.png",
+            "title1": "2600W",
+            "content1": "Motor",
+            "icon2": "shopify://shop_images/param-icon-2.png",
+            "title2": "146N.M",
+            "content2": "Torque",
+            "icon3": "shopify://shop_images/param-icon-3.png",
+            "title3": "20Km/h",
+            "content3": "Top Speed"
+          }
+        }
+      },
+      "block_order": [
+        "card3",
+        "card1",
+        "card2"
+      ],
+      "name": "MC Product List",
+      "settings": {
+        "page_color": "#ffffff",
+        "show_title": true,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#000000",
+        "title_bold_color": "#000000",
+        "title_gradient_color": "",
+        "show_description": true,
+        "description": "",
+        "description_color": "#000000",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 0,
+        "description_mb_margin_bottom": 0,
+        "card_bg_image": "shopify://shop_images/product-card-backdrop.jpg",
+        "card_text_color": "#000000",
+        "button1_bg_image": "shopify://shop_images/buy-now-button.png",
+        "button1_text": "Shop Now",
+        "button1_color": "#ffffff",
+        "button1_hover_color": "#d30000",
+        "button2_bg_image": "shopify://shop_images/add-to-cart-button.png",
+        "button2_text": "Add To Cart",
+        "button2_color": "#ffffff",
+        "button2_hover_color": "#000000"
+      }
+    },
+    "mc_media_slide": {
+      "type": "mc_media-slide",
+      "blocks": {
+        "media1": {
+          "type": "media",
+          "settings": {
+            "desktop_image": "shopify://shop_images/DSC_3323_1.png",
+            "muted": true,
+            "video_desktop": "shopify://files/videos/in10-A FHD.mp4",
+            "title": "Yozma – Ride Beyond Limits",
+            "text": "<p>Powerful, reliable, and adventure-ready—Yozma e-bikes deliver thrilling performance, smooth handling, and intuitive control. Join the Yozma community and ride with freedom and confidence.</p>"
+          }
+        },
+        "media2": {
+          "type": "media",
+          "settings": {
+            "desktop_image": "shopify://shop_images/DSC_3781_1.png",
+            "muted": true,
+            "video_desktop": "shopify://files/videos/yozma-横屏.mp4",
+            "title": "Ride Together, Share Every Moment",
+            "text": "<p>Air time is yours. From ramps to unexpected drops, your ride reacts with precision, letting you experience the thrill of off-road action without limits.</p>"
+          }
+        },
+        "media3": {
+          "type": "media",
+          "settings": {
+            "desktop_image": "shopify://shop_images/DSC_3705_1.png",
+            "muted": true,
+            "video_desktop": "shopify://files/videos/YOZMA-IN10-b(1)-0828-15秒.mp4",
+            "title": "Embrace Adventure, Ride Without Limits",
+            "text": "<p>Seek the joy of adventure and ride boldly. Explore every path, push your limits, and embrace every twist, turn, and hill, making each journey thrilling and unforgettable.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "media1",
+        "media2",
+        "media3"
+      ],
+      "name": "MC Media Slide",
+      "settings": {
+        "page_color": "#ffffff",
+        "page_top": 0,
+        "page_bottom": 240,
+        "mb_page_bottom": 40,
+        "show_title": true,
+        "title": "<p><strong>Adventure Lives Where You Dare Ride</strong></p>",
+        "title_style": "italic",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#000000",
+        "title_bold_color": "#d30000",
+        "title_gradient_color": "",
+        "show_description": true,
+        "description": "<p>Every hill, puddle, and ramp becomes part of your own off-road story.</p>",
+        "description_color": "#000000",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "top_image": "shopify://shop_images/video-decorate-back.png",
+        "bottom_image": "shopify://shop_images/video-decorate.png",
+        "auto_play": false,
+        "play_button_icon": "shopify://shop_images/video-play-button.png"
+      }
+    },
+    "mc_text_slide": {
+      "type": "mc_text-slide",
+      "blocks": {
+        "media1": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/cleantechnica-logo2.png",
+            "content": "<p>On steep inclines, Yozma’s mid-drive climbs where hub motors struggle. It feels closer to a gas dirt bike than an e-commuter, which makes a massive difference for adventurous riders.</p>",
+            "remark": "Trusted by Industry Leading Media Worldwide"
+          }
+        },
+        "media2": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/avrider-logo.jpg",
+            "content": "<p>The 2600 W mid‑drive outperforms hub motors on steep terrain, delivering a riding experience closer to a gas dirt bike. Yozma IN 10 is for serious off-roaders, backyard explorers, and e-adventure pioneers alike.</p>",
+            "remark": "Trusted by Industry Leading Media Worldwide"
+          }
+        },
+        "media3": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/2_ee77a665-3ae8-466a-9661-a69664cee74f.png",
+            "content": "<p>Combining serious performance with everyday usability, the Yozma Electric Dirt Bike stands out in the fast-growing e-dirt bike category. </p>",
+            "remark": "Trusted by Industry Leading Media Worldwide"
+          }
+        }
+      },
+      "block_order": [
+        "media1",
+        "media2",
+        "media3"
+      ],
+      "name": "MC Text Slide",
+      "settings": {
+        "page_color": "#ffffff",
+        "desktop_image": "shopify://shop_images/trust-backdrop.jpg",
+        "mobile_image": "shopify://shop_images/trust-mb-backdrop.jpg",
+        "show_title": true,
+        "title": "<p><strong>What They Say </strong></p><p>About Yozma’s Outstanding Ride Experience</p>",
+        "title_style": "italic",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#000000",
+        "title_bold_color": "#d30000",
+        "title_gradient_color": "",
+        "show_description": true,
+        "description": "<p>Global and independent media recognize our commitment to innovation and quality.</p>",
+        "description_color": "#000000",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 0,
+        "description_mb_margin_bottom": 38
+      }
+    },
+    "mc_main_ces": {
+      "type": "mc_main-ces",
+      "blocks": {
+        "media3": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/product-mb-yozma-bike.jpg",
+            "title": "The Comprehensive Guide to Electric Bicycle Maintenance and Care",
+            "text": "",
+            "url": "shopify://blogs/ebike/electric-bicycle-maintenance-and-care-guide"
+          }
+        },
+        "media1": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/photo-34.webp",
+            "title": "Power Meets Play: Exploring The Yozma IN 10 Electric Dirt Bike",
+            "text": "",
+            "url": "shopify://blogs/news/power-meets-play-exploring-the-yozma-in-10-electric-dirt-bike"
+          }
+        },
+        "card_whmxzD": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/DSC01380.webp",
+            "title": "e-MTB Brakes: A Simple Guide to Safer, Faster Stops(2026)",
+            "text": "",
+            "url": "shopify://blogs/ebike/emtb-brake-pads-setup-and-bed-in-guide"
+          }
+        },
+        "card_Rgk6tT": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/yozma-electric-dirt-bike-47.webp",
+            "title": "From Balance Bike to Electric Power: How to Smoothly Transition Your Kid to a Dirt Bike",
+            "text": "",
+            "url": "shopify://blogs/ebike/kids-electric-dirt-bike-transition-guide"
+          }
+        },
+        "card_dAUNGr": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/image.webp",
+            "title": "Mini Dirt Bike Safety Gear: Essential Protection for Kids!",
+            "text": "",
+            "url": "shopify://blogs/ebike/kids-dirt-bike-safety-gear-guide"
+          }
+        },
+        "media4": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/DSC00270_1.webp",
+            "title": "Introducing The Yozma Electric Dirt Bike",
+            "text": "",
+            "url": "shopify://blogs/news/introducing-the-yozma-electric-dirt-bike"
+          }
+        },
+        "media2": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/yozma-electric-dirt-bike-21.webp",
+            "title": "Kids Electric Dirt Bike Training: Parent's Step-by-Step Guide",
+            "text": "",
+            "url": "https://yozmasport.com/blogs/ebike/parent-guide-kids-electric-dirt-bike-lessons"
+          }
+        }
+      },
+      "block_order": [
+        "media3",
+        "media1",
+        "card_whmxzD",
+        "card_Rgk6tT",
+        "card_dAUNGr",
+        "media4",
+        "media2"
+      ],
+      "name": "MC Main Ces",
+      "settings": {
+        "page_color": "#ffffff",
+        "title": "<p>Discover the world of YOZMA</p>",
+        "title_decorate_image": "shopify://shop_images/title-text-tag.png",
+        "title_color": "#000000",
+        "title_bold_color": "#000000",
+        "title_gradient_color": "",
+        "show_button": true,
+        "button_bg_image": "shopify://shop_images/read-btn-bg.png",
+        "button_text": "Read All",
+        "button_color": "#ffffff",
+        "button_hover_color": "#d30000",
+        "button_url": "shopify://blogs/ebike"
+      }
+    },
+    "mc_review_slide": {
+      "type": "mc_review-slide",
+      "name": "MC Review Slide",
+      "settings": {
+        "page_color": "#ffffff",
+        "page_top": 0,
+        "page_bottom": 0,
+        "title": "<p> Real Riders Yozma Moments </p>",
+        "title_decorate_image": "shopify://shop_images/title-text-tag-2.png",
+        "title_color": "#000000",
+        "title_bold_color": "#000000",
+        "title_gradient_color": "",
+        "show_button": true,
+        "button_bg_image": "shopify://shop_images/read-btn-bg.png",
+        "button_text": "Read All",
+        "button_color": "#ffffff",
+        "button_hover_color": "#d30000",
+        "button_url": "shopify://products/yozma-in-10-electric-mini-dirt-bike-for-teens-adults-copy",
+        "auto_slide": true,
+        "duration": 3,
+        "slide_item": "3.4"
+      }
+    },
+    "mc_shop_service": {
+      "type": "mc_shop-service",
+      "blocks": {
+        "card1": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/dispatching-icon.png",
+            "title": "Free Shipping",
+            "text": "7-14 bussiness days"
+          }
+        },
+        "card2": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/warranty-icon.png",
+            "title": "Hassle-free Warranty",
+            "text": "12-Month Warranty Period"
+          }
+        },
+        "card3": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/safety-payment-icon.png",
+            "title": "Secure Payment",
+            "text": "Buy with confidence"
+          }
+        },
+        "card4": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/customer-service-icon.png",
+            "title": "Customer Service",
+            "text": "Lifetime customer support"
+          }
+        }
+      },
+      "block_order": [
+        "card1",
+        "card2",
+        "card3",
+        "card4"
+      ],
+      "name": "MC Shop Service",
+      "settings": {
+        "page_color": "#ffffff",
+        "card_nama_color": "#000000",
+        "card_text_color": "#7a7a7a"
+      }
+    }
+  },
+  "order": [
+    "mc_banner_slide",
+    "mc_product_list",
+    "mc_media_slide",
+    "mc_text_slide",
+    "mc_main_ces",
+    "mc_review_slide",
+    "mc_shop_service"
+  ]
+}

@@ -1,0 +1,286 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "mc_form_collect": {
+      "type": "mc_form-collect",
+      "blocks": {
+        "group1": {
+          "type": "group",
+          "disabled": true,
+          "settings": {
+            "title": "Submission info",
+            "tip": ""
+          }
+        },
+        "group2": {
+          "type": "group",
+          "settings": {
+            "title": "How to submit",
+            "tip": "<p>Joined the <strong>YOZMA TikTok Challenge</strong>? Post your video on TikTok with <strong>#RidewithYozma</strong>, tag <strong>@yozma_sport</strong>, and submit your video link and analytics screenshot here to claim your reward.</p>"
+          }
+        },
+        "group3": {
+          "type": "group",
+          "settings": {
+            "title": "Your info",
+            "tip": ""
+          }
+        },
+        "radio1": {
+          "type": "radio",
+          "settings": {
+            "group_name": "Submission info",
+            "size_fill": true,
+            "title": "Content type",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "field": "content type",
+            "values": "Photo"
+          }
+        },
+        "radio2": {
+          "type": "radio",
+          "settings": {
+            "group_name": "Submission info",
+            "size_fill": true,
+            "title": "Product",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "field": "product",
+            "values": "IN 10"
+          }
+        },
+        "file1": {
+          "type": "file",
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "title": "Upload Video Analytics Screenshot",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "<p>1. Supported format: JPG/PNG.<br/>2. The screenshot must clearly show TikTok creator dashboard metrics: <strong>views, likes, comments and shares</strong>.</p>",
+            "field": "file"
+          }
+        },
+        "input1": {
+          "type": "input",
+          "disabled": true,
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "type": "text",
+            "title": "Content title",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Enter content title",
+            "field": "content title",
+            "limit": 100
+          }
+        },
+        "input2": {
+          "type": "input",
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "type": "text",
+            "title": "Video Link",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "",
+            "field": "Video Link",
+            "limit": 100
+          }
+        },
+        "input_7DgPTJ": {
+          "type": "input",
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "type": "text",
+            "title": "TikTok Username",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "",
+            "field": "TikTok Username",
+            "limit": 100
+          }
+        },
+        "input3": {
+          "type": "input",
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "type": "textarea",
+            "title": "Share Your Feeling",
+            "required": false,
+            "required_text": "This field is required",
+            "tip": "<p>We’re always excited to hear about your riding experience with Yozma.<br/><br/>What did you enjoy most about the ride? Where did you ride, and how did it make you feel?</p><p>Share your riding story, experience, or thoughts with us here — your journey might inspire other riders in the Yozmasport community.</p>",
+            "placeholder": "",
+            "field": "content description",
+            "limit": 100
+          }
+        },
+        "select1": {
+          "type": "select",
+          "disabled": true,
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": false,
+            "type": "select",
+            "title": "Activity",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "<p>Please choose the category that best fits your submission.</p>",
+            "placeholder": "Please choose",
+            "parent_field": "Name",
+            "field": "activity",
+            "values": "Biking\nMotorcycling\nFamily"
+          }
+        },
+        "input4": {
+          "type": "input",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "text",
+            "title": "First name",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Enter first name",
+            "field": "First name",
+            "limit": 100
+          }
+        },
+        "input_bKcJcj": {
+          "type": "input",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "text",
+            "title": "Last name",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Enter last name",
+            "field": "Last name",
+            "limit": 100
+          }
+        },
+        "input_mEHUie": {
+          "type": "input",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "email",
+            "title": "Email",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Please provide a valid email.",
+            "field": "Email",
+            "limit": 100
+          }
+        },
+        "input_BYkcF6": {
+          "type": "input",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "text",
+            "title": "Age",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Enter age",
+            "field": "Age",
+            "limit": 100
+          }
+        },
+        "select_AYdRQ4": {
+          "type": "select",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "select",
+            "title": "Country",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Please choose",
+            "parent_field": "Name",
+            "field": "Continent",
+            "values": "United Kingdom"
+          }
+        },
+        "select3": {
+          "type": "select",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "cascade",
+            "title": "Region",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Please choose",
+            "parent_field": "Continent",
+            "field": "region",
+            "values": "United Kingdom=England|Scotland|Wales|Northern Ireland"
+          }
+        }
+      },
+      "block_order": [
+        "group1",
+        "group2",
+        "group3",
+        "radio1",
+        "radio2",
+        "file1",
+        "input1",
+        "input2",
+        "input_7DgPTJ",
+        "input3",
+        "select1",
+        "input4",
+        "input_bKcJcj",
+        "input_mEHUie",
+        "input_BYkcF6",
+        "select_AYdRQ4",
+        "select3"
+      ],
+      "name": "MC Form Collect",
+      "settings": {
+        "page_color": "#f5f5f5",
+        "show_title": true,
+        "title": "Yozma TikTok Challenge",
+        "title_color": "#181623",
+        "token": "AKfycbxa9tn203xHq_KgEMm3vkCF7ix3Q7YU0PfnfBEATGIWDSUJA1pnENTuSw_E45gnKbsIwA",
+        "btn": "Submit",
+        "btn_color": "#ffffff",
+        "btn_bg_color": "#c42624",
+        "show_privacy": true,
+        "privacy_checked": true,
+        "privacy_text": "<p>I agree to the <a href=\"/pages/terms-of-service-1\" target=\"_blank\" title=\"Terms of Service\">Terms of Service</a> and <a href=\"/pages/privacy-policy\" target=\"_blank\" title=\"Privacy Policy\">Privacy Policy</a></p>",
+        "success": "Thank you for submit!",
+        "fail": "fail to submit"
+      }
+    }
+  },
+  "order": [
+    "mc_form_collect"
+  ]
+}

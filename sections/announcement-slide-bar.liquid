@@ -1,0 +1,248 @@
+{%- liquid
+    assign ss = section.settings
+    assign size = section.blocks.size
+-%}
+{%- if ss.enable_bar -%}
+    <style>
+        :root {
+            --sticky-announcement-bar-enabled: {%- if ss.enable_sticky -%}1{% else %}0{% endif %};
+        }
+
+        {%- if ss.enable_sticky -%}
+        #shopify-section-{{ section.id }} {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .shopify-section--header ~ #shopify-section-{{ section.id }} {
+            top: calc(var(--sticky-header-enabled, 0) * var(--header-height, 0px));
+        }
+
+        {%- endif -%}
+        .announcement-bar {
+            width: 100%;
+            display: flex;
+            overflow-x: hidden;
+            --spacing-3-5: {{ ss.padding }}px;
+        {%- if ss.background != blank -%} background-color: {{ ss.background }};
+        {%- endif -%}{%- if ss.background_image != blank -%} background-image: url(" {{ ss.background_image | image_url: width: ss.background_image.width }}");
+            background-position: center;
+            background-size: cover;
+        {%- elsif ss.background_gradient != blank -%} background: {{ ss.background_gradient }};
+        {%- endif -%}
+        }
+
+        @keyframes loop-bar-message {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .announcement-bar .scroll-box {
+            animation: var(--duration) linear 1s infinite normal none running loop-bar-message;
+            animation-direction: {{ slide_direction }};
+            flex-wrap: nowrap;
+        }
+
+        .announcement-bar .scroll-box:hover {
+            animation-play-state: paused;
+        }
+
+        .announcement-bar .item {
+            color: {{ ss.message_color }};
+            font-size: {{ ss.message_size }}px;
+            font-weight: 800;
+            line-height: 1.1;
+            white-space: nowrap;
+            padding: 0 20px;
+        }
+
+        .announcement-bar .item .image {
+            max-height: 19px;
+            max-width: none;
+            height: auto;
+            width: auto;
+            object-fit: contain;
+            margin-right: 40px;
+        }
+        .announcement-bar .item strong {
+            color: {{ ss.message_bold_color }};
+        }
+
+        @media screen and (max-width: 768px) {
+            .announcement-bar .container {
+                gap: 40px;
+            }
+
+            .announcement-bar .item {
+                font-size: {{ ss.message_mb_size }}px;
+            }
+        }
+    </style>
+    <height-observer variable="announcement-bar">
+        <div class="announcement-bar">
+            <div class="scroll-box flex-left"
+                 style="--duration: {{ section.blocks.size | times: 15 | times: ss.loop_speed }}s;"
+                 id="{{ section.id }}-bar">
+                {%- for v in (1..4) -%}
+                    <div class="message-items flex-left">
+                        {%- for block in section.blocks -%}
+                            {%- assign bs = block.settings -%}
+                            <div class="item flex-left">
+                                {%- if bs.icon != blank -%}
+                                    {%- render 'global-image', image: bs.icon, media_type: 'icon' -%}
+                                {%- endif -%}
+                                {{ bs.text }}
+                            </div>
+                        {%- endfor -%}
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+    </height-observer>
+    <script>
+        document.documentElement.style.setProperty('--announcement-bar-height', Math.round(document.getElementById('shopify-section-{{ section.id }}').clientHeight) + 'px');
+        $heybike.on('DOMContentLoaded',  () => {
+            const bar = document.getElementById('{{ section.id }}-bar');
+            bar.style.setProperty('--duration', `${Math.round(bar.scrollWidth * {{ ss.loop_speed }} / 115)}s`);
+        });
+    </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement slide bar",
+  "class": "shopify-section--announcement-bar",
+  "tag": "aside",
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Announce something here</p>"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "number",
+      "id": "padding",
+      "label": "Padding top & bottom",
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bar",
+      "label": "Enable announcement bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "Enable sticky bar",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Bar Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Message"
+    },
+    {
+      "type": "color",
+      "id": "message_color",
+      "label": "Message color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "message_bold_color",
+      "label": "Message bold color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "message_size",
+      "label": "Desktop message size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "message_mb_size",
+      "label": "Mobile message size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "slide_direction",
+      "label": "Slide direction",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Form right to left"
+        },
+        {
+          "value": "reverse",
+          "label": "Form left to right"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "loop_speed",
+      "label": "Loop speed",
+      "min": 0.1,
+      "max": 2,
+      "step": 0.1,
+      "unit": "s",
+      "default": 1
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,374 @@
+{%- liquid
+    assign ss = section.settings
+    assign aspect_ratio = '16 / 7'
+    if ss.pc_banner_image != blank and ss.image_ratio == blank
+        assign aspect_ratio = ss.pc_banner_image.aspect_ratio
+    else
+        assign aspect_ratio = ss.image_ratio
+    endif
+
+    assign mb_aspect_ratio = aspect_ratio
+    if ss.mb_banner_image != blank and ss.mb_image_ratio == blank
+        assign mb_aspect_ratio = ss.mb_banner_image.aspect_ratio
+    else
+        assign mb_aspect_ratio = ss.mb_image_ratio
+    endif
+-%}
+<style>
+    .mc_product-switch {
+        background: #ffffff;
+        padding: 0 0 80px;
+    }
+
+    .mc_product-switch .switch-content .image-box {
+        width: 100%;
+        aspect-ratio: {{ aspect_ratio }};
+    }
+
+    .mc_product-switch .switch-content .product-wrap {
+        max-width: 57.2916666667vw;
+        width: 100%;
+        margin: -200px auto 0;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .title, .mc_product-switch .switch-content .product-wrap .desc {
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .title {
+        font-size: {% if ss.title_pc_size != blank %}{{ ss.title_pc_size }}px{% else %}48px{% endif %};
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .desc {
+        font-size: {% if ss.description_pc_size != blank %}{{ ss.description_pc_size }}px{% else %}18px{% endif %};
+        margin-top: 24px;
+        color: {{ ss.description_color }};
+    }
+
+    .mc_product-switch .switch-content .product-wrap .product-cover {
+        width: 90%;
+        display: none;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .product-cover.active {
+        display: block;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .product-cover .image {
+        object-fit: contain;
+        aspect-ratio: var(--aspect-ratio);
+    }
+
+    .mc_product-switch .switch-content .product-wrap .slide-tabs {
+        background-color: #000000;
+        padding: 5px;
+        border-radius: 100px;
+        margin-top: 1.2rem;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .slide-tabs .tab {
+        height: 40px;
+        padding: 0 35px;
+        border-radius: 100px;
+        cursor: pointer;
+        line-height: 1.2;
+        font-size: 18px;
+        font-weight: 700;
+        color: #ffffff;
+        transition: background-color 0.5s;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .slide-tabs .tab.active {
+        background-color: #c42624;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .slide-tabs.light {
+        background-color: #ffffff;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .slide-tabs.light .tab {
+        color: #000000;
+    }
+
+    .mc_product-switch .switch-content .product-wrap .slide-tabs.light .tab.active {
+        color: #FFFFFF;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .mc_product-switch {
+            padding: 0 0 2.5rem;
+        }
+
+        .mc_product-switch .switch-content .image-box {
+            aspect-ratio: {{ mb_aspect_ratio }};
+        }
+
+        .mc_product-switch .switch-content .product-wrap {
+            max-width: 100%;
+            padding: 0 1.25rem;
+            margin: -12.5rem auto 0;
+        }
+
+        .mc_product-switch .switch-content .product-wrap .product-cover {
+            width: 100%;
+        }
+
+        .mc_product-switch .switch-content .product-wrap .slide-tabs {
+            padding: 0.15625rem;
+        }
+
+        .mc_product-switch .switch-content .product-wrap .slide-tabs .tab {
+            height: 1.6875rem;
+            padding: 0 0.875rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .mc_product-switch .switch-content .product-wrap .title {
+            font-size: {% if ss.title_mb_size != blank %}{{ ss.title_mb_size }}px{% else %}1 .5rem{% endif %};
+            margin-bottom: 0.75rem;
+        }
+
+        .mc_product-switch .switch-content .product-wrap .desc {
+            margin-top: 0.75rem;
+            font-size: {% if ss.description_mb_size != blank %}{{ ss.description_mb_size }}px{% else %}0 .875rem{% endif %};
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_product-switch section--page">
+    <div class="switch-content" id="{{ section.id }}-switch">
+        {%- if ss.pc_banner_image != blank -%}
+            <div class="image-box flex-center" node-name="banner">
+                {%- render 'global-image',
+                    desktop_img: ss.pc_banner_image,
+                    mobile_img: ss.mb_banner_image
+                -%}
+            </div>
+        {%- endif -%}
+        <div class="product-wrap relative flex-center-col" node-name="card">
+            {%- if ss.show_title -%}
+                <div class="title{% if ss.title_gradient_color != blank %} text-gradient{% endif %}"
+                     style="{% if ss.title_gradient_color != blank %}--background: {{ ss.title_color.rgb }}; --gradient: {{ ss.title_gradient_color }};{% else %}color: {{ ss.title_color }};{% endif %}">{{ ss.title }}</div>
+
+            {%- endif -%}
+            {%- for block in section.blocks -%}
+                {%- assign bs = block.settings -%}
+                <div class="product-cover{% if forloop.first %} active{% endif %}" node-name="panel" data-proxy="panel">
+                    {%- render 'global-image',
+                        image: bs.product_image,
+                        show_size: true
+                    -%}
+                </div>
+            {%- endfor -%}
+
+            <div class="slide-tabs {{ ss.tab_theme }} flex-left">
+                {%- for block in section.blocks -%}
+                    {%- assign bs = block.settings -%}
+                    <div
+                        node-name="tab"
+                        data-proxy="tab"
+                        class="tab{% if forloop.first %} active{% endif %} flex-center">{{ bs.title }}</div>
+                {%- endfor -%}
+            </div>
+            {%- if ss.show_description -%}
+                <div class="desc" style="color: {{ ss.description_color }};">
+                    {{ ss.description }}
+                </div>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        const node = document.getElementById('{{ section.id }}-switch');
+        const {nodeList} = $heybike.tabSwitch({
+            root: node
+        });
+
+        const onInit = () => {
+            const bh = nodeList.banner.offsetHeight / 2;
+            const ch = nodeList.card.offsetHeight / 2;
+            const offsetY = Math.min(bh, ch);
+            nodeList.card.style.marginTop = -offsetY + 'px';
+        }
+
+        onInit();
+        $heybike.on('resize:width', onInit);
+    })();
+</script>
+{% schema %}
+{
+  "name": "MC Product Switch",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Product Switch"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "label": "Desktop banner image",
+      "type": "image_picker",
+      "id": "pc_banner_image"
+    },
+    {
+      "type": "text",
+      "id": "image_ratio",
+      "label": "Desktop image ratio(w / h)"
+    },
+    {
+      "label": "Mobile banner image",
+      "type": "image_picker",
+      "id": "mb_banner_image"
+    },
+    {
+      "type": "text",
+      "id": "mb_image_ratio",
+      "label": "Mobile image ratio(w / h)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Slide tab"
+    },
+    {
+      "type": "select",
+      "id": "tab_theme",
+      "label": "Tab theme",
+      "options": [
+        {
+          "value": "dark",
+          "label": "Dark"
+        },
+        {
+          "value": "light",
+          "label": "Light"
+        }
+      ],
+      "default": "dark"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "In 10"
+        },
+        {
+          "label": "Product image",
+          "type": "image_picker",
+          "id": "product_image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

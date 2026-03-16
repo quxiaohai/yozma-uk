@@ -1,0 +1,382 @@
+{% assign ss = section.settings %}
+<style>
+    .easter-content-card {
+        background: #ffffff;
+        padding: 80px 0;
+    }
+
+    .easter-content-card .easter-content .banner-wrap {
+        gap: 0 25px;
+    }
+
+    .easter-content-card .easter-content .image-box + .text-box {
+        padding-left: 24px;
+        padding-right: 0;
+    }
+
+    .easter-content-card .easter-content .text-box {
+        flex: 1;
+        padding-right: 24px;
+    }
+    .easter-content-card .easter-content .image-box + .text-box:before {
+        left: 24px;
+    }
+    .easter-content-card .easter-content .text-box:before {
+        content: "";
+        width: 35px;
+        height: 6px;
+        border-radius: 10px;
+        top: -15px;
+        left: 0;
+        background-color: {{ ss.button_bg_color }};
+        position: absolute;
+    }
+
+    .easter-content-card .easter-content .text-box .title {
+        font-size: 48px;
+    }
+
+    .easter-content-card .easter-content .text-box .button {
+        margin-top: 20px;
+        font-size: 20px;
+        background-color: #ff0000;
+        color: #ffffff;
+        transition: opacity 0.5s;
+        line-height: 1.2;
+    }
+
+    .easter-content-card .easter-content .text-box .button:hover {
+        opacity: 0.85;
+    }
+
+    .easter-content-card .easter-content .image-box {
+        width: 660px;
+        height: {% render 'image-height', width: 660, image: ss.pc_product_image %};
+    }
+
+    .easter-content-card .easter-content .image-box .image {
+        object-fit: contain;
+    }
+
+    .easter-content-card .easter-content .text-box .intro {
+        padding-top: 0 !important;
+    }
+
+    .easter-content-card .easter-content .text-box .intro-items {
+        padding-top: 35px;
+    }
+
+    .easter-content-card .easter-content .text-box .intro-items .intro {
+        margin-bottom: 20px;
+        border-radius: 8px;
+        padding: 15px !important;
+        box-sizing: border-box;
+    }
+    .easter-content-card .easter-content .text-box .intro-items .intro li {
+        padding-left: 22px;
+    }
+    .easter-content-card .easter-content .text-box .intro-items {
+        padding-top: 35px;
+    }
+
+    .easter-content-card .easter-content .intro {
+        font-size: 14px;
+        line-height: 1.4;
+        word-break: break-word;
+        color: #000000;
+        font-weight: 400;
+        padding-top: 56px;
+    }
+
+    @media screen and (max-width: 1440px) {
+        .easter-content-card {
+            padding: 68px 0;
+        }
+
+        .easter-content-card .easter-content .text-box {
+            padding-right: 20.4px;
+        }
+
+        .easter-content-card .easter-content .text-box:before {
+            width: 29.75px;
+            height: 5.1px;
+            top: -12.75px;
+        }
+
+        .easter-content-card .easter-content .text-box .title {
+            font-size: 40.8px;
+        }
+
+        .easter-content-card .easter-content .text-box .button {
+            margin-top: 17px;
+            font-size: 17px;
+        }
+
+        .easter-content-card .easter-content .image-box {
+            width: 561px;
+            height: {% render 'image-height', width: 561, image: ss.pc_product_image %};
+        }
+
+        .easter-content-card .easter-content .intro {
+            padding-top: 47.6px;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .easter-content-card {
+            padding: 2.5rem 0;
+        }
+
+        .easter-content-card .easter-content .banner-wrap {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .easter-content-card .easter-content .image-box + .text-box {
+            padding-left: 0;
+            margin-top: 2rem;
+        }
+        .easter-content-card .easter-content .text-box .intro-items .intro li {
+            padding-left: 19px;
+        }
+
+        .easter-content-card .easter-content .text-box {
+            padding-right: 0;
+        }
+
+        .easter-content-card .easter-content .text-box:before {
+            width: 2.1875rem;
+            height: 0.375rem;
+            top: -0.9375rem;
+            left: 0 !important;
+        }
+
+        .easter-content-card .easter-content .text-box .title {
+            font-size: 1.5rem;
+        }
+
+        .easter-content-card .easter-content .text-box .button {
+            margin-top: 1.25rem;
+            font-size: 1rem;
+            height: 2.5rem;
+        }
+
+        .easter-content-card .easter-content .text-box + .image-box {
+            margin-top: 1.25rem;
+        }
+
+        .easter-content-card .easter-content .image-box {
+            width: 100%;
+            height: {% render 'image-height', width: 350, unit: 'vw', vw: '3.9', image: ss.pc_product_image %};
+        }
+
+        .easter-content-card .easter-content .intro {
+            padding-top: 1.875rem;
+            font-size: 0.75rem;
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="easter-content-card section--page">
+    <div class="page-container easter-content">
+        <div class="banner-wrap flex-between">
+            {%- if ss.image_position == 'left' -%}
+                <div class="image-box">
+                    {% render 'global-image',
+                            desktop_img: ss.pc_product_image,
+                            desktop_size: 750,
+                            mobile_img: ss.mb_product_image,
+                            mobile_size: 750
+                    %}
+                </div>
+            {%- endif -%}
+            <div class="text-box relative">
+                <div class="title tw-leading-[1.2] tw-font-bold{% if ss.title_gradient_color != blank %} text-gradient{% endif %}"
+                     style="{% if ss.title_gradient_color != blank %}--background: {{ ss.title_color.rgb }}; --gradient: {{ ss.title_gradient_color }};{% else %}color: {{ ss.title_color }};{% endif %}">
+                    {{ ss.title }}
+                </div>
+                <a href="{{ ss.button_url }}"
+                   style="color: {{ ss.button_text_color }}; background: {{ ss.button_bg_color }};"
+                   class="button">{{ ss.button }}</a>
+                {%- if section.blocks.size > 0 -%}
+                    <div class="intro-items">
+                        {%- for block in section.blocks -%}
+                            {%- assign bs = block.settings -%}
+                            <div class="intro{% if bs.text_background_color != blank %} bg-custom{% endif %}{% if bs.text_gradient_color != blank %} bg-gradient{% endif %}"
+                                 style="color: {{ ss.text_color }};{% if bs.text_background_color != blank %}--background: {{ bs.text_background_color.rgb }};{% endif %}{% if bs.text_gradient_color != blank %}--gradient: {{ bs.text_gradient_color }};{% endif %}">
+                                {{ bs.text }}
+                            </div>
+                        {%- endfor -%}
+                    </div>
+                {%- endif -%}
+                {%- if ss.rule_text != blank -%}
+                    <div class="intro" style="color: {{ ss.rule_text_color }}">
+                        {{ ss.rule_text }}
+                    </div>
+                {%- endif -%}
+            </div>
+            {%- if ss.image_position == 'right' -%}
+                <div class="image-box">
+                    {% render 'global-image',
+                            desktop_img: ss.pc_product_image,
+                            desktop_size: 750,
+                            mobile_img: ss.mb_product_image,
+                            mobile_size: 750
+                    %}
+                </div>
+            {%- endif -%}
+        </div>
+        <div class="intro" style="color: {{ ss.intro_color }}">
+            {{ ss.intro }}
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "Easter Content Card",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "easter-content-card"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button Name",
+      "default": "Enter to Win"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#FF0000"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button url"
+    },
+    {
+      "type": "richtext",
+      "id": "rule_text",
+      "label": "Rule text"
+    },
+    {
+      "type": "color",
+      "id": "rule_text_color",
+      "label": "Rule text color",
+      "default": "#ffffff"
+    },
+    {
+      "label": "Desktop product image",
+      "type": "image_picker",
+      "id": "pc_product_image"
+    },
+    {
+      "label": "Mobile product image",
+      "type": "image_picker",
+      "id": "mb_product_image"
+    },
+    {
+      "label": "Image display position",
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro"
+    },
+    {
+      "type": "color",
+      "id": "intro_color",
+      "label": "Intro color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Intro",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "label": "Text color",
+          "type": "color",
+          "id": "text_color",
+          "default": "#000000"
+        },
+        {
+          "label": "Text background color",
+          "type": "color",
+          "id": "text_background_color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color_background",
+          "id": "text_gradient_color",
+          "label": "Text gradient color"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

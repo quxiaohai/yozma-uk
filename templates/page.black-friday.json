@@ -1,0 +1,1275 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "main_banner_FmCp4N": {
+      "type": "main-banner",
+      "blocks": {
+        "text_ziBiir": {
+          "type": "text",
+          "settings": {
+            "title": "Title",
+            "text_show_type": "all",
+            "pc_text": "<p>2025's Biggest Sale<br/>Starts Now!</p>",
+            "pc_align": "left",
+            "pc_color": "#ffffff",
+            "pc_emphasize_color": "#181623",
+            "pc_weight": 700,
+            "pc_size": 56,
+            "pc_line": 120,
+            "pc_top": 0,
+            "pc_right": 0,
+            "pc_bottom": 0,
+            "pc_left": 0,
+            "mb_text": "<p>2025's Biggest Sale<br/>Starts Now!</p>",
+            "mb_align": "center",
+            "mb_color": "#ffffff",
+            "mb_emphasize_color": "#181623",
+            "mb_weight": 700,
+            "mb_size": 24,
+            "h5_line": 120,
+            "mb_top": 30,
+            "mb_right": 0,
+            "mb_bottom": 20,
+            "mb_left": 0
+          }
+        },
+        "countdown_qhW4PP": {
+          "type": "countdown",
+          "settings": {
+            "style": "2",
+            "border_color": "#ffdb00",
+            "bg_color": "#ffdb00",
+            "num_color": "#000000",
+            "font_color": "#000000",
+            "end_date": "2025-11-05 12:01:01",
+            "day": "Days",
+            "hour": "Hours",
+            "minute": "Mins",
+            "second": "Secs",
+            "pc_top": 40,
+            "pc_right": 0,
+            "pc_bottom": 40,
+            "pc_left": 0,
+            "pc_align": "flex-left",
+            "pc_size": 10,
+            "mb_top": 1,
+            "mb_right": 0,
+            "mb_bottom": 20,
+            "mb_left": 0,
+            "mb_align": "flex-center",
+            "mb_size": 7
+          }
+        },
+        "button_wc7QUA": {
+          "type": "button",
+          "settings": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "mb_left": 0,
+            "mb_top": 0,
+            "mb_right": 0,
+            "mb_bottom": 0,
+            "pc_align": "flex-left",
+            "mb_align": "flex-center",
+            "show_btn1": true,
+            "btn1_ability": "link",
+            "btn1_text": "Shop Sale",
+            "btn1_color": "#181623",
+            "btn1_bg_color": "linear-gradient(180deg, rgba(248, 205, 33, 1), rgba(248, 205, 33, 1) 100%)",
+            "btn1_show_border": false,
+            "btn1_border_color": "#ffffff",
+            "btn1_border_radius": 8,
+            "btn1_link": "",
+            "btn1_position": 3,
+            "btn1_pc_size": 24,
+            "btn1_pc_weight": 600,
+            "btn1_pc_x": 48,
+            "btn1_pc_y": 12,
+            "btn1_mb_size": 16,
+            "btn1_mb_weight": 400,
+            "btn1_mb_x": 28,
+            "btn1_mb_y": 4,
+            "show_btn2": false,
+            "btn2_ability": "link",
+            "btn2_text": "Button",
+            "btn2_color": "#181623",
+            "btn2_bg_color": "linear-gradient(180deg, rgba(248, 205, 33, 1), rgba(248, 205, 33, 1) 100%)",
+            "btn2_show_border": false,
+            "btn2_border_color": "#ffffff",
+            "btn2_link": "",
+            "btn2_position": 3,
+            "btn2_pc_size": 28,
+            "btn2_pc_weight": 400,
+            "btn2_pc_x": 48,
+            "btn2_pc_y": 1,
+            "btn2_mb_size": 16,
+            "btn2_mb_weight": 400,
+            "btn2_mb_x": 28,
+            "btn2_mb_y": 4
+          }
+        }
+      },
+      "block_order": [
+        "text_ziBiir",
+        "countdown_qhW4PP",
+        "button_wc7QUA"
+      ],
+      "disabled": true,
+      "name": "main-banner",
+      "settings": {
+        "page_color": "",
+        "pc_width": 1920,
+        "pc_height": 700,
+        "mb_width": 750,
+        "mb_height": 900,
+        "media_type": "image",
+        "pc_image_url": "shopify://shop_images/kv_b3868336-73b8-4d3d-a704-1fc4764419ae.png",
+        "mb_image_url": "shopify://shop_images/yd_441e9bfc-5117-41eb-91a1-af653373d44b.png",
+        "content_pos": "center",
+        "mb_content_pos": "mb_top",
+        "video_play_show": false,
+        "backdrop_link": "",
+        "pc_content_width": 1440,
+        "overlay_show": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 20
+      }
+    },
+    "main_banner_rENQHG": {
+      "type": "main-banner",
+      "blocks": {
+        "tag_cAYzkB": {
+          "type": "tag",
+          "disabled": true,
+          "settings": {
+            "bg_color": "linear-gradient(136deg, rgba(255, 0, 0, 1) 11%, rgba(250, 13, 253, 1) 84%)",
+            "radius": 50,
+            "tag": "Nov. 14 - Dec. 8",
+            "tag_color": "#ffffff",
+            "top": 0,
+            "bottom": 0,
+            "mb_top": 0,
+            "mb_bottom": 0
+          }
+        },
+        "text_EVjpDt": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "Banner Text",
+            "text_show_type": "all",
+            "pc_text": "<p>BFCM - The Biggest Sale Of the Year</p>",
+            "pc_align": "right",
+            "pc_color": "#ffffff",
+            "pc_emphasize_color": "#181623",
+            "pc_weight": 700,
+            "pc_size": 40,
+            "pc_line": 120,
+            "pc_top": 0,
+            "pc_right": 0,
+            "pc_bottom": 0,
+            "pc_left": 0,
+            "mb_text": "<p>BFCM - The Biggest Sale </p><p>Of the Year</p>",
+            "mb_align": "center",
+            "mb_color": "#ffffff",
+            "mb_emphasize_color": "#181623",
+            "mb_weight": 700,
+            "mb_size": 30,
+            "h5_line": 120,
+            "mb_top": 20,
+            "mb_right": 0,
+            "mb_bottom": 20,
+            "mb_left": 0
+          }
+        },
+        "countdown_zwWe3D": {
+          "type": "countdown",
+          "disabled": true,
+          "settings": {
+            "style": "2",
+            "border_color": "#eaae42",
+            "bg_color": "#eaae42",
+            "num_color": "",
+            "font_color": "#ffffff",
+            "end_date": "2025-12-08 23:59:59",
+            "day": "Days",
+            "hour": "Hours",
+            "minute": "Mins",
+            "second": "Secs",
+            "pc_top": 20,
+            "pc_right": 40,
+            "pc_bottom": 20,
+            "pc_left": 0,
+            "pc_align": "flex-right",
+            "pc_size": 10,
+            "mb_top": 20,
+            "mb_right": 0,
+            "mb_bottom": 20,
+            "mb_left": 0,
+            "mb_align": "flex-center",
+            "mb_size": 10
+          }
+        },
+        "subscribe_CCH6KP": {
+          "type": "subscribe",
+          "disabled": true,
+          "settings": {
+            "top": 10,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "mb_top": 0,
+            "mb_bottom": 0,
+            "pc_align": "flex-right",
+            "show_privacy": false,
+            "privacy_text": "",
+            "pc_privacy_size": 16,
+            "mb_privacy_size": 10,
+            "privacy_checked": true,
+            "privacy_color": "#6d6d80",
+            "privacy_link_color": "#9e9daa",
+            "privacy_link_hover_color": "#ffffff",
+            "privacy_active_color": "#683df5",
+            "privacy_required": "This field is required",
+            "input_size": 18,
+            "input_align": "left",
+            "mb_input_size": 14,
+            "mb_input_align": "left",
+            "input_bg_color": "",
+            "input_border_color": "#ffffff",
+            "input_color": "#ffffff",
+            "input_placeholder": "Email",
+            "input_empty": "This field is required",
+            "input_required": "This email is invalid",
+            "sub_btn_align": "row",
+            "pc_sub_btn_size": 16,
+            "mb_sub_btn_size": 14,
+            "sub_btn": "Subscribe",
+            "btn_color": "#ffffff",
+            "btn_bg_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "tag_cAYzkB",
+        "text_EVjpDt",
+        "countdown_zwWe3D",
+        "subscribe_CCH6KP"
+      ],
+      "name": "main-banner",
+      "settings": {
+        "page_color": "",
+        "pc_width": 1920,
+        "mb_width": 750,
+        "media_type": "image",
+        "pc_image_url": "shopify://shop_images/sep61a_e509fc1f-043e-4c6d-b6a0-0fced7cdf181.png",
+        "mb_image_url": "shopify://shop_images/4ab06d5d0fae9e3779190a5378aa9b02.jpg",
+        "content_pos": "center",
+        "mb_content_pos": "mb_top",
+        "video_play_show": false,
+        "backdrop_link": "",
+        "pc_content_width": 1440,
+        "overlay_show": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 20
+      }
+    },
+    "main_navigation_fY4Bfn": {
+      "type": "main-navigation",
+      "blocks": {
+        "nav_tab_gdw6UY": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Spin to win",
+            "position": 5
+          }
+        },
+        "nav_tab_VFMXXH": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "IN 10",
+            "position": 6
+          }
+        },
+        "nav_tab_8dCgM4": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Win A Bike",
+            "position": 7
+          }
+        },
+        "nav_tab_im9xnM": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Review",
+            "position": 8
+          }
+        },
+        "nav_tab_gWdziX": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Support",
+            "position": 9
+          }
+        },
+        "nav_tab_x6p6NC": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "FAQ",
+            "position": 10
+          }
+        }
+      },
+      "block_order": [
+        "nav_tab_gdw6UY",
+        "nav_tab_VFMXXH",
+        "nav_tab_8dCgM4",
+        "nav_tab_im9xnM",
+        "nav_tab_gWdziX",
+        "nav_tab_x6p6NC"
+      ],
+      "custom_css": [],
+      "name": "main-navigation",
+      "settings": {
+        "page_color": "linear-gradient(180deg, rgba(127, 18, 0, 1), rgba(191, 0, 0, 1) 99%)",
+        "tab_align": "center",
+        "tab_color": "#1a1a1a",
+        "tab_bg_color": "#eed230",
+        "tab_active_color": "#ffffff",
+        "tab_bg_active_color": "#1a1a1a",
+        "tab_radius": 6,
+        "show_tab_border": true,
+        "tab_border_color": "#000000",
+        "tab_border_active_color": "#000000",
+        "tab_border_width": 3,
+        "tab_weight": 700,
+        "desktop_tab_height": 36,
+        "mobile_tab_height": 28,
+        "desktop_tab_size": 18,
+        "mobile_tab_size": 15,
+        "desktop_tab_padding": 28,
+        "mobile_tab_padding": 18
+      }
+    },
+    "easter_sale_service_7PCMRe": {
+      "type": "easter-sale-service",
+      "blocks": {
+        "item_R6TTfK": {
+          "type": "item",
+          "settings": {
+            "title": "A+ Customer Service",
+            "image_icon": "shopify://shop_images/comment-chart-line_cc6cc522-767c-49c9-8269-5f2638ca4d6d.png"
+          }
+        },
+        "item_azczKc": {
+          "type": "item",
+          "settings": {
+            "title": "Free Shipping",
+            "image_icon": "shopify://shop_images/truck_5384a087-a0af-4fad-a286-1f58343f570a.png"
+          }
+        },
+        "item_6Fj6mK": {
+          "type": "item",
+          "settings": {
+            "title": "1 Year Warranty",
+            "image_icon": "shopify://shop_images/wrench_a75e3d47-af80-46e4-8bdc-940965d55ff1.png"
+          }
+        },
+        "item_3QMkHy": {
+          "type": "item",
+          "settings": {
+            "title": "Secure Payment",
+            "image_icon": "shopify://shop_images/credit-card_bc3f0298-0beb-4b7c-8f18-ab60765ec3d6.png"
+          }
+        }
+      },
+      "block_order": [
+        "item_R6TTfK",
+        "item_azczKc",
+        "item_6Fj6mK",
+        "item_3QMkHy"
+      ],
+      "name": "autumn-sale-service",
+      "settings": {
+        "page_color": "#000000",
+        "image_preload": true
+      }
+    },
+    "easter_sale_spin_nTiTFF": {
+      "type": "easter-sale-spin",
+      "blocks": {
+        "card_Ei8RCp": {
+          "type": "card",
+          "settings": {
+            "background": "#960000",
+            "background_gradient": "linear-gradient(180deg, rgba(127, 18, 0, 1), rgba(191, 0, 0, 1) 100%)",
+            "image_icon": "shopify://shop_images/fortune-wheel_14004b9a-af91-42e2-8e3b-32d45670db8d.png",
+            "text1_color": "#ffffff",
+            "text2_color": "#ffe431",
+            "text3_color": "#ffffff",
+            "show_col1": true,
+            "col1_text1": "<p><strong>Spin</strong></p>",
+            "mb_col1_text1": "<p>Spin It</p>",
+            "col1_text2": "Win Prizes",
+            "mb_col1_text2": "Win",
+            "col1_text3": "Take It Home",
+            "mb_col1_text3": "the Prizes",
+            "show_col2": false,
+            "col2_text1": "",
+            "mb_col2_text1": "",
+            "col2_text2": "",
+            "mb_col2_text2": "",
+            "col2_text3": "",
+            "mb_col2_text3": ""
+          }
+        },
+        "card_MgjBwW": {
+          "type": "card",
+          "settings": {
+            "background": "#960000",
+            "background_gradient": "linear-gradient(180deg, rgba(127, 18, 0, 1), rgba(191, 0, 0, 1) 100%)",
+            "image_icon": "shopify://shop_images/Group_43.png",
+            "text1_color": "#ffffff",
+            "text2_color": "#ffe431",
+            "text3_color": "#ffffff",
+            "show_col1": true,
+            "col1_text1": "<p><strong>Giveaway</strong></p>",
+            "mb_col1_text1": "<p>Giveaway</p>",
+            "col1_text2": "Win Free Bike",
+            "mb_col1_text2": "Win",
+            "col1_text3": "3 Ways to Join",
+            "mb_col1_text3": "Free Bike",
+            "show_col2": false,
+            "col2_text1": "",
+            "mb_col2_text1": "",
+            "col2_text2": "",
+            "mb_col2_text2": "",
+            "col2_text3": "",
+            "mb_col2_text3": ""
+          }
+        },
+        "card_84XTpe": {
+          "type": "card",
+          "settings": {
+            "background": "#960000",
+            "background_gradient": "linear-gradient(182deg, rgba(127, 18, 0, 1), rgba(191, 0, 0, 1) 100%)",
+            "image_icon": "shopify://shop_images/usd-circle_c8f42a4f-8071-481b-bc92-cf670908ac51.png",
+            "text1_color": "#ffffff",
+            "text2_color": "#ffe431",
+            "text3_color": "#ffffff",
+            "show_col1": true,
+            "col1_text1": "<p><strong>Cashback</strong></p>",
+            "mb_col1_text1": "<p>Lucky “5”</p>",
+            "col1_text2": "Lucky “5”",
+            "mb_col1_text2": "Win",
+            "col1_text3": "Order number ends in 5, will get $??",
+            "mb_col1_text3": "Cashback",
+            "show_col2": false,
+            "col2_text1": "",
+            "mb_col2_text1": "",
+            "col2_text2": "",
+            "mb_col2_text2": "",
+            "col2_text3": "",
+            "mb_col2_text3": ""
+          }
+        },
+        "card_mVbnJD": {
+          "type": "card",
+          "settings": {
+            "background": "#960000",
+            "background_gradient": "linear-gradient(180deg, rgba(127, 18, 0, 1), rgba(191, 0, 0, 1) 100%)",
+            "image_icon": "shopify://shop_images/gift_de040418-5f7c-4fef-b6c7-2dbc25a8fa5c.png",
+            "text1_color": "#ffffff",
+            "text2_color": "#ffe431",
+            "text3_color": "#ffffff",
+            "show_col1": true,
+            "col1_text1": "<p><strong>Gift</strong></p>",
+            "mb_col1_text1": "<p>Order</p>",
+            "col1_text2": "Free Handlebar Bag",
+            "mb_col1_text2": "Win",
+            "col1_text3": "Worth Up to $49",
+            "mb_col1_text3": "Free Gift",
+            "show_col2": false,
+            "col2_text1": "",
+            "mb_col2_text1": "",
+            "col2_text2": "",
+            "mb_col2_text2": "",
+            "col2_text3": "",
+            "mb_col2_text3": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_Ei8RCp",
+        "card_MgjBwW",
+        "card_84XTpe",
+        "card_mVbnJD"
+      ],
+      "custom_css": [
+        ".easter-sale-spin .card {flex: 1; text-align: center; height: 210px; border-radius: 10px; background-color: #ffd985; border: 4px solid #fff;}"
+      ],
+      "name": "easter-sale-spin",
+      "settings": {
+        "page_color": "#000000",
+        "show_title": true,
+        "title": "Unlock All Black Friday Rewards",
+        "title_pc_size": 48,
+        "title_mb_size": 28,
+        "title_color": "#ffffff",
+        "title_gradient_color": "linear-gradient(180deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "show_description": false,
+        "description": "description",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "show_button": false,
+        "button": "Spin to win",
+        "button_icon": "shopify://shop_images/spin-icon.png",
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#ff0000",
+        "button_link": "#Ecomsend_popups_open_278346"
+      }
+    },
+    "easter_spin_wheel_xjPcNi": {
+      "type": "easter-spin-wheel",
+      "blocks": {
+        "card_h9AGaq": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/6_-IN-10.png",
+            "title": "Yozma IN 10 Dirt Bike"
+          }
+        },
+        "card_w3KDyU": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/6_48511a59-1ab2-4c62-b98d-68358ef45fc3.png",
+            "title": "DIY Colored Plastics Kit"
+          }
+        },
+        "card_6pRH8L": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/6_d652d853-3238-46fd-a5a8-d7fd5aebce37.png",
+            "title": "Handlebar Bag"
+          }
+        },
+        "card_hnzYCW": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/6_94340926-159e-4b5d-9545-c9d42323df3a.png",
+            "title": "Yozma Keychain"
+          }
+        },
+        "card_7mfGHa": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/6_-_-_50.png",
+            "title": "$50 OFF Coupon"
+          }
+        },
+        "card_MHRWiC": {
+          "type": "card",
+          "settings": {
+            "image_icon": "shopify://shop_images/6_-_-_100.png",
+            "title": "$100 OFF Coupon"
+          }
+        }
+      },
+      "block_order": [
+        "card_h9AGaq",
+        "card_w3KDyU",
+        "card_6pRH8L",
+        "card_hnzYCW",
+        "card_7mfGHa",
+        "card_MHRWiC"
+      ],
+      "name": "easter-spin-wheel",
+      "settings": {
+        "page_color": "#000000",
+        "show_title": true,
+        "title": "Spin It - Get the Prize",
+        "title_pc_size": 48,
+        "title_mb_size": 28,
+        "title_color": "#ffffff",
+        "title_gradient_color": "linear-gradient(180deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "show_description": true,
+        "description": "Black Friday prizes await—submit your email to take a spin!",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "spin_wheel_background_color": "#25231f",
+        "prize_title": "What’s on the Wheel?",
+        "prize_title_color": "linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 97%)",
+        "prize_remark": "<p>*Each user is eligible for one valid spin. Only the first prize won will be counted.<br/><br/>                        *BBy submitting your email, you consent to receive promotional emails and updates from Yozma.<br/><br/>                        *US only. The giveaway is valid in the continental United States only (excluding Hawaii, Alaska, and Puerto Rico).<br/><br/>*Simply enter the discount code you won from the spin at checkout, and make sure to add the corresponding prize item to your cart—the reward will then be included with your order automatically.<br/><br/></p>",
+        "prize_remark_color": "",
+        "klaviyo_code": "<div class=\"klaviyo-form-R2wnBd\"></div>",
+        "card_background": "#f0f0f0",
+        "card_background_gradient": "",
+        "card_text_bg_color": "linear-gradient(90deg, rgba(127, 18, 0, 1), rgba(191, 0, 0, 1) 100%)",
+        "card_text_color": "#ffffff"
+      }
+    },
+    "easter_product_card_UT4zWn": {
+      "type": "easter-product-card",
+      "blocks": {
+        "product_item_taL8T3": {
+          "type": "product_item",
+          "settings": {
+            "product": "in-10",
+            "show_banner_image": false,
+            "pc_banner_image": "shopify://shop_images/photo-34_19f8d119-298a-471b-b847-c41c0317a822.jpg",
+            "mb_banner_image": "shopify://shop_images/photo-34_1.png",
+            "show_sale": true,
+            "sale_price": "",
+            "sale_price_suffix": "",
+            "sale_text_color": "#ffffff",
+            "pc_product_image": "shopify://shop_images/9ae9a560a9e3371478e67f927b81bc89.jpg",
+            "pc_product_hover_image": "shopify://shop_images/DSC00571_4.png",
+            "mb_product_image": "shopify://shop_images/2_c5d54ba2-462f-4cf1-b370-ca772db16c4d.jpg",
+            "mb_product_hover_image": "shopify://shop_images/DSC00571_4.png",
+            "product_title": "Yozma IN 10",
+            "product_desc": "Electric Mini Dirt Bike For Teens & Adults",
+            "product_intro": "<p><strong>Motor:</strong> 2600W<br/><strong>Top Speed:</strong> 40 mph <br/><strong>Long Range:</strong> 53 miles<br/><strong>All-Terrain Tires:</strong> 14/12\"<br/><strong>Battery:</strong> 23.4Ah Lithium Battery</p>",
+            "product_price": "$1,189.00",
+            "product_price_color": "#ff0000",
+            "product_original_price": "$1,599.00",
+            "button1": "Add to card",
+            "button1_text_color": "#ffffff",
+            "button1_bg_color": "#000000",
+            "button2": "Buy Now",
+            "button2_text_color": "#ffffff",
+            "button2_bg_color": "#ff0000"
+          }
+        }
+      },
+      "block_order": [
+        "product_item_taL8T3"
+      ],
+      "name": "easter-product-card",
+      "settings": {
+        "page_color": "#000000",
+        "show_title": true,
+        "title": "Rock Your Ride",
+        "title_pc_size": 48,
+        "title_mb_size": 28,
+        "title_color": "#ffffff",
+        "title_gradient_color": "linear-gradient(180deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "show_description": true,
+        "description": "Yozma isn’t just a bike—it’s motion, power, and attitude.",
+        "description_color": "#ffffff",
+        "description_pc_size": 20,
+        "description_mb_size": 14
+      }
+    },
+    "easter_content_card_kRHFWg": {
+      "type": "easter-content-card",
+      "blocks": {
+        "text_mN8hwY": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>1. How to Join: </strong>Place an order anytime from <strong>Nov. 24 to Nov. 27</strong> — each order automatically enters the <strong>daily draw</strong> for that day.</p><p><strong>2. Daily Prize: </strong>1 valid order wins <strong>100% refund (free bike)</strong> each day. Total <strong>4 winners</strong>.</p><p><strong>3. Valid Orders: </strong>Paid · Not canceled · Not refunded · No fraud.</p><p><strong>4. Prize Delivery:  </strong>Winning orders become “free order.”  Paid amount refunded to original payment method after verification.<br/><strong>5. Winner Announcement: </strong>Winners will be announced after the event on our website and social media, and notified by email.</p>",
+            "text_color": "#000000",
+            "text_background_color": "#ffffff",
+            "text_gradient_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_mN8hwY"
+      ],
+      "disabled": true,
+      "name": "easter-content-card",
+      "settings": {
+        "page_color": "#0a0a0a",
+        "title": "Daily Lucky Order",
+        "title_color": "#ffffff",
+        "title_gradient_color": "linear-gradient(180deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "button": "Enter to Win",
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#ff0000",
+        "button_url": "shopify://products/in-10",
+        "rule_text": "<p>🔥 Yozma <strong>IN 10</strong> Electric Mini Dirt Bike × 4 (One winner per day)<br/><br/>* If a winning order is later refunded or canceled, the prize will be forfeited.<br/><strong>*</strong> Yozma reserves final interpretation rights.</p>",
+        "rule_text_color": "#ffffff",
+        "pc_product_image": "shopify://shop_images/2_2.jpg",
+        "image_position": "left",
+        "intro": "",
+        "intro_color": "#ffffff"
+      }
+    },
+    "easter_content_card_TacPLC": {
+      "type": "easter-content-card",
+      "blocks": {
+        "text_XpNEjr": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>1. Participation:</strong> Place an order on any day between Nov 17–23 to automatically enter that day’s draw.</p><p><strong>2. Winner Announcement:</strong> Winners will be notified via email on Nov 24 and announced on our website and social media.</p><p><strong>3. Prize Delivery:</strong> Prizes will be shipped within 10 business days after the winner receives their bike.</p><p><strong>4. Notice:</strong> If a winning order is refunded, the prize will be forfeited.</p>",
+            "text_color": "#000000",
+            "text_background_color": "#ffffff",
+            "text_gradient_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_XpNEjr"
+      ],
+      "disabled": true,
+      "name": "easter-content-card",
+      "settings": {
+        "page_color": "#0a0a0a",
+        "title": "Daily Lucky Order",
+        "title_color": "#ffffff",
+        "title_gradient_color": "linear-gradient(180deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "button": "Enter to Win",
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#ff0000",
+        "button_url": "shopify://products/in-10",
+        "rule_text": "<p>📸 Insta360 Camera × 7 (One winner per day)<br/>🔥Black Friday deals + Daily Insta360 giveaways = the perfect time to ride home your dream dirt bike.<br/><br/>* Yozma reserves the final right to interpret the rules and conditions of this event.</p>",
+        "rule_text_color": "#ffffff",
+        "pc_product_image": "shopify://shop_images/fbb1aae6ba1c4e87fa360ae5c2a54560.jpg",
+        "image_position": "left",
+        "intro": "",
+        "intro_color": "#ffffff"
+      }
+    },
+    "easter_content_card_EC9jwM": {
+      "type": "easter-content-card",
+      "blocks": {
+        "text_CwHH8d": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>🏅 Website Spin-to-Win</strong></p><ul><li>Enter your email on our website to spin the wheel. Each user gets one spin, and only the highest prize is valid.</li></ul>",
+            "text_color": "#000000",
+            "text_background_color": "#ffffff",
+            "text_gradient_color": ""
+          }
+        },
+        "text_WHzXJm": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>🏅 Place an Order</strong></p><ul><li>Buy a bike during the event for a chance to get a full refund. Winners will be randomly selected after delivery is completed.</li></ul>",
+            "text_color": "#000000",
+            "text_background_color": "#ffffff",
+            "text_gradient_color": ""
+          }
+        },
+        "text_rjX3QP": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>🏅 Instagram Giveaway</strong></p><ul><li>Follow <strong>@yozmasport</strong> on Instagram and Facebook, like and share the giveaway post, and tag friends in the comments. One winner will be announced on November 28.<br/><br/>Participate via social media by➡️<a href=\"https://www.instagram.com/p/DQu_9GKjZZk/\" target=\"_blank\" title=\"https://www.instagram.com/p/DQu_9GKjZZk/\"><strong>Clicking Here</strong></a></li></ul>",
+            "text_color": "#000000",
+            "text_background_color": "#ffffff",
+            "text_gradient_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_CwHH8d",
+        "text_WHzXJm",
+        "text_rjX3QP"
+      ],
+      "name": "easter-content-card",
+      "settings": {
+        "page_color": "#0a0a0a",
+        "title": "Win Your Bike",
+        "title_color": "#ffffff",
+        "title_gradient_color": "linear-gradient(180deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "button": "Enter to Win",
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#ff0000",
+        "button_url": "shopify://products/in-10",
+        "rule_text": "<p>✨ Don’t miss out—every spin, order, or Instagram entry could make you the lucky winner! Join now and ride into the excitement! <br/><br/>* Yozma reserves the final right to interpret the rules and conditions of this event.</p>",
+        "rule_text_color": "#ffffff",
+        "pc_product_image": "shopify://shop_images/1_e1dc229e-25ad-43ca-b143-c4f7da5e0c39.jpg",
+        "image_position": "right",
+        "intro": "",
+        "intro_color": "#ffffff"
+      }
+    },
+    "easter_community_video_8crGrn": {
+      "type": "easter-community-video",
+      "blocks": {
+        "video_zaNefc": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/aE6JMTf3sE4?list=TLGGkvIsbERzDAAwNzExMjAyNQ",
+            "cover_image": "shopify://shop_images/aE6JMTf3sE4-HD.jpg",
+            "description": "Rawstuntz",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false,
+            "video_url_mobile": "",
+            "date": "2025/10/13",
+            "content": "I Bought The Cheapest Electric Dirtbike (Yozma IN10)",
+            "avatar": "shopify://shop_images/channels4_profile_f2f7a20b-8602-452a-83c4-d4cf332403cd.jpg",
+            "author": "Rawstuntz"
+          }
+        },
+        "video_ngJxib": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/1BWf9zQho1g?list=TLGGLWEjijTqXaEwNzExMjAyNQ",
+            "cover_image": "shopify://shop_images/1BWf9zQho1g-HD.jpg",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false,
+            "video_url_mobile": "",
+            "date": "2025/09/20",
+            "content": "Best Electric Dirt Bike Under $1500!! Yozma Sport IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_1.jpg",
+            "author": "Oneway Lilman"
+          }
+        },
+        "video_fNXcnA": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/6WoQyfm8BJk?list=TLGGod5zsDsEbLAwNzExMjAyNQ",
+            "cover_image": "shopify://shop_images/6WoQyfm8BJk-HD_1c406dfe-d100-4b32-86ca-8bd6036db382.jpg",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false,
+            "video_url_mobile": "",
+            "date": "2025/10/18",
+            "content": "I Bought The BEST Budget Electric Mini Bike!",
+            "avatar": "shopify://shop_images/channels4_profile_2_c60ceeac-cf88-43bb-a532-ae1cd2d11dbd.jpg",
+            "author": "Phethanfix"
+          }
+        },
+        "video_zicwE9": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/KTEI1CDjiQ0?list=TLGG0lxU6fuA7JwxMDExMjAyNQ",
+            "cover_image": "shopify://shop_images/KTEI1CDjiQ0-HD.jpg",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false,
+            "video_url_mobile": "",
+            "date": "2025/10/29",
+            "content": "“Cheapest ‘Legit’ Electric Dirt Bike… Actually Rips (Yozma IN-10)”",
+            "avatar": "shopify://shop_images/channels4_profile_3_04574552-7d7b-4d83-ae31-5a0630c704b0.jpg",
+            "author": "G Bear"
+          }
+        },
+        "video_8U99xt": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/q5yuYyrjNA8?list=TLGGW58XYYOV6B8xMDExMjAyNQ",
+            "cover_image": "shopify://shop_images/q5yuYyrjNA8-HD.jpg",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false,
+            "video_url_mobile": "",
+            "date": "2025/10/29",
+            "content": "Electric Dirt Bikes Getting Cheaper and Better? Yozma IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_4.jpg",
+            "author": "Pat Outdoors"
+          }
+        },
+        "video_MBMnyP": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/UIFm5cPpgBs?list=TLGGFWY9J_8tpL8xMTExMjAyNQ",
+            "cover_image": "shopify://shop_images/UIFm5cPpgBs-HD.jpg",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false,
+            "video_url_mobile": "",
+            "date": "2025/09/10",
+            "content": "This electric dirt bike cost less than a IPhone! Yozma IN10",
+            "avatar": "shopify://shop_images/channels4_profile_5.jpg",
+            "author": "ENDOPRYSM"
+          }
+        },
+        "review_xhfWWT": {
+          "type": "review",
+          "settings": {
+            "score": 5,
+            "date": "10/01/2025",
+            "title": "Roy Quintero",
+            "intro": "<p>Awesome little bikes! (Got one for my 10 year old son & one for myself to ride with him). He Loves it! Thanks Yozma!!</p>",
+            "comment_image": "shopify://shop_images/1759347104__1759347036301-img_8552__original.avif",
+            "type": "text"
+          }
+        },
+        "review_ciUkQc": {
+          "type": "review",
+          "settings": {
+            "score": 5,
+            "date": "10/01/2025",
+            "title": "Simon A",
+            "intro": "<p>Very good bike for the price. Assembly was a bit tedious but overall the bike is soo much fun!</p>",
+            "comment_image": "shopify://shop_images/1759353319__1759353309295-img_9946__original.avif",
+            "type": "text"
+          }
+        },
+        "review_MdArPw": {
+          "type": "review",
+          "settings": {
+            "score": 5,
+            "date": "10/09/2025",
+            "title": "Rksinc57",
+            "intro": "<p>We received this bike 4 days ago for my grandson's birthday. It didn't take long to put together but out of the box the display unit was badly cracked and unreadable. We emailed Yozma and they responded within 1 day and are sending a replacement. That is great service! In the meantime, it has not stopped my grandson from riding and loving this dirt bike. He has already put 50 miles on it and loves it. We got him a nice helmet and gloves to keep him safe. I tried to keep him at speed level 2 but you know what a 13 year old boy will do..... He gets close to around 32 mph (68 inches tall). The build quality of the bike seems to be great (I am a mechanical engineer).<br/><br/></p>",
+            "comment_image": "shopify://shop_images/1760034548__img_9021__original.avif",
+            "type": "text"
+          }
+        },
+        "review_z7BLNP": {
+          "type": "review",
+          "settings": {
+            "score": 5,
+            "date": "10/07/2025",
+            "title": "Josh Franc",
+            "intro": "<p>I got mine today and its been great. Much more power than expected</p>",
+            "comment_image": "shopify://shop_images/1759806197__1759806192331-1000003572__original.avif",
+            "type": "text"
+          }
+        }
+      },
+      "block_order": [
+        "video_zaNefc",
+        "video_ngJxib",
+        "video_fNXcnA",
+        "video_zicwE9",
+        "video_8U99xt",
+        "video_MBMnyP",
+        "review_xhfWWT",
+        "review_ciUkQc",
+        "review_MdArPw",
+        "review_z7BLNP"
+      ],
+      "name": "easter-community-video",
+      "settings": {
+        "page_color": "#000000",
+        "show_title": true,
+        "title": "Hear From the Real Rider",
+        "title_pc_size": 48,
+        "title_mb_size": 28,
+        "title_color": "#ffffff",
+        "title_gradient_color": "linear-gradient(127deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "show_description": true,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "tab1": "Video Reviews",
+        "tab2": "Customer Reviews",
+        "theme": "light"
+      }
+    },
+    "easter_service_policy_eBF6pi": {
+      "type": "easter-service-policy",
+      "blocks": {
+        "item_m4qBdq": {
+          "type": "item",
+          "settings": {
+            "card_color": "#ffffff",
+            "title": "<p><strong>Customer Service</strong><br/>Lifetime customer support.</p>",
+            "title_color": "#000000",
+            "image_icon": "shopify://shop_images/comment-chart-line.png"
+          }
+        },
+        "item_YtJXFH": {
+          "type": "item",
+          "settings": {
+            "card_color": "#ffffff",
+            "title": "<p><strong>Free Shipping</strong><br/>7-14 business days.</p>",
+            "title_color": "#000000",
+            "image_icon": "shopify://shop_images/truck.png"
+          }
+        },
+        "item_qnye6H": {
+          "type": "item",
+          "settings": {
+            "card_color": "#ffffff",
+            "title": "<p><strong>Hassle-free Warranty</strong><br/>12-Month Warranty Period.</p>",
+            "title_color": "#000000",
+            "image_icon": "shopify://shop_images/wrench.png"
+          }
+        },
+        "item_HN87xB": {
+          "type": "item",
+          "settings": {
+            "card_color": "#ffffff",
+            "title": "<p><strong>Secure Payment</strong><br/>Buy with confidence</p>",
+            "title_color": "#000000",
+            "image_icon": "shopify://shop_images/credit-card.png"
+          }
+        },
+        "item_d4YEkL": {
+          "type": "item",
+          "settings": {
+            "card_color": "#ffffff",
+            "title": "<p><strong>Shopping Protection</strong><br/>Shop with Confidence</p>",
+            "title_color": "#000000",
+            "image_icon": "shopify://shop_images/shopping-cart.png"
+          }
+        },
+        "item_JQeEmF": {
+          "type": "item",
+          "settings": {
+            "card_color": "#ffffff",
+            "title": "<p><strong>Exclusive Offer</strong><br/>Irregular promotional offers</p>",
+            "title_color": "#000000",
+            "image_icon": "shopify://shop_images/ticket-discount_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "item_m4qBdq",
+        "item_YtJXFH",
+        "item_qnye6H",
+        "item_HN87xB",
+        "item_d4YEkL",
+        "item_JQeEmF"
+      ],
+      "name": "easter-service-policy",
+      "settings": {
+        "page_color": "#000000",
+        "show_title": true,
+        "title": "Why Choose Official Store",
+        "title_pc_size": 48,
+        "title_mb_size": 28,
+        "title_color": "#ffffff",
+        "title_gradient_color": "linear-gradient(180deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "show_description": false,
+        "description": "description",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14
+      }
+    },
+    "main_community_video_UMz3Ya": {
+      "type": "main-community-video",
+      "blocks": {
+        "media_TTgyfj": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/Com with me and my friend in a day of riding@lithium_vision095904.mp4",
+            "video_mobile": "shopify://files/videos/Com with me and my friend in a day of riding@lithium_vision095904.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "text": "Com with me and my friend in a day of riding",
+            "text_color": "#ffffff",
+            "profile_image": "shopify://shop_images/36e0f586abd5cbc6d0e349e0adbdb2fa_tplv-tiktokx-cropcenter_1080_1080.jpg",
+            "title": "lithium_vision",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_DgmPnh": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/yozmasport Yozma IN 10 Review  UnboxingUse Code AMPEDBYJ For 70 Off Your Order@ampedbyj104457.mp4",
+            "video_mobile": "shopify://files/videos/yozmasport Yozma IN 10 Review  UnboxingUse Code AMPEDBYJ For 70 Off Your Order@ampedbyj104457.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "text": "🚨Yozma IN 10 Review & Unboxing🚨",
+            "text_color": "#ffffff",
+            "profile_image": "shopify://shop_images/ed0f55ce1caf00082460935bf116e2fa_tplv-tiktokx-cropcenter_1080_1080.jpg",
+            "title": "ampedbyj",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_KCzzea": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/Yozma In 10 Unboxing Code LAW for 5 Discount on website@ridstarlaw171251.mp4",
+            "video_mobile": "shopify://files/videos/Yozma In 10 Unboxing Code LAW for 5 Discount on website@ridstarlaw171251.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "text": "Yozma IN 10 Unboxing🔥",
+            "text_color": "#ffffff",
+            "profile_image": "shopify://shop_images/93f106423ad39848562c923d645e15f5_tplv-tiktokx-cropcenter_100_100.jpg",
+            "title": "ridstarlaw",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_cgBHG4": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/TikSave.io_7570422351146290463-hd.mp4",
+            "video_mobile": "shopify://files/videos/TikSave.io_7570422351146290463-hd.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "text": "crowboy69",
+            "text_color": "#ffffff",
+            "profile_image": "shopify://shop_images/89db2d012595bb8b50ba42cf3cfe4e68_tplv-tiktokx-cropcenter_100_100.jpg",
+            "title": "crowboy69",
+            "title_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "media_TTgyfj",
+        "media_DgmPnh",
+        "media_KCzzea",
+        "media_cgBHG4"
+      ],
+      "disabled": true,
+      "name": "main-community-video",
+      "settings": {
+        "page_color": "#000000",
+        "page_bottom": 0,
+        "show_title": true,
+        "title": "<p>Rider with Yozma IN 10</p>",
+        "title_color": "#ffffff",
+        "theme": "dark"
+      }
+    },
+    "faq_WdNy7m": {
+      "type": "faq",
+      "blocks": {
+        "item_Yir7Yt": {
+          "type": "item",
+          "settings": {
+            "title": "What is the Black Friday event about?",
+            "content": "<p>During Nov 14 – Dec 8, customers can participate in <strong>four main activities</strong>: <br/>1) Spin Wheel rewards, <br/>2) Free e-bike giveaway, <br/>3) Cash back for eligible orders <br/>4) Free gifts with purchase.</p>"
+          }
+        },
+        "item_F8VdHm": {
+          "type": "item",
+          "settings": {
+            "title": "What should I do before I place my order?",
+            "content": "<p>Before placing your order, please confirm that you are<strong>14 </strong>years of age or older. When riding, always follow local laws and regulations, wear a helmet, and prioritize safety at all times.</p>"
+          }
+        },
+        "item_GPUUph": {
+          "type": "item",
+          "settings": {
+            "title": "How does the Spin Wheel activity work?",
+            "content": "<p>Enter your email to get a Spin Wheel chance, win a corresponding reward, and use any discount codes at checkout to claim your prize.</p>"
+          }
+        },
+        "item_tPQhcc": {
+          "type": "item",
+          "settings": {
+            "title": "Will my free gifts arrive with my e-bike order?",
+            "content": "<p>Gifts shipped with your order or in a separate package, and you can email us if they are delayed.</p>"
+          }
+        },
+        "item_yqgdpr": {
+          "type": "item",
+          "settings": {
+            "title": "How do I know if I won the cash back?",
+            "content": "<p>Orders ending with the number 5 win the cash back; winners will be notified by email, and the cash back will be applied to the original order once it is completed—returns or refunds will invalidate the reward.</p>"
+          }
+        },
+        "item_8Lhg7F": {
+          "type": "item",
+          "settings": {
+            "title": "How will I know if I won a free e-bike from the website?",
+            "content": "<p>Winners from the website will be <strong>notified by email</strong>, while winners from social media after <strong>Nov 28</strong> will be notified via <strong>direct message</strong>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_Yir7Yt",
+        "item_F8VdHm",
+        "item_GPUUph",
+        "item_tPQhcc",
+        "item_yqgdpr",
+        "item_8Lhg7F"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "Yozma BFCM - FAQ",
+        "content": "",
+        "team_avatar_width": 160,
+        "support_hours": "",
+        "answer_time": "",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "#000000",
+        "background_gradient": "",
+        "text_color": "#000000",
+        "heading_color": "#ffffff",
+        "heading_gradient": "linear-gradient(180deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "button_background": "#f0f0f0",
+        "button_text_color": "#ffffff",
+        "accordion_background": "#ffffff",
+        "accordion_text_color": ""
+      }
+    },
+    "rich_text_Jt4gEY": {
+      "type": "rich-text",
+      "blocks": {
+        "richtext_KU3emV": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>More questions please contact <strong>support@yozmasport.com</strong><br/><br/>* Yozma reserves the final right to interpret the rules and conditions of this event.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_KU3emV"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#000000",
+        "background_gradient": "",
+        "text_color": "#9c9696"
+      }
+    },
+    "image_with_text_overlay_XhFj3a": {
+      "type": "image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "enable_parallax": false,
+        "image_size": "auto",
+        "image": "shopify://shop_images/2800.1000.jpg",
+        "mobile_image": "shopify://shop_images/1200.1600.jpg",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main_banner_FmCp4N",
+    "main_banner_rENQHG",
+    "main_navigation_fY4Bfn",
+    "easter_sale_service_7PCMRe",
+    "easter_sale_spin_nTiTFF",
+    "easter_spin_wheel_xjPcNi",
+    "easter_product_card_UT4zWn",
+    "easter_content_card_kRHFWg",
+    "easter_content_card_TacPLC",
+    "easter_content_card_EC9jwM",
+    "easter_community_video_8crGrn",
+    "easter_service_policy_eBF6pi",
+    "main_community_video_UMz3Ya",
+    "faq_WdNy7m",
+    "rich_text_Jt4gEY",
+    "image_with_text_overlay_XhFj3a"
+  ]
+}

@@ -1,0 +1,4099 @@
+{%- render 'section-spacing-collapsing' -%}
+{%- assign ss = section.settings -%}
+
+<style>
+    #shopify-section-{{ section.id }} {
+        --product-grid: auto / minmax(0, 1fr);
+        --product-gallery-media-list-grid: auto / auto-flow {% if section.settings.mobile_carousel_control == 'free_scroll' %}{% if section.settings.mobile_media_size == 'expanded' %} 84vw {% else %} 73vw {% endif %}{% else %} 100%{% endif %};
+        --product-gallery-media-list-gap: {% if section.settings.mobile_media_size == 'expanded' %}var(--spacing-0-5){% else %}var(--grid-gutter){% endif %};
+        background: {{ ss.background }};
+    }
+
+    #nextop-chat {
+    bottom: 80px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-info > * + * {
+        --product-info-block-spacing: 0 !important;
+    }
+
+    .product-info .product-info__block-item {
+        padding: var(--desktop-padding);
+    }
+
+    @media screen and (max-width: 999px) {
+        #shopify-section-{{ section.id }} {
+            --section-spacing-block-start: {% if section.settings.mobile_media_size == 'expanded' %}0 px{% else %}var(--container-gutter){% endif %};
+        }
+
+        .product-info .product-info__block-item {
+            padding: var(--mobile-padding);
+        }
+    }
+
+    @media screen and (min-width: 1000px) {
+        #shopify-section-{{ section.id }} {
+        {%- assign media_ratio = section.settings.desktop_media_width | divided_by: 50.0 -%} --product-grid: auto / minmax(0, {{ media_ratio }}fr) minmax(0, {{ 2.0 | minus: media_ratio }}fr);
+            --product-gallery-media-list-grid: {% if section.settings.desktop_media_layout contains 'grid' %}auto-flow dense / repeat({% if section.settings.desktop_media_layout == 'grid_one' %}1{% else %}2{% endif %}, minmax(0, 1fr)){% else %}auto / auto-flow 100%{% endif %};
+            --product-gallery-media-list-gap: calc(var(--grid-gutter) / 2);
+        }
+
+    {%- if section.settings.desktop_media_layout == 'grid_highlight' -%}
+        #shopify-section-{{ section.id }} .product-gallery__media-list > :not([hidden]) {
+            grid-column: span 2;
+        }
+
+        #shopify-section-{{ section.id }} .product-gallery__media-list > :not([hidden]) ~ *:not(.product-gallery__media--expand) {
+            grid-column: span 1;
+        }
+
+    {%- endif -%}
+    }
+
+    @media screen and (min-width: 1400px) {
+        #shopify-section-{{ section.id }} {
+            --product-gallery-media-list-gap: var(--grid-gutter);
+        }
+    }
+
+    .product-info__title-wrap .product-info__title {
+        flex: 1;
+        padding-right: 30px;
+    }
+
+    .product-info__title-wrap .image-button {
+        --button-width: 80px;
+        --button-height: 37px;
+        --button-size: 1rem;
+        --button-color: #FFFFFF;
+    }
+
+    .product-info__image-card .image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 12px;
+    }
+
+    klarna-placement::part(osm-badge) {
+        width: 52px;
+        height: 36px;
+        border-radius: 6px;
+        background-color: #FFA8CD;
+    }
+
+    klarna-placement::part(osm-container) {
+        border: 0 none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    klarna-placement::part(osm-message) {
+        font-size: 18px;
+        font-style: italic;
+        font-weight: 900;
+        font-family: Roboto, sans-serif;
+        letter-spacing: -0.36px;
+    }
+
+    klarna-placement::part(osm-cta) {
+        color: #0BF003;
+        display: block;
+    }
+
+    model-media {
+        width: 100%;
+        height: 100%;
+    }
+
+    .product-gallery__media .shopify-model-viewer-ui model-viewer.shopify-model-viewer-ui__disabled {
+        pointer-events: visible;
+    }
+
+    .product-gallery__buttons.not-slide-button:before,
+    .product-gallery__buttons.not-slide-button:after{
+        display: none;
+    }
+    .product-gallery__buttons:hover:before,
+    .product-gallery__buttons:hover:after {
+        opacity: 1;
+    }
+
+    .product-gallery__other-list.active ~ .media-other-button,
+    .media-other-button ~ .product-gallery__other-list.active ~ .media-other-button{
+        display: flex;
+    }
+
+    .product-gallery__other-list:not(.active) ~ .media-other-button {
+        display: none;
+    }
+
+    .product-gallery__media-list-wrapper:has(.product-gallery__other-list.active):hover .active ~ .media-other-button {
+        opacity: 1;
+    }
+
+    .media-other-button {
+        width: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .media-button-next {
+        left: auto;
+        right: 0;
+    }
+
+    .product-gallery__buttons:before,
+    .product-gallery__buttons:after {
+        content: '';
+        width: 26px;
+        height: 26px;
+        --button-image: url('https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623');
+        background: var(--button-image) no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        margin-top: -13px;
+        z-index: 1;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .product-gallery__buttons.is-first:before,
+    .product-gallery__buttons.is-last:after {
+        --button-image: url("https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-disabled.png?v=1770280565");
+        cursor: not-allowed;
+    }
+
+    .product-gallery__buttons:before {
+        left: 18px;
+        transform: rotate(180deg);
+    }
+
+    .product-gallery__buttons:after {
+        right: 18px;
+    }
+
+    .thumbnail-slide-button {
+        transition: transform 0.3s;
+        cursor: pointer;
+    }
+
+    .thumbnail-slide-button:hover {
+        transform: scale(1.05);
+    }
+
+    .thumbnail-slide-button .image {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+    }
+
+    .thumbnail-slide-button.disabled {
+        cursor: not-allowed;
+        transform: scale(1) !important;
+        opacity: 0.5;
+    }
+
+    .product-info__title {
+        font-size: 2rem;
+        line-height: 1.2;
+        font-weight: 900;
+        font-style: italic;
+    }
+
+    .review--score .review-text {
+        font-size: 12px;
+        color: #999999;
+        padding-left: 6px;
+        line-height: 1.2;
+        transform: translateY(3px);
+    }
+
+    .review--score .score-items {
+        --score-size: 16px;
+    }
+
+    .product-info__price .price-list {
+        gap: 8px;
+    }
+
+    .product-info__price sale-price {
+        font-size: 24px;
+        font-style: italic;
+        font-weight: 900;
+        letter-spacing: -0.64px;
+        color: #000000;
+    }
+
+    .product-quick-add .price-list {
+        padding-right: 20px;
+    }
+
+    .product-quick-add .discount-tag {
+        padding: 3px 6px 2px;
+        background-color: #D30000;
+        border-radius: 2px;
+        font-size: 12px;
+        color: #FFFFFF;
+        position: absolute;
+        text-decoration: none;
+        top: -18px;
+        transform: scale(0.85);
+    }
+
+    .product-info__price compare-at-price {
+        font-size: 1rem;
+        font-weight: 300;
+        color: #999999;
+    }
+
+    .product-quick-add compare-at-price {
+        font-size: 12px;
+    }
+
+
+    @media screen and (max-width: 999px) {
+        .product-info__title {
+            font-size: 1.25rem;
+        }
+
+        .media-other-button {
+            display: none !important;
+        }
+
+        .product-quick-add {
+            padding: 12px 12px 7px;
+        }
+
+        .product-quick-add .product-info__price {
+            flex-direction: column;
+        }
+
+        .product-quick-add .shopify-product-form {
+            width: 100%;
+        }
+
+        .product-quick-add .shopify-product-form .v-stack {
+            max-width: 100%;
+        }
+
+        .product-quick-add .buy-buttons {
+            gap: 0 4px;
+        }
+
+        .product-quick-add .button {
+            flex: 1;
+            height: 28px;
+            padding: 0 !important;
+            font-size: 12px;
+        }
+
+        .product-quick-add .button > div {
+            transform: translateY(1px);
+        }
+
+        .product-quick-add .v-stack {
+            gap: 0;
+            max-width: 70%;
+            padding-bottom: 5px;
+        }
+
+        .product-quick-add .truncate-text {
+            font-size: 10px;
+            line-height: 1.1;
+        }
+
+        .product-quick-add p {
+            font-size: 8px;
+            line-height: 1.1;
+        }
+
+        .product-quick-add .discount-tag {
+            padding: 2px 4px 1px;
+            font-size: 8px;
+            border-radius: 2px;
+            top: -12px;
+            transform: scale(1);
+        }
+
+        .product-quick-add .price-list {
+            position: absolute;
+            right: 12px;
+            bottom: 40px;
+            padding-right: 0;
+        }
+
+        .product-quick-add sale-price {
+            font-size: 12px !important;
+            transform: translateY(-5px);
+        }
+
+        .product-quick-add compare-at-price {
+            font-size: 8px !important;
+        }
+
+        .product-info__title-wrap .image-button {
+            --button-width: 49px;
+            --button-height: 24px;
+            --button-size: 10px;
+        }
+
+        .review--score .review-text {
+            font-size: 10px;
+            padding-left: 4px;
+            transform: translateY(1px);
+        }
+
+        .review--score .score-items {
+            --score-size: 12px;
+        }
+
+        .product-gallery__buttons:before,
+        .product-gallery__buttons:after {
+            width: 15px;
+            height: 15px;
+            margin-top: -7.5px;
+            opacity: 0 !important;
+        }
+
+        .product-gallery__buttons:before {
+            left: -10px;
+        }
+
+        .product-gallery__buttons:after {
+            right: -10px;
+        }
+
+        .thumbnail-slide-button .image {
+            width: 15px;
+            height: 15px;
+        }
+
+
+        .product-info__price sale-price {
+            font-size: 1.25rem;
+        }
+
+        .product-info__price compare-at-price {
+            font-size: 10px;
+        }
+
+        klarna-placement::part(osm-badge) {
+            width: 32px;
+            height: 22px;
+            border-radius: 4px;
+        }
+
+        klarna-placement::part(osm-message) {
+            font-size: 12px;
+            letter-spacing: -0.436px;
+            line-height: 1;
+            margin-left: -6px;
+        }
+
+        klarna-placement::part(osm-cta) {
+            font-size: 11px;
+            line-height: 1.2;
+        }
+    }
+
+    {%- assign content = section.blocks | where: 'type', 'content' | first -%}
+    {%- if content != blank -%}
+    .product-info__content ul {
+        gap: 5px 0;
+    }
+
+    .product-info__content ul li {
+        list-style: none;
+        padding-left: 12px;
+        position: relative;
+        font-size: 12px;
+        line-height: 1.1;
+    }
+
+    .product-info__content ul li:before {
+        content: '';
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #000000;
+        position: absolute;
+        left: 3px;
+        top: 3px;
+    }
+
+    {%- endif -%}
+    {%- assign timer = section.blocks | where: 'type', 'countdown_timer' | first -%}
+    {%- if timer != blank -%}
+    {%- assign ts = timer.settings -%}
+    .countdown-timer-wrapper {
+        height: 80px;
+        padding: 0 20px;
+    }
+
+    .countdown-timer-wrapper .backdrop-img {
+        top: 0;
+        left: 0;
+        object-fit: cover;
+    }
+
+    .countdown-timer-wrapper .message-info .image {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        margin-right: 10px;
+    }
+
+    .countdown-timer-wrapper .text {
+        color: var(--text-color);
+        font-size: 24px;
+    }
+
+    .countdown-timer-wrapper .countdown--bar {
+        gap: 0 18px;
+    }
+
+    .countdown-timer-wrapper .countdown--bar .countdown--item {
+        width: 44px;
+        height: 44px;
+        background: {{ ts.countdown_fill_color }};
+        border-radius: 5px;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .countdown-timer-wrapper .countdown--bar .countdown--item:last-of-type:before {
+        display: none;
+    }
+
+    .countdown-timer-wrapper .countdown--bar .countdown--item:before {
+        content: ":";
+        font-size: 20px;
+        font-weight: 900;
+        color: {{ ts.countdown_dot_color }};
+        position: absolute;
+        right: -12px;
+        top: 45%;
+        transform: translateY(-50%);
+    }
+
+    .countdown-timer-wrapper .countdown--bar .num {
+        width: 100%;
+        color: {{ ts.countdown_num_color }};
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+        box-sizing: border-box;
+        line-height: 1.2;
+        border: 0 none;
+        background: none;
+        transform: translateY(3px);
+    }
+
+    .countdown-timer-wrapper .countdown--bar .num:disabled {
+        opacity: 1;
+    }
+
+    .countdown-timer-wrapper .countdown--bar .countdown--item .name {
+        font-size: 12px;
+        line-height: 1.1;
+        transform: scale(0.8) translateY(4px);
+        color: {{ ts.countdown_text_color }};
+    }
+
+    @media screen and (max-width: 1440px) {
+        .countdown-timer-wrapper .text {
+            font-size: 20px;
+        }
+    }
+
+    @media screen and (max-width: 999px) {
+        .countdown-timer-wrapper {
+            height: 49px;
+            padding: 0 12px;
+            border-radius: 6px;
+        }
+
+        .countdown-timer-wrapper .message-info .image {
+            width: 15px;
+            height: 15px;
+            margin-right: 6px;
+        }
+
+        .countdown-timer-wrapper .text {
+            font-size: 15px;
+        }
+
+        .countdown-timer-wrapper .countdown--bar {
+            gap: 0 10px;
+        }
+
+        .countdown-timer-wrapper .countdown--bar .countdown--item {
+            width: 26px;
+            height: 26px;
+            border-radius: 3px;
+        }
+
+        .countdown-timer-wrapper .countdown--bar .countdown--item:before {
+            font-size: 13px;
+            right: -7px;
+            top: 50%;
+        }
+
+        .countdown-timer-wrapper .countdown--bar .num {
+            font-size: 12px;
+            transform: translateY(1px);
+        }
+
+        .countdown-timer-wrapper .countdown--bar .countdown--item .name {
+            font-size: 6px;
+            transform: translateY(2px);
+        }
+    }
+
+    {%- endif -%}
+    {%- assign bundled_sale = section.blocks | where: 'type', 'bundled_sale' | first -%}
+    {%- if bundled_sale != blank -%}
+    .bundled_sale .bundle-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .bundled_sale .scroll-area-view:not(.hidden-bar):before,
+    .bundled_sale .scroll-area-view:not(.hidden-bar):after {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .bundled_sale:hover .scroll-area-view:not(.hidden-bar):before,
+    .bundled_sale:hover .scroll-area-view:not(.hidden-bar):after {
+        opacity: 1;
+    }
+
+    .bundled_sale .scroll-view {
+        max-height: 484px;
+    }
+
+    .bundled_sale .bundle-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .bundled_sale .bundle-item {
+        border: 1px solid #EFEFEF;
+        padding: 5px 22px 5px 28px;
+    }
+
+    .bundled_sale .disabled {
+        cursor: default;
+    }
+
+    .bundled_sale .disabled .checkbox {
+        opacity: 1;
+    }
+
+    .bundled_sale .bundle-info {
+        width: 10vw;
+        flex: 1;
+        --spacing-4: 1.375rem;
+    }
+
+    .bundled_sale .checkbox {
+        --spacing-4: 1.375rem;
+        margin-right: 10px;
+    }
+
+    .bundled_sale .discount-tag {
+        padding: 4px 5px 3px;
+        color: #FFF;
+        font-size: 12px;
+        letter-spacing: -0.364px;
+        background-color: #D30000;
+        border-radius: 2px;
+        display: inline-block;
+        margin-bottom: 4px;
+    }
+
+    .bundled_sale .quantity {
+        border-radius: 0;
+        height: 22px;
+        font-size: 12px;
+    }
+
+    .bundled_sale .name,
+    .bundled_sale .price {
+        font-size: 16px;
+    }
+
+    .bundled_sale .original-price,
+    .bundled_sale .desc {
+        font-size: 12px;
+        color: #999;
+    }
+
+    .bundled_sale .original-price {
+        text-decoration: line-through;
+    }
+
+    .bundled_sale .bundle-footer {
+        align-items: flex-end;
+    }
+
+    @media screen and (max-width: 999px) {
+        bundled_sale .scroll-area-view:not(.hidden-bar):before,
+        .bundled_sale .scroll-area-view:not(.hidden-bar):after {
+            opacity: 1;
+        }
+
+        .bundled_sale .scroll-view {
+            max-height: 200px;
+            gap: 8px;
+        }
+
+        .bundled_sale .bundle-image {
+            width: 42px;
+            height: 42px;
+        }
+
+        .bundled_sale .bundle-item {
+            padding: 5px 15px 5px 15px;
+            gap: 0.5rem;
+        }
+
+        .bundled_sale .bundle-info {
+            width: 10vw;
+            flex: 1;
+            --spacing-4: 1.375rem;
+        }
+
+        .bundled_sale .checkbox {
+            --spacing-4: 0.9rem;
+            margin-right: 5px;
+            transform: translateY(-2px);
+        }
+
+        .bundled_sale .discount-tag {
+            padding: 2px 3px 1px;
+            font-size: 9px;
+            margin-bottom: 2px;
+        }
+
+        .bundled_sale .quantity {
+            border-radius: 0;
+            height: 22px;
+            font-size: 12px;
+        }
+
+        .bundled_sale .name,
+        .bundled_sale .price {
+            font-size: 12px;
+        }
+
+        .bundled_sale .original-price,
+        .bundled_sale .desc {
+            font-size: 10px;
+            color: #999;
+        }
+    }
+
+    {%- endif -%}
+    .product-info__buy-buttons .buy-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px 0;
+        align-items: flex-end;
+    }
+
+    .product-info__buy-buttons .button {
+        border-radius: 0;
+        width: 100%;
+        height: 55px;
+        padding: 0;
+    }
+
+    .product-info__buy-box .button[type="submit"] {
+        width: calc(100% - 185px);
+    }
+
+    .product-info__buy-box .quantity-selector {
+        border-radius: 0;
+        --input-height: 55px;
+        width: 175px;
+    }
+
+    .product-info__buy-box .quantity-selector__input {
+        flex: 1;
+        font-size: 24px;
+    }
+
+    .product-info .accordion-group .product-info__block-item:first-of-type .accordion {
+        border-top: none;
+    }
+
+    .product-info .accordion__toggle {
+        padding: 17px 0;
+    }
+
+    .product-info .accordion__toggle .text-with-icon {
+        font-size: 14px;
+        font-weight: 600;
+        gap: 10px;
+    }
+
+    @media screen and (max-width: 999px) {
+        .product-info__buy-buttons .buy-buttons {
+            gap: 6px 0;
+        }
+
+        .product-info__buy-buttons .button {
+            border-radius: 0;
+            width: 100%;
+            height: 34px;
+            padding: 0;
+        }
+
+        .product-info__buy-buttons .button > div {
+            transform: translateY(1px);
+        }
+
+        .product-info__buy-box .button[type="submit"] {
+            width: calc(100% - 112px);
+        }
+
+        .product-info__buy-box .quantity-selector__button {
+            --spacing-5: 0.96rem;
+        }
+
+        .product-info__buy-box .quantity-selector {
+            --input-height: 34px;
+            width: 106px;
+        }
+
+        .product-info__buy-box .quantity-selector__input {
+            font-size: 15px;
+        }
+    }
+
+    .product-info .accordion__toggle .circle-chevron {
+        background: none;
+        border: 1px solid #EFEFEF;
+    }
+
+    .product-info .accordion__toggle .circle-chevron .icon {
+        width: 8px;
+        height: 8px;
+    }
+
+    .product-info .group[aria-expanded="true"] .circle-chevron.group-expanded\:rotate {
+        --transform-logical-flip: 0.25;
+    }
+
+    {%- assign collapsible_text_icon = section.blocks | where: 'type', 'collapsible_text_icon' | first -%}
+    {%- if collapsible_text_icon != blank -%}
+    .product-info__accordion-icon .accordion__content {
+        flex-wrap: wrap;
+         gap: 10px 0;
+    }
+
+    .product-info__accordion-icon .accordion__icon {
+        width: var(--column-val);
+    }
+
+    .product-info__accordion-icon .accordion__icon .image {
+        width: 48px;
+        aspect-ratio: 1;
+        height: auto;
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    .product-info__accordion-icon .accordion__icon .info {
+        padding-top: 6px;
+    }
+
+    .product-info__accordion-icon .accordion__icon .name {
+        color: #000000;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    .product-info__accordion-icon .accordion__icon .desc {
+        color: #666666;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    @media screen and (max-width: 999px) {
+        .product-info__accordion-icon .accordion__icon {
+            width: var(--mb-column-val);
+        }
+
+        .product-info__accordion-icon .accordion__icon .image {
+            width: 50%;
+        }
+
+        .product-info__accordion-icon .accordion__icon .info {
+            padding-top: 4px;
+        }
+
+        .product-info__accordion-icon .accordion__icon .name {
+            font-size: 14px;
+            line-height: 1.2;
+            padding-top: 4px;
+        }
+
+        .product-info__accordion-icon .accordion__icon .desc {
+            font-size: 10px;
+            line-height: 1.2;
+        }
+    }
+
+    {%- endif -%}
+
+    .category-selector .selector-inner {
+        height: 38px;
+        background-color: #F9F9F8;
+        padding: 2px;
+    }
+
+    .category-selector .selector-item {
+        padding: 0 25px;
+        height: 100%;
+        color: #000000;
+        font-size: 18px;
+        transition: background-color 0.5s;
+        transition-property: background-color, color;
+        white-space: nowrap;
+    }
+
+    .category-selector .selector-item svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 4px;
+      transform: translateY(-1px);
+    }
+
+    .category-selector .selector-item.active {
+        background-color: #d30000;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    .selector-item.active .svg-icon path {
+        fill: #FFFFFF;
+    }
+
+    .selector-item.active .svg-3d path:nth-child(3) {
+        stroke: #D30000;
+    }
+
+    .hidden-important {
+        display: none !important;
+    }
+
+    @media screen and (max-width: 999px) {
+        .category-selector .selector-inner {
+            height: 28px;
+            padding: 2px;
+        }
+
+        .category-selector .selector-item {
+            padding: 0 12px;
+            font-size: 14px;
+        }
+
+        .category-selector .selector-item svg {
+          width: 18px;
+          height: 18px;
+          margin-right: 3px;
+        }
+    }
+</style>
+
+{%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
+
+<div {% render 'section-properties', tight: true %}>
+    <product-rerender id="product-info-{{ product.id }}-{{ section.id }}" observe-form="{{ product_form_id }}"
+                      allow-partial-rerender>
+        <div class="product">
+            {%- if product.media.size > 0 -%}
+                {%- render 'product-gallery', enable_specs: ss.enable_specs, product: product, product_form_id: product_form_id -%}
+            {%- endif -%}
+
+            {%- render 'product-info',
+                product: product,
+                update_url: true,
+                product_form_id: product_form_id,
+                context: 'main_product'
+            -%}
+        </div>
+    </product-rerender>
+</div>
+
+{%- assign buy_buttons_block = section.blocks | where: 'type', 'buy_buttons' | first -%}
+
+{%- if ss.show_fixed_add_to_cart and product.available and buy_buttons_block != blank -%}
+    <product-rerender id="{{ product_form_id }}-sticky-bar" observe-form="{{ product_form_id }}">
+        {%- if product.selected_or_first_available_variant.available -%}
+            <product-quick-add form="{{ product_form_id }}" class="product-quick-add">
+                <div class="product-quick-add__variant {% if image == blank %}no-image{% endif %} tw-grid">
+                    <div class="v-stack gap-0.5">
+                        {%- assign vendor_block = section.blocks | where: 'type', 'vendor' -%}
+
+                        {%- if vendor_block != blank -%}
+                            {%- render 'vendor' with product.vendor, class: 'text-xs' -%}
+                        {%- endif -%}
+
+                        <a href="{{ product.url }}"
+                           class="tw-text-lg italic fw-900 truncate-text">{{ product.title }}</a>
+                        {% if section.settings.fixed_content %}
+                            <p class="tw-text-sm">{{ section.settings.fixed_content }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="flex-left product-info__price">
+                        {%- render 'price-list',
+                            product: product,
+                            variant: product.selected_or_first_available_variant,
+                            form_id: product_form_id,
+                            show_tag: ss.show_fixed_discount_tag,
+                            tag_text: ss.fixed_discount_tag
+                        -%}
+                        {%- render 'buy-buttons',
+                            product: product,
+                            form_id: product_form_id,
+                            show_payment_button: buy_buttons_block.settings.show_payment_button,
+                            show_gift_card_recipient: buy_buttons_block.settings.show_gift_card_recipient,
+                            atc_button_background: buy_buttons_block.settings.atc_button_background,
+                            atc_button_text_color: buy_buttons_block.settings.atc_button_text_color,
+                            payment_button_background: buy_buttons_block.settings.payment_button_background,
+                            payment_button_text_color: buy_buttons_block.settings.payment_button_text_color,
+                            payment_button_text: buy_buttons_block.settings.payment_button_text
+                        -%}
+                    </div>
+                </div>
+            </product-quick-add>
+        {%- endif -%}
+    </product-rerender>
+{%- endif -%}
+
+{%- comment -%}
+IMPLEMENTATION NOTE: Shopify does not currently allows to render a given section within the context of a given product. However,
+when rendering the quick buy popovers, we want to be able to re-use the merchant's choices (such as the selector type). This
+is however only possible by rendering the whole product page, and extracting the relevant part. Here, we therefore render the
+quick buy information in a template, that will be extracted in JS, but ensure it is not visible in the main product page
+{%- endcomment -%}
+
+{%- render 'product-quick-buy', product: product -%}
+
+{% schema %}
+{
+  "name": "Product page",
+  "class": "shopify-section--main-product",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "vendor",
+      "name": "Vendor",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+         {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Style",
+          "options": [
+            {
+              "value": "h1",
+              "label": "X-Large"
+            },
+            {
+              "value": "h2",
+              "label": "Large"
+            },
+            {
+              "value": "h3",
+              "label": "Medium"
+            },
+            {
+              "value": "h4",
+              "label": "Small"
+            },
+            {
+              "value": "h5",
+              "label": "X-Small"
+            },
+            {
+              "value": "h6",
+              "label": "XX-Small"
+            }
+          ],
+          "default": "h2"
+        }
+      ]
+    },
+    {
+      "type": "sku",
+      "name": "SKU",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        }
+      ]
+    },
+    {
+      "type": "badges",
+      "name": "Badges",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Use metafields to add custom badges. [Learn more](https://support.maestrooo.com/article/75-collection-displaying-custom-label)"
+        }
+      ]
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_taxes_notice",
+          "label": "Show taxes notice",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "payment_terms",
+      "name": "Payment installments",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "To display payment installments, your store needs to support Shop Pay Installments. [Learn more](https://help.shopify.com/en/manual/payments/shop-pay-installments)"
+        },
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        }
+      ]
+    },
+    {
+      "type": "rating",
+      "name": "Rating",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "To display a rating, add a product rating app. [Learn more](https://apps.shopify.com/categories/store-design-social-proof-product-reviews)"
+        },
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_empty",
+          "label": "Show if no reviews",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "separator",
+      "name": "Separator",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+         {
+          "type": "select",
+          "id": "device",
+          "label": "Show device",
+          "options": [
+            {
+              "value": "all",
+              "label": "All"
+            },
+            {
+              "value": "desktop",
+              "label": "Desktop"
+            },
+            {
+              "value": "mobile",
+              "label": "Mobile"
+            }
+          ],
+          "default": "all"
+        },
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "picto-coupon",
+              "label": "Coupon",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-percent",
+              "label": "Percent",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-gift",
+              "label": "Gift",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-star",
+              "label": "Star",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-like",
+              "label": "Like",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-building",
+              "label": "Building",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-love",
+              "label": "Love",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-award-gift",
+              "label": "Award gift",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-happy",
+              "label": "Happy",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-box",
+              "label": "Box",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-pin",
+              "label": "Pin",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-timer",
+              "label": "Timer",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-validation",
+              "label": "Validation",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-truck",
+              "label": "Truck",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-return",
+              "label": "Return",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-earth",
+              "label": "Earth",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-plane",
+              "label": "Plane",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-credit-card",
+              "label": "Credit card",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-lock",
+              "label": "Lock",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-shield",
+              "label": "Shield",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-secure-profile",
+              "label": "Secure profile",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-money",
+              "label": "Money",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-recycle",
+              "label": "Recycle",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-leaf",
+              "label": "Leaf",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-tree",
+              "label": "Tree",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-mobile-phone",
+              "label": "Mobile phone",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-phone",
+              "label": "Phone",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-chat",
+              "label": "Chat",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-customer-support",
+              "label": "Customer support",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-operator",
+              "label": "Operator",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-mailbox",
+              "label": "Mailbox",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-envelope",
+              "label": "Envelope",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-comment",
+              "label": "Comment",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-question",
+              "label": "Question",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-send",
+              "label": "Send",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-at-sign",
+              "label": "At sign",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-camera",
+              "label": "Camera",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-wifi",
+              "label": "WiFi",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-bluetooth",
+              "label": "Bluetooth",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-printer",
+              "label": "Printer",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-smart-watch",
+              "label": "Smart watch",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-coffee",
+              "label": "Coffee",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-burger",
+              "label": "Burger",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-beer",
+              "label": "Beer",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-target",
+              "label": "Target",
+              "group": "Other"
+            },
+            {
+              "value": "picto-document",
+              "label": "Document",
+              "group": "Other"
+            },
+            {
+              "value": "picto-jewelry",
+              "label": "Jewelry",
+              "group": "Other"
+            },
+            {
+              "value": "picto-music",
+              "label": "Music",
+              "group": "Other"
+            },
+            {
+              "value": "picto-file",
+              "label": "File",
+              "group": "Other"
+            },
+            {
+              "value": "picto-mask",
+              "label": "Mask",
+              "group": "Other"
+            },
+            {
+              "value": "picto-stop",
+              "label": "Stop",
+              "group": "Other"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon",
+          "info": "96 x 96px .png or .svg recommended. Only used when content is collapsed."
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "min": 16,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "label": "Icon width",
+          "default": 20
+        },
+        {
+          "type": "checkbox",
+          "id": "collapse_content",
+          "label": "Collapse content",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_sold_out_variants",
+          "label": "Hide sold out variants",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "stack_blocks",
+          "label": "Stack options on mobile",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "selector_style",
+          "label": "Selector style",
+          "options": [
+            {
+              "value": "block",
+              "label": "Block"
+            },
+            {
+              "value": "dropdown",
+              "label": "Dropdown"
+            }
+          ],
+          "default": "block"
+        },
+        {
+          "type": "select",
+          "id": "swatch_selector_style",
+          "label": "Swatch selector style",
+          "info": "Enable [swatches](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-settings#options-with-swatches) on product options.",
+          "options": [
+            {
+              "value": "swatch",
+              "label": "Swatch"
+            },
+            {
+              "value": "block_swatch",
+              "label": "Block with swatch"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ],
+          "default": "swatch"
+        },
+        {
+          "type": "text",
+          "id": "variant_image_options",
+          "label": "Show variant image for options",
+          "info": "List of comma separated option names where option values show the attached variant image. [Learn more](https://impact-theme.helpscoutdocs.com/article/555-variant-images-for-color-option)"
+        },
+        {
+          "type": "page",
+          "id": "size_chart_page",
+          "label": "Size chart page",
+          "info": "Feature a page for size option"
+        }
+      ]
+    },
+    {
+      "type": "product_variations",
+      "name": "Product variations",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "paragraph",
+          "content": "Link products of different colors using swatches. [Learn more](https://support.maestrooo.com/article/307-product-creating-product-variations-that-link-to-different-pages)"
+        },
+        {
+          "type": "text",
+          "id": "option_name",
+          "label": "Option name",
+          "info": "Example: Color, Style..."
+        },
+        {
+          "type": "text",
+          "id": "option_value_metafield",
+          "label": "Option value metafield",
+          "info": "Enter namespace and key of the metafield holding the value. Eg.: custom.color"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Products",
+          "info": "Select all the variations (including the product itself)."
+        },
+        {
+          "type": "select",
+          "id": "selector_style",
+          "label": "Selector style",
+          "info": "Product image mode requires that all variant have an associated image. [Learn more](https://help.shopify.com/en/manual/products/product-media/add-images-variants#add-images-to-existing-variants)",
+          "options": [
+            {
+              "value": "block",
+              "label": "Block"
+            },
+            {
+              "value": "block_swatch",
+              "label": "Block with swatch"
+            },
+            {
+              "value": "swatch",
+              "label": "Swatch"
+            },
+            {
+              "value": "variant_image",
+              "label": "Variant image"
+            }
+          ],
+          "default": "swatch"
+        }
+      ]
+    },
+    {
+      "type": "line_item_property",
+      "name": "Line item property",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "paragraph",
+          "content": "Line item properties are used to collect customization information for an item added to the cart."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Your label"
+        },
+        {
+          "type": "select",
+          "id": "type",
+          "label": "Type",
+          "options": [
+            {
+              "value": "text",
+              "label": "Text"
+            },
+            {
+              "value": "checkbox",
+              "label": "Checkbox"
+            }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "info": "For text property, the customer must write a text ; for checkbox, the customer must check it to add to cart.",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Text",
+          "visible_if": "{{ block.settings.type == 'text' }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "allow_long_text",
+          "label": "Allow long text",
+          "default": false,
+          "visible_if": "{{ block.settings.type == 'text' }}"
+        },
+        {
+          "type": "number",
+          "id": "max_length",
+          "label": "Maximum number of characters",
+          "visible_if": "{{ block.settings.type == 'text' }}"
+        }
+      ]
+    },
+    {
+      "type": "quantity_selector",
+      "name": "Quantity selector",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "The selector is automatically hidden if all variants are sold out. When at least one variant is available, the selector is always visible to prevent the page from moving when switching variants. To show a volume pricing table, add the dedicatd Volume pricing block."
+        }
+      ]
+    },
+    {
+      "type": "volume_pricing",
+      "name": "Volume pricing table",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "paragraph",
+          "content": "Volume pricing is only available to Shopify Plus merchants. [Learn more](https://help.shopify.com/en/manual/b2b/catalogs/quantity-pricing#volume-pricing)"
+        }
+      ]
+    },
+    {
+      "type": "inventory",
+      "name": "Inventory",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "range",
+          "id": "low_inventory_threshold",
+          "label": "Low inventory threshold",
+          "info": "Use low stock color when quantity is below the threshold. Choose 0 to always show in stock.",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_button",
+          "label": "Show dynamic checkout button",
+          "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_gift_card_recipient",
+          "label": "Show recipient information form for gift cards",
+          "info": "Allow buyers to send gift cards along with a personal message. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)",
+          "default": true
+        },
+         {
+          "type": "color",
+          "id": "atc_button_background",
+          "label": "Add to cart background"
+        },
+        {
+          "type": "color",
+          "id": "atc_button_text_color",
+          "label": "Add to cart color"
+        },
+        {
+          "type": "text",
+          "id": "payment_button_text",
+          "label": "Buy now button text",
+          "default": "CHECKOUT"
+        },
+        {
+          "type": "color",
+          "id": "payment_button_background",
+          "label": "Buy now button background"
+        },
+        {
+          "type": "color",
+          "id": "payment_button_text_color",
+          "label": "Buy now button color"
+        }
+      ]
+    },
+    {
+      "type": "pickup_availability",
+      "name": "Pickup availability",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Allow your customers to see availability in retail stores by [setting up local pickup](https://help.shopify.com/en/manual/sell-in-person/shopify-pos/order-management/local-pickup-for-online-orders)."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Content",
+          "default": "<p>Share some content to your customers about your products.</p>"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share some content to your customers about your products.</p>"
+        }
+      ]
+    },
+    {
+      "type": "collapsible_text",
+      "name": "Collapsible text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "0px 0px 0px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "0px 0px 0px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "picto-coupon",
+              "label": "Coupon",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-percent",
+              "label": "Percent",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-gift",
+              "label": "Gift",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-star",
+              "label": "Star",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-like",
+              "label": "Like",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-building",
+              "label": "Building",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-love",
+              "label": "Love",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-award-gift",
+              "label": "Award gift",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-happy",
+              "label": "Happy",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-box",
+              "label": "Box",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-pin",
+              "label": "Pin",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-timer",
+              "label": "Timer",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-validation",
+              "label": "Validation",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-truck",
+              "label": "Truck",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-return",
+              "label": "Return",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-earth",
+              "label": "Earth",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-plane",
+              "label": "Plane",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-credit-card",
+              "label": "Credit card",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-lock",
+              "label": "Lock",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-shield",
+              "label": "Shield",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-secure-profile",
+              "label": "Secure profile",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-money",
+              "label": "Money",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-recycle",
+              "label": "Recycle",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-leaf",
+              "label": "Leaf",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-tree",
+              "label": "Tree",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-mobile-phone",
+              "label": "Mobile phone",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-phone",
+              "label": "Phone",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-chat",
+              "label": "Chat",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-customer-support",
+              "label": "Customer support",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-operator",
+              "label": "Operator",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-mailbox",
+              "label": "Mailbox",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-envelope",
+              "label": "Envelope",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-comment",
+              "label": "Comment",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-question",
+              "label": "Question",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-send",
+              "label": "Send",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-at-sign",
+              "label": "At sign",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-camera",
+              "label": "Camera",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-wifi",
+              "label": "WiFi",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-bluetooth",
+              "label": "Bluetooth",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-printer",
+              "label": "Printer",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-smart-watch",
+              "label": "Smart watch",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-coffee",
+              "label": "Coffee",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-burger",
+              "label": "Burger",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-beer",
+              "label": "Beer",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-target",
+              "label": "Target",
+              "group": "Other"
+            },
+            {
+              "value": "picto-document",
+              "label": "Document",
+              "group": "Other"
+            },
+            {
+              "value": "picto-jewelry",
+              "label": "Jewelry",
+              "group": "Other"
+            },
+            {
+              "value": "picto-music",
+              "label": "Music",
+              "group": "Other"
+            },
+            {
+              "value": "picto-file",
+              "label": "File",
+              "group": "Other"
+            },
+            {
+              "value": "picto-mask",
+              "label": "Mask",
+              "group": "Other"
+            },
+            {
+              "value": "picto-stop",
+              "label": "Stop",
+              "group": "Other"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon",
+          "info": "96 x 96px .png or .svg recommended"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "min": 16,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "label": "Icon width",
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Share some content to your customers about your products.</p>"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page",
+          "info": "Replaces inline content if specified."
+        }
+      ]
+    },
+    {
+      "type": "collapsible_text_icon",
+      "name": "Collapsible text icon",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "0px 0px 0px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "0px 0px 0px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "select",
+          "id": "cols_count",
+          "label": "Desktop column count",
+          "options": [
+            {
+            "value": "2",
+            "label": "2"
+            },
+            {
+            "value": "3",
+            "label": "3"
+            },
+            {
+            "value": "4",
+            "label": "4"
+            }
+          ],
+          "default": "4"
+        },
+         {
+          "type": "select",
+          "id": "mb_cols_count",
+          "label": "Mobile column count",
+          "options": [
+            {
+            "value": "2",
+            "label": "2"
+            },
+            {
+            "value": "3",
+            "label": "3"
+            },
+            {
+            "value": "4",
+            "label": "4"
+            }
+          ],
+          "default": "3"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "picto-coupon",
+              "label": "Coupon",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-percent",
+              "label": "Percent",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-gift",
+              "label": "Gift",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-star",
+              "label": "Star",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-like",
+              "label": "Like",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-building",
+              "label": "Building",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-love",
+              "label": "Love",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-award-gift",
+              "label": "Award gift",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-happy",
+              "label": "Happy",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-box",
+              "label": "Box",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-pin",
+              "label": "Pin",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-timer",
+              "label": "Timer",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-validation",
+              "label": "Validation",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-truck",
+              "label": "Truck",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-return",
+              "label": "Return",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-earth",
+              "label": "Earth",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-plane",
+              "label": "Plane",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-credit-card",
+              "label": "Credit card",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-lock",
+              "label": "Lock",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-shield",
+              "label": "Shield",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-secure-profile",
+              "label": "Secure profile",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-money",
+              "label": "Money",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-recycle",
+              "label": "Recycle",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-leaf",
+              "label": "Leaf",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-tree",
+              "label": "Tree",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-mobile-phone",
+              "label": "Mobile phone",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-phone",
+              "label": "Phone",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-chat",
+              "label": "Chat",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-customer-support",
+              "label": "Customer support",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-operator",
+              "label": "Operator",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-mailbox",
+              "label": "Mailbox",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-envelope",
+              "label": "Envelope",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-comment",
+              "label": "Comment",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-question",
+              "label": "Question",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-send",
+              "label": "Send",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-at-sign",
+              "label": "At sign",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-camera",
+              "label": "Camera",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-wifi",
+              "label": "WiFi",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-bluetooth",
+              "label": "Bluetooth",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-printer",
+              "label": "Printer",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-smart-watch",
+              "label": "Smart watch",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-coffee",
+              "label": "Coffee",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-burger",
+              "label": "Burger",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-beer",
+              "label": "Beer",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-target",
+              "label": "Target",
+              "group": "Other"
+            },
+            {
+              "value": "picto-document",
+              "label": "Document",
+              "group": "Other"
+            },
+            {
+              "value": "picto-jewelry",
+              "label": "Jewelry",
+              "group": "Other"
+            },
+            {
+              "value": "picto-music",
+              "label": "Music",
+              "group": "Other"
+            },
+            {
+              "value": "picto-file",
+              "label": "File",
+              "group": "Other"
+            },
+            {
+              "value": "picto-mask",
+              "label": "Mask",
+              "group": "Other"
+            },
+            {
+              "value": "picto-stop",
+              "label": "Stop",
+              "group": "Other"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon",
+          "info": "96 x 96px .png or .svg recommended"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "min": 16,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "label": "Icon width",
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon1",
+          "label": "Icon #1"
+        },
+        {
+          "type": "text",
+          "id": "name1",
+          "label": "Name #1"
+        },
+        {
+          "type": "text",
+          "id": "text1",
+          "label": "Text #1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon2",
+          "label": "Icon #2"
+        },
+        {
+          "type": "text",
+          "id": "name2",
+          "label": "Name #2"
+        },
+        {
+          "type": "text",
+          "id": "text2",
+          "label": "Text #2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon3",
+          "label": "Icon #3"
+        },
+        {
+          "type": "text",
+          "id": "name3",
+          "label": "Name #3"
+        },
+        {
+          "type": "text",
+          "id": "text3",
+          "label": "Text #3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon4",
+          "label": "Icon #4"
+        },
+        {
+          "type": "text",
+          "id": "name4",
+          "label": "Name #4"
+        },
+        {
+          "type": "text",
+          "id": "text4",
+          "label": "Text #4"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon5",
+          "label": "Icon #5"
+        },
+        {
+          "type": "text",
+          "id": "name5",
+          "label": "Name #5"
+        },
+        {
+          "type": "text",
+          "id": "text5",
+          "label": "Text #5"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon6",
+          "label": "Icon #6"
+        },
+        {
+          "type": "text",
+          "id": "name6",
+          "label": "Name #6"
+        },
+        {
+          "type": "text",
+          "id": "text6",
+          "label": "Text #6"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon7",
+          "label": "Icon #7"
+        },
+        {
+          "type": "text",
+          "id": "name7",
+          "label": "Name #7"
+        },
+        {
+          "type": "text",
+          "id": "text7",
+          "label": "Text #7"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon8",
+          "label": "Icon #8"
+        },
+        {
+          "type": "text",
+          "id": "name8",
+          "label": "Name #8"
+        },
+        {
+          "type": "text",
+          "id": "text8",
+          "label": "Text #8"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon9",
+          "label": "Icon #9"
+        },
+        {
+          "type": "text",
+          "id": "name9",
+          "label": "Name #9"
+        },
+        {
+          "type": "text",
+          "id": "text9",
+          "label": "Text #9"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "start",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "end",
+              "label": "Right"
+            }
+          ],
+          "default": "start"
+        },
+        {
+          "type": "checkbox",
+          "id": "image_fill",
+          "label": "Image fill",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "min": 50,
+          "max": 1000,
+          "step": 10,
+          "unit": "px",
+          "label": "Width",
+          "default": 150
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "paragraph",
+          "content": "Create link to your contact page, external marketplace..."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Button"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+          "options": [
+            {
+              "value": "sm",
+              "label": "Small"
+            },
+            {
+              "value": "base",
+              "label": "Medium"
+            },
+            {
+              "value": "lg",
+              "label": "Large"
+            },
+            {
+              "value": "xl",
+              "label": "X-Large"
+            }
+          ],
+          "default": "xl"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            {
+              "value": "outline",
+              "label": "Outline"
+            },
+            {
+              "value": "fill",
+              "label": "Fill"
+            }
+          ],
+          "default": "fill"
+        },
+        {
+          "type": "checkbox",
+          "id": "stretch",
+          "label": "Stretch",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid",
+          "info": "Add app snippets or other Liquid code to create advanced customizations."
+        }
+      ]
+    },
+    {
+      "type": "associated_products",
+      "name": "Complementary products",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "paragraph",
+          "content": "To select complementary products, use the Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations#complementary-products)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Buy it with"
+        },
+        {
+          "type": "checkbox",
+          "id": "stack_products",
+          "label": "Stack products",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "products_count",
+          "min": 1,
+          "max": 10,
+          "label": "Products to show",
+          "default": 5
+        },
+        {
+          "type": "header",
+          "content": "Colors",
+          "info": "Cards are bordered when background matches section background."
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "offer",
+      "name": "Offer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text alignment",
+          "options": [
+            {
+              "value": "start",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            }
+          ],
+          "default": "start"
+        },
+        {
+          "type": "select",
+          "id": "icon_position",
+          "label": "Icon position",
+          "options": [
+            {
+              "value": "aligned",
+              "label": "Aligned horizontally"
+            },
+            {
+              "value": "stacked",
+              "label": "Stacked"
+            }
+          ],
+          "default": "aligned"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "picto-coupon",
+              "label": "Coupon",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-percent",
+              "label": "Percent",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-gift",
+              "label": "Gift",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-star",
+              "label": "Star",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-like",
+              "label": "Like",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-building",
+              "label": "Building",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-love",
+              "label": "Love",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-award-gift",
+              "label": "Award gift",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-happy",
+              "label": "Happy",
+              "group": "Shop"
+            },
+            {
+              "value": "picto-box",
+              "label": "Box",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-pin",
+              "label": "Pin",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-timer",
+              "label": "Timer",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-validation",
+              "label": "Validation",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-truck",
+              "label": "Truck",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-return",
+              "label": "Return",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-earth",
+              "label": "Earth",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-plane",
+              "label": "Plane",
+              "group": "Shipping"
+            },
+            {
+              "value": "picto-credit-card",
+              "label": "Credit card",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-lock",
+              "label": "Lock",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-shield",
+              "label": "Shield",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-secure-profile",
+              "label": "Secure profile",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-money",
+              "label": "Money",
+              "group": "Payment & Security"
+            },
+            {
+              "value": "picto-recycle",
+              "label": "Recycle",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-leaf",
+              "label": "Leaf",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-tree",
+              "label": "Tree",
+              "group": "Ecology"
+            },
+            {
+              "value": "picto-mobile-phone",
+              "label": "Mobile phone",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-phone",
+              "label": "Phone",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-chat",
+              "label": "Chat",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-customer-support",
+              "label": "Customer support",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-operator",
+              "label": "Operator",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-mailbox",
+              "label": "Mailbox",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-envelope",
+              "label": "Envelope",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-comment",
+              "label": "Comment",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-question",
+              "label": "Question",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-send",
+              "label": "Send",
+              "group": "Communication"
+            },
+            {
+              "value": "picto-at-sign",
+              "label": "At sign",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-camera",
+              "label": "Camera",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-wifi",
+              "label": "WiFi",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-bluetooth",
+              "label": "Bluetooth",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-printer",
+              "label": "Printer",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-smart-watch",
+              "label": "Smart watch",
+              "group": "Tech"
+            },
+            {
+              "value": "picto-coffee",
+              "label": "Coffee",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-burger",
+              "label": "Burger",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-beer",
+              "label": "Beer",
+              "group": "Food & Drink"
+            },
+            {
+              "value": "picto-target",
+              "label": "Target",
+              "group": "Other"
+            },
+            {
+              "value": "picto-document",
+              "label": "Document",
+              "group": "Other"
+            },
+            {
+              "value": "picto-jewelry",
+              "label": "Jewelry",
+              "group": "Other"
+            },
+            {
+              "value": "picto-music",
+              "label": "Music",
+              "group": "Other"
+            },
+            {
+              "value": "picto-file",
+              "label": "File",
+              "group": "Other"
+            },
+            {
+              "value": "picto-mask",
+              "label": "Mask",
+              "group": "Other"
+            },
+            {
+              "value": "picto-stop",
+              "label": "Stop",
+              "group": "Other"
+            }
+          ],
+          "default": "picto-coupon"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon",
+          "info": "240 x 240px .png recommended"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "min": 20,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "Icon width",
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Shipping"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Short content about your shipping rates or discounts.</p>"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background",
+          "default": "#eaf2ed"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#00a341"
+        }
+      ]
+    },
+    {
+      "type": "share_buttons",
+      "name": "Share buttons",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "paragraph",
+          "content": "To improve user experience and performance, native share buttons are used when supported."
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "start",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "end",
+              "label": "Right"
+            }
+          ],
+          "default": "start"
+        }
+      ]
+    },
+    {
+      "type": "icons_list",
+      "name": "Icon list",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "header",
+          "content": "Icon content is image alt",
+        },
+        { "type": "image_picker", "id": "icon_1", "label": "Icon 1" },
+        { "type": "image_picker", "id": "icon_2", "label": "Icon 2" },
+        { "type": "image_picker", "id": "icon_3", "label": "Icon 3" },
+        { "type": "image_picker", "id": "icon_4", "label": "Icon 4" }
+      ]
+    },
+    {
+      "type": "countdown",
+      "name": "Countdown",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "countdown_lbl",
+          "label": "Countdown title",
+          "default": "Hurry up!"
+        },
+        {
+          "type": "text",
+          "id": "countdown_lbl_content",
+          "label": "Countdown content 11",
+          "default": "Sale Ends In"
+        },
+        {
+          "type": "text",
+          "id": "countdown_start_date",
+          "label": "Select start date for countdown",
+          "default": "2024-12-02T00:00:00",
+          "info": "2024-12-02T00:00:00"
+        },
+        {
+          "type": "range",
+          "id": "duration",
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "unit": "Day",
+          "label": "Duration days",
+          "default": 7
+        },
+        {
+          "type": "text",
+          "id": "countdown_days",
+          "label": "Countdown Days",
+          "default": "DAYS"
+        },
+        {
+          "type": "text",
+          "id": "countdown_hours",
+          "label": "Countdown Hours",
+          "default": "HRS"
+        },
+        {
+          "type": "text",
+          "id": "countdown_minutes",
+          "label": "Countdown Minutes",
+          "default": "MIN"
+        },
+        {
+          "type": "text",
+          "id": "countdown_seconds",
+          "label": "Countdown Seconds",
+          "default": "SEC"
+        },
+        {
+          "type": "header",
+          "content": "Colors",
+          "info": "Gradient replaces solid colors when set."
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background"
+        },
+        {
+          "type": "color_background",
+          "id": "background_gradient",
+          "label": "Background gradient",
+          "default":"linear-gradient(90deg, rgba(249, 86, 6, 1), rgba(255, 193, 5, 1) 100%)"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "countdown_timer",
+      "name": "Countdown timer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+       {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Countdown title",
+          "default": "IN 10 Exclusive sale"
+        },
+         {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon",
+          "info": "240 x 240px .png recommended"
+        },
+        {
+          "type": "text",
+          "id": "countdown_start_date",
+          "label": "Select start date for countdown",
+          "default": "2024-12-02T00:00:00",
+          "info": "2024-12-02T00:00:00"
+        },
+        {
+          "type": "range",
+          "id": "duration",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "unit": "Day",
+          "label": "Duration days",
+          "default": 7
+        },
+        {
+          "type": "text",
+          "id": "countdown_days",
+          "label": "Countdown Days",
+          "default": "DAYS"
+        },
+        {
+          "type": "text",
+          "id": "countdown_hours",
+          "label": "Countdown Hours",
+          "default": "HRS"
+        },
+        {
+          "type": "text",
+          "id": "countdown_minutes",
+          "label": "Countdown Minutes",
+          "default": "MIN"
+        },
+        {
+          "type": "text",
+          "id": "countdown_seconds",
+          "label": "Countdown Seconds",
+          "default": "SEC"
+        },
+        {
+          "type": "header",
+          "content": "Colors",
+          "info": "Gradient replaces solid colors when set."
+        },
+        {
+          "label": "Countdown fill color",
+          "type": "color",
+          "id": "countdown_fill_color",
+          "default": "#000000"
+        },
+        {
+          "label": "Countdown num color",
+          "type": "color",
+          "id": "countdown_num_color",
+          "default": "#ffffff"
+        },
+        {
+          "label": "Countdown text color",
+          "type": "color",
+          "id": "countdown_text_color",
+          "default": "#999999"
+        },
+        {
+          "label": "Countdown dot color",
+          "type": "color",
+          "id": "countdown_dot_color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background"
+        },
+        {
+          "type": "color_background",
+          "id": "background_gradient",
+          "label": "Background gradient",
+          "default":"linear-gradient(90deg, rgba(249, 86, 6, 1), rgba(255, 193, 5, 1) 100%)"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#000000"
+        }
+      ]
+    },
+    {
+      "type": "bundled_sale",
+      "name": "Bundled sale",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Collapsible row",
+          "label": "Heading",
+          "info": "Include a heading that explains the content."
+        },
+        {
+          "type": "product_list",
+          "id": "free_list",
+          "label": "Product list(FREE)"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Product list"
+        }
+      ]
+    },
+    {
+      "type": "image_card",
+      "name": "Image card",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+         {
+          "label": "Image",
+          "type": "image_picker",
+          "id": "image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    },
+    {
+      "type": "discount",
+      "name": "Discount code",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+            "type": "number",
+            "id": "top",
+            "label": "Margin top",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "bottom",
+            "label": "Margin bottom",
+            "default": 0
+        },
+        {
+            "label": "Background color",
+            "type": "color",
+            "id": "bg_color"
+        },
+        {
+            "label": "Background image",
+            "type": "image_picker",
+            "id": "bg_image"
+        },
+        {
+            "type": "number",
+            "id": "padding_left",
+            "label": "Desktop padding left",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "padding_right",
+            "label": "Desktop padding right",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "mb_padding_left",
+            "label": "Mobile padding left",
+            "default": 0
+        },
+        {
+            "type": "number",
+            "id": "mb_padding_right",
+            "label": "Mobile padding right",
+            "default": 0
+        },
+        {
+            "type": "textarea",
+            "id": "discount_text",
+            "label": "Discount text",
+            "default": "15% OFF"
+        },
+        {
+            "type": "color",
+            "id": "discount_text_color",
+            "label": "Discount text color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "text",
+            "id": "discount_code",
+            "label": "Code",
+            "default": "WS24T2277"
+        },
+         {
+            "type": "color",
+            "id": "discount_code_color",
+            "label": "Discount code color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "text",
+            "id": "copy_text",
+            "label": "Copy text",
+            "default": "Copy"
+        },
+        {
+            "type": "color",
+            "id": "copy_text_color",
+            "label": "Copy text color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "text",
+            "id": "copy_success",
+            "label": "Copy success text",
+            "default": "Copied"
+        },
+        {
+            "type": "color",
+            "id": "copy_success_color",
+            "label": "Copy success color",
+            "default": "#ffe0e9"
+        }
+      ]
+    },
+    {
+      "type": "product_specs",
+      "name": "Product specs",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        }
+      ]
+    },
+    {
+      "type": "review_score",
+      "name": "Review score",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "range",
+          "id": "score",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "unit": "s",
+          "label": "Score",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "1,642 Reviews"
+        },
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_specs",
+      "label": "Enable specs",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "specs_limit",
+      "label": "Specs limit",
+      "options": [
+        {
+        "value": "3",
+        "label": "3"
+        },
+        {
+        "value": "6",
+        "label": "6"
+        }
+      ],
+      "default": "6"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_fixed_add_to_cart",
+      "label": "Show add to cart on scroll",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_fixed_discount_tag",
+      "label": "Show fixed discount tag",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "fixed_discount_tag",
+      "label": "Fixed discount tag",
+      "default": "Saved"
+    },
+    {
+      "type": "textarea",
+      "id": "fixed_content",
+      "label": "Fixed add to cart content",
+      "default": "In Stock—Estimated delivery in 5-15 business days.",
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "paragraph",
+      "content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)"
+    },
+    {
+      "type": "range",
+      "id": "desktop_media_width",
+      "label": "Desktop media size",
+      "min": 35,
+      "max": 65,
+      "step": 5,
+      "unit": "%",
+      "default": 55
+    },
+    {
+      "type": "select",
+      "id": "desktop_media_layout",
+      "label": "Desktop media layout",
+      "options": [
+        {
+          "value": "grid_one",
+          "label": "Grid (1x1)"
+        },
+        {
+          "value": "grid",
+          "label": "Grid (2x2)"
+        },
+        {
+          "value": "grid_highlight",
+          "label": "Grid (2x2) with highlighted media"
+        },
+        {
+          "value": "carousel_thumbnails_left",
+          "label": "Thumbnails left (carousel)"
+        },
+        {
+          "value": "carousel_thumbnails_bottom",
+          "label": "Thumbnails bottom (carousel)"
+        }
+      ],
+      "default": "carousel_thumbnails_left"
+    },
+    {
+      "type":"select",
+      "id": "mobile_media_size",
+      "label": "Mobile media size",
+      "options": [
+        {
+          "value": "expanded",
+          "label": "Expanded"
+        },
+        {
+          "value": "contained",
+          "label": "Contained"
+        }
+      ],
+      "default": "expanded"
+    },
+    {
+      "type": "select",
+      "id": "mobile_carousel_control",
+      "label": "Mobile carousel control",
+      "options": [
+        {
+          "value": "dots",
+          "label": "Dots"
+        },
+        {
+          "value": "floating_dots",
+          "label": "Floating dots"
+        },
+        {
+          "value": "thumbnails",
+          "label": "Thumbnails"
+        },
+        {
+          "value": "free_scroll",
+          "label": "Free scroll"
+        }
+      ],
+      "default": "floating_dots"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_autoplay",
+      "label": "Enable video autoplay",
+      "info": "Video are muted automatically to allow autoplay. Grid mode on desktop turn off autoplay.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Enable video looping",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Image zoom"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image_zoom",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "max_image_zoom_level",
+      "min": 1,
+      "max": 4,
+      "step": 0.5,
+      "label": "Max zoom level",
+      "default": 3,
+      "visible_if": "{{ section.settings.enable_image_zoom }}"
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    },
+    {
+      "type": "header",
+      "content": "Input colors",
+      "info": "Applies to elements like quantity selector and variant selectors."
+    },
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Background",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Text"
+    }
+  ]
+}
+{% endschema %}

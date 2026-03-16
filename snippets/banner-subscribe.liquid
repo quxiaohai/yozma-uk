@@ -1,0 +1,605 @@
+{% assign secId = section.id | split: '__' | last %}
+<style>
+    .{{ secId }}-subscribe {
+        width: 100%;
+        padding: {{ info.top | divided_by: 19.2 }}vw {{ info.right | divided_by: 19.2 }}vw {{ info.bottom | divided_by: 19.2 }}vw {{ info.left | divided_by: 19.2 }}vw;
+    }
+
+    {%- if info.show_intro -%}
+    .{{ secId }}-subscribe .subscribe-remark {
+        font-size: {{ info.pc_intro_size }};
+        text-align: {{ info.info_align }};
+        color: {{ info.intro_color }};
+        padding-bottom: {{ info.pc_intro_bottom }};
+        word-break: break-word;
+        width: 100%;
+    }
+
+    .{{ secId }}-subscribe .subscribe-remark strong {
+        color: {{ info.intro_bold_color }};
+    }
+
+    {%- endif -%}
+
+    .{{ secId }}-subscribe.style-2 .form-wrap {
+        padding: 3px;
+        border: 0 none !important;
+        background-color: #FFFFFF;
+        height: {% if info.input_h > 0 %}{{ info.input_h }}px{% else %} 60px{% endif %};
+    }
+
+    .{{ secId }}-subscribe.style-2 .form-wrap .btn {
+        padding: 0 24px;
+        font-weight: 400;
+    }
+
+    .{{ secId }}-subscribe .subscribe-status {
+        font-weight: bold;
+        font-size: 20px;
+        padding: 20px 0;
+        color: {{ info.sub_success_color }};
+        display: none;
+    }
+
+    .{{ secId }}-subscribe .subscribe-status.show {
+        display: block;
+    }
+
+    .{{ secId }}-subscribe .subscribe-wrap {
+        width: {% if info.input_w > 0 %}{{ info.input_w }}px{% else %} 466px{% endif %};
+    }
+
+    .{{ secId }}-subscribe .subscribe-wrap.hidden {
+        display: none;
+    }
+
+    .{{ secId }}-subscribe .form-content {
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .{{ secId }}-subscribe .form-content .error .item-error {
+        opacity: 1;
+    }
+
+    .{{ secId }}-subscribe .form-content .error-wrap {
+        position: relative;
+        width: 0;
+        height: 0;
+        z-index: 1;
+    }
+
+    .{{ secId }}-subscribe .form-content .item-error {
+        border-radius: 4px;
+        box-shadow: rgba(0, 0, 0, 0.26) 1px 1px 4px 0;
+        border: 1px solid rgb(208, 51, 31);
+        background-color: rgb(255, 244, 240);
+        pointer-events: none;
+        font-size: 14px;
+        padding: 8px;
+        color: rgb(208, 51, 31);
+        position: absolute;
+        left: -18px;
+        top: 10px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: all 0.5s;
+    }
+
+    .{{ secId }}-subscribe .form-content .item-error:before, .{{ secId }}-subscribe .form-content .item-error:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border: 8px solid transparent;
+        border-bottom-color: rgb(208, 51, 31);
+        position: absolute;
+        left: 10px;
+        top: -16px;
+        z-index: 1;
+    }
+
+    .{{ secId }}-subscribe .form-content .item-error:after {
+        border-bottom-color: rgb(255, 244, 240);
+        top: -15px;
+        z-index: 2;
+    }
+
+    .{{ secId }}-subscribe .form-wrap {
+        width: 100%;
+        height: {% if info.input_h > 0 %}{{ info.input_h }}px{% else %} 52px{% endif %};
+        background: {% if info.input_bg_color != blank %}{{ info.input_bg_color }}{% else %}none{% endif %};
+        border-radius: {% if info.input_deg != blank %}{{ info.input_deg }}px{% else %} 200px{% endif %};
+        border: 1.5px solid{{ info.input_border_color }};
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .{{ secId }}-subscribe .form-wrap .error-wrap {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .{{ secId }}-subscribe .form-wrap .item-error {
+        left: auto;
+        top: 15px;
+        right: 0;
+    }
+
+    .{{ secId }}-subscribe .form-wrap .u-input {
+        line-height: 48px;
+        border: none;
+        outline: none;
+        background: none;
+        flex: 1;
+        width: 100%;
+        font-size: {% if info.input_size != blank %}{{ info.input_size }}px{% else %} 18px{% endif %};
+        color: {{ info.input_color }};
+        padding: 0 10px 0 24px;
+        box-sizing: border-box;
+    {% if info.input_align != blank %} text-align: {{ info.input_align }};
+    {% endif %}
+    }
+
+    .{{ secId }}-subscribe .form-wrap .u-input:-webkit-autofill {
+        transition: background-color 5000s ease-in-out 0s;
+        -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    }
+
+    .{{ secId }}-subscribe .form-wrap .u-input:focus {
+        outline: none;
+        border: none;
+        box-shadow: 0 0 0 2px transparent;
+    }
+
+    .{{ secId }}-subscribe .form-wrap .u-input::placeholder {
+        color: {{ info.input_color }};
+        opacity: 0.6;
+    }
+
+    .{{ secId }}-subscribe .col-btn,
+    .{{ secId }}-subscribe .form-wrap .btn {
+        font-size: {% if info.pc_sub_btn_size != blank %}16px{% endif %};
+        font-weight: 700;
+        height: 100%;
+        padding: 0 37px;
+        color: {{ info.btn_color }};
+        border-radius: {% if info.input_deg != blank %}{{ info.input_deg }}px{% else %} 200px{% endif %};
+        border: 0 none;
+        transition: all 0.5s;
+        background: {% if info.btn_bg_color != blank %}{{ info.btn_bg_color }}{% else %}#FFDB00{% endif %};
+        box-shadow: 0.955px 0 1.91px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .{{ secId }}-subscribe .col-btn {
+        margin-top: {% if info.pc_sub_btn_top != blank %}{{ info.pc_sub_btn_top }}px;
+    {% else %} 12px {% endif %};
+        height: {% if info.input_h > 0 %}{{ info.input_h }}px{% else %} 52px{% endif %};
+        width: 100%;
+    }
+
+    .{{ secId }}-subscribe .col-btn:hover {
+        opacity: 0.8;
+    }
+
+    .{{ secId }}-subscribe .form-wrap .btn:hover {
+        opacity: 0.8;
+    }
+
+    .{{ secId }}-subscribe .privacy-info {
+        padding-top: {% if info.pc_privacy_top > 0 %}{{ info.pc_privacy_top }}px{% else %} 12px{% endif %};
+        justify-content: center;
+        line-height: 1.2;
+        cursor: pointer;
+    }
+
+    .{{ secId }}-subscribe .privacy-info.checked .checkbox {
+        background-color: {{ info.privacy_active_color }};
+        border-color: {{ info.privacy_active_color }};
+    }
+
+    .{{ secId }}-subscribe .privacy-info.checked .checkbox .svg-icon {
+        opacity: 1;
+    }
+
+    .{{ secId }}-subscribe .privacy-info .checkbox {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: 1.5px solid{{ info.privacy_color }};
+        transition: all 0.5s;
+    }
+
+    .{{ secId }}-subscribe .privacy-info .checkbox .svg-icon {
+        width: 10px;
+        opacity: 0;
+    }
+
+    .{{ secId }}-subscribe .privacy-info .text {
+        padding-left: 7px;
+        font-size: {% if info.pc_privacy_size != blank %}{{ info.pc_privacy_size }}{% else %} 16px{% endif %};
+        color: {{ info.privacy_color }};
+        font-weight: 400;
+        line-height: 1.2;
+        word-break: break-all;
+        text-align: left;
+        max-width: 95%;
+    }
+
+    .{{ secId }}-subscribe .privacy-info .text a {
+        text-decoration: underline;
+        color: {{ info.privacy_link_color }};
+    }
+
+    .{{ secId }}-subscribe .privacy-info .text a:hover {
+        color: {{ info.privacy_link_hover_color }};
+    }
+
+    @media screen and (max-width: 1850px) {
+        .{{ secId }}-subscribe.style-2 .form-wrap {
+            padding: 2px;
+            height: {% if info.input_h > 0 %}{{ info.input_h | times: 0.8 }}px{% else %} 48px{% endif %};
+        }
+
+        .{{ secId }}-subscribe.style-2 .form-wrap .btn {
+            padding: 0 19.2px;
+        }
+
+        .{{ secId }}-subscribe .subscribe-wrap {
+            width: {% if info.input_w > 0 %}{{ info.input_w | times: 0.8 }}px{% else %} 372.8px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap,
+        .{{ secId }}-subscribe .col-btn {
+            height: {% if info.input_h > 0 %}{{ info.input_h | times: 0.8 }}px{% else %} 41.6px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap .u-input {
+            line-height: 38.4px;
+            padding: 0 8px 0 19.2px;
+        {%- assign size = info.input_size | times: 0.8 -%} font-size: {% if size != blank and size >= 12%}{{ size }}px{% else %} 15px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap .btn {
+            padding: 0 29.6px;
+        }
+
+        .{{ secId }}-subscribe .form-wrap .btn,
+        .{{ secId }}-subscribe .col-btn {
+        {%- assign size = info.pc_sub_btn_size | times: 0.8 -%} font-size: {% if size != blank and size >= 12%}{{ size }}px{% else %} 13px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .privacy-info {
+            padding-top: {% if info.pc_privacy_top > 0 %}{{ info.pc_privacy_top | times: 0.8 }}px{% else %} 9.6px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .privacy-info .checkbox {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+
+        .{{ secId }}-subscribe .privacy-info .checkbox .svg-icon {
+            width: 8px;
+        }
+
+        .{{ secId }}-subscribe .privacy-info .text {
+            padding-left: 5px;
+        {%- assign size = info.pc_privacy_size | minus: 2 -%} font-size: {% if size != blank and size >= 12%}{{ size }}{% else %} 14px{% endif %};
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        .{{ secId }}-subscribe.style-2 .form-wrap {
+            padding: 2px;
+            height: {% if info.input_h > 0 %}{{ info.input_h | times: 0.7 }}px{% else %} 42px{% endif %};
+        }
+
+        .{{ secId }}-subscribe.style-2 .form-wrap .btn {
+            padding: 0 16.8px;
+        }
+
+        .{{ secId }}-subscribe .subscribe-wrap {
+            width: {% if info.input_w > 0 %}{{ info.input_w | times: 0.7 }}px{% else %} 326.2px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap,
+        .{{ secId }}-subscribe .col-btn {
+            height: {% if info.input_h > 0 %}{{ info.input_h | times: 0.7 }}px{% else %} 36.4px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap .u-input {
+            line-height: 33.6px;
+            padding: 0 7px 0 16.8px;
+        {%- assign size = info.input_size | times: 0.7 -%} font-size: {% if size != blank and size >= 12%}{{ size }}px{% else %} 13px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap .btn {
+            padding: 0 25.9px;
+        }
+
+        .{{ secId }}-subscribe .form-wrap .btn,
+        .{{ secId }}-subscribe .col-btn {
+        {%- assign size = info.pc_sub_btn_size | times: 0.7 -%} font-size: {% if size != blank and size >= 12%}{{ size }}px{% else %} 12px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .privacy-info {
+            padding-top: {% if info.pc_privacy_top > 0 %}{{ info.pc_privacy_top | times: 0.7 }}px{% else %} 8.4px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .privacy-info .checkbox {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+
+        .{{ secId }}-subscribe .privacy-info .checkbox .svg-icon {
+            width: 8px;
+        }
+
+        .{{ secId }}-subscribe .privacy-info .text {
+            padding-left: 5px;
+        {%- assign size = info.pc_privacy_size | minus: 4 -%} font-size: {% if size != blank and size >= 12%}{{ size }}{% else %} 14px{% endif %};
+        }
+    }
+
+    @media screen and (max-width: 1080px) {
+        .{{ secId }}-subscribe.style-2 .form-wrap {
+            height: {% if info.input_h > 0 %}{{ info.input_h | times: 0.6 }}px{% else %} 3.9473684211vw{% endif %};
+            padding: 2px;
+        }
+
+        .{{ secId }}-subscribe.style-2 .form-wrap .btn {
+            padding: 0 1.5789473684vw;
+        }
+
+        .{{ secId }}-subscribe .subscribe-wrap {
+            width: {% if info.input_w > 0 %}{{ info.input_w | times: 0.6 }}px{% else %} 30.6578947368vw{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap,
+        .{{ secId }}-subscribe .col-btn {
+            height: {% if info.input_h > 0 %}{{ info.input_h | times: 0.6 }}px{% else %} 3.4210526316vw{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap .u-input {
+            line-height: 3.1578947368vw;
+            padding: 0 0.6578947368vw 0 1.5789473684vw;
+        {%- assign size = info.input_size | times: 0.6 -%} font-size: {% if size != blank and size >= 12%}{{ size }}px{% else %} 12px{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap .btn {
+            padding: 0 2.4342105263vw;
+        }
+
+        .{{ secId }}-subscribe .privacy-info {
+            padding-top: {% if info.pc_privacy_top > 0 %}{{ info.pc_privacy_top | times: 0.6 }}px{% else %} 0.7894736842vw{% endif %};
+        }
+
+        .{{ secId }}-subscribe .privacy-info .checkbox {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+
+        .{{ secId }}-subscribe .privacy-info .checkbox .svg-icon {
+            width: 8px;
+        }
+
+        .{{ secId }}-subscribe .privacy-info .text {
+            padding-left: 5px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .{{ secId }}-subscribe {
+            padding: {{ info.mb_top }}px 0 {{ info.mb_bottom }}px;
+            justify-content: center;
+        }
+
+    {%- if info.show_intro -%}
+        .{{ secId }}-subscribe .subscribe-remark {
+            font-size: {{ info.mb_intro_size }};
+            padding-bottom: {{ info.mb_intro_bottom }};
+        }
+
+    {%- endif -%}
+
+        .{{ secId }}-subscribe.style-2 {
+            padding-top: 0.6009615385rem;
+        }
+
+        .{{ secId }}-subscribe.style-2 .subscribe-wrap {
+            width: 16.9471153846rem;
+        }
+
+        .{{ secId }}-subscribe.style-2 .form-wrap,
+        .{{ secId }}-subscribe .col-btn {
+            height: {% if info.mb_input_h > 0 %}{{ info.mb_input_h  }}px{% else %} 2.5240384615rem{% endif %};
+            padding: 1px;
+        }
+
+        .{{ secId }}-subscribe .col-btn {
+            padding: 0;
+        {% if info.mb_sub_btn_top != blank %} margin-top: {{ info.mb_sub_btn_top }}px;
+        {% endif %} font-size: {% if info.mb_sub_btn_size != blank %}{{ info.mb_sub_btn_size }}px{% else %} 0.6009615385rem{% endif %};
+        }
+
+        .{{ secId }}-subscribe.style-2 .form-wrap .u-input {
+            font-size: 14px;
+        }
+
+        .{{ secId }}-subscribe.style-2 .form-wrap .btn {
+            padding: 0 0.8413461538rem;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .{{ secId }}-subscribe.style-2 .privacy-info {
+            padding-top: 1.8028846154rem;
+        }
+
+        .{{ secId }}-subscribe .subscribe-status {
+            font-size: 1.2019230769rem;
+            text-align: center;
+            word-break: break-word;
+            padding: 1.2019230769rem;
+        }
+
+        .{{ secId }}-subscribe .subscribe-wrap {
+            margin: 0 auto;
+            width: {% if info.mb_input_w > 0 %}{{ info.mb_input_w  }}px{% else %} 18.0288461538rem{% endif %};
+        }
+
+        .{{ secId }}-subscribe .form-wrap {
+            height: {% if info.mb_input_h > 0 %}{{ info.mb_input_h  }}px{% else %} 1.9230769231rem{% endif %};
+            border-width: 1px;
+        }
+
+        .{{ secId }}-subscribe .form-wrap .u-input {
+            line-height: 1.6826923077rem;
+            font-size: {% if info.mb_input_size != blank %}{{ info.mb_input_size }}px{% else %} 0.6610576923rem{% endif %};
+            padding: 0 0.4807692308rem 0 0.8413461538rem;
+        {% if info.mb_input_align != blank %} text-align: {{ info.mb_input_align }};
+        {% endif %}
+        }
+
+        .{{ secId }}-subscribe .form-wrap .btn {
+            font-size: {% if info.mb_sub_btn_size != blank %}{{ info.mb_sub_btn_size }}px{% else %} 0.6009615385rem{% endif %};
+            padding: 0 1.3822115385rem;
+        }
+
+        .{{ secId }}-subscribe .privacy-info {
+            padding-top: {% if info.mb_privacy_top > 0 %}{{ info.mb_privacy_top }}px{% else %} 0.4206730769rem{% endif %};
+        }
+
+        .{{ secId }}-subscribe .privacy-info .checkbox {
+            width: 12px;
+            height: 12px;
+        }
+
+        .{{ secId }}-subscribe .privacy-info .text {
+            font-size: {% if info.mb_privacy_size != blank %}{{ info.mb_privacy_size }}px{% else %} 10px{% endif %};
+        }
+    }
+</style>
+<div id="{{ section.id }}-subscribe"
+     class="{{ secId }}-subscribe {{ info.pc_align }}{% if style %} {{ style }}{% endif %}">
+    <div class="subscribe-wrap" node-name="wrap">
+        {%- if info.show_intro -%}
+            <div class="subscribe-remark">
+                {{ info.intro }}
+            </div>
+        {%- endif -%}
+        <form class="form-content" node-name="form">
+            <label class="form-wrap flex-between" node-name="input">
+                <input type="text" node-name="email" class="u-input" placeholder="{{ info.input_placeholder }}"/>
+                {%- if info.sub_btn_align != 'col' -%}
+                    <button class="btn" node-name="submit" type="submit">{{ info.sub_btn }}</button>
+                {%- endif -%}
+                <span class="error-wrap">
+                <span class="item-error" node-name="error">{{ info.privacy_required }}</span>
+            </span>
+            </label>
+            {%- if info.show_privacy -%}
+                <div class="privacy-info {% if info.privacy_checked %}checked{% endif %} flex-top" node-name="privacy">
+                    <div class="checkbox flex-center">
+                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="10.707" height="7.511"
+                             viewBox="0 0 10.707 7.511">
+                            <path d="M-11467.566,874.83l3.55,3.55,6.45-6.451"
+                                  transform="translate(11467.92 -871.575)" fill="none"
+                                  stroke="#fff" stroke-width="1"></path>
+                        </svg>
+                    </div>
+                    <div class="text flex-bottom">
+                        <div class="error-wrap">
+                            <div class="item-error">{{ info.privacy_required }}</div>
+                        </div>
+                        {{ info.privacy_text }}
+                    </div>
+                </div>
+            {%- endif -%}
+            {%- if info.sub_btn_align == 'col' -%}
+                <button class="col-btn" node-name="submit" type="submit">{{ info.sub_btn }}</button>
+            {%- endif -%}
+        </form>
+    </div>
+    {% comment %}<div class="subscribe-status" node-name="status">{{ info.sub_success }}</div>{% endcomment %}
+</div>
+<script>
+    (function () {
+        const node = document.getElementById('{{ section.id }}-subscribe');
+        const nodeList = $heybike.getNodeList(node);
+        nodeList.privacy && nodeList.privacy.addEventListener("click", (ev) => {
+            if (ev.target.tagName.toLocaleLowerCase() === "a") {
+                return false;
+            }
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (nodeList.privacy.classList.contains("checked")) {
+                nodeList.privacy.classList.remove("checked");
+            } else {
+                nodeList.privacy.classList.add("checked");
+                nodeList.privacy.classList.remove("error");
+            }
+        });
+
+        const isVerifyEmail = (val) => {
+            var reg1 = /@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;//防止输入过长的时候，卡死
+            var reg2 = /^([a-zA-Z0-9_-]+[_|\_|\.]?)+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+            if (reg1.test(val)) {
+                return reg2.test(val);
+            }
+            return false;
+        };
+
+        nodeList.email.addEventListener("blur", () => {
+            const value = nodeList.email.value.trim();
+            if (value === "") {
+                nodeList.error.innerHTML = '{{ info.input_empty }}';
+                nodeList.input.classList.add("error");
+            } else if (!isVerifyEmail(value)) {
+                nodeList.error.innerHTML = '{{ info.input_required }}';
+                nodeList.input.classList.add("error");
+            } else {
+                nodeList.input.classList.remove("error");
+            }
+        });
+
+        nodeList.submit.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            ev.preventDefault();
+            if (nodeList.form.classList.contains("disabled")) {
+                ev.stopPropagation();
+                ev.preventDefault();
+                return false;
+            }
+            let isVerify = true;
+
+            const value = nodeList.email.value.trim();
+
+            if (value === "") {
+                nodeList.error.innerHTML = '{{ info.input_empty }}';
+                nodeList.input.classList.add("error");
+                isVerify = false;
+            } else if (!isVerifyEmail(value)) {
+                nodeList.error.innerHTML = '{{ info.input_required }}';
+                nodeList.input.classList.add("error");
+                isVerify = false;
+            }
+
+            if (!nodeList.privacy.classList.contains("checked")) {
+                nodeList.privacy.classList.add("error");
+                isVerify = false;
+            }
+
+            if (!isVerify) {
+                ev.stopPropagation();
+                ev.preventDefault();
+            }
+            nodeList.form.classList.add("disabled");
+        });
+    })();
+</script>

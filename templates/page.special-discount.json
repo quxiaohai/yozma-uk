@@ -1,0 +1,261 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "rich_text_QC9c9F": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_tkMwaL": {
+          "type": "heading",
+          "settings": {
+            "text": "Discount for Those Who Serve",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_JeRFaX": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h4>We offer a $50 discount exclusively to military personnel, teachers, police officers, firefighters, and medical professionals.</h4>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tkMwaL",
+        "richtext_JeRFaX"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "image_link_blocks_iqC6Be": {
+      "type": "image-link-blocks",
+      "blocks": {
+        "item_VdEH9X": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/2_7c37419e-fbe6-4402-b460-14fd2eb893b4.webp",
+            "stretch_image": true,
+            "link_text": "Military",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_gUUk7M": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/11_1.webp",
+            "stretch_image": true,
+            "link_text": "Responder",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_CFMM93": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_631e0b4f-3122-47bd-a3ca-5572fb96d9a3.webp",
+            "stretch_image": true,
+            "link_text": "Teacher",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_gkUDRy": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/S.webp",
+            "stretch_image": true,
+            "link_text": "Student",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_Nh98jc": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/10_1.webp",
+            "stretch_image": true,
+            "link_text": "Medical",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "item_VdEH9X",
+        "item_gUUk7M",
+        "item_CFMM93",
+        "item_gkUDRy",
+        "item_Nh98jc"
+      ],
+      "name": "Image link blocks",
+      "settings": {
+        "full_width": false,
+        "block_size": "large",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "link_url": "",
+        "link_text": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "rich_text_TRPEQ7": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_YA9iQq": {
+          "type": "subheading",
+          "settings": {
+            "text": "Special crowd discounts cannot be enjoyed at the same time as other discounts"
+          }
+        },
+        "heading_eXgyVW": {
+          "type": "heading",
+          "settings": {
+            "text": "HOW TO RECEIVE YOUR DISCOUNT?",
+            "heading_tag": "h2",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_L3Nxin": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>1. Please send us your photo ID via support@yozmasport.com, and once confirmed, we will offer you a special discount.<br/>2. Please apply this discount at the checkout page.<br/><br/>MORE INFO<br/>This promotion is valid in the US only. Each person can only redeem the discount coupon once. We reserve the right to change or discontinue this discount program at any time. This discount is only valid for e-bikes. This discount event is not available for products from Yozma's Amazon store.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_YA9iQq",
+        "heading_eXgyVW",
+        "richtext_L3Nxin"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "faq_g8BUGb": {
+      "type": "faq",
+      "blocks": {
+        "item_rBKbcr": {
+          "type": "item",
+          "settings": {
+            "title": "Military Verification",
+            "content": "<p>Valid Documents:</p><p>1. DD-214 (you may block SSN)</p><p>2. LES, DFAS or TRICARE Document</p><p>3. Veterans Affairs ID or VA Postal Letter</p><p>4. USAA Insurance Card</p><p>5. Navy Federal Statement</p><p>6. Driver's License showing Veteran mark (requires visit to DMV to add it)</p><p>7. G.I. Bill Document</p>"
+          }
+        },
+        "item_6UcKpG": {
+          "type": "item",
+          "settings": {
+            "title": "Responder Verification",
+            "content": "<p>Valid Documents:</p><p>1. Official ID Card</p><p>2. Official Badge (must have your name on it)</p><p>3. Pay stub from your employer</p><p>4. Promotion/Award Certificate</p><p>5. Signed letter of employment status from your agency</p>"
+          }
+        },
+        "item_RWUcce": {
+          "type": "item",
+          "settings": {
+            "title": "Medical Verification",
+            "content": "<p>Valid Documents:</p><p>1. Official ID Card</p><p>2. Official Badge (must have your name on it)</p><p>3. Pay stub from your employer</p><p>4. Promotion/Award Certificate</p><p>5. Signed letter of employment status from your agency</p>"
+          }
+        },
+        "item_QHg3pa": {
+          "type": "item",
+          "settings": {
+            "title": "Teacher Verification",
+            "content": "<p>Valid Documents:</p><p>1. Official ID Card or Badge</p><p>2. Educator's License or State Certification</p><p>3. Credential used to gain access to your campus (must have your name on it)</p><p>4. Pay Stub from your employer</p><p>5. Signed letter of employment status from your school</p>"
+          }
+        },
+        "item_XiaBDb": {
+          "type": "item",
+          "settings": {
+            "title": "Student Verification",
+            "content": "<p>1. A student ID card with a date</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_rBKbcr",
+        "item_6UcKpG",
+        "item_RWUcce",
+        "item_QHg3pa",
+        "item_XiaBDb"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "What documents can qualify for this exclusive discount?",
+        "content": "<p>The following documents are required for verification (only one document is required)</p>",
+        "team_avatar_width": 160,
+        "support_hours": "",
+        "answer_time": "",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "",
+        "accordion_text_color": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_QC9c9F",
+    "image_link_blocks_iqC6Be",
+    "rich_text_TRPEQ7",
+    "faq_g8BUGb"
+  ]
+}

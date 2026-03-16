@@ -1,0 +1,263 @@
+{% assign secId = section.id | split: '__' | last %}
+<style>
+    .{{ secId }}-btn-{{ order }} {
+        width: 100%;
+        padding: {{ info.top }}px {{ info.right }}px {{ info.bottom }}px {{ info.left }}px;
+        display: flex;
+        align-items: center;
+        justify-content: {% if info.pc_align == 'flex-left' %}flex-start{% elsif info.pc_align == 'flex-center' %}center{% else %}flex-end{% endif %};
+    }
+
+    .{{ secId }}-btn-{{ order }} .btn-now {
+        height: auto;
+        line-height: 1.14;
+        text-align: center;
+        border-radius: {% if info.btn1_border_radius != blank %}{{ info.btn1_border_radius }}px{% else %}100px{% endif %};
+        box-sizing: border-box;
+        transition: all 0.3s;
+        text-decoration: none;
+        font-size: {{ info.btn1_pc_size }}px;
+        font-weight: {{ info.btn1_pc_weight }};
+        padding: {{ info.btn1_pc_y }}px {{ info.btn1_pc_x }}px;
+        background: {% if info.btn1_bg_color != blank %}{{ info.btn1_bg_color }}{% else %}none{% endif %};
+        color: {{ info.btn1_color }};
+        box-shadow: inset 0 0 0 {% if info.btn1_show_border %}1px {{ info.btn1_border_color }}{% else %}transparent{% endif %};
+    }
+
+    .{{ secId }}-btn-{{ order }} .btn-now .prefix-img,
+    .{{ secId }}-btn-{{ order }} .btn-now .suffix-img {
+        height: {{ info.btn1_pc_size | plus: 10 }}px;
+        vertical-align: middle;
+        margin-right: 6px;
+    }
+
+    .{{ secId }}-btn-{{ order }} .btn-now .suffix-img {
+        margin-left: 6px;
+        margin-right: 0;
+    }
+
+    {% if info.show_btn2 %}
+    .{{ secId }}-btn-{{ order }} .btn-now.more {
+        margin-left: {{ info.btn2_pc_left }}px;
+        font-weight: {{ info.btn2_pc_weight }};
+        font-size: {{ info.btn2_pc_size }}px;
+        padding: {{ info.btn2_pc_y }}px {{ info.btn2_pc_x }}px;
+        background: {% if info.btn2_bg_color != blank %}{{ info.btn2_bg_color }}{% else %}none{% endif %};
+        color: {{ info.btn2_color }};
+        border-radius: {% if info.btn2_border_radius != blank %}{{ info.btn2_border_radius }}px{% else %}100px{% endif %};;
+        box-shadow: inset 0 0 0 {% if info.btn2_show_border %}1px {{ info.btn2_border_color }}{% else %}transparent{% endif %};
+    }
+
+    {% endif %}
+
+    .{{ secId }}-btn-{{ order }} .btn-now:hover {
+        opacity: 0.8;
+    }
+
+    @media screen and (max-width: 1850px) {
+        .{{ secId }}-btn-{{ order }} {
+            padding: {{ info.top | times: 0.8 }}px {{ info.right | times: 0.8 }}px {{ info.bottom | times: 0.8 }}px {{ info.left | times: 0.8 }}px;
+        }
+
+    {%- assign size = info.btn1_pc_size | times: 0.8 -%}
+    {%- if size < 12 -%}{%- assign size = 12 -%}{%- endif -%}
+        .{{ secId }}-btn-{{ order }} .btn-now {
+            font-size: {{ size }}px;
+            padding: {{ info.btn1_pc_y | times: 0.8 }}px {{ info.btn1_pc_x | times: 0.8 }}px;
+        }
+
+        .{{ secId }}-btn-{{ order }} .btn-now .prefix-img,
+        .{{ secId }}-btn-{{ order }} .btn-now .suffix-img {
+            height: {{ size | plus: 10 }}px;
+        }
+
+    {% if info.show_btn2 %}
+        .{{ secId }}-btn-{{ order }} .btn-now.more {
+            margin-left: {{ info.btn2_pc_left | times: 0.8 }}px;
+        {%- assign size = info.btn2_pc_size | times: 0.8 -%}{%- if size < 12 -%}{%- assign size = 12 -%}{%- endif -%} font-size: {{ size }}px;
+            padding: {{ info.btn2_pc_y | times: 0.8 }}px {{ info.btn2_pc_x | times: 0.8 }}px;
+        }
+
+    {% endif %}
+    }
+
+    @media screen and (max-width: 1440px) {
+        .{{ secId }}-btn-{{ order }} {
+            padding: {{ info.top | times: 0.7 }}px {{ info.right | times: 0.7 }}px {{ info.bottom | times: 0.7 }}px {{ info.left | times: 0.7 }}px;
+        }
+
+    {%- assign size = info.btn1_pc_size | times: 0.7 -%}
+    {%- if size < 12 -%}{%- assign size = 12 -%}{%- endif -%}
+        .{{ secId }}-btn-{{ order }} .btn-now {
+            font-size: {{ size }}px;
+            padding: {{ info.btn1_pc_y | times: 0.7 }}px {{ info.btn1_pc_x | times: 0.7 }}px;
+        }
+
+        .{{ secId }}-btn-{{ order }} .btn-now .prefix-img,
+        .{{ secId }}-btn-{{ order }} .btn-now .suffix-img {
+            height: {{ size | plus: 10 }}px;
+        }
+
+    {% if info.show_btn2 %}
+        .{{ secId }}-btn-{{ order }} .btn-now.more {
+            margin-left: {{ info.btn2_pc_left | times: 0.7 }}px;
+        {%- assign size = info.btn2_pc_size | times: 0.7 -%}{%- if size < 12 -%}{%- assign size = 12 -%}{%- endif -%} font-size: {{ size }}px;
+            padding: {{ info.btn2_pc_y | times: 0.7 }}px {{ info.btn2_pc_x | times: 0.7 }}px;
+        }
+
+    {% endif %}
+    }
+
+    @media screen and (max-width: 1080px) {
+        .{{ secId }}-btn-{{ order }} {
+            padding: {{ info.top | times: 0.6 }}px {{ info.right | times: 0.6 }}px {{ info.bottom | times: 0.6 }}px {{ info.left | times: 0.6 }}px;
+        }
+
+    {%- assign size = info.btn1_pc_size | times: 0.6 -%}
+    {%- if size < 12 -%}{%- assign size = 12 -%}{%- endif -%}
+        .{{ secId }}-btn-{{ order }} .btn-now {
+            font-size: {{ size }}px;
+            padding: {{ info.btn1_pc_y | times: 0.6 }}px {{ info.btn1_pc_x | times: 0.6 }}px;
+        }
+
+        .{{ secId }}-btn-{{ order }} .btn-now .prefix-img,
+        .{{ secId }}-btn-{{ order }} .btn-now .suffix-img {
+            height: {{ size | plus: 10 }}px;
+        }
+
+    {% if info.show_btn2 %}
+        .{{ secId }}-btn-{{ order }} .btn-now.more {
+            margin-left: {{ info.btn2_pc_left | times: 0.6 }}px;
+        {%- assign size = info.btn2_pc_size | times: 0.6 -%}{%- if size < 12 -%}{%- assign size = 12 -%}{%- endif -%} font-size: {{ size }}px;
+            padding: {{ info.btn2_pc_y | times: 0.6 }}px {{ info.btn2_pc_x | times: 0.6 }}px;
+        }
+
+    {% endif %}
+    }
+
+    @media screen and (max-width: 768px) {
+        .{{ secId }}-btn-{{ order }} {
+            padding: {{ info.mb_top }}px {{ info.mb_right }}px {{ info.mb_bottom }}px {{ info.mb_left }}px;
+            justify-content: {% if info.mb_align == 'flex-left' %}flex-start{% elsif info.mb_align == 'flex-center' %}center{% else %}flex-end{% endif %};
+        }
+
+        .{{ secId }}-btn-{{ order }} .btn-now {
+            font-size: {{ info.btn1_mb_size }}px;
+            font-weight: {{ info.btn1_mb_weight }};
+            padding: {{ info.btn1_mb_y }}px {{ info.btn1_mb_x }}px;
+            background-color: {{ info.btn1_bg_color }};
+            color: {{ info.btn1_color }};
+        }
+
+    {% if info.btn1_prefix_url != blank %}
+        .{{ secId }}-btn-{{ order }} .btn-now .prefix-img {
+            height: {{ info.btn1_mb_size | plus: 4 }}px;
+            margin-right: 7px;
+        }
+
+    {% endif %}
+    {% if info.btn1_suffix_url != blank %}
+        .{{ secId }}-btn-{{ order }} .btn-now .suffix-img {
+            height: {{ info.btn1_mb_size | plus: 4 }}px;
+            margin-left: 7px;
+        }
+
+    {% endif %}
+        .{{ secId }}-btn-{{ order }} .btn-now.more {
+            margin-left: {{ info.btn2_mb_left }}px;
+            font-size: {{ info.btn2_mb_size }}px;
+            font-weight: {{ info.btn2_mb_weight }};
+            padding: {{ info.btn2_mb_y }}px {{ info.btn2_mb_x }}px;
+            background: {{ info.btn2_bg_color }};
+            color: {{ info.btn2_color }};
+        }
+
+    {% if info.btn2_prefix_url != blank %}
+        .{{ secId }}-btn-{{ order }} .btn-now.more .prefix-img {
+            height: {{ info.btn2_mb_size | plus: 4 }}px;
+            margin-right: 7px;
+        }
+
+    {% endif %}
+    {% if info.btn2_suffix_url != blank %}
+        .{{ secId }}-btn-{{ order }} .btn-now.more .suffix-img {
+            height: {{ info.btn2_mb_size | plus: 4 }}px;
+            margin-left: 7px;
+        }
+
+    {% endif %}
+    }
+</style>
+<div class="{{ secId }}-btn-{{ order }}">
+    {%- if info.show_btn1 -%}
+        {%- if info.btn1_ability == 'pos' -%}
+            <div onclick="$heybike.emit('{{ secId }}_btn_pos', {{ info.btn1_position }})"
+                 class="btn-now cursor-pointer flex-center">
+                {% if info.btn1_prefix_url != blank %}
+                    <img class="prefix-img" src="{{ info.btn1_prefix_url | img_url: '100x' }}" alt=""/>
+                {% endif %}
+                {{ info.btn1_text }}
+                {% if info.btn1_suffix_url != blank %}
+                    <img class="suffix-img" src="{{ info.btn1_suffix_url | img_url: '100x' }}" alt=""/>
+                {% endif %}
+            </div>
+        {%- elsif info.btn1_ability == 'link' -%}
+            <a href="{{ info.btn1_link }}"
+               class="btn-now flex-center">
+                {% if info.btn1_prefix_url != blank %}
+                    <img class="prefix-img" src="{{ info.btn1_prefix_url | img_url: '100x' }}" alt=""/>
+                {% endif %}
+                {{ info.btn1_text }}
+                {% if info.btn1_suffix_url != blank %}
+                    <img class="suffix-img" src="{{ info.btn1_suffix_url | img_url: '100x' }}" alt=""/>
+                {% endif %}
+            </a>
+        {%- endif -%}
+    {%- endif -%}
+    {% if info.show_btn2 %}
+        {%- if info.btn2_ability == 'pos' -%}
+            <div class="btn-now cursor-pointer flex-center more"
+                 onclick="$heybike.emit('{{ secId }}_btn_pos', {{ info.btn2_position }})">
+                {% if info.btn2_prefix_url != blank %}
+                    <img class="prefix-img" src="{{ info.btn2_prefix_url | img_url: '100x' }}" alt=""/>
+                {% endif %}
+                {{ info.btn2_text }}
+                {% if info.btn2_suffix_url != blank %}
+                    <img class="suffix-img" src="{{ info.btn2_suffix_url | img_url: '100x' }}" alt=""/>
+                {% endif %}
+            </div>
+        {%- elsif info.btn2_ability == 'link' -%}
+            <a class="btn-now flex-center more"
+               href="{{ info.btn2_link }}">
+                {% if info.btn2_prefix_url != blank %}
+                    <img class="prefix-img" src="{{ info.btn2_prefix_url | img_url: '100x' }}" alt=""/>
+                {% endif %}
+                {{ info.btn2_text }}
+                {% if info.btn2_suffix_url != blank %}
+                    <img class="suffix-img" src="{{ info.btn2_suffix_url | img_url: '100x' }}" alt=""/>
+                {% endif %}
+            </a>
+        {%- endif -%}
+    {% endif %}
+</div>
+{%- if info.btn1_ability == 'pos' or info.btn2_ability == 'pos' -%}
+    <script>
+        (function () {
+            function initAllNodes(index) {
+                const main = document.getElementById('main');
+                let childList = [...main.childNodes].filter(item => item.nodeType === 1);
+                if (childList[0] && !childList[0].id.includes('shopify-section-template')) {
+                    childList = [...childList[0].childNodes].filter(item => item.nodeType === 1);
+                }
+                let targetNode = childList[index - 1];
+                if (targetNode) {
+                    window.scrollTo(0, $heybike.getOffset(targetNode).top - 80);
+                }
+            }
+
+            $heybike.bind('{{ secId }}_btn_pos', index => {
+                initAllNodes(index);
+            });
+        })();
+    </script>
+{%- endif -%}

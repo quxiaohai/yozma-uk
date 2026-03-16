@@ -1,0 +1,464 @@
+{%- liquid
+    assign ss = section.settings
+    assign size = section.blocks.size
+-%}
+<style>
+    .mc_main-ces {
+        padding: 80px 0;
+        background-color: #FFFFFF;
+    }
+    .mc_main-ces .title {
+        font-weight: 900;
+        font-size: 48px;
+        font-style: italic;
+        line-height: 1.2;
+        color: #000000;
+    }
+    .mc_main-ces .title strong {
+        color: {{ ss.title_bold_color }};
+    }
+    .mc_main-ces .title .image {
+        height: 38px;
+        width: auto;
+        object-fit: contain;
+        position: absolute;
+        right: -24px;
+        bottom: -5px;
+    }
+    .mc_main-ces .more {
+        --button-color: #fff;
+        --button-size: 32px;
+        --button-width: 201px;
+    }
+    .mc_main-ces .more:hover {
+        --button-color: #D30000;
+    }
+    .mc_main-ces .card-items {
+        padding-top: 58px;
+        gap: 0 20px;
+    }
+    .mc_main-ces .card-item {
+    {%- if size <= 3 -%}
+        flex: 1;
+    {%- endif -%}
+        max-width: 50%;
+        aspect-ratio: 1.6;
+    }
+    .mc_main-ces .card-item:before {
+        content: "";
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 72.52%, rgba(0, 0, 0, 0.8) 100%);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .mc_main-ces .card-item .info-wrap {
+        left: 0;
+        bottom: 0;
+        padding: 0 18px 28px 28px;
+    }
+    .mc_main-ces .card-item .name,
+    .mc_main-ces .card-item .desc {
+        color: #ffffff;
+        line-height: 1.2;
+    }
+    .mc_main-ces .card-item .name {
+        font-weight: 600;
+        font-size: 27px;
+    }
+    .mc_main-ces .card-item .desc {
+        font-weight: 300;
+        padding-top: 6px;
+        font-size: 16px;
+    }
+    .mc_main-ces .card-item .svg-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .mc_main-ces .control-box {
+        padding-top: 16px;
+        gap: 0 20px;
+    }
+    .mc_main-ces .slider-button {
+        width: 48px;
+        height: 48px;
+    }
+    .mc_main-ces .slider-button .image {
+        object-fit: fill;
+        transition: transform 0.3s;
+    }
+    .mc_main-ces .slider-button:hover .image {
+        transform: scale(1.05);
+    }
+    .mc_main-ces .slider-button[disabled] {
+        opacity: 0.9;
+    }
+    .mc_main-ces .slider-button[disabled] .image {
+        filter: grayscale(1);
+    }
+    .mc_main-ces .prev-button {
+        transform: rotateY(180deg);
+    }
+    @media screen and (max-width: 1536px) {
+        .mc_main-ces {
+            padding: 64px 0;
+        }
+        .mc_main-ces .title {
+            font-size: 38px;
+        }
+        .mc_main-ces .title .image {
+            height: 30px;
+            right: -19px;
+            bottom: -4px;
+        }
+        .mc_main-ces .more {
+            --button-size: 26px;
+            --button-height: 45px;
+            --button-width: 161px;
+        }
+        .mc_main-ces .card-items {
+            padding-top: 46px;
+            gap: 0 16px;
+        }
+        .mc_main-ces .card-item .info-wrap {
+            left: 0;
+            bottom: 0;
+            padding: 0 14px 22px 22px;
+        }
+        .mc_main-ces .card-item .name {
+            font-size: 22px;
+        }
+        .mc_main-ces .card-item .desc {
+            padding-top: 5px;
+            font-size: 13px;
+        }
+        .mc_main-ces .card-item .svg-icon {
+            width: 16px;
+            height: 16px;
+        }
+        .mc_main-ces .control-box {
+            padding-top: 13px;
+            gap: 0 16px;
+        }
+        .mc_main-ces .slider-button {
+            width: 38px;
+            height: 38px;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .mc_main-ces {
+            padding: 2.5rem 0;
+        }
+    {%- if size > 3 -%}
+        .mc_main-ces .card-inner-wrap {
+            padding-right: 0;
+        }
+    {%- endif -%}
+        .mc_main-ces .title {
+            font-size: 1.5rem;
+            width: 13.8rem;
+        }
+        .mc_main-ces .title .image {
+            height: 1.1875rem;
+            right: auto;
+            left: 1.875rem;
+            bottom: -0.15625rem;
+        }
+        .mc_main-ces .more {
+            --button-size: 1rem;
+            --button-height: 1.8125rem;
+            --button-width: 6.28125rem;
+        }
+        .mc_main-ces .card-items {
+            padding-top: 1.5625rem;
+            gap: 0 0.625rem;
+        {%- if size <= 3 -%}
+            overflow-x: auto;
+            white-space: nowrap;
+            justify-content: flex-start;
+        {%- endif -%}
+        }
+        .mc_main-ces .card-item {
+            max-width: none;
+        {%- if size <= 3 -%}
+            flex: none;
+            width: 16.25rem;
+        {%- endif -%}
+        }
+        .mc_main-ces .card-item .info-wrap {
+            left: 0;
+            bottom: 0;
+            padding: 0 0.5625rem 0.875rem 0.875rem;
+        }
+        .mc_main-ces .card-item .name {
+            font-size: 0.84375rem;
+        }
+        .mc_main-ces .card-item .desc {
+            padding-top: 0.1875rem;
+            font-size: 0.5rem;
+        }
+        .mc_main-ces .card-item .svg-icon {
+            width: 0.625rem;
+            height: 0.625rem;
+        }
+        .mc_main-ces .control-box {
+            padding-top: 0.625rem;
+            gap: 0;
+        }
+        .mc_main-ces .slider-button {
+            display: none;
+        }
+        .mc_main-ces .progress {
+            height: 2px;
+            background: #D9D9D9;
+        }
+        .mc_main-ces .progress .bar {
+            transform: translateX(-100%);
+            border-radius: 4px;
+            background: #A90000;
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_main-ces section--page" id="{{ section.id }}-ces">
+    <div class="page-width">
+        <div class="head-box flex-between">
+            <div class="title relative">
+                <div class="relative z-1{% if ss.title_gradient_color != blank %} text-gradient{% endif %}"
+                     style="{% if ss.title_gradient_color != blank %}--background: {{ ss.title_color.rgb }}; --gradient: {{ ss.title_gradient_color }};{% else %}color: {{ ss.title_color }};{% endif %}">{{ ss.title }}</div>
+                {%- if ss.title_decorate_image != blank -%}
+                    {%- render 'global-image', image: ss.title_decorate_image, image_size: 300 -%}
+                {%- endif -%}
+            </div>
+            {%- if ss.show_button -%}
+                <a
+                    hover
+                    style="--button-color: {{ ss.button_color }}; --button-hover-color: {{ ss.button_hover_color }};"
+                    href="{{ ss.url }}" class="more image-button relative flex-center">
+                    {% render 'global-image',
+                        image: ss.button_bg_image,
+                        image_size: 300
+                    %}
+                    <span class="text z-1 relative">{{ ss.button_text }}</span>
+                </a>
+            {%- endif -%}
+        </div>
+    </div>
+    <div class="page-width card-inner-wrap overflow-hidden">
+        <animate-element class="card-items w-full w-full flex-{% if size >3 %}left{% else %}center{% endif %}" node-name="slider">
+            {%- for block in section.blocks -%}
+                {%- assign bs = block.settings -%}
+                <div class="card-item overflow-hidden relative">
+                    {%- render 'global-image',
+                        desktop_img: bs.desktop_image,
+                        desktop_size: 600,
+                        mobile_img: bs.mobile_image
+                    -%}
+                    <a href="{{ bs.url }}" class="info-wrap flex-between absolute z-2 w-full">
+                        <div class="info">
+                            <div class="name">{{ bs.title }}</div>
+                            <div class="desc">{{ bs.text }}</div>
+                        </div>
+                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="21" viewBox="0 0 13 21"
+                             fill="none">
+                            <path d="M1.35128 1.35136L10.1342 10.1343L1.35128 18.9172" stroke="white" stroke-width="2.70244"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </div>
+            {%- endfor -%}
+        </animate-element>
+    </div>
+    {%- if size > 3 -%}
+        <div class="page-width">
+            <div node-name="control" class="control-box flex-right w-full">
+                <button class="prev-button slider-button flex-center">
+                    <img loading="lazy" alt="Slide Prev Button"
+                         src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-icon.png?v=1769744963&width=70"
+                         class="image"/>
+                </button>
+                <button class="next-button slider-button flex-center">
+                    <img loading="lazy" alt="Slide Next Button"
+                         src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-icon.png?v=1769744963&width=70"
+                         class="image"/>
+                </button>
+                <div class="progress overflow-hidden w-full mobile-done">
+                    <div class="bar w-full h-full" node-name="bar">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    {%- endif -%}
+</div>
+{%- if size > 3 -%}
+    <script>
+        $heybike.on('DOMContentLoaded', () => {
+            const node = document.getElementById("{{ section.id }}-ces");
+            const nodeList = $heybike.getNodeList(node);
+            $heybike.inView(node, () => {
+                $heybike.load({type: 'TNS'}, () => {
+                    const onChange = (obj) => {
+                        current = obj;
+                        if ($heybike.isMobile) {
+                            const progress = (1 - (obj.index + 1) / obj.slideCount) * 100;
+                            nodeList.bar.style.transform = `translateX(-${progress}%)`;
+                        }
+                    }
+                    const slider = tns({
+                        container: nodeList.slider,
+                        loop: false,
+                        items: 1.4,
+                        nav: false,
+                        preventScrollOnTouch: true,
+                        mouseDrag: true,
+                        controls: true,
+                        controlsContainer: nodeList.control,
+                        responsive: {
+                            900: {
+                                items: 3
+                            }
+                        },
+                        onInit() {
+                            setTimeout(() => {
+                                onChange(slider.getInfo());
+                            }, 80);
+                        }
+                    });
+
+                    slider.events.on('transitionEnd', () => {
+                        onChange(slider.getInfo());
+                    });
+                });
+            });
+        });
+    </script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "MC Main Ces",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Main Ces"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Discover the world of YOZMA</p>"
+    },
+    {
+      "label": "Title decorate image",
+      "type": "image_picker",
+      "id": "title_decorate_image"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "label": "Show button",
+      "type": "checkbox",
+      "id": "show_button",
+      "default": true
+    },
+    {
+      "label": "Button background color",
+      "type": "image_picker",
+      "id": "button_bg_image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Read All"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button text hover color",
+      "default": "#d30000"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile background image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

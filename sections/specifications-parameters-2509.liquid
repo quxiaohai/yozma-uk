@@ -1,0 +1,422 @@
+<style>
+    #shopify-section-{{ section.id }} {
+    {% if section.settings.remove_vertical_spacing %}--section-spacing-block: 0px;{% endif %}
+    {% if section.settings.remove_horizontal_spacing %}--section-spacing-inline: 0px;{% endif %}
+    }
+</style>
+
+
+{% assign tab_arr = "" %}
+{%- for block in section.blocks -%}
+  {% assign bk_stts = block.settings %}
+  {% assign tab_arr = tab_arr | append: bk_stts.order_title | append: "," %}
+{%- endfor -%}
+{% assign tabs = tab_arr | split: "," | uniq %}
+
+{%- render 'section-spacing-collapsing' -%}
+
+<div {% render 'section-properties' %}>
+    <div class="section-stack">
+        {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, text_alignment: section.settings.text_alignment_title, width:section.settings.title_width -%}
+        
+        
+    <tabs-element >
+      <div class="tw-flex tw-gap-4 -md:tw-gap-2 tw-mb-6 tw-overflow-x-auto {% if section.settings.mb_full %} -md:tw-hidden {% endif %}">
+        {% for tab in tabs %}
+        <button class="tab__item button md:tw-text-lg tw-text-sm tw-shrink-0 -md:tw-p-2 whitespace-nowrap"  role="tab" type="button" 
+          anchor-target="{{ tab | handle }}_{{ section.id }}" aria-controls="TabPanel-{{ tab | handle }}_{{ section.id }}" >
+          {{tab}}
+        </button>
+        {% endfor %}
+      </div>
+      <div>
+      {% for tab in tabs %}
+        <div class="tab__content" id="TabPanel-{{ tab | handle }}_{{ section.id }}" role="tabpanel">
+          {% for block in section.blocks %}
+          {% assign bk_stts = block.settings %}
+          {% assign item_justify = bk_stts.item_justify %}
+          {% if bk_stts.order_title == tab %}
+          {% assign list_arr = bk_stts.list  | strip | newline_to_br | strip_newlines | split: "<br />"  %}
+          {% if block.type == "img_list" %}
+            <div class="tw-flex -md:tw-flex-col tw-items-center tw-gap-6">
+              {% if bk_stts.img != blank %}
+              <style>
+                @media screen and (min-width: 769px) {
+                    #img_{{ block.id }} { width:{{ bk_stts.img_w }}% }
+                    {% if bk_stts.img != blank %}
+                    #list_{{ block.id }} { padding-left:{{ bk_stts.img_w | times:0.1 }}% }
+                    {% endif %}
+                }
+              </style>
+              <div id="img_{{ block.id }}" class="tw-rounded-2xl tw-overflow-hidden">
+                {{ bk_stts.img | image_url: width: '1440' | image_tag: width: '1440,750,500', class:'tw-mx-auto tw-block'}} 
+              </div>
+              {% endif %}
+              {% if bk_stts.list != blank %}
+              <div id="list_{{ block.id }}" class="tw-flex-1 tw-w-full ">
+                {% case bk_stts.list_col %}
+                  {% when '1' %}
+                    {% assign list_col = "md:tw-grid-cols-1 md:tw-text-lg" %}
+                    {% assign key_w = "md:tw-min-w-[300px]" %}
+                  {% when '2' %}
+                    {% assign list_col = "md:tw-grid-cols-2 tw-gap-x-4" %}
+                    {% assign key_w = "md:tw-min-w-[240px] tw-w-[130px] -md:tw-shrink-0" %}
+                  {% else %}
+                    {% assign list_col = "md:tw-grid-cols-3 tw-gap-x-4" %}
+                    {% assign key_w = "md:tw-min-w-[200px]" %}
+                {% endcase %}
+
+                <div class="tw-grid {{list_col}} -md:tw-text-sm">
+                  {% for item in list_arr %}
+                  {% assign parts = item | split: '|' %}
+                  {% assign number = parts[0] %}
+                  {% assign key = parts[1] %}
+                  {% assign val = parts[2] %}
+                  {% assign tips = parts[3] %}
+                  
+                  <div class="tw-flex {{item_justify | split: '|' | first}} tw-items-center tw-gap-6 md:tw-p-4 tw-p-2 -md:tw-px-0 tw-transition-all {% if bk_stts.list_border %}tw-border-solid tw-border-0 tw-border-b tw-border-viGray-300{% endif %} {% unless forloop.first %}tw-group md:hover:tw-bg-viGray-200 {% endunless %}">
+                    <p class="tw-font-medium tw-flex tw-items-center tw-gap-2 {{ key_w }}">
+                      {% if number != blank %}
+                      <span class="tw-rounded-full tw-shrink-0 tw-bg-viGray-300 tw-flex tw-items-center tw-justify-center tw-h-8 tw-w-8 inline-block group-hover:tw-bg-vi tw-transition-all">{{number}}</span>
+                      {% endif %}
+                      <span>{{key}}</span>
+                    </p>
+                    <p class=" {{item_justify | split: '|' | last}}">
+                      <span class="tw-wrap-anywhere ">{{val}}</span>
+                      {% if tips != blank %}
+                      <br><span class="tw-text-viGray-500">{{tips}}</span>
+                      {% endif %}
+                    </p>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          {% else %}
+            {% capture cols_cls %}
+              {% case bk_stts.cols %} {% when "6" %} xl:tw-grid-cols-6 {% when "8" %} xl:tw-grid-cols-8 {% when "10" %} xl:tw-grid-cols-10 {% when "12" %} xl:tw-grid-cols-12{% endcase %}
+            {% endcapture %}
+            {% capture cols_cls_mb %}
+              {% case bk_stts.cols_mb %} {% when "4" %} tw-grid-cols-4 {% when "3" %} tw-grid-cols-3 {% when "2" %} tw-grid-cols-2 {% endcase %}
+            {% endcapture %}
+
+            <div class="{{ cols_cls | strip }} {{ cols_cls_mb | strip }} md:tw-grid-cols-6  grid md:tw-gap-4 tw-gap-2">
+              {% for i in (1..12) %}
+                {% assign img_key = 'img_' | append: i %}
+                {% if bk_stts[img_key] != blank %}
+                  <div>
+                    <div class="tw-border-solid tw-border-viGray-300 tw-rounded-xl tw-p-2 tw-border">
+                      {{ bk_stts[img_key] | image_url: width: '325' | image_tag: width: '500'}}
+                    </div>
+                    {% if bk_stts.use_text %}
+                      <p class="tw-text-center tw-mt-2 tw-text-sm tw-leading-tight">{{ bk_stts[img_key].alt }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+
+          {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+      </div>
+    </tabs-element>
+
+
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const section = document.querySelector("#shopify-section-{{ section.id }}");
+  if (!section) return;
+
+  const mb_full = {{ section.settings.mb_full }};
+  if(mb_full && window.innerWidth < 768) return
+
+  const tabs = section.querySelectorAll(".tab__item");
+  const contents = section.querySelectorAll(".tab__content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", function() {
+      const targetId = tab.getAttribute("aria-controls");
+      const targetContent = section.querySelector(`#${targetId}`);
+
+      if (!targetContent) return;
+
+      // 隐藏所有内容
+      contents.forEach(content => {
+        content.style.display = "none";
+      });
+
+      // 去掉所有 tab 的 active
+      tabs.forEach(t => t.classList.remove("active"));
+
+      // 显示目标内容 & 当前 tab 激活
+      targetContent.style.display = "block";
+      tab.classList.add("active");
+    });
+  });
+
+  // 初始化显示第一个
+  if (tabs.length > 0) {
+    tabs[0].click();
+  }
+
+});
+</script>
+
+<style>
+  tabs-element .tab__item:not(.active) {
+    color: #000000;
+    background: #fff;
+    border: solid 2px;
+  }
+
+  tabs-element .tab__item:not(.active):hover{
+    background: #ebebeb;
+  }
+
+</style> 
+
+
+
+{% schema %}
+{
+  "name":"Spec & Par",
+  "class": "shopify-section--multicolumn-slide",
+  "tag": "section",
+  "settings": [
+    { "type":"header", "content":"Section settings" },
+    {
+      "type": "checkbox",
+      "id": "mb_full",
+      "label": "Mobile show full",
+      "default": false,
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "text_alignment_title",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "About"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured content"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_vertical_spacing",
+      "label": "Remove vertical spacing",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_horizontal_spacing",
+      "label": "Remove horizontal spacing",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    }
+  ],
+  "blocks": [ 
+    {
+      "type": "img_list",
+      "name": "Image & list",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Tab settings"
+        },
+        {
+          "type": "text",
+          "id": "order_title",
+          "label": "Order title",
+          "default": "Geometry"
+        },
+        {
+          "type": "header",
+          "content": "Content settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "img_w",
+          "min": 25,
+          "max": 75,
+          "step": 1,
+          "unit": "%",
+          "label": "Image width",
+          "default": 50
+        },
+        {
+          "type": "textarea",
+          "id": "list",
+          "label": "List",
+          "info": "enter to return"
+        },
+        {
+          "type": "select",
+          "id": "item_justify",
+          "label": "Item justify",
+          "options": [
+            {
+            "value": "tw-justify-between",
+            "label": "Between"
+            },
+            {
+            "value": "tw-justify-start",
+            "label": "Left"
+            }
+          ],
+          "default": "tw-justify-between",
+        },
+        {
+          "type": "checkbox",
+          "id": "list_border",
+          "label": "Has list border",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "list_col",
+          "label": "List cols",
+          "options": [
+            {
+            "value": "1",
+            "label": "1"
+            },
+            {
+            "value": "2",
+            "label": "2"
+            },
+            {
+            "value": "3",
+            "label": "3"
+            }
+          ],
+          "default": "1"
+        },
+      ]
+    },
+    {
+      "type": "package",
+      "name": "Package",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Tab settings"
+        },
+        {
+          "type": "text",
+          "id": "order_title",
+          "label": "Order title",
+          "default": "Geometry"
+        },
+        {
+          "type": "select",
+          "id": "cols",
+          "label": "columns",
+          "options": [
+            { "value": "6", "label": "6" },
+            { "value": "8", "label": "8" },
+            { "value": "10", "label": "10" },
+            { "value": "12", "label": "12" },
+          ],
+          "default": "10",
+        },
+        {
+          "type": "select",
+          "id": "cols_mb",
+          "label": "columns",
+          "options": [
+            { "value": "4", "label": "4" },
+            { "value": "3", "label": "3" },
+            { "value": "2", "label": "2" },
+          ],
+          "default": "3",
+        },
+        {
+          "type": "checkbox",
+          "id": "use_text",
+          "label": "Show image text",
+          "default": false,
+          "info": "image content user alt"
+        },
+        { "type": "image_picker", "id": "img_1", "label": "Image" },
+        { "type": "image_picker", "id": "img_2", "label": "Image" },
+        { "type": "image_picker", "id": "img_3", "label": "Image" },
+        { "type": "image_picker", "id": "img_4", "label": "Image" },
+        { "type": "image_picker", "id": "img_5", "label": "Image" },
+        { "type": "image_picker", "id": "img_6", "label": "Image" },
+        { "type": "image_picker", "id": "img_7", "label": "Image" },
+        { "type": "image_picker", "id": "img_8", "label": "Image" },
+        { "type": "image_picker", "id": "img_9", "label": "Image" },
+        { "type": "image_picker", "id": "img_10", "label": "Image" },
+        { "type": "image_picker", "id": "img_11", "label": "Image" },
+        { "type": "image_picker", "id": "img_12", "label": "Image" },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Customize",
+      "name": "Spec & Par"
+    }
+  ]
+}
+{% endschema %}

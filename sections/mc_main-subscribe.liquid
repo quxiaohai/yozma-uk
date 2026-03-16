@@ -1,0 +1,531 @@
+{%- assign ss = section.settings -%}
+<style>
+    .mc_main-subscribe {
+        background: #1a1a1a;
+        padding: 60px 0;
+        margin-bottom: -1px;
+    }
+    .mc_main-subscribe .head-box {
+        flex: 1;
+        padding-right: 280px;
+    }
+    @media screen and (min-width: 1024px) and (max-width: 1920px) {
+        .mc_main-subscribe .head-box {
+            padding-right: 14.5833333333vw;
+        }
+    }
+    .mc_main-subscribe .head-box .title,
+    .mc_main-subscribe .head-box .description {
+        text-align: left;
+    }
+    .mc_main-subscribe .form-wrap {
+        width: 569px;
+    }
+    .mc_main-subscribe .form-wrap .field {
+        border: 2px solid {{ ss.input_border_color }};
+        background: {{ ss.input_bg_color }};
+        height: 73px;
+    }
+    .mc_main-subscribe .form-wrap .field input {
+        flex: 1;
+        background: none;
+        line-height: 48px;
+        font-size: 24px;
+        color: {{ ss.input_text_color }};
+        border: 0 none;
+        box-sizing: border-box;
+        padding: 0 16px;
+        width: 100%;
+    }
+    .mc_main-subscribe .form-wrap .field .button {
+        height: 100%;
+        max-height: none;
+        padding: 0 40px;
+        font-size: 32px;
+        color: {{ ss.button_text_color }};
+        border-radius: 0;
+        background: {{ ss.button_bg_color }};
+        font-style: italic;
+        font-weight: 900;
+        transform: none !important;
+        transition: opacity 0.3s;
+        transition-property: opacity, color;
+    }
+    .mc_main-subscribe .form-wrap .field .button:hover {
+        opacity: 0.9;
+        color: {{ ss.button_text_hover_color }};
+    }
+    .mc_main-subscribe .form-wrap .field .button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        color: {{ ss.button_text_color }};
+    }
+    .mc_main-subscribe .privacy-info {
+        padding-top: 8px;
+        line-height: 1.2;
+        cursor: pointer;
+    }
+    .mc_main-subscribe .privacy-info.checked .checkbox {
+        background-color: {{ ss.privacy_active_color }};
+        border-color: {{ ss.privacy_active_color }};
+    }
+    .mc_main-subscribe .privacy-info.checked .checkbox .svg-icon {
+        opacity: 1;
+    }
+    .mc_main-subscribe .privacy-info .checkbox {
+        width: 16px;
+        min-width: 16px;
+        height: 16px;
+        position: static;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: 1.5px solid {{ ss.privacy_color }};
+        transition: all 0.5s;
+    }
+    .mc_main-subscribe .privacy-info .checkbox .svg-icon {
+        width: 10px;
+        opacity: 0;
+    }
+    .mc_main-subscribe .privacy-info .text {
+        line-height: 1.3;
+        padding-left: 7px;
+        font-size: 14px;
+        color: {{ ss.privacy_color }};
+        word-break: break-all;
+        text-align: left;
+    }
+    .mc_main-subscribe .privacy-info .text a {
+        color: {{ ss.privacy_link_color }};
+        font-weight: 500;
+    }
+    .mc_main-subscribe .privacy-info .text a:hover {
+        text-decoration: underline;
+        color: {{ ss.privacy_link_hover_color }};
+    }
+    @media screen and (max-width: 1600px) {
+        .mc_main-subscribe {
+            padding: 48px 0;
+        }
+        .mc_main-subscribe .form-wrap {
+            width: 35.5vw;
+            max-width: 455px;
+        }
+        .mc_main-subscribe .form-wrap .field {
+            height: 58px;
+        }
+        .mc_main-subscribe .form-wrap .field input {
+            line-height: 38px;
+            padding: 0 13px;
+            font-size: 1.25vw;
+        }
+        .mc_main-subscribe .form-wrap .field .button {
+            padding: 0 2.0833333333vw;
+            font-size: 1.6666666667vw;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .mc_main-subscribe {
+            padding: 3.125rem 0 0;
+        }
+        .mc_main-subscribe .subscribe-wrapper {
+            flex-direction: column;
+        }
+        .mc_main-subscribe .head-box {
+            width: 100%;
+            padding-right: 0;
+        }
+        .mc_main-subscribe .form-wrap {
+            width: 100%;
+            max-width: 100%;
+            transform: translateY(0);
+        }
+        .mc_main-subscribe .form-wrap .field {
+            border-radius: 0;
+            border-width: 1px;
+            height: 2.5rem;
+        }
+        .mc_main-subscribe .form-wrap .field input {
+            line-height: 2rem;
+            font-size: 0.75rem;
+            padding: 0 0.5rem;
+        }
+        .mc_main-subscribe .form-wrap .field .button {
+            padding: 0 1.25rem;
+            font-size: 1rem;
+        }
+        .mc_main-subscribe .privacy-info {
+            padding-top: 12px;
+            line-height: 1.2;
+        }
+        .mc_main-subscribe .privacy-info .text {
+            padding-left: 0.375rem;
+            font-size: 12px;
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_main-subscribe section--page">
+    <div class="page-width">
+        <div class="subscribe-wrapper flex-between-top relative">
+            <div class="head-box relative z-1">
+                {%- render 'section-title', info: ss -%}
+            </div>
+            {%- assign form_id = 'form-' | append: section.id -%}
+            {%- form 'customer', id: form_id, class: 'form-wrap  relative z-1' -%}
+                <input type="hidden" name="contact[tags]" value="{{ ss.tag }}"/>
+                <input type="hidden" name="contact[context]" value="{{ ss.content }}"/>
+                <label class="field flex-center">
+                    <input type="email" name="contact[email]" value="" autocorrect="off" autocapitalize="off"
+                           autocomplete="email" placeholder="{{ ss.placeholder }}" required=""/>
+                    <button type="submit"
+                            node-name="submit"
+                            class="button button--primary flex-center"
+                            is="magnet-button"
+                            aria-label="{{ ss.button }}">
+                        <span class="btn-text">{{ ss.button }}</span>
+                    </button>
+                </label>
+                {%- if ss.show_privacy -%}
+                    <div node-name="privacy"
+                         class="privacy-info{% if ss.privacy_checked %} checked{% endif %} flex-top">
+                        <div class="checkbox flex-center">
+                            <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="10.707" height="7.511"
+                                 viewBox="0 0 10.707 7.511">
+                                <path d="M-11467.566,874.83l3.55,3.55,6.45-6.451"
+                                      transform="translate(11467.92 -871.575)" fill="none" stroke="#fff"
+                                      stroke-width="1"></path>
+                            </svg>
+                        </div>
+                        <div class="text flex-bottom">
+                            {{ ss.privacy_text }}
+                        </div>
+                    </div>
+                {%- endif -%}
+                {%- liquid
+                    if form.errors and form.context == context
+                        assign form_errors = form.errors | default_errors
+                        render 'alert', status: 'error', content: form_errors, duration: ss.alert_duration
+                    endif
+                    if form.posted_successfully?
+                        assign success_message = 'general.newsletter.success' | t
+                        render 'alert', status: 'success', content: success_message, duration: ss.alert_duration
+                    endif
+                -%}
+            {%- endform -%}
+        </div>
+    </div>
+</div>
+<script>
+    $heybike.on('DOMContentLoaded', () => {
+        const node = document.getElementById('{{ form_id }}');
+        const nodeList = $heybike.getNodeList(node);
+        nodeList.privacy?.addEventListener('click', (ev) => {
+            if (ev.target.tagName.toLocaleLowerCase() === 'a') {
+                return false;
+            }
+            ev.preventDefault();
+            ev.stopPropagation();
+            nodeList.privacy.classList.toggle('checked');
+            if (nodeList.privacy.classList.contains('checked')) {
+                nodeList.submit.removeAttribute('disabled');
+            } else {
+                nodeList.submit.setAttribute('disabled', true);
+            }
+        });
+    });
+</script>
+{% schema %}
+{
+  "name": "MC Main Subscribe",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Main Subscribe"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "range",
+      "id": "alert_duration",
+      "label": "Alert hide duration",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "range",
+      "id": "pc_button_size",
+      "label": "Desktop button size",
+      "min": 12,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mb_button_size",
+      "label": "Mobile button size",
+      "min": 6,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#D30000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_hover_color",
+      "label": "Button text hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Tags",
+      "default": "Sub"
+    },
+    {
+      "type": "text",
+      "id": "content",
+      "label": "Content",
+      "default": "Sub"
+    },
+    {
+      "type": "textarea",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "default": "Your email"
+    },
+    {
+      "type": "color",
+      "id": "input_bg_color",
+      "label": "Input background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border color",
+      "default": "#D30000"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Input text color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_privacy",
+      "label": "Show privacy",
+      "default": true
+    },
+    {
+      "label": "Privacy text",
+      "type": "richtext",
+      "id": "privacy_text",
+      "default": "<p>By submitting this form, I accept the <a href=\"/pages/terms-of-service-1\">Terms of Sale</a>  and <a href=\"/pages/privacy-policy\">Privacy Policy</a></p>"
+    },
+    {
+      "label": "Is subscription automatically checked?",
+      "type": "checkbox",
+      "id": "privacy_checked",
+      "default": true
+    },
+    {
+      "label": "Privacy text color",
+      "type": "color",
+      "id": "privacy_color",
+      "default": "#d5d5d5"
+    },
+    {
+      "label": "Privacy text link color",
+      "type": "color",
+      "id": "privacy_link_color",
+      "default": "#ffffff"
+    },
+    {
+      "label": "Privacy text hover color",
+      "type": "color",
+      "id": "privacy_link_hover_color",
+      "default": "#D30000"
+    },
+    {
+      "label": "Privacy text active color",
+      "type": "color",
+      "id": "privacy_active_color",
+      "default": "#D30000"
+    }
+  ]
+}
+{% endschema %}

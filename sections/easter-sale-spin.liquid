@@ -1,0 +1,513 @@
+{% assign ss = section.settings %}
+<style>
+    .easter-sale-spin {
+        padding: 76px 0 80px;
+        background-color: #ffffff;
+    }
+    .easter-sale-spin .spin-wrap {
+        padding-bottom: 72px;
+    }
+
+    {%- if ss.show_button -%}
+    .easter-sale-spin .spin-wrap .spin-btn {
+        padding: 0 52px;
+        line-height: 60px;
+        min-width: 466px;
+        box-sizing: border-box;
+        font-size: 20px;
+        font-weight: 700;
+        color: {{ ss.button_text_color }};
+        background-color: {{ ss.button_bg_color }};
+        border-radius: 100px;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        transition: opacity 0.5s;
+    }
+    .easter-sale-spin .spin-wrap .spin-btn:hover {
+        opacity: 0.85;
+    }
+    @keyframes shake-infinite {
+        10%, 90% {
+            transform: translate3d(-0.5px, 0, 0);
+        }
+        20%, 80% {
+            transform: translate3d(1px, 0, 0);
+        }
+        30%, 50%, 70% {
+            transform: translate3d(-2px, 0, 0);
+        }
+        40%, 60% {
+            transform: translate3d(2px, 0, 0);
+        }
+    }
+    .easter-sale-spin .spin-wrap .spin-btn .spin-icon {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+        position: absolute;
+        right: 13.5px;
+        top: 50%;
+        margin-top: -25px;
+        z-index: 1;
+        animation: shake-infinite 1.5s both infinite;
+    }
+    {%- endif -%}
+
+    .easter-sale-spin .easter-content {
+        gap: 27px;
+    }
+    .easter-sale-spin .card {
+        flex: 1;
+        text-align: center;
+        height: 210px;
+        border-radius: 10px;
+    }
+    .easter-sale-spin .card .image {
+        width: 110px;
+        height: 110px;
+        object-fit: contain;
+        margin: 0 auto;
+        transform: translateY(-46px);
+    }
+    .easter-sale-spin .card .info-wrapper {
+        gap: 0 30px;
+        transform: translateY(-36px);
+    }
+    .easter-sale-spin .card .info {
+        text-align: center;
+    }
+    .easter-sale-spin .card .info .text {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.375;
+        color: #ffffff;
+    }
+    .easter-sale-spin .card .info .text.bold {
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1.25;
+        color: #e0bd76;
+        margin: 0.25rem 0;
+    }
+    @media screen and (max-width: 1440px) {
+        .easter-sale-spin {
+            padding: 60.8px 0 64px;
+        }
+        .easter-sale-spin .spin-wrap {
+            padding-bottom: 57.6px;
+        }
+        .easter-sale-spin .spin-wrap .spin-btn {
+            padding: 0 41.6px;
+            line-height: 48px;
+            min-width: 372.8px;
+            font-size: 16px;
+        }
+        .easter-sale-spin .spin-wrap .spin-btn .spin-icon {
+            height: 40px;
+            right: 10.8px;
+            margin-top: -20px;
+        }
+        .easter-sale-spin .easter-content {
+            gap: 21.6px;
+        }
+        .easter-sale-spin .card {
+            height: 168px;
+            border-radius: 8px;
+        }
+        .easter-sale-spin .card .image {
+            width: 88px;
+            height: 88px;
+        }
+        .easter-sale-spin .card .info-wrapper {
+            gap: 0 24px;
+            transform: translateY(-28.8px);
+        }
+        .easter-sale-spin .card .info .text {
+            font-size: 16px;
+            color: #ffffff;
+        }
+        .easter-sale-spin .card .info .text.bold {
+            font-size: 28.8px;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .easter-sale-spin {
+            padding: 2.5rem 0;
+        }
+        .easter-sale-spin .spin-wrap {
+            padding-bottom: 1.5rem;
+        }
+        .easter-sale-spin .spin-wrap .spin-btn {
+            padding: 0 3.25rem;
+            line-height: 2.5rem;
+            min-width: 15rem;
+            font-size: 1rem;
+        }
+        .easter-sale-spin .spin-wrap .spin-btn:hover {
+            background-color: #000000;
+        }
+        .easter-sale-spin .spin-wrap .spin-btn .spin-icon {
+            height: 1.75rem;
+            position: absolute;
+            right: 0.84375rem;
+            top: 50%;
+            margin-top: -0.875rem;
+        }
+        .easter-sale-spin .easter-content {
+            gap: 0.8125rem 0;
+            flex-direction: column;
+        }
+        .easter-sale-spin .card {
+            width: 100%;
+            padding: 0.9375rem 1.25rem;
+            box-sizing: border-box;
+            height: auto;
+            display: flex;
+            gap: 0 1.5625rem;
+        }
+        .easter-sale-spin .card .image {
+            width: 3.75rem;
+            height: auto;
+            transform: translateY(0);
+        }
+        .easter-sale-spin .card .info-wrapper {
+            flex: 1;
+            gap: 0;
+            transform: translateY(0);
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .easter-sale-spin .card .info {
+            text-align: left;
+            word-break: break-word;
+        }
+        .easter-sale-spin .card .info .text {
+            display: inline;
+            font-size: 0.9375rem;
+        }
+        .easter-sale-spin .card .info .text p {
+            display: inline;
+        }
+        .easter-sale-spin .card .info .text.bold {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin: 0;
+            padding: 0 0.25rem;
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="easter-sale-spin section--page">
+    {% render 'easter-title', info: ss %}
+    {%- if ss.show_button -%}
+        <div class="spin-wrap flex-center">
+            <a href="{{ ss.button_link }}" class="spin-btn">
+                {{ ss.button }}
+                {%- if ss.button_icon -%}
+                    {% render 'global-image', desktop_img: ss.button_icon, media_type: 'icon', desktop_class: 'spin-icon' %}
+                {%- endif -%}
+            </a>
+        </div>
+    {%- endif -%}
+    <div class="page-container {% if ss.show_button == false %} md:tw-mt-16 {% endif %} easter-content flex-center">
+        {%- for block in section.blocks -%}
+            {%- assign bs = block.settings -%}
+            <div {% render 'surface', class: 'card', background_gradient: bs.background_gradient, background: bs.background %}>
+                {% render 'global-image', media_type: 'icon', desktop_img: bs.image_icon %}
+                <div class="flex-center info-wrapper">
+                    {%- for a in (1..2) -%}
+                        {%- assign show = 'show_col' | append: a -%}
+                        {%- if bs[show] -%}
+                            <div class="info">
+                                {%- for v in (1..3) -%}
+                                    {%- assign color = 'text' | append: v | append: '_color' -%}
+                                    {%- assign text = 'col' | append: a | append: '_text' | append: v -%}
+                                    {%- assign mb_text = 'mb_col' | append: a | append: '_text' | append: v -%}
+                                    {%- if bs[text] != blank -%}
+                                        <div {% if bs[color] != blank %}style="color: {{ bs[color] }}" {% endif %}
+                                             class="{% if bs[mb_text] != blank %}desktop-done {% endif %}text{% if v == 2 %} bold{% endif %}">{{ bs[text] }}</div>
+                                    {%- endif -%}
+                                    {%- if bs[mb_text] != blank -%}
+                                        <div {% if bs[color] != blank %}style="color: {{ bs[color] }}" {% endif %}
+                                             class="mobile-done text{% if v == 2 %} bold{% endif %}">{{ bs[mb_text] }}</div>
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </div>
+            </div>
+        {%- endfor -%}
+    </div>
+</div>
+{% schema %}
+{
+  "name": "Easter Sale Spin",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "easter-sale-spin"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color",
+      "default": "linear-gradient(to right, #7F1200, #BF0000)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show spin button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button name",
+      "default": "Spin"
+    },
+    {
+      "label": "Button icon",
+      "type": "image_picker",
+      "id": "button_icon"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#FF0000"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button popup link",
+      "default": "#Ecomsend_popups_open_278346"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background",
+          "default": "#960000"
+        },
+        {
+          "type": "color_background",
+          "id": "background_gradient",
+          "label": "Background gradient"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Card Icon"
+        },
+        {
+          "type": "color",
+          "id": "text1_color",
+          "label": "Text #1 color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "text2_color",
+          "label": "Text #2 color",
+          "default": "#FF0000"
+        },
+        {
+          "type": "color",
+          "id": "text3_color",
+          "label": "Text #3 color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "header",
+          "content": "Column #1"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_col1",
+          "label": "Show Column #1",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "col1_text1",
+          "label": "Desktop text #1"
+        },
+        {
+          "type": "richtext",
+          "id": "mb_col1_text1",
+          "label": "Mobile text #1"
+        },
+        {
+          "type": "text",
+          "id": "col1_text2",
+          "label": "Desktop text #2 (Bold)"
+        },
+        {
+          "type": "text",
+          "id": "mb_col1_text2",
+          "label": "Mobile text #2 (Bold)"
+        },
+        {
+          "type": "text",
+          "id": "col1_text3",
+          "label": "Desktop text #3"
+        },
+        {
+          "type": "text",
+          "id": "mb_col1_text3",
+          "label": "Mobile text #3"
+        },
+        {
+          "type": "header",
+          "content": "Column #2"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_col2",
+          "label": "Show Column #2",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "col2_text1",
+          "label": "Desktop text #1"
+        },
+        {
+          "type": "richtext",
+          "id": "mb_col2_text1",
+          "label": "Mobile text #1"
+        },
+        {
+          "type": "text",
+          "id": "col2_text2",
+          "label": "Desktop text #2 (Bold)"
+        },
+        {
+          "type": "text",
+          "id": "mb_col2_text2",
+          "label": "Mobile text #2 (Bold)"
+        },
+        {
+          "type": "text",
+          "id": "col2_text3",
+          "label": "Desktop text #3"
+        },
+        {
+          "type": "text",
+          "id": "mb_col2_text3",
+          "label": "Mobile text #3"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

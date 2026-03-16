@@ -1,0 +1,366 @@
+<style>
+    #{{ section.id }}-countdown {
+        width: 100%;
+    }
+
+    .{{ section.id }}-countdown {
+        width: 100%;
+        box-sizing: border-box;
+        transform-origin: {{ info.pc_align | split: '-' | last }} center;
+        transform: scale({{ info.pc_size | divided_by: 10.0 }});
+        padding: {{ info.pc_top }}px {{ info.pc_right }}px {{ info.pc_bottom }}px {{ info.pc_left }}px;
+    }
+
+    .{{ section.id }}-countdown ._countdown-wrap {
+        margin-right: 42px;
+    }
+
+    .{{ section.id }}-countdown ._countdown-wrap:last-of-type {
+        margin-right: 0 !important;
+    }
+
+    .{{ section.id }}-countdown ._countdown-wrap:last-of-type ._countdown-num:before {
+        display: none;
+    }
+
+    .{{ section.id }}-countdown.large ._countdown-wrap {
+        margin-right: 49px;
+    }
+
+    .{{ section.id }}-countdown.large ._countdown-num {
+        width: 77px;
+        height: 77px;
+        border-radius: 17px;
+        font-size: 40px;
+        line-height: 77px;
+    }
+
+    .{{ section.id }}-countdown.large ._countdown-num:before {
+        font-size: 35px;
+        right: -28px;
+    }
+
+    .{{ section.id }}-countdown.large ._countdown-name {
+        font-size: 22px;
+        padding-top: 13px;
+    }
+
+    .{{ section.id }}-countdown.style-1 ._countdown-wrap ._countdown-num {
+    {% if info.bg_color != blank %} background: {{ info.bg_color }};
+    {% endif %}
+    }
+
+    .{{ section.id }}-countdown.style-2 ._countdown-wrap {
+        width: 97px;
+        height: 118px;
+        box-shadow: inset 0 0 0 1px{{ info.border_color }};
+        border-radius: 6px;
+        margin-right: 26px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    {% if info.bg_color != blank %} background: {{ info.bg_color }};
+    {% endif %}
+    }
+
+    .{{ section.id }}-countdown.style-2 ._countdown-wrap ._countdown-num {
+        width: 100%;
+        box-shadow: none;
+        height: auto;
+        line-height: 1.2;
+        font-size: 49px;
+        font-weight: 700;
+        color: {% if info.num_color != blank %}{{ info.num_color }}{% else %}{{ info.font_color }}{% endif %};
+    }
+
+    .{{ section.id }}-countdown.style-2 ._countdown-wrap ._countdown-num:before {
+        display: none;
+    }
+
+    .{{ section.id }}-countdown.style-2 ._countdown-wrap ._countdown-name {
+        font-size: 14px;
+        color: {{ info.font_color }};
+        line-height: 1.7;
+        padding-top: 0;
+    }
+
+    .{{ section.id }}-countdown ._countdown-num {
+        width: 66px;
+        height: 66px;
+        box-shadow: inset 0 0 0 1px{{ info.border_color }};
+        border-radius: 14px;
+        color: {% if info.num_color != blank %}{{ info.num_color }}{% else %}#181623{% endif %};
+        font-size: 34px;
+        font-weight: 900;
+        text-align: center;
+        box-sizing: border-box;
+        line-height: 66px;
+        position: relative;
+    }
+
+    .{{ section.id }}-countdown ._countdown-num:before {
+        content: ':';
+        font-size: 30px;
+        font-weight: 500;
+        color: {{ info.font_color }};
+        position: absolute;
+        right: -25px;
+        top: 48%;
+        transform: translateY(-50%);
+    }
+
+    .{{ section.id }}-countdown ._countdown-name {
+        font-size: 19px;
+        line-height: 1;
+        font-weight: 400;
+        color: {{ info.font_color }};
+        text-align: center;
+        padding-top: 11px;
+    }
+
+    @media screen and (max-width: 1850px) {
+        .{{ section.id }}-countdown {
+            padding: {{ info.pc_top | times: 0.8 }}px {{ info.pc_right | times: 0.8 }}px {{ info.pc_bottom | times: 0.8 }}px {{ info.pc_left | times: 0.8 }}px;
+        }
+
+        .{{ section.id }}-countdown ._countdown-wrap {
+            margin-right: 33.6px;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-wrap {
+            margin-right: 39.2px;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-num {
+            width: 61.6px;
+            height: 61.6px;
+            border-radius: 13.6px;
+            font-size: 32px;
+            line-height: 61.6px;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-num:before {
+            font-size: 28px;
+            right: -22.4px;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-name {
+            font-size: 17.6px;
+            padding-top: 10.4px;
+        }
+
+        .{{ section.id }}-countdown.style-2 ._countdown-wrap {
+            width: 77.6px;
+            height: 94.4px;
+            border-radius: 4.8px;
+            margin-right: 20.8px;
+        }
+
+        .{{ section.id }}-countdown.style-2 ._countdown-wrap ._countdown-num {
+            font-size: 39.2px;
+        }
+
+        .{{ section.id }}-countdown ._countdown-num {
+            width: 52.8px;
+            height: 52.8px;
+            border-radius: 11.2px;
+            font-size: 27.2px;
+            line-height: 52.8px;
+        }
+
+        .{{ section.id }}-countdown ._countdown-num:before {
+            font-size: 24px;
+            right: -20px;
+        }
+
+        .{{ section.id }}-countdown ._countdown-name {
+            font-size: 15.2px;
+            padding-top: 8.8px;
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        .{{ section.id }}-countdown {
+            padding: {{ info.pc_top | times: 0.7 }}px {{ info.pc_right | times: 0.7 }}px {{ info.pc_bottom | times: 0.7 }}px {{ info.pc_left | times: 0.7 }}px;
+        }
+
+        .{{ section.id }}-countdown ._countdown-wrap {
+            margin-right: 29.4px;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-wrap {
+            margin-right: 34.3px;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-num {
+            width: 53.9px;
+            height: 53.9px;
+            border-radius: 11.9px;
+            font-size: 28px;
+            line-height: 53.9px;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-num:before {
+            font-size: 24.5px;
+            right: -19.6px;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-name {
+            font-size: 15.4px;
+            padding-top: 9.1px;
+        }
+
+        .{{ section.id }}-countdown.style-2 ._countdown-wrap {
+            width: 67.9px;
+            height: 82.6px;
+            border-radius: 4.2px;
+            margin-right: 18.2px;
+        }
+
+        .{{ section.id }}-countdown.style-2 ._countdown-wrap ._countdown-num {
+            font-size: 34.3px;
+        }
+
+        .{{ section.id }}-countdown ._countdown-num {
+            width: 46.2px;
+            height: 46.2px;
+            border-radius: 9.8px;
+            font-size: 23.8px;
+            line-height: 46.2px;
+        }
+
+        .{{ section.id }}-countdown ._countdown-num:before {
+            font-size: 21px;
+            right: -17.5px;
+        }
+
+        .{{ section.id }}-countdown ._countdown-name {
+            font-size: 13.3px;
+            padding-top: 7.7px;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .{{ section.id }}-countdown {
+            transform-origin: {{ info.mb_align | split: '-' | last }} center;
+            transform: scale({{ info.mb_size | divided_by: 10.0 }});
+            padding: {{ info.mb_top }}px {{ info.mb_right }}px {{ info.mb_bottom }}px {{ info.mb_left }}px;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-wrap, .{{ section.id }}-countdown ._countdown-wrap {
+            margin-right: 1.45833rem;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-num, .{{ section.id }}-countdown ._countdown-num {
+            width: 2.27083rem;
+            height: 2.27083rem;
+            border-radius: 0.5rem;
+            font-size: 1.16667rem;
+            line-height: 2.27083rem;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-num:before, .{{ section.id }}-countdown ._countdown-num:before {
+            font-size: 1.04167rem;
+            right: -0.875rem;
+        }
+
+        .{{ section.id }}-countdown.large ._countdown-name, .{{ section.id }}-countdown ._countdown-name {
+            font-size: 0.66667rem;
+            font-weight: 500;
+            padding-top: 0.375rem;
+        }
+
+        .{{ section.id }}-countdown.style-2 ._countdown-wrap {
+            width: 2.875rem;
+            height: 3.5rem;
+            border-radius: 0.1875rem;
+            margin-right: 0.54167rem;
+        }
+
+        .{{ section.id }}-countdown.style-2 ._countdown-wrap ._countdown-num {
+            font-size: 1.45833rem;
+        }
+
+        .{{ section.id }}-countdown.style-2 ._countdown-wrap ._countdown-name {
+            font-size: 0.5rem;
+        }
+    }
+</style>
+<div class="countdown w-full" id="{{ section.id }}-countdown">
+    <div node-name="countdown"
+         class="{{ section.id }}-countdown style-{{ info.style }} {{ info.pc_align }} {% if large != blank %}large{% endif %}">
+        <div class="_countdown-wrap">
+            <div class="_countdown-num" node-name="day">00</div>
+            <div class="_countdown-name">{{ info.day }}</div>
+        </div>
+        <div class="_countdown-wrap">
+            <div class="_countdown-num" node-name="hour">00</div>
+            <div class="_countdown-name">{{ info.hour }}</div>
+        </div>
+        <div class="_countdown-wrap">
+            <div class="_countdown-num" node-name="minute">00</div>
+            <div class="_countdown-name">{{ info.minute }}</div>
+        </div>
+        <div class="_countdown-wrap">
+            <div class="_countdown-num" node-name="second">00</div>
+            <div class="_countdown-name">{{ info.second }}</div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        const node = document.getElementById('{{ section.id }}-countdown');
+        const nodeList = $heybike.getNodeList(node);
+        const pcCls = "{{ section.id }}-countdown style-{{ info.style }} {{ info.pc_align }} {% if large != blank %}large{% endif %}";
+        const mbCls = "{{ section.id }}-countdown style-{{ info.style }} {{ info.mb_align }}";
+
+        if ($heybike.isMobile) {
+            nodeList.countdown.className = mbCls;
+        }
+
+        $heybike.on("resize", function () {
+            nodeList.countdown.className = $heybike.isMobile ? mbCls : pcCls;
+        });
+
+        const MILLISECONDS_SECOND = 1000;
+        const MILLISECONDS_MINUTE = 60 * MILLISECONDS_SECOND;
+        const MILLISECONDS_HOUR = 60 * MILLISECONDS_MINUTE;
+        const MILLISECONDS_DAY = 24 * MILLISECONDS_HOUR;
+        let count = 0,
+            timeout = null;
+        const getDoubleDigit = (val) => {
+            if (val < 10) {
+                return `0${val}`;
+            }
+            return val;
+        };
+
+        const formatTime = () => {
+            const days = Math.max(0, Math.floor(count / MILLISECONDS_DAY));
+            const hours = Math.max(0, Math.floor((count % MILLISECONDS_DAY) / MILLISECONDS_HOUR));
+            const minutes = Math.max(0, Math.floor((count % MILLISECONDS_HOUR) / MILLISECONDS_MINUTE));
+            const seconds = Math.max(0, Math.floor((count % MILLISECONDS_MINUTE) / MILLISECONDS_SECOND));
+            nodeList.day.innerText = getDoubleDigit(days);
+            nodeList.hour.innerText = getDoubleDigit(hours);
+            nodeList.minute.innerText = getDoubleDigit(minutes);
+            nodeList.second.innerText = getDoubleDigit(seconds);
+        };
+        const startTimer = () => {
+            const interval = 1000;
+            timeout = setInterval(() => {
+                count -= interval;
+                formatTime();
+                if (count <= 0) {
+                    clearInterval(timeout);
+                }
+            }, interval);
+        };
+
+        const storeNow = new Date("{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}").getTime(); // 初始店铺时间
+        const date = new Date("{{ info.end_date }}");// 目标时间
+        count = date.getTime() - storeNow;
+        if (count > 0) {
+            startTimer();
+        }
+    })();
+</script>

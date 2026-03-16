@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tw-countdown-item{@apply tw-text-base tw-w-16 tw-bg-white tw-font-semibold tw-flex tw-flex-col tw-items-center tw-px-2 tw-py-2 tw-rounded-xl}
+.tw-countdown-item span{@apply tw-font-normal tw-text-sm tw-opacity-75}
+.footer__block--newsletter .floating-label{@apply tw-text-[#333333]} 
+.footer__block--newsletter .input.is-floating{@apply tw-bg-[#f1f1f1]} 
+.footer__block--newsletter .self-submit-button .circle-chevron{@apply tw-bg-black} 
+
+
+.shopify-section--newsletter .section { @apply tw-transition-all}
+.shopify-section--newsletter .section.fixed .newsletter-content { @apply tw-gap-0}
+.shopify-section--newsletter .section.fixed { @apply tw-fixed tw-left-0 tw-z-10 tw-bg-white tw-py-4 tw-shadow-lg tw-w-full}
+.shopify-section--newsletter .section.fixed { top: calc(var(--header-height) * var(--header-is-visible)); }
+.shopify-section--newsletter .section.fixed .newsletter-content{ @apply tw-flex tw-gap-4 tw-text-left}
+.shopify-section--newsletter .section.fixed p{ @apply tw-mt-0 -md:tw-hidden}
+.shopify-section--newsletter .section.fixed .fieldset-with-submit{ @apply -md:tw-flex -md:tw-gap-4}
+
+.tns-liveregion{@apply tw-hidden}
+.tns-nav > [aria-controls]{@apply tw-inline-block tw-transition-all tw-rounded-full tw-w-4 tw-h-4 tw-bg-white tw-border-black tw-border-solid tw-border-2}
+.tns-nav{@apply tw-items-center tw-justify-center tw-mt-4 tw-flex tw-gap-1 }
+.tns-nav .tns-nav-active{@apply tw-bg-vi tw-border-vi }
+
+.rich-text .button-list button{@apply !tw-mt-0}
+
+.tns-controls{@apply tw-pointer-events-none}
+.tns-controls > button{@apply tw-pointer-events-auto }
+.tns-controls > button[disabled]{@apply tw-opacity-0 }

@@ -1,0 +1,401 @@
+{%- assign ss = section.settings -%}
+{%- if ss.enable_bar -%}
+    {%- comment -%}
+    ------------------------------------------------------------------------------------------------------------------------
+    CSS
+    ------------------------------------------------------------------------------------------------------------------------
+    {%- endcomment -%}
+    <style>
+        :root {
+            --sticky-announcement-bar-enabled: {%- if ss.enable_sticky -%}1{% else %}0{% endif %};
+        }
+
+        {%- if ss.enable_sticky -%}
+        #shopify-section-{{ section.id }} {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .shopify-section--header ~ #shopify-section-{{ section.id }} {
+            top: calc(var(--sticky-header-enabled, 0) * var(--header-height, 0px));
+        }
+
+        {%- endif -%}
+        .announcement-bar {
+            --spacing-3-5: {{ ss.padding }}px;
+        {%- if ss.background != blank -%}
+            background-color: {{ ss.background }};
+        {%- endif -%}
+        {%- if ss.background_image != blank -%}
+            background-image: url(" {{ ss.background_image | image_url: width: ss.background_image.width }}");
+            background-position: center;
+            background-size: cover;
+        {%- elsif ss.background_gradient != blank -%}
+            background: {{ ss.background_gradient }};
+        {%- endif -%}
+        }
+        .announcement-bar .message-info .subtitle,
+        .announcement-bar .message-info .title {
+            color: {{ ss.text_color }};
+        }
+        .announcement-bar .message-info .title strong,
+        .announcement-bar .message-info .title b {
+            color: {{ ss.text_bold_color }};
+        }
+        .announcement-bar .message-info .subtitle {
+            font-size: {{ ss.message_size }}px;
+            line-height: 1.1;
+        }
+        .announcement-bar .message-info .title {
+            font-size: {{ ss.title_pc_size }}px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        .announcement-bar .container {
+            gap: 100px;
+        }
+        @media screen and (max-width: 768px) {
+            .announcement-bar .container {
+                gap: 40px;
+            }
+            .announcement-bar .message-info .subtitle {
+                display: none;
+            }
+            .announcement-bar .message-info .title {
+                font-size: {{ ss.title_mb_size }}px;
+            }
+        }
+        {%- if ss.show_countdown -%}
+        .announcement-bar .countdown--bar .countdown--item {
+            width: 74px;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .announcement-bar .countdown--bar .countdown--item:last-of-type:before {
+            display: none;
+        }
+
+        .announcement-bar .countdown--bar .countdown--item:before {
+            content: ":";
+            font-size: 20px;
+            font-weight: 900;
+            color: {{ ss.countdown_text_color }};
+            position: absolute;
+            right: -4px;
+            top: 33%;
+            transform: translateY(-50%);
+        }
+
+        .announcement-bar .countdown--bar .num {
+            width: 54px;
+            height: 35px;
+            background: {{ ss.countdown_fill_color }};
+            border-radius: 5px;
+            color: {{ ss.countdown_num_color }};
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            box-sizing: border-box;
+            line-height: 22px;
+            border: 0 none;
+        }
+
+        .announcement-bar .countdown--bar .countdown--item .name {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.1;
+            padding-top: 4px;
+            color: {{ ss.countdown_text_color }};
+        }
+        @media screen and (max-width: 768px) {
+            .announcement-bar .countdown--bar .countdown--item {
+                width: 1.8rem;
+            }
+
+            .announcement-bar .countdown--bar .countdown--item:before {
+                font-size: 0.6rem;
+                right: -0.1rem;
+            }
+
+            .announcement-bar .countdown--bar .countdown--item .num {
+                width: 1.25rem;
+                height: 1.25rem;
+                border-radius: 2px;
+                font-size: 0.65rem;
+                line-height: 1.25rem;
+            }
+
+            .announcement-bar .countdown--bar .countdown--item .name {
+                font-size: 0.5rem;
+            }
+        }
+        {%- endif -%}
+        {%- if ss.show_bar_image or ss.show_mb_bar_image -%}
+        .announcement-bar .bar-image {
+            flex: 1;
+        }
+        .announcement-bar .bar-image .image {
+            height: 100%;
+            max-height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        {%- if ss.show_mb_bar_image -%}
+        @media screen and (max-width: 768px) {
+            .announcement-bar .bar-image .image {
+                max-height: 36px;
+            }
+        }
+        {%- endif -%}
+        {%- endif -%}
+    </style>
+
+    {%- comment -%}
+    ------------------------------------------------------------------------------------------------------------------------
+    LIQUID
+    ------------------------------------------------------------------------------------------------------------------------
+    {%- endcomment -%}
+
+    <height-observer variable="announcement-bar">
+        <div class="announcement-bar{% if ss.url != blank %} tw-cursor-pointer{% endif %}"{% if ss.url != blank %} onclick="location.href='{{ ss.url }}'" {% endif %}>
+            <div class="container flex-left">
+                <div class="message-info">
+                    <div class="subtitle">{{ ss.text }}</div>
+                    <div class="title tw-font-black">{{ ss.title }}</div>
+                </div>
+                {%- if ss.show_countdown -%}
+                    <countdown-timer
+                            data-store="{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}"
+                            data-date="{{ ss.end_date }}">
+                        <div class="countdown--bar flex-center">
+                            <div class="countdown--item tw-relative flex-center-col">
+                                <input node-name="day" disabled type="text" class="num" value="00">
+                                <div class="name">{{ ss.day }}</div>
+                            </div>
+                            <div class="countdown--item tw-relative flex-center-col">
+                                <input node-name="hour" disabled type="text" class="num" value="00">
+                                <div class="name">{{ ss.hour }}</div>
+                            </div>
+                            <div class="countdown--item tw-relative flex-center-col">
+                                <input node-name="minute" disabled type="text" class="num" value="00">
+                                <div class="name">{{ ss.minute }}</div>
+                            </div>
+                            <div class="countdown--item tw-relative flex-center-col">
+                                <input node-name="second" disabled type="text" class="num" value="00">
+                                <div class="name">{{ ss.second }}</div>
+                            </div>
+                        </div>
+                    </countdown-timer>
+                {%- endif -%}
+                {%- if ss.show_bar_image or ss.show_mb_bar_image -%}
+                    <div class="bar-image flex-right">
+                        {%- if ss.bar_image != blank -%}
+                            {%- render 'global-image', image: ss.bar_image, class: 'md:block hidden', preload: true -%}
+                        {%- endif -%}
+                        {%- if ss.mb_bar_image != blank -%}
+                            {%- render 'global-image', image: ss.mb_bar_image, class: 'md:hidden', preload: true -%}
+                        {%- endif -%}
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </height-observer>
+    <script>
+        document.documentElement.style.setProperty('--announcement-bar-height', Math.round(document.getElementById('shopify-section-{{ section.id }}').clientHeight) + 'px');
+    </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement timer bar",
+  "class": "shopify-section--announcement-bar",
+  "tag": "aside",
+  "settings": [
+    {
+      "type": "number",
+      "id": "padding",
+      "label": "Padding top & bottom",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_bar",
+      "label": "Enable announcement bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "Enable sticky bar",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Bar Background Image"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_bold_color",
+      "label": "Text bold color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p><strong>Black Friday</strong> Prices, Live Now!</p>"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Message",
+      "default": "Flash sale is on — shop now and enjoy our greatest deals!"
+    },
+    {
+      "type": "range",
+      "id": "message_size",
+      "label": "Desktop message size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Countdown Timer"
+    },
+    {
+      "label": "Countdown fill color",
+      "type": "color",
+      "id": "countdown_fill_color",
+      "default": "#ff0000"
+    },
+    {
+      "label": "countdown num color",
+      "type": "color",
+      "id": "countdown_num_color",
+      "default": "#ffffff"
+    },
+    {
+      "label": "Countdown text color",
+      "type": "color",
+      "id": "countdown_text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bar_image",
+      "label": "Show desktop bar image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "bar_image",
+      "label": "Desktop bar image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mb_bar_image",
+      "label": "Show mobile bar image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "mb_bar_image",
+      "label": "Mobile bar image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Show countdown",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "Countdown end date",
+      "default": "2025-11-30 12:01:01",
+      "info": "Format: yyyy-MM-dd HH:mm:ss"
+    },
+    {
+      "type": "text",
+      "id": "day",
+      "label": "Day",
+      "default": "Days"
+    },
+    {
+      "type": "text",
+      "id": "hour",
+      "label": "Hour",
+      "default": "Hours"
+    },
+    {
+      "type": "text",
+      "id": "minute",
+      "label": "Minute",
+      "default": "Mins"
+    },
+    {
+      "type": "text",
+      "id": "second",
+      "label": "Second",
+      "default": "Secs"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,28 @@
+{% style %}
+body #main{
+    background: {{ section.settings.background_color }} !important;
+}
+[role="main"] .shopify-section:not(.shopify-section--apps) {
+    background: none;
+}
+{% endstyle %}
+{% schema %}
+{
+  "name": "MC Page Color",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": " MC Page Color"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "label": "Background color",
+      "id": "background_color",
+      "default": "#790002"
+    }
+  ]
+}
+{% endschema %}

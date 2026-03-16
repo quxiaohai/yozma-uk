@@ -1,0 +1,963 @@
+{%- assign ss = section.settings -%}
+{% render 'popup-images' %}
+<style>
+    .easter-community-video {
+        padding: 58px 0 40px;
+        background-color: #f7f7f7;
+    }
+    .easter-community-video .easter-content.light .media-tabs {
+        background-color: #ffffff;
+    }
+    .easter-community-video .easter-content.light .media-tabs .tab-item {
+        color: #89898b;
+    }
+    .easter-community-video .easter-content.light .media-tabs .tab-item.active {
+        background-color: #262626;
+        color: #fff;
+    }
+    .easter-community-video .easter-content.light .tns-controls .slider-prev,
+    .easter-community-video .easter-content.light .tns-controls .slider-next {
+        background-color: #ffffff;
+    }
+    .easter-community-video .easter-content.light .tns-controls .slider-prev .icon path,
+    .easter-community-video .easter-content.light .tns-controls .slider-next .icon path {
+        fill: #333333;
+        transition: fill 0.5s;
+    }
+    .easter-community-video .easter-content.light .tns-controls .slider-prev:not([disabled]):hover,
+    .easter-community-video .easter-content.light .tns-controls .slider-next:not([disabled]):hover {
+        background-color: #4a4a4a;
+    }
+    .easter-community-video .easter-content.light .tns-controls .slider-prev:not([disabled]):hover .icon path,
+    .easter-community-video .easter-content.light .tns-controls .slider-next:not([disabled]):hover .icon path {
+        fill: #ffffff;
+    }
+    .easter-community-video .easter-content .media-tabs {
+        background-color: #262626;
+        border-radius: 100px;
+        padding: 4px;
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+    .easter-community-video .easter-content .media-tabs .tab-item {
+        font-size: 14px;
+        line-height: 1.2;
+        padding: 10px 24px;
+        color: #fff;
+        border-radius: 100px;
+        cursor: pointer;
+    }
+    .easter-community-video .easter-content .media-tabs .tab-item.active {
+        background-color: #ffffff;
+        color: #89898b;
+    }
+    .easter-community-video .easter-content .tns-liveregion {
+        display: none;
+    }
+    .easter-community-video .easter-content .multicolumn-slide {
+        align-items: stretch;
+    }
+    .easter-community-video .easter-content .slider-item {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+    }
+    .easter-community-video .easter-content .slider-item .media-info {
+        flex: 1;
+        box-sizing: border-box;
+        padding: 18px 15px 80px;
+    }
+    .easter-community-video .easter-content .slider-item .media-info .date {
+        font-size: 14px;
+        color: #666666;
+        font-weight: 400;
+        padding-bottom: 6px;
+    }
+    .easter-community-video .easter-content .slider-item .media-info .intro,
+    .easter-community-video .easter-content .slider-item .media-info .name {
+        color: #333333;
+    }
+    .easter-community-video .easter-content .slider-item .media-info .intro {
+        font-size: 16px;
+    }
+    .easter-community-video .easter-content .slider-item .media-info .user {
+        left: 15px;
+        bottom: 20px;
+    }
+    .easter-community-video .easter-content .slider-item .media-info .user .image {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+    }
+    .easter-community-video .easter-content .slider-item .media-info .name {
+        font-size: 14px;
+        padding-left: 10px;
+        max-width: 320px;
+        word-break: break-word;
+    }
+    .easter-community-video .easter-content .slider-item .media {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: 0;
+    }
+    .easter-community-video .easter-content .slider-item .media[playing] .deferred-poster .play-button {
+        opacity: 0;
+    }
+    .easter-community-video .easter-content .slider-item .media .deferred-poster {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70px;
+    }
+    .easter-community-video .easter-content .slider-item .media .deferred-poster .play-button {
+        width: 100%;
+        height: auto;
+        background: none;
+        inset-inline: 0;
+        inset-block: 0;
+    }
+    .easter-community-video .easter-content .slider-item .media .deferred-poster .play-button .icon {
+        width: 70px;
+        height: 48px;
+    }
+    .easter-community-video .easter-content .tns-inner.__loading__ {
+        min-height: 200px;
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+    .easter-community-video .easter-content .tns-inner.__loading__ .review-item {
+        opacity: 0;
+    }
+    .easter-community-video .easter-content .tns-inner.__loading__ .tns-controls {
+        display: none;
+    }
+    .easter-community-video .easter-content .review-item {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        padding: 20px 15px;
+    }
+    .easter-community-video .easter-content .review-item .score-items .score-item {
+        width: 17px;
+        height: 17px;
+        margin-right: 2px;
+    }
+    .easter-community-video .easter-content .review-item .score-items svg {
+        width: 100%;
+        height: 100%;
+    }
+    .easter-community-video .easter-content .review-item .date {
+        opacity: 1;
+        color: #7b7b7b;
+        font-size: 12px;
+        line-height: 1.2;
+    }
+    .easter-community-video .easter-content .review-item .author {
+        font-weight: 600;
+        padding: 15px 0;
+        font-size: 16px;
+        color: #000000;
+        line-height: 1.2;
+        display: block;
+    }
+    .easter-community-video .easter-content .review-item .author .verified-badge {
+        font-size: 12px;
+        line-height: 1.1;
+        padding: 1px 5px;
+        background: #ff0000;
+        margin-left: 2px;
+        border-radius: 2px;
+        color: #fff;
+    }
+    .easter-community-video .easter-content .review-item .author .image {
+        display: inline-block;
+        height: 16px;
+        width: auto;
+        object-fit: contain;
+        margin-left: 4px;
+        vertical-align: bottom;
+    }
+    .easter-community-video .easter-content .review-item .intro {
+        font-size: 14px;
+        line-height: 1.5;
+        word-break: break-word;
+        color: #121315;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        margin-bottom: 5px;
+    }
+    .easter-community-video .easter-content .review-item .intro.more {
+        -webkit-line-clamp: 100;
+    }
+    .easter-community-video .easter-content .review-item .more-btn {
+        color: rgb(18, 19, 21);
+        font-size: 14px;
+        text-decoration: underline;
+        line-height: 1.5;
+    }
+    .easter-community-video .easter-content .review-item .image-wrap {
+        margin-top: 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .easter-community-video .easter-content .review-item .image-wrap .image {
+        width: 90px;
+        height: 90px;
+        cursor: pointer;
+    }
+    .easter-community-video .tns-controls {
+        padding-top: 34px;
+        gap: 20px;
+    }
+    .easter-community-video .tns-controls > button[disabled] {
+        opacity: 0.3;
+    }
+    .easter-community-video .tns-controls .slider-prev,
+    .easter-community-video .tns-controls .slider-next {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #4a4a4a;
+        transition: background-color 0.5s;
+    }
+    .easter-community-video .tns-controls .slider-prev:not([disabled]):hover,
+    .easter-community-video .tns-controls .slider-next:not([disabled]):hover {
+        background-color: #000000;
+    }
+    .easter-community-video .tns-controls .slider-prev .icon,
+    .easter-community-video .tns-controls .slider-next .icon {
+        width: 40%;
+        height: 40%;
+    }
+    @media screen and (max-width: 1023px) {
+        .easter-community-video {
+            padding: 2.5rem 0;
+        }
+        .easter-community-video .easter-content .media-tabs {
+            margin-bottom: 1.5rem;
+        }
+        .easter-community-video .easter-content .media-tabs .tab-item {
+            font-size: 0.875rem;
+            padding: 0.625rem 0.9375rem;
+        }
+        .easter-community-video .easter-content .slider-item {
+            border-radius: 0.625rem;
+        }
+        .easter-community-video .easter-content .slider-item .media-info {
+            padding: 1.125rem 0.9375rem 3.875rem;
+        }
+        .easter-community-video .easter-content .slider-item .media-info .date {
+            font-size: 0.75rem;
+            padding-bottom: 0.375rem;
+        }
+        .easter-community-video .easter-content .slider-item .media-info .intro {
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+        .easter-community-video .easter-content .slider-item .media-info .user {
+            left: 0.9375rem;
+            bottom: 10px;
+        }
+        .easter-community-video .easter-content .slider-item .media-info .user .image {
+            width: 2rem;
+            height: 2rem;
+        }
+        .easter-community-video .easter-content .slider-item .media-info .name {
+            font-size: 0.75rem;
+            padding-left: 0.5rem;
+            max-width: 11.875rem;
+        }
+        .easter-community-video .easter-content .slider-item .media .deferred-poster {
+            width: 3.125rem;
+        }
+        .easter-community-video .easter-content .slider-item .media .deferred-poster .play-button .icon {
+            width: 3.125rem;
+            height: 2.25rem;
+        }
+        .easter-community-video .easter-content .review-item {
+            border-radius: 0.625rem;
+            padding: 1.125rem 0.9375rem;
+        }
+        .easter-community-video .easter-content .review-item .score-items .score-item {
+            width: 0.9375rem;
+            height: 0.9375rem;
+        }
+        .easter-community-video .easter-content .review-item .author {
+            padding: 0.9375rem 0;
+            font-size: 14px;
+        }
+        .easter-community-video .easter-content .review-item .author .verified-badge {
+            font-size: 10px;
+        }
+        .easter-community-video .easter-content .review-item .author .image {
+            height: 15px;
+        }
+        .easter-community-video .easter-content .review-item .intro {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 0.3125rem;
+        }
+        .easter-community-video .easter-content .review-item .more-btn {
+            font-size: 12px;
+        }
+        .easter-community-video .easter-content .review-item .image-wrap {
+            margin-top: 1rem;
+            gap: 8px;
+        }
+        .easter-community-video .easter-content .review-item .image-wrap .image {
+            width: 60px;
+            height: 60px;
+        }
+        .easter-community-video .tns-controls {
+            padding-top: 1rem;
+            gap: 0.9375rem;
+        }
+        .easter-community-video .tns-controls .slider-prev,
+        .easter-community-video .tns-controls .slider-next {
+            width: 2.125rem;
+            height: 2.125rem;
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="easter-community-video section--page" id="{{ section.id }}-community-video">
+    {% render 'easter-title', info: ss %}
+    <div class="page-container {{ ss.theme }} easter-content">
+        <div class="flex-center">
+            <div class="media-tabs flex-center">
+                <div class="tab-item active flex-center" node-name="tab">{{ ss.tab1 }}</div>
+                <div class="tab-item flex-center" node-name="tab">{{ ss.tab2 }}</div>
+            </div>
+        </div>
+        <div class="tw-overflow-hidden tns-inner tw-relative" node-name="item">
+            <div id="{{ section.id }}-video" class="multicolumn-slide tns-slider tw-flex">
+                {%- assign videoList = section.blocks | where: 'type', 'video' -%}
+                {%- for block in videoList -%}
+                    {%- assign bs = block.settings -%}
+                    <div class="tns-item">
+                        <div class="slider-item tw-relative tw-overflow-hidden">
+                            {%- capture sizes -%}{% if bs.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
+                            {%- if bs.video_mobile or bs.video_url_mobile -%}
+                                {%- render 'video',
+                                        sizes: sizes,
+                                        video: bs.video_mobile,
+                                        video_url: bs.video_url_mobile,
+                                        muted: bs.enable_video_autoplay,
+                                        autoplay: bs.enable_video_autoplay,
+                                        loop: bs.enable_video_looping,
+                                        description: bs.description,
+                                        cover_image: bs.cover_image_mobile,
+                                        show_play_button: true,
+                                        is_mobile: true,
+                                        controls: true,
+                                        class: 'media media--height w-full h-full relative'
+                                -%}
+                            {%- endif -%}
+                            {%- render 'video',
+                                    sizes: sizes,
+                                    video: bs.video,
+                                    video_url: bs.video_url,
+                                    muted: bs.enable_video_autoplay,
+                                    autoplay: bs.enable_video_autoplay,
+                                    loop: bs.enable_video_looping,
+                                    description: bs.description,
+                                    cover_image: bs.cover_image,
+                                    show_youtube_button: true,
+                                    controls: true,
+                                    class: 'media media--height w-full h-full relative'
+                            -%}
+                            <div class="media-info tw-relative">
+                                <div class="date tw-leading-[1.2]">{{ bs.date }}</div>
+                                <div class="intro tw-leading-normal">{{ bs.content }}</div>
+                                {% if bs.avatar and bs.author %}
+                                    <div class="user tw-absolute flex-left">
+                                        {{ bs.avatar | image_url: width: '48' | image_tag: class: 'image', width: '48' }}
+                                        <span class="name tw-leading-[1.2]">{{ bs.author }}</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {%- endfor -%}
+            </div>
+            <div id="{{ section.id }}-video-tns" class="tns-controls flex-right" aria-label="Carousel Navigation"
+                 tabindex="0">
+                <button class="slider-prev flex-center" type="button" data-controls="prev" tabindex="-1"
+                        aria-controls="base">
+                    <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                        <path
+                                d="M783.128464 97.117329L363.044017 511.98592l420.068448 414.868592a56.398449 56.398449 0 0 1 0 80.461787 58.110402 58.110402 0 0 1-81.46976 0l-460.787328-455.107485a56.398449 56.398449 0 0 1 0-80.445787l460.787328-455.107485a58.110402 58.110402 0 0 1 81.46976 0 56.398449 56.398449 0 0 1 0 80.461787z"
+                                fill="#ffffff"
+                        ></path>
+                    </svg>
+                </button>
+                <button class="slider-next flex-center" type="button" data-controls="next" tabindex="-1"
+                        aria-controls="base">
+                    <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="200"
+                         height="200">
+                        <path
+                                d="M240.871694 97.117314a56.39844 56.39844 0 0 1 0-80.461775 58.110393 58.110393 0 0 1 81.469746 0l460.787257 455.107414a56.39844 56.39844 0 0 1 0 80.445775L322.34144 1007.332141a58.110393 58.110393 0 0 1-81.469746 0 56.39844 56.39844 0 0 1 0-80.461775L660.956076 511.98584 240.871694 97.117314z"
+                                fill="#ffffff"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="tw-overflow-hidden tns-inner __loading__ tw-relative hidden" node-name="item">
+            <div id="{{ section.id }}-review" class="multicolumn-slide tns-slider tw-flex">
+                {%- assign reviewList = section.blocks | where: 'type', 'review' -%}
+                {%- for block in reviewList -%}
+                    {%- assign bs = block.settings -%}
+                    <div class="tns-item">
+                        <div class="review-item tw-relative tw-overflow-hidden">
+                            <div class="review-top flex-between">
+                                {% render 'icon-score', score: bs.score %}
+                                <div class="date">{{ bs.date }}</div>
+                            </div>00
+                            <a href="{{ bs.url }}" class="author">
+                                {{ bs.title }}
+                                {%- if bs.type == 'text' -%}
+                                    <span class="verified-badge">Verified</span>
+                                {%- elsif bs.type == 'image' -%}
+                                    <img class="image"
+                                         alt="Verified by Shop"
+                                         src="https://judgeme-public-images.imgix.net/judgeme/verified-badge-v2/verified-by-shop_light.svg"
+                                    />
+                                {%- endif -%}
+                            </a>
+                            <div class="intro-wrap">
+                                <div class="intro">{{ bs.intro }}</div>
+                                <span class="more-btn tw-cursor-pointer hidden">Read More</span>
+                            </div>
+                            {%- if bs.comment_image != blank -%}
+                                <div class="image-wrap flex-left">
+                                    {% render 'global-image', desktop_img: bs.comment_image %}
+                                </div>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                {%- endfor -%}
+            </div>
+            <div id="{{ section.id }}-review-tns" class="tns-controls flex-right" aria-label="Carousel Navigation"
+                 tabindex="0">
+                <button class="slider-prev flex-center" type="button" data-controls="prev" tabindex="-1"
+                        aria-controls="base">
+                    <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                        <path
+                                d="M783.128464 97.117329L363.044017 511.98592l420.068448 414.868592a56.398449 56.398449 0 0 1 0 80.461787 58.110402 58.110402 0 0 1-81.46976 0l-460.787328-455.107485a56.398449 56.398449 0 0 1 0-80.445787l460.787328-455.107485a58.110402 58.110402 0 0 1 81.46976 0 56.398449 56.398449 0 0 1 0 80.461787z"
+                                fill="#ffffff"
+                        ></path>
+                    </svg>
+                </button>
+                <button class="slider-next flex-center" type="button" data-controls="next" tabindex="-1"
+                        aria-controls="base">
+                    <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="200"
+                         height="200">
+                        <path
+                                d="M240.871694 97.117314a56.39844 56.39844 0 0 1 0-80.461775 58.110393 58.110393 0 0 1 81.469746 0l460.787257 455.107414a56.39844 56.39844 0 0 1 0 80.445775L322.34144 1007.332141a58.110393 58.110393 0 0 1-81.469746 0 56.39844 56.39844 0 0 1 0-80.461775L660.956076 511.98584 240.871694 97.117314z"
+                                fill="#ffffff"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        const node = document.getElementById("{{ section.id }}-community-video");
+        const nodeList = $heybike.getNodeList(node);
+        let isReviewInit = false;
+        nodeList.tab.forEach((elem, index) => {
+            elem.addEventListener("click", function () {
+                if (elem.classList.contains('active')) {
+                    return false;
+                }
+                nodeList.tab.forEach((elem, i) => {
+                    elem.classList.remove('active');
+                    nodeList.item[i].classList.add('hidden');
+                });
+                nodeList.item[index].classList.remove('hidden');
+                elem.classList.add('active');
+                if (index === 1) {
+                    onReviewList();
+                }
+            });
+        });
+
+        const getDoubleNum = (num) => {
+            if (num < 10) {
+                return `0${num}`;
+            }
+
+            return num;
+        };
+
+        const getScoreHTML = (score) => {
+            const svg1 = `<path d="M944.1 457.4c29.8-29.8 13.6-81.1-27.8-88.1l-219.6-37c-16.9-2.8-31.3-14-38.4-29.7l-94-208.3c-18-40-74-40.7-93.1-1.3l-99.4 205.3c-7.5 15.5-22.3 26.3-39.3 28.7l-220.3 30.5C70.7 363.3 53 414.2 82 444.8L241.9 614c11.3 12 16.3 28.6 13.4 44.9l-40.9 232.5c-7.5 42.6 37 75.2 74.9 54.9l193.8-104c15.6-8.4 34.3-8.1 49.6 0.7l190.9 109.5c37.4 21.4 82.7-10 76.4-52.8l-34.8-233.4c-2.4-16.4 3-32.9 14.6-44.6l164.3-164.3z" fill="#FFC107"></path>`;
+            const svg2 = `<path d="M789.333333 981.333333c-8.533333 0-12.8 0-21.333333-4.266666l-256-136.533334-256 136.533334c-17.066667 4.266667-34.133333 4.266667-46.933333-4.266667-12.8-8.533333-21.333333-25.6-17.066667-42.666667l51.2-285.866666-209.066667-204.8c-12.8-12.8-17.066667-29.866667-12.8-42.666667 8.533333-12.8 21.333333-25.6 38.4-25.6l285.866667-42.666667 128-260.266666c12.8-29.866667 64-29.866667 76.8 0l128 260.266666 285.866667 42.666667c17.066667 0 29.866667 12.8 38.4 25.6 4.266667 17.066667 0 34.133333-12.8 42.666667l-209.066667 204.8 51.2 285.866666c4.266667 17.066667-4.266667 34.133333-17.066667 42.666667-8.533333 4.266667-17.066667 8.533333-25.6 8.533333zM512 750.933333c8.533333 0 12.8 0 21.333333 4.266667l200.533334 106.666667-38.4-221.866667c-4.266667-12.8 4.266667-29.866667 12.8-38.4l162.133333-157.866667-226.133333-34.133333c-12.8 0-25.6-12.8-34.133334-21.333333L512 183.466667 413.866667 384c-8.533333 12.8-21.333333 21.333333-34.133334 25.6l-226.133333 34.133333L315.733333 597.333333c8.533333 8.533333 12.8 25.6 12.8 38.4l-38.4 221.866667 200.533334-106.666667h21.333333z" fill="#FFC107"></path>`;
+            const scoreList = [`<ul class="score-items flex-left">`];
+            const max = 5 - score;
+            const setScoreList = (num, svg) => {
+                for (let i = 0; i < num; i++) {
+                    scoreList.push(`<li class="score-item flex-center"><svg
+                    class="score-svg"
+                    viewBox="0 0 1024 1024"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="15"
+                    height="15">${svg}</svg></li>`)
+                }
+            }
+
+            setScoreList(score, svg1);
+            max > 0 && setScoreList(max, svg2);
+            scoreList.push(`</ul>`);
+            return scoreList.join('');
+        }
+
+        function onInitMore() {
+            const elems = Array.from(nodeList.item[1].querySelectorAll('.intro'));
+            const images = Array.from(nodeList.item[1].querySelectorAll('.image-wrap .image'));
+            images.forEach(image => {
+                image.addEventListener('click', () => {
+                    $heybike.emit('{{ section.id }}-preview', {
+                        src: image.src
+                    })
+                });
+            })
+            elems.forEach(elem => {
+                const scrollHeight = elem.scrollHeight;
+                if (scrollHeight > elem.offsetHeight) {
+                    const next = elem.nextElementSibling;
+                    next.classList.remove('hidden');
+                    next.addEventListener('click', () => {
+                        next.classList.add('hidden');
+                        elem.classList.add('more');
+                        next.removeEventListener('click', arguments.callee);
+                    });
+                }
+            });
+        }
+
+        function onReviewList() {
+            if (isReviewInit) {
+                return false;
+            }
+            isReviewInit = true;
+            fetch('https://api.judge.me/api/v1/widgets/all_reviews_page?api_token=I8Y3RppWygWQ0JqBfCYLmnEBQkg&shop_domain=garpsz-r9.myshopify.com&review_type=product-reviews&page=1', {
+                method: 'GET'
+            }).then((response) => response.json()).then((data) => {
+                const parsedHTML = new DOMParser().parseFromString(data.all_reviews, 'text/html');
+                const reviewList = [];
+                Array.from(parsedHTML.querySelectorAll('.jdgm-rev')).forEach((node) => {
+                    const score = Number(node.querySelector('.jdgm-rev__rating').getAttribute('data-score') || 5);
+                    const date = new Date(node.querySelector('.jdgm-rev__timestamp').getAttribute('data-content'));
+                    const dateStr = `${getDoubleNum(date.getMonth())}/${getDoubleNum(date.getDay())}/${date.getFullYear()}`;
+                    const author = node.querySelector('.jdgm-rev__author').innerText;
+                    const shop = node.querySelector('.jdgm-rev__verification-badge-img')?.getAttribute('data-src') || '';
+                    const source = node.querySelector('.jdgm-rev__buyer-badge') ? 'Verified' : '';
+                    // const title = node.querySelector('.jdgm-rev__title').innerText;
+                    const content = node.querySelector('.jdgm-rev__body').innerHTML;
+                    const product = node.querySelector('.jdgm-rev__prod-link');
+                    const images = Array.from(node.querySelectorAll('.jdgm-rev__pic-img')).map((img) => {
+                        return `<img alt="" src="${img.getAttribute('data-src')}" class="image" loading="lazy" />`
+                    });
+
+                    reviewList.push(` <div class="tns-item">
+                        <div class="review-item tw-relative tw-overflow-hidden">
+                            <div class="review-top flex-between">
+                                ${getScoreHTML(score)}
+                                <div class="date">${dateStr}</div>
+                            </div>
+                            <a href="${product?.href || ''}" class="author">
+                                ${author}
+                                ${shop ? '<img class="image" alt="Verified by Shop" src="https://judgeme-public-images.imgix.net/judgeme/verified-badge-v2/verified-by-shop_light.svg"/>' : source ? '<span class="verified-badge">Verified</span>' : ''}
+                            </a>
+                            <div class="intro-wrap">
+                                <div class="intro">${content}</div>
+                                <a href="javascript:void(0);" class="more-btn hidden">Read More</a>
+                            </div>
+                            <div class="image-wrap flex-left">
+                                ${images.join('')}
+                            </div>
+                        </div>
+                    </div>`);
+                });
+                const elem = document.getElementById('{{ section.id }}-review');
+                elem.innerHTML = elem.innerHTML + reviewList.join('');
+                tns({
+                    container: '#{{ section.id }}-review',
+                    items: 1.25,
+                    loop: false,
+                    gutter: 12,
+                    nav: false,
+                    preventScrollOnTouch: true,
+                    mouseDrag: true,
+                    controls: true,
+                    controlsContainer: '#{{ section.id }}-review-tns',
+                    responsive: {
+                        769: {
+                            items: 2,
+                            gutter: 16
+                        },
+                        1280: {
+                            items: 3,
+                            gutter: 20
+                        },
+                        1440: {
+                            items: 4,
+                            gutter: 20
+                        }
+                    },
+                    onInit() {
+                        nodeList.item[1].classList.remove('__loading__');
+                        onInitMore();
+                    }
+                });
+            })
+        }
+
+        $heybike.inView(node, () => {
+            $heybike.load({type: 'TNS'}, tns => {
+                tns({
+                    container: '#{{ section.id }}-video',
+                    items: 1.25,
+                    loop: false,
+                    gutter: 12,
+                    nav: false,
+                    preventScrollOnTouch: true,
+                    mouseDrag: true,
+                    controls: true,
+                    controlsContainer: '#{{ section.id }}-video-tns',
+                    responsive: {
+                        769: {
+                            items: 2,
+                            gutter: 16
+                        },
+                        1280: {
+                            items: 3,
+                            gutter: 20
+                        }
+                    }
+                });
+            });
+        });
+    })()
+</script>
+{% schema %}
+{
+  "name": "Easter Community Video",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "easter-community-video"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Tab"
+    },
+    {
+      "type": "text",
+      "id": "tab1",
+      "label": "Video reviews text",
+      "default": "Video Reviews"
+    },
+    {
+      "type": "text",
+      "id": "tab2",
+      "label": "Customer reviews text",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "select",
+      "id": "theme",
+      "label": "Button theme",
+      "options": [
+        {
+          "value": "dark",
+          "label": "Dark"
+        },
+        {
+          "value": "light",
+          "label": "Light"
+        }
+      ],
+      "default": "dark"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Shopify-hosted video"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "header",
+          "content": "Or embed video from URL",
+          "info": "Shows when no Shopify-hosted video is selected."
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "label": "URL",
+          "info": "Use a YouTube or Vimeo URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Video alt text",
+          "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#video)"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_video_autoplay",
+          "label": "Enable video autoplay",
+          "info": "Video are muted automatically to allow autoplay.",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_video_looping",
+          "label": "Enable video looping",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Mobile layout"
+        },
+        {
+          "type": "video",
+          "id": "video_mobile",
+          "label": "Mobile video"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url_mobile",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "label": "Or embed video from URL",
+          "info": "Use a YouTube or Vimeo URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image_mobile",
+          "label": "Mobile cover image"
+        },
+        {
+          "type": "header",
+          "content": "Content settings"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "2025/10/29"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "1,194 people have given this bike a 4.5 star rating"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Electric Revolution"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Customer review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "score",
+          "label": "Score",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "unit": "s",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "10/03/2025"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Name",
+          "default": "Anonymous"
+        },
+        {
+          "type": "richtext",
+          "id": "intro",
+          "label": "Intro"
+        },
+        {
+          "type": "image_picker",
+          "id": "comment_image",
+          "label": "Comment Image"
+        },
+        {
+          "type": "select",
+          "id": "type",
+          "label": "Verified type",
+          "options": [
+            {
+              "value": "text",
+              "label": "Text"
+            },
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "empty",
+              "label": "Empty"
+            }
+          ],
+          "default": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

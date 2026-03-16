@@ -1,0 +1,25 @@
+{%- assign score = score | divided_by: 1.0 | round -%}
+{%- if score < 1 -%}
+    {%- assign score = 1 -%}
+{%- elsif score > 5 -%}
+    {%- assign score = 5 -%}
+{%- endif -%}
+<ul class="score-items flex-left">
+    {% for val in (1..score) %}
+        <li class="score-item flex-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="w-full h-full">
+                <path d="M7.932 12.3435L3.02975 15.0875L4.12463 9.57723L0 5.76292L5.57891 5.10145L7.932 0L10.285 5.10145L15.8639 5.76292L11.7394 9.57723L12.8342 15.0875L7.932 12.3435Z" fill="{% if score_color != blank %}{{ score_color }}{% else %}#FFD700{% endif %}"/>
+            </svg>
+        </li>
+    {% endfor %}
+    {%- assign num = 5 | minus: score -%}
+    {%- if num > 0 -%}
+        {% for val in (1..num) %}
+            <li class="score-item flex-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="w-full h-full">
+                    <path d="M7.932 12.3435L3.02975 15.0875L4.12463 9.57723L0 5.76292L5.57891 5.10145L7.932 0L10.285 5.10145L15.8639 5.76292L11.7394 9.57723L12.8342 15.0875L7.932 12.3435Z" fill="{% if score_color != blank %}{{ score_color }}{% else %}#FFC107{% endif %}"/>
+                </svg>
+            </li>
+        {% endfor %}
+    {%- endif -%}
+</ul>

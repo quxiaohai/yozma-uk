@@ -1,0 +1,287 @@
+{%- liquid
+    assign ss = section.settings
+    assign cid = section.id | split: '__' | last
+    assign aspect_ratio = '16 / 9'
+    if ss.pc_image != blank and ss.image_ratio == blank
+        assign aspect_ratio = ss.pc_image.aspect_ratio
+    elsif ss.image_ratio != blank
+        assign aspect_ratio = ss.image_ratio
+    endif
+    assign mb_aspect_ratio = aspect_ratio
+    if ss.mb_image != blank and ss.mb_image_ratio == blank
+        assign mb_aspect_ratio = ss.mb_image.aspect_ratio
+    elsif ss.mb_image_ratio != blank
+        assign mb_aspect_ratio = ss.mb_image_ratio
+    endif
+
+    if section.index == 1
+        assign loading = 'eager'
+        assign fetchpriority = true
+    else
+        assign loading = 'lazy'
+        assign fetchpriority = false
+    endif
+-%}
+<style>
+    .{{ cid }} {
+        background-color: #171717;
+        padding: 80px 0;
+    }
+
+    {%- if ss.image_fill -%}
+    @media screen and (min-width: 1024px) {
+      .{{ cid }} .page-width {
+        padding: 0;
+      }
+    }
+    {%- endif -%}
+
+    .{{ cid }} .media-content {
+        width: {{ bs.image_width }}%;
+        box-sizing: border-box;
+        aspect-ratio: {{ aspect_ratio }};
+        border-radius: {{ ss.image_radius }};
+    }
+
+    @media screen and (max-width: 1023px) {
+        .{{ cid }} {
+          padding: 40px 0;
+        }
+        {%- if ss.mb_image_fill -%}
+          .{{ cid }} .page-width {
+            padding: 0;
+          }
+        {%- endif -%}
+        .{{ cid }} .media-content {
+            width: 100%;
+            aspect-ratio: {{ mb_aspect_ratio }};
+            border-radius: {{ ss.mb_image_radius }};
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="{{ cid }} section--page w-full">
+    {%- render 'section-title', info: ss -%}
+    <div class="page-width flex-center">
+        <animate-element data-repeat class="media-content overflow-hidden">
+            {%- render 'global-image',
+                desktop_img: ss.pc_image,
+                desktop_size: 1600,
+                mobile_img: ss.mb_image,
+                mobile_size: 750
+            -%}
+        </animate-element>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "MC Media Image",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Media Image"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "description_bold_color",
+      "label": "Description Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Media image"
+    },
+    {
+      "type": "image_picker",
+      "id": "pc_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mb_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "number",
+      "id": "image_radius",
+      "label": "Desktop image radius",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "mb_image_radius",
+      "label": "Mobile image radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Desktop image width",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "text",
+      "id": "image_ratio",
+      "label": "Desktop image ratio(w/h)"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_fill",
+      "label": "Desktop image fill",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "mb_image_ratio",
+      "label": "Mobile image ratio(w/h)"
+    },
+    {
+      "type": "checkbox",
+      "id": "mb_image_fill",
+      "label": "Mobile image fill",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

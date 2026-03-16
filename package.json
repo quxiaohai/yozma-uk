@@ -1,0 +1,19 @@
+{
+  "name": "yozmasport-uk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "shopify theme dev --store yozma-uk",
+    "pull": "shopify theme pull --store yozma-uk",
+    "prod:push": "shopify theme push --store yozma-uk",
+    "css": "npx tailwindcss -i ./assets/app-tailwind.css -o ./assets/tw-custom.css --watch",
+    "ug:theme": "terser assets/theme.js -o assets/theme.min.js -c -m",
+    "ug:comm": "terser assets/heybike-common.js -o snippets/heybike-common.liquid -c -m"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quxiaohai/yozma-uk.git"
+  },
+  "private": true
+}

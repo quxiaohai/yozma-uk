@@ -1,0 +1,388 @@
+<style>
+    #shopify-section-{{ section.id }} {
+    {% if section.settings.remove_vertical_spacing %}--section-spacing-block: 0px;{% endif %}
+    {% if section.settings.remove_horizontal_spacing %}--section-spacing-inline: 0px;{% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .user-wrap .image {
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        margin-right: 8px;
+    }
+</style>
+
+
+{%- render 'section-spacing-collapsing' -%}
+
+<div {% render 'section-properties' %}>
+    <div class="section-stack">
+        {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, text_alignment: section.settings.text_alignment_title, width:section.settings.title_width -%}
+        <div class="tw-overflow-hidden tw-relative">
+            <div id="multicolumn-slide-{{section.id}}" class="multicolumn-slide tw-flex">
+                {% for block in section.blocks %}
+                  {% assign bk_stts = block.settings %}
+                  {% if block.type == "item" %}
+                  <div >
+                      <div class="tw-rounded-t-2xl tw-overflow-hidden">
+                          {{ bk_stts.img | image_url: width: '750' | image_tag: width: '750,500'}}
+                      </div>
+                      <div class="tw-text-center tw-rounded-b-2xl tw-overflow-hidden tw-p-4 tw-pb-6 content-wrapper" style="color:{{ section.settings.text_color }};
+                          {% if section.settings.item_bg_gd %} background-image: {{ section.settings.item_bg_gd }} {% endif %}">
+                          {% case section.settings.txt_size %}
+                              {% when "sm" %}
+                                  {% assign txt_size = "tw-text-lg || tw-text-sm " %}
+                              {% when "md" %}
+                                  {% assign txt_size = "tw-text-xl || " %}
+                              {% else %}
+                                  {% assign txt_size = "md:tw-text-3xl tw-text-xl || tw-text-lg" %}
+                          {% endcase %}
+                          {% if bk_stts.title %}
+                          <h5 class="tw-font-semibold tw-mb-1 {{ txt_size | split: '||' | first }}"> {{ bk_stts.title }} </h5>
+                          {% endif %}
+                          <p class="-md:tw-text-sm {{ txt_size | split: '||' | last }}">{{ bk_stts.content }}</p>
+                      </div>
+                  </div>
+                  {% else %}
+                  <div>
+                    <div class="tw-rounded-t-2xl tw-overflow-hidden">
+                      {%- if block.settings.video -%}
+                      <video-media autoplay >
+                        {%- if block.settings.show_video_controls -%}
+                          {%- assign loop_video = false -%}
+                        {%- else -%}
+                          {%- assign loop_video = true -%}
+                        {%- endif -%}
+
+                        {{- block.settings.video | video_tag: playsinline: true, muted: true, loop: loop_video, controls: block.settings.show_video_controls, preload: 'metadata', class: 'object-fill' -}}
+                      </video-media>
+                      {%- else -%}
+                        {%- capture poster -%}
+                          {%- assign poster_image = block.settings.poster_image | default: block.settings.video.preview_image -%}
+
+                          {%- if poster_image -%}
+                            {{- poster_image | image_url: width: poster_image.width | image_tag: loading: loading_strategy, sizes: '(max-width: 699px) 400px, 800px', widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' -}}
+                          {%- else -%}
+                            {{ 'image' | placeholder_svg_tag: 'rounded' }}
+                          {%- endif -%}
+                        {%- endcapture -%}
+                        <video-media host="{{ block.settings.external_video_url.type }}" {% if block.settings.autoplay %}autoplay{% else %}show-play-button{% endif %}>
+                          {%- unless block.settings.autoplay -%}
+                            {{- poster -}}
+                          {%- endunless -%}
+
+                          <template>
+                            {%- if block.settings.external_video_url.type == 'youtube' -%}
+                              <iframe src="https://www.youtube.com/embed/{{ block.settings.external_video_url.id }}?playsinline=1&autoplay=1&controls=0&mute={% if block.settings.autoplay %}1{% else %}0{% endif %}&loop=1&playlist={{ block.settings.external_video_url.id }}&enablejsapi=1&rel=0&modestbranding=1&origin={{ 'https://' | append: request.host | url_encode }}" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"></iframe>
+                            {%- elsif block.settings.external_video_url.type == 'vimeo' -%}
+                              <iframe src="https://player.vimeo.com/video/{{ block.settings.external_video_url.id }}?autoplay=1&autopause=1&background={% if block.settings.autoplay %}1{% else %}0{% endif %}&loop=1&muted={% if block.settings.autoplay %}1{% else %}0{% endif %}&transparent=0&responsive=1&portrait=0&title=0&byline=0&color={{ settings.text_color | remove_first: '#' }}" allow="autoplay; encrypted-media;" allowfullscreen="allowfullscreen"></iframe>
+                            {%- endif -%}
+                          </template>
+                        </video-media>
+                      {%- endif -%}
+                    </div>
+                    <div class="tw-text-center tw-rounded-b-2xl tw-overflow-hidden tw-p-4 tw-pb-6 content-wrapper" style="color:{{ section.settings.text_color }};
+                        {% if section.settings.item_bg_gd %} background-image: {{ section.settings.item_bg_gd }} {% endif %}">
+                        {% case section.settings.txt_size %}
+                            {% when "sm" %}
+                                {% assign txt_size = "tw-text-lg || tw-text-sm " %}
+                            {% when "md" %}
+                                {% assign txt_size = "tw-text-xl || " %}
+                            {% else %}
+                                {% assign txt_size = "md:tw-text-3xl tw-text-xl || tw-text-lg" %}
+                        {% endcase %}
+                        <div class="user-wrap flex-left">
+                            {%- if bk_stts.avatar != blank -%}
+                                {{ bk_stts.avatar | image_url: width: '48' | image_tag: class: 'image', width: '48' }}
+                            {%- endif -%}
+                            {% if bk_stts.title %}
+                                <h5 class="tw-font-semibold tw-mb-1 {{ txt_size | split: '||' | first }}"> {{ bk_stts.title }} </h5>
+                            {% endif %}
+                        </div>
+                        <p class="-md:tw-text-sm {{ txt_size | split: '||' | last }}">{{ bk_stts.content }}</p>
+                    </div>
+                  </div>
+                  {% endif %}
+
+                {% endfor %}
+            </div>
+
+            <div class="tns-controls tw-absolute tw-bottom-1/2 tw-w-full tw-justify-between tw-flex tw-px-4 tw-opacity-75" aria-label="Carousel Navigation" tabindex="0">
+                <button class="tw-bg-white tw-shadow tw-rounded-full tw-p-2" type="button" data-controls="prev" tabindex="-1" aria-controls="base">
+                  <svg t="1758019301067" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1646" width="24" height="24"><path d="M272.448 472.064l399.232-399.232c22.080-22.080 57.792-22.080 79.872 0 22.016 22.016 22.080 57.792 0 79.872l-359.296 359.296 359.296 359.296c22.016 22.016 22.080 57.792 0 79.872s-57.792 22.016-79.872 0l-399.232-399.232c-22.016-22.080-22.016-57.792 0-79.872z" fill="#272636" p-id="1647"></path></svg>
+                </button>
+                <button class="tw-bg-white tw-shadow tw-rounded-full tw-p-2" type="button" data-controls="next" tabindex="-1" aria-controls="base">
+                  <svg t="1758019301067" class="icon -tw-rotate-180" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1646" width="24" height="24"><path d="M272.448 472.064l399.232-399.232c22.080-22.080 57.792-22.080 79.872 0 22.016 22.016 22.080 57.792 0 79.872l-359.296 359.296 359.296 359.296c22.016 22.016 22.080 57.792 0 79.872s-57.792 22.016-79.872 0l-399.232-399.232c-22.016-22.080-22.016-57.792 0-79.872z" fill="#272636" p-id="1647"></path></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  (function() {
+    const node = document.getElementById('multicolumn-slide-{{section.id}}');
+    function checkItem() {
+      const items = node.querySelectorAll(".content-wrapper");
+      let maxHeight = 0;
+
+      // 先清除已有高度
+      items.forEach(function(item) {
+        item.style.height = "";
+      });
+
+      // 找最大高度
+      items.forEach(function(item) {
+        const h = item.offsetHeight;
+        if (h > maxHeight) maxHeight = h;
+      });
+
+      // 应用到所有元素
+      items.forEach(function(item) {
+        item.style.height = maxHeight + "px";
+      });
+    }
+    $heybike.inView(node, () => {
+      $heybike.load({type: 'TNS'}, tns => {
+        tns({
+          container: node,
+          items: 1.25,
+          loop: false,
+          slideBy: 1,
+          gutter: 12,
+          nav: true,
+          navPosition: "bottom",
+          preventScrollOnTouch: true,
+          mouseDrag: true,
+          controls: true,
+          controlsContainer:"#shopify-section-{{ section.id }} .tns-controls",
+          responsive: {
+            769: {
+              items: 2,
+              gutter: 16
+            },
+            1280: {
+              items: 3,
+              gutter: 20
+            }
+          },
+          onInit: checkItem   // 轮播初始化完成后执行
+        });
+      });
+    }, {margin: '500px 0px 500px 0px'})
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Multicolumn slide",
+  "class": "shopify-section--multicolumn-slide",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "select",
+      "id": "col_num",
+      "label": "Column item",
+      "options": [
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "5",
+          "label": "5"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "txt_size",
+      "label": "Text size",
+      "options": [
+        {
+          "label": "Small",
+          "value": "sm"
+        },
+        {
+          "label": "Medium",
+          "value": "md"
+        },
+        {
+          "label": "Large",
+          "value": "lg"
+        }
+      ],
+      "default": "md"
+    },
+    {
+      "type": "color_background",
+      "id": "item_bg_gd",
+      "label": "Item background gradient"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "text_alignment_title",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "About"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured content"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_vertical_spacing",
+      "label": "Remove vertical spacing",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_horizontal_spacing",
+      "label": "Remove horizontal spacing",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Your Long-range, Touring E-bike"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "The synergy of the customized motor and torque sensor ensures optimal efficiency, enabling an impressive 80-mile range on a single charge. Enhanced by the Shimano 8-speed gear shift system, it tackles diverse terrains with ease. Start an ebike tour now!"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Video are muted to allow autoplay. For best visual results and avoid platform branding, we recommend uploading a MP4 file."
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Replaces external video if both are set."
+        },
+        {
+          "type": "video_url",
+          "id": "external_video_url",
+          "accept": [
+            "vimeo",
+            "youtube"
+          ],
+          "label": "Video URL",
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_image",
+          "label": "Poster image"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_video_controls",
+          "label": "Show video controls",
+          "info": "Only applicable for MP4 videos. When controls are shown, loop is disabled.",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Your Long-range, Touring E-bike"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "The synergy of the customized motor and torque sensor ensures optimal efficiency, enabling an impressive 80-mile range on a single charge. Enhanced by the Shimano 8-speed gear shift system, it tackles diverse terrains with ease. Start an ebike tour now!"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Customize",
+      "name": "Multicolumn slide"
+    }
+  ]
+}
+{% endschema %}

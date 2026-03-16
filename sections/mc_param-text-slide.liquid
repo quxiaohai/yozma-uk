@@ -1,0 +1,837 @@
+{%- liquid
+    assign ss = section.settings
+    assign size = section.blocks.size
+    assign cid = section.id | split: '__' | last
+-%}
+<style>
+    .mc_param-text-slide {
+        padding: 80px 0;
+        background: #171717;
+        position: relative;
+    }
+
+    .mc_param-text-slide .title {
+        margin-bottom: 43px;
+        font-weight: 900;
+        font-size: 48px;
+        font-style: italic;
+        line-height: 1.2;
+        color: #ffffff;
+    }
+
+    .mc_param-text-slide .title strong {
+        color: {{ ss.title_bold_color }};
+    }
+
+    .mc_param-text-slide .title .image {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+        position: absolute;
+        right: -24px;
+        bottom: -10px;
+    }
+
+    .mc_param-text-slide .text-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mc_param-text-slide .slide-tabs-wrap {
+        margin-bottom: 3.5416666667vw;
+    }
+
+    .mc_param-text-slide .slide-tabs {
+        height: 55px;
+        background-color: {{ ss.tab_bg_color }};
+        padding: 2px;
+    }
+
+    .mc_param-text-slide .button-tab {
+        padding: 0 50px;
+        height: 100%;
+        color: {{ ss.tab_color }};
+        font-size: 24px;
+        transition: background-color 0.5s;
+        transition-property: background-color, color;
+        white-space: nowrap;
+    }
+
+    .mc_param-text-slide .button-tab.active {
+        background-color: {{ ss.tab_active_bg_color }};
+        color: {{ ss.tab_active_color }};
+    }
+
+    .mc_param-text-slide .head-title {
+        padding-bottom: 16px;
+        line-height: 1.1;
+        font-size: {{ ss.param_text_size }}px;
+        border-bottom: 1px solid{{ ss.border_color }};
+    }
+
+    .mc_param-text-slide .card-item {
+        display: none;
+    }
+
+    .mc_param-text-slide .card-item.active {
+        display: flex;
+        min-height: 100px;
+    }
+
+    .mc_param-text-slide .card-item.wrap {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .mc_param-text-slide .item {
+        width: 150px;
+    }
+
+    .mc_param-text-slide .item .name {
+        font-size: 14px;
+        color: #FFFFFF;
+        padding-top: 12px;
+        text-align: center;
+    }
+
+    .mc_param-text-slide .img-wrap {
+        height: 150px;
+        background: #212121;
+    }
+
+    .mc_param-text-slide .img-wrap .image {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .mc_param-text-slide .info-wrap {
+        padding-left: 9.375vw;
+        width: 50%;
+        color: {{ ss.param_text_color }};
+    }
+
+    .mc_param-text-slide .info-wrap.fill {
+        width: 100%;
+        padding-left: 0 !important;
+    }
+
+    .mc_param-text-slide .info-wrap.fill ul {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .mc_param-text-slide .info-wrap.fill li {
+        width: 45%;
+    }
+
+    .mc_param-text-slide .info-wrap .order-no {
+        background-color: {{ ss.order_bg_color }};
+        width: 37px;
+        min-width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        color: {{ ss.order_text_color }};
+        font-size: {{ ss.param_text_size }}px;
+        font-weight: 800;
+        line-height: 37px;
+        text-align: center;
+        margin-right: 10px;
+    }
+
+    .mc_param-text-slide .info-wrap ul {
+        width: 100%;
+        list-style: none;
+    }
+
+    .mc_param-text-slide .info-wrap ul li {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        line-height: 1.2;
+        padding: 14px 0;
+        font-size: {{ ss.param_text_size }}px;
+        border-bottom: 1px solid{{ ss.border_color }};
+        white-space: nowrap;
+    }
+
+    .mc_param-text-slide .info-wrap ul li strong {
+        flex: 1;
+        text-align: left;
+        font-weight: 700;
+    }
+
+    .mc_param-text-slide .media-wrap {
+        width: 50%;
+    }
+
+    .mc_param-text-slide .media-wrap.fill {
+        width: 100%;
+    }
+
+    .mc_param-text-slide ._ap {
+        aspect-ratio: var(--desktop-aspect-ratio);
+    }
+
+    .mc_param-text-slide ._dp {
+        aspect-ratio: var(--aspect-ratio);
+    }
+
+    .mc_param-text-slide .media-wrap .image {
+        object-fit: contain;
+    }
+
+    @media screen and (max-width: 1440px) {
+        .mc_param-text-slide {
+            padding: 68px 0;
+        }
+
+        .mc_param-text-slide .title {
+            margin-bottom: 37px;
+            font-size: 41px;
+        }
+
+        .mc_param-text-slide .title .image {
+            height: 34px;
+            right: -20px;
+            bottom: -9px;
+        }
+
+        .mc_param-text-slide .slide-tabs {
+            height: 47px;
+        }
+
+        .mc_param-text-slide .button-tab {
+            padding: 0 43px;
+            font-size: 20px;
+        }
+
+        .mc_param-text-slide .head-title {
+            padding-bottom: 14px;
+            font-size: {{ ss.param_text_size | times: 0.85 | round }}px;
+        }
+
+        .mc_param-text-slide .info-wrap {
+            padding-left: 9.375vw;
+        }
+
+        .mc_param-text-slide .info-wrap .order-no {
+            width: 31px;
+            min-width: 31px;
+            height: 31px;
+            font-size: {{ ss.param_text_size | times: 0.85 | round }}px;
+            line-height: 31px;
+            margin-right: 9px;
+        }
+
+        .mc_param-text-slide .info-wrap ul li {
+            padding: 12px 0;
+            font-size: {{ ss.param_text_size | times: 0.85 | round }}px;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .mc_param-text-slide {
+            padding: 2.5rem 0;
+        }
+
+        .mc_param-text-slide .title {
+            margin-bottom: 0.875rem;
+            font-size: 1.0625rem;
+        }
+
+        .mc_param-text-slide .title .image {
+            height: 0.9rem;
+            right: -0.75rem;
+            bottom: -0.2125rem;
+        }
+
+        .mc_param-text-slide .slide-tabs-wrap {
+            margin-bottom: 1.5rem;
+        }
+
+        .mc_param-text-slide .slide-tabs {
+            width: 100%;
+            height: 1.71875rem;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+    {%- assign color = ss.tab_bg_color -%}
+    {%- if size > 3 -%}
+        .mc_param-text-slide .slide-btn {
+            top: 0;
+            right: 0;
+            padding: 0 5px 0 25px;
+            pointer-events: none;
+            background: linear-gradient(90deg, rgba({{ color.red }}, {{ color.green }}, {{ color.blue }}, 0), rgba({{ color.red }}, {{ color.green }}, {{ color.blue }}, 1));
+        }
+
+        .mc_param-text-slide .disabled {
+            display: none;
+        }
+
+        .mc_param-text-slide .slide-btn .image {
+            width: 12px;
+            height: 12px;
+            object-fit: contain;
+        }
+
+        .mc_param-text-slide .prev-btn {
+            right: auto;
+            left: 0;
+            padding: 0 25px 0 5px;
+            background: linear-gradient(90deg, rgba({{ color.red }}, {{ color.green }}, {{ color.blue }}, 1), rgba({{ color.red }}, {{ color.green }}, {{ color.blue }}, 0));
+        }
+
+        .mc_param-text-slide .prev-btn .image {
+            transform: rotate(180deg);
+        }
+
+    {%- endif -%}
+        .mc_param-text-slide .button-tab {
+            padding: 0;
+            font-size: 0.75rem;
+            letter-spacing: -0.48px;
+        {%- if size <= 3 -%} flex: 1;
+        {%- else -%} width: 7.125rem;
+            min-width: 7.125rem;
+        {%- endif -%}
+        }
+
+        .mc_param-text-slide .head-title {
+            padding-top: 1.125rem;
+            padding-bottom: 0.46875rem;
+            font-size: {{ ss.mb_param_text_size }}px;
+        }
+
+        .mc_param-text-slide .card-item {
+            flex-direction: column;
+        }
+
+        .mc_param-text-slide .card-item.wrap {
+            flex-direction: row;
+            gap: 1rem 0.5rem;
+        }
+
+        .mc_param-text-slide .info-wrap {
+            padding-left: 0;
+            width: 100%;
+        }
+
+        .mc_param-text-slide .info-wrap .order-no {
+            width: 1.15625rem;
+            min-width: 1.15625rem;
+            height: 1.15625rem;
+            font-size: {{ ss.mb_param_text_size }}px;
+            line-height: 1.15625rem;
+            margin-right: 0.3125rem;
+        }
+
+        .mc_param-text-slide .info-wrap.fill ul {
+            display: block;
+        }
+        .mc_param-text-slide .info-wrap.fill li {
+            width: 100%;
+        }
+
+        .mc_param-text-slide .info-wrap ul li {
+            padding: 0.4375rem 0;
+            font-size: {{ ss.mb_param_text_size }}px;
+        }
+
+        .mc_param-text-slide .media-wrap {
+            width: 100%;
+        }
+
+        .mc_param-text-slide ._ap {
+            aspect-ratio: var(--mobile-aspect-ratio);
+        }
+
+        .mc_param-text-slide .item {
+            width: calc((100% - 1rem) / 3);
+        }
+
+        .mc_param-text-slide .item .name {
+            font-size: 12px;
+            padding-top: 8px;
+        }
+
+        .mc_param-text-slide .img-wrap {
+            height: calc((100% - 1rem) / 3);
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_param-text-slide section--page w-full" id="{{ section.id }}-slide">
+    <div class="text-content page-width">
+        <div class="title relative">
+            <div class="relative z-1{% if ss.title_gradient_color != blank %} text-gradient{% endif %}"
+                 style="{% if ss.title_gradient_color != blank %}--background: {{ ss.title_color.rgb }}; --gradient: {{ ss.title_gradient_color }};{% else %}color: {{ ss.title_color }};{% endif %}">{{ ss.title }}</div>
+            {%- if ss.title_decorate_image != blank -%}
+                {%- render 'global-image', image: ss.title_decorate_image, image_size: 300 -%}
+            {%- endif -%}
+        </div>
+        {%- if size > 1 -%}
+            <div class="relative flex-left slide-tabs-wrap w-full">
+                <div class="slide-tabs hide-scroll-bar flex-left" node-name="scroll">
+                    {%- for block in section.blocks -%}
+                        {%- assign bs = block.settings -%}
+                        <button
+                            data-proxy="tab"
+                            node-name="tab"
+                            data-index="{{ forloop.index0 }}"
+                            class="button-tab fw-900 lh-5 flex-center relative {% if forloop.first %}active{% endif %}">
+                            {{ bs.title }}
+                        </button>
+                    {%- endfor -%}
+                </div>
+                {%- if size > 3 -%}
+                    <div class="slide-btn disabled h-full mobile-done:flex absolute z-2 flex-center prev-btn"
+                         node-name="prev">
+                        <img class="image"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623&width=20"
+                             loading="lazy" alt="Slide Prev"/>
+                    </div>
+                    <div class="slide-btn h-full absolute z-2 mobile-done:flex flex-center next-btn" node-name="next">
+                        <img class="image"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623&width=20"
+                             loading="lazy" alt="Slide Prev"/>
+                    </div>
+                {%- endif -%}
+            </div>
+        {%- endif -%}
+        {%- for block in section.blocks -%}
+            {%- liquid
+                assign bs = block.settings
+                assign type = block.type
+            -%}
+            <animate-element
+                node-name="panel"
+                data-repeat
+                class="card-item{% if forloop.first %} active{% endif %} w-full flex-{% if type == 'slide' %}between{% else %}left wrap{% endif %}">
+                {%- if type == 'slide' -%}
+                    {%- liquid
+                        assign width = 900
+                        if bs.param_text == blank
+                            assign width = 1440
+                        endif
+                    -%}
+                    {%- if bs.pc_image != blank -%}
+                        <div class="media-wrap {% if bs.param_text == blank %}fill{% endif %} relative">
+                            {%- render 'global-image',
+                                desktop_img: bs.pc_image,
+                                desktop_size: width,
+                                mobile_img: bs.mb_image,
+                                mobile_size: 750,
+                                show_size: true
+                            -%}
+                        </div>
+                    {%- endif -%}
+                    {%- if bs.param_text != blank -%}
+                        <div class="info-wrap{% if bs.pc_image == blank %} fill{% endif %}">
+                            {%- if ss.param_title1 != blank or ss.param_title2 != blank -%}
+                                <div class="head-title flex-between">
+                                    <span>{{ ss.param_title1 }}</span>
+                                    <span>{{ ss.param_title2 }}</span>
+                                </div>
+                            {%- endif -%}
+                            {%- liquid
+                                assign text = bs.param_text | replace: '&lcub;', '{' | replace: '&rcub;', '}'
+                                assign matchs = text | split: '{'
+                                for match in matchs
+                                    if forloop.first == false
+                                        assign val = match | split: '}' | first
+                                        assign o = '{' | append: val | append: '}'
+                                        assign n = '<div class="order-no">' | append: val | append: '</div>'
+                                        assign text = text | replace: o, n
+                                    endif
+                                endfor
+                            -%}
+                            {{ text }}
+                        </div>
+                    {%- endif -%}
+                {%- else -%}
+                    {%- for v in (1..15) -%}
+                        {%- liquid
+                            assign icon = 'icon' | append: v
+                            assign name = 'name' | append: v
+                        -%}
+                        {%- if bs[icon] != blank -%}
+                            <div class="item flex-center-col">
+                                <div class="img-wrap w-full">
+                                    {%- render 'global-image', image: bs[icon], image_size: 150, media_type: 'icon' -%}
+                                </div>
+                                <div class="name lh-2">{{ bs[name] }}</div>
+                            </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endif -%}
+            </animate-element>
+        {%- endfor -%}
+    </div>
+</div>
+{%- if size > 1 -%}
+    <script>
+        const {nodeList} = $heybike.tabSwitch({
+            root: document.getElementById('{{ section.id }}-slide'),
+            cb: ({index}) => {
+                {%- if size > 3 -%}
+                if ($heybike.isMobile) {
+                    nodeList.scroll.scrollTo({
+                        left: Math.max(0, index - 1) * 114,
+                        behavior: 'smooth'
+                    });
+                    nodeList.prev.classList.toggle('disabled', index <= 1);
+                    nodeList.next.classList.toggle('disabled', index >= {{ size | minus: 2 }});
+                }
+                {%- endif -%}
+            }
+        });
+    </script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "MC Param Text Slide",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Param Text Slide"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Specifications And Parameters</p>"
+    },
+    {
+      "label": "Title decorate image",
+      "type": "image_picker",
+      "id": "title_decorate_image"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "header",
+      "content": "Slide tab"
+    },
+    {
+      "type": "color",
+      "id": "tab_color",
+      "label": "Tab text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Tab active text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "tab_bg_color",
+      "label": "Tab background color",
+      "default": "#EAEAEA"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_bg_color",
+      "label": "Tab active background color",
+      "default": "#D30000"
+    },
+    {
+      "type": "header",
+      "content": "Slide card"
+    },
+    {
+      "type": "range",
+      "id": "param_text_size",
+      "label": "Desktop param text size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mb_param_text_size",
+      "label": "Mobile param text size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Mobile card background color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "param_text_color",
+      "label": "Param text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "order_bg_color",
+      "label": "Order background color",
+      "default": "#E9E9E9"
+    },
+    {
+      "type": "color",
+      "id": "order_text_color",
+      "label": "Order text color",
+      "default": "#000000"
+    },
+    {
+      "label": "Param title #1",
+      "type": "text",
+      "id": "param_title1",
+      "default": "SIZE (mm)"
+    },
+    {
+      "label": "Param title #2",
+      "type": "text",
+      "id": "param_title2",
+      "default": "One Size"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title"
+        },
+        {
+          "type": "image_picker",
+          "id": "pc_image",
+          "label": "Desktop image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mb_image",
+          "label": "Mobile image"
+        },
+        {
+          "type": "richtext",
+          "id": "param_text",
+          "label": "Param text",
+          "default": "<ul><li>#A#<strong>Motor</strong>52V 4160W Mid Drive Motor</li></ul>"
+        }
+      ]
+    },
+    {
+      "type": "slide_icon",
+      "name": "Slide card icon",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon1",
+          "label": "Icon #1"
+        },
+        {
+          "type": "text",
+          "id": "name1",
+          "label": "Name #1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon2",
+          "label": "Icon #2"
+        },
+        {
+          "type": "text",
+          "id": "name2",
+          "label": "Name #2"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon3",
+          "label": "Icon #3"
+        },
+        {
+          "type": "text",
+          "id": "name3",
+          "label": "Name #3"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon4",
+          "label": "Icon #4"
+        },
+        {
+          "type": "text",
+          "id": "name4",
+          "label": "Name #4"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon5",
+          "label": "Icon #5"
+        },
+        {
+          "type": "text",
+          "id": "name5",
+          "label": "Name #5"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon6",
+          "label": "Icon #6"
+        },
+        {
+          "type": "text",
+          "id": "name6",
+          "label": "Name #6"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon7",
+          "label": "Icon #7"
+        },
+        {
+          "type": "text",
+          "id": "name7",
+          "label": "Name #7"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon8",
+          "label": "Icon #8"
+        },
+        {
+          "type": "text",
+          "id": "name8",
+          "label": "Name #8"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon9",
+          "label": "Icon #9"
+        },
+        {
+          "type": "text",
+          "id": "name9",
+          "label": "Name #9"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon10",
+          "label": "Icon #10"
+        },
+        {
+          "type": "text",
+          "id": "name10",
+          "label": "Name #10"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon11",
+          "label": "Icon #11"
+        },
+        {
+          "type": "text",
+          "id": "name11",
+          "label": "Name #11"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon12",
+          "label": "Icon #12"
+        },
+        {
+          "type": "text",
+          "id": "name12",
+          "label": "Name #12"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon13",
+          "label": "Icon #13"
+        },
+        {
+          "type": "text",
+          "id": "name13",
+          "label": "Name #13"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon14",
+          "label": "Icon #14"
+        },
+        {
+          "type": "text",
+          "id": "name14",
+          "label": "Name #14"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon15",
+          "label": "Icon #15"
+        },
+        {
+          "type": "text",
+          "id": "name15",
+          "label": "Name #15"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

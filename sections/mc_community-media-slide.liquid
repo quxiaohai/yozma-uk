@@ -1,0 +1,754 @@
+{%- liquid
+    assign ss = section.settings
+    assign youtubes = section.blocks | where: 'type', 'youtube'
+    assign videos = section.blocks | where: 'type', 'video'
+-%}
+<style>
+    .mc_c-m-s {
+        padding: 80px 0;
+        background-color: #171717;
+    }
+
+    .mc_c-m-s .title {
+        margin-bottom: 38px;
+        font-weight: 900;
+        font-size: 48px;
+        font-style: italic;
+        line-height: 1.2;
+        color: #ffffff;
+        letter-spacing: -0.96px;
+    }
+
+    .mc_c-m-s .title .image {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+        position: absolute;
+        right: -20px;
+        bottom: -7px;
+    }
+
+    .mc_c-m-s .slide-wrap {
+        padding-bottom: 20px;
+    }
+
+    .mc_c-m-s .slide-tabs {
+        height: 55px;
+        background-color: {{ ss.tab_bg_color }};
+        padding: 2px;
+    }
+
+    .mc_c-m-s .button-tab {
+        padding: 0 50px;
+        height: 100%;
+        color: {{ ss.tab_color }};
+        font-size: 24px;
+        transition: background-color 0.5s;
+        transition-property: background-color, color;
+        white-space: nowrap;
+    }
+
+    .mc_c-m-s .button-tab.active {
+        background-color: {{ ss.tab_active_bg_color }};
+        color: {{ ss.tab_active_color }};
+    }
+
+    .mc_c-m-s .control-box {
+        gap: 0 20px;
+        display: none;
+    }
+
+    .mc_c-m-s .control-box.active {
+        display: flex;
+    }
+
+    .mc_c-m-s .slider-button {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: rgba(217, 217, 217, 0.05);
+    }
+
+    .mc_c-m-s .slider-button .image {
+        object-fit: fill;
+        transition: transform 0.3s;
+    }
+
+    .mc_c-m-s .slider-button:hover .image {
+        transform: scale(1.05);
+    }
+
+    .mc_c-m-s .slider-button[disabled] {
+        opacity: 1;
+        background-color: rgba(217, 217, 217, 0.05);
+    }
+
+    .mc_c-m-s .slider-button[disabled] .image {
+        filter: grayscale(1);
+    }
+
+    .mc_c-m-s .prev-button {
+        transform: rotateY(180deg);
+    }
+
+    .mc_c-m-s .head-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mc_c-m-s .slide-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media screen and (min-width: 1024px) and (max-width: 1920px) {
+        .mc_c-m-s .slide-content {
+            padding-right: 0;
+        }
+    }
+
+    .mc_c-m-s .slide-content .multicolumn-slide {
+        align-items: stretch;
+        gap: 0 24px;
+        display: none;
+    }
+    .mc_c-m-s .slide-content .multicolumn-slide.active {
+        display: flex;
+    }
+
+    .mc_c-m-s .slide-content .slider-item {
+        background-color: #232323;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mc_c-m-s .slide-content .media-info {
+        flex: 1;
+        box-sizing: border-box;
+        padding: 22px 24px 90px;
+    }
+
+    .mc_c-m-s .slide-content .media-info .date {
+        font-size: 16px;
+        color: #666666;
+        padding-bottom: 12px;
+    }
+
+    .mc_c-m-s .slide-content .media-info .intro,
+    .mc_c-m-s .slide-content .media-info .name {
+        color: #ffffff;
+    }
+
+    .mc_c-m-s .slide-content .media-info .intro {
+        font-size: 24px;
+    }
+
+    .mc_c-m-s .slide-content .media-info .user {
+        left: 24px;
+        bottom: 24px;
+    }
+
+    .mc_c-m-s .slide-content .media-info .user .image {
+        width: 47px;
+        height: 47px;
+        border-radius: 50%;
+    }
+
+    .mc_c-m-s .slide-content .media-info .name {
+        font-size: 16px;
+        padding-left: 12px;
+        max-width: 320px;
+        word-break: break-word;
+    }
+
+    .mc_c-m-s .slide-content .media {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 73/41;
+        object-fit: cover;
+        border-radius: 0;
+        --icon-width: 56px;
+        --icon-height: 56px;
+    }
+
+    .mc_c-m-s .slide-content.__loading__ {
+        min-height: 200px;
+        border-radius: 10px;
+        background-color: {% if ss.page_color %}{{ ss.page_color }}{% else %}#171717{% endif %};
+    }
+
+    .mc_c-m-s .slide-content.__loading__ .slider-item {
+        opacity: 0;
+    }
+
+    .mc_c-m-s .slide-content .video-item {
+        aspect-ratio: 9/16;
+        min-height: 300px;
+    }
+
+    .mc_c-m-s .slide-content .video-item .media {
+        width: 100%;
+        height: 100%;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .mc_c-m-s {
+            padding: 2.5rem 0;
+        }
+
+        .mc_c-m-s .title {
+            margin-bottom: 0.875rem;
+            font-size: 1.0625rem;
+            letter-spacing: 0;
+        }
+
+        .mc_c-m-s .title .image {
+            height: 0.90625rem;
+            right: -0.625rem;
+            bottom: -0.1875rem;
+        }
+
+        .mc_c-m-s .slide-wrap {
+            padding-bottom: 0.625rem;
+        }
+
+        .mc_c-m-s .slide-tabs {
+            height: 1.71875rem;
+        }
+
+        .mc_c-m-s .button-tab {
+            padding: 0 1.5625rem;
+            font-size: 0.75rem;
+            letter-spacing: -0.48px;
+        }
+
+        .mc_c-m-s .control-box {
+            display: none !important;
+        }
+
+        .mc_c-m-s .slide-content .multicolumn-slide {
+            gap: 0 0.75rem;
+        }
+
+        .mc_c-m-s .slide-content .slider-item {
+            width: 600px;
+        }
+
+        .mc_c-m-s .slide-content .media-info {
+            padding: 0.6875rem 0.75rem 2.8125rem;
+        }
+
+        .mc_c-m-s .slide-content .media-info .date {
+            font-size: 0.5rem;
+            padding-bottom: 0.375rem;
+        }
+
+        .mc_c-m-s .slide-content .media-info .intro {
+            font-size: 0.75rem;
+        }
+
+        .mc_c-m-s .slide-content .media-info .user {
+            left: 0.75rem;
+            bottom: 0.75rem;
+        }
+
+        .mc_c-m-s .slide-content .media-info .user .image {
+            width: 1.46875rem;
+            height: 1.46875rem;
+            border-radius: 50%;
+        }
+
+        .mc_c-m-s .slide-content .media-info .name {
+            font-size: 0.5rem;
+            padding-left: 0.375rem;
+            max-width: 10rem;
+        }
+
+        .mc_c-m-s .progress {
+            height: 2px;
+            background: #D9D9D9;
+            margin-top: 0.625rem;
+        }
+
+        .mc_c-m-s .progress .bar {
+            transform: translateX(-100%);
+            border-radius: 4px;
+            background: #A90000;
+            transition: transform 0.3s;
+            display: none;
+        }
+        .mc_c-m-s .progress .bar.active {
+            display: block;
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_c-m-s section--page" id="{{ section.id }}-slide">
+    <div class="page-width head-content">
+        <div class="title relative">
+            <div class="relative z-1{% if ss.title_gradient_color != blank %} text-gradient{% endif %}"
+                 style="{% if ss.title_gradient_color != blank %}--background: {{ ss.title_color.rgb }}; --gradient: {{ ss.title_gradient_color }};{% else %}color: {{ ss.title_color }};{% endif %}">{{ ss.title }}</div>
+            {%- if ss.title_decorate_image != blank -%}
+                {%- render 'global-image', image: ss.title_decorate_image, image_size: 300 -%}
+            {%- endif -%}
+        </div>
+        <div class="slide-wrap w-full flex-between" node-name="button">
+            <div class="slide-tabs flex-left">
+                <button
+                    data-proxy="tab"
+                    node-name="tab"
+                    data-index="0"
+                    class="button-tab fw-900 lh-5 flex-center active relative">{{ ss.tab1 }}</button>
+                <button
+                    data-proxy="tab"
+                    node-name="tab"
+                    data-index="1"
+                    class="button-tab fw-900 lh-5 flex-center relative">{{ ss.tab2 }}</button>
+            </div>
+            {%- if youtubes.size > 0 -%}
+                <div node-name="youtube" class="control-box active flex-right w-full">
+                    <button class="prev-button slider-button flex-center">
+                        <img alt="Slide Prev Button" loading="lazy"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-lucency-icon.png?v=1770178534"
+                             class="image"/>
+                    </button>
+                    <button class="next-button slider-button flex-center">
+                        <img alt="Slide Next Button" loading="lazy"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-lucency-icon.png?v=1770178534"
+                             class="image"/>
+                    </button>
+                </div>
+            {%- endif -%}
+            {%- if videos.size > 0 -%}
+                <div node-name="video" class="control-box flex-right w-full">
+                    <button class="prev-button slider-button flex-center">
+                        <img alt="Slide Prev Button" loading="lazy"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-lucency-icon.png?v=1770178534"
+                             class="image"/>
+                    </button>
+                    <button class="next-button slider-button flex-center">
+                        <img alt="Slide Next Button" loading="lazy"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-lucency-icon.png?v=1770178534"
+                             class="image"/>
+                    </button>
+                </div>
+            {%- endif -%}
+        </div>
+    </div>
+    <div class="page-width overflow-hidden __loading__ slide-content" node-name="box">
+        {%- if youtubes.size > 0 -%}
+            <animate-element
+                data-repeat
+                node-name="panel"
+                class="multicolumn-slide active flex-left">
+                {%- for block in youtubes -%}
+                    {%- assign bs = block.settings -%}
+                    <div class="slider-item relative overflow-hidden">
+                        {%- capture sizes -%}{% if bs.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
+                        {%- if bs.video_mobile or bs.video_url_mobile -%}
+                            {%- render 'video',
+                                sizes: sizes,
+                                video_url: bs.video_url_mobile,
+                                cover_image: bs.cover_image_mobile,
+                                show_youtube_button: true,
+                                is_mobile: true,
+                                controls: true,
+                                class: 'w-full h-full relative'
+                            -%}
+                        {%- endif -%}
+                        {%- render 'video',
+                            sizes: sizes,
+                            video_url: bs.video_url,
+                            cover_image: bs.cover_image,
+                            show_youtube_button: true,
+                            controls: true,
+                            class: 'w-full h-full relative'
+                        -%}
+                        <div class="media-info relative">
+                            <div class="date lh-2">{{ bs.date }}</div>
+                            <div class="intro lh-1">{{ bs.content }}</div>
+                            {% if bs.avatar and bs.author %}
+                                <div class="user absolute flex-left">
+                                    {%- render 'global-image', image: bs.avatar, image_size: 48 -%}
+                                    <span class="name lh-2">{{ bs.author }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {%- endfor -%}
+            </animate-element>
+        {%- endif -%}
+        {%- if videos.size > 0 -%}
+            <animate-element
+                data-repeat
+                node-name="panel"
+                id="{{ section.id }}-video"
+                class="multicolumn-slide{% if youtubes.size == 0 %} active{% endif %} instagram-slide flex-left">
+                {%- for block in videos -%}
+                    {%- assign bs = block.settings -%}
+                    <div class="video-item relative overflow-hidden">
+                        {%- capture sizes -%}{% if bs.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
+                        {%- if bs.video_mobile or bs.video_url_mobile -%}
+                            {%- render 'video',
+                                sizes: sizes,
+                                video: bs.video_mobile,
+                                muted: bs.enable_video_autoplay,
+                                autoplay: bs.enable_video_autoplay,
+                                loop: bs.enable_video_looping,
+                                description: bs.description,
+                                cover_image: bs.cover_image_mobile,
+                                play_icon: ss.play_button_icon,
+                                show_play_button: false,
+                                is_mobile: true,
+                                controls: true,
+                                once: false,
+                                class: 'w-full h-full relative'
+                            -%}
+                        {%- endif -%}
+                        {%- render 'video',
+                            sizes: sizes,
+                            video: bs.video,
+                            muted: bs.enable_video_autoplay,
+                            autoplay: bs.enable_video_autoplay,
+                            loop: bs.enable_video_looping,
+                            description: bs.description,
+                            cover_image: bs.cover_image,
+                            play_icon: ss.play_button_icon,
+                            show_play_button: false,
+                            controls: true,
+                            once: false,
+                            class: 'w-full h-full relative'
+                        -%}
+                    </div>
+                {%- endfor -%}
+            </animate-element>
+        {%- endif -%}
+    </div>
+    <div class="page-width mobile-done">
+        <div class="progress overflow-hidden w-full">
+            <div class="bar active w-full h-full" node-name="bar0">&nbsp;</div>
+            <div class="bar w-full h-full" node-name="bar1">&nbsp;</div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        const node = document.getElementById("{{ section.id }}-slide");
+        const nodeList = $heybike.getNodeList(node);
+        {%- if youtubes.size > 0 and videos.size > 0 -%}
+        $heybike.tabSwitch({
+            root: nodeList.button,
+            nodeList,
+            cb: ({index}) => {
+                nodeList.youtube.classList.toggle('active', index === 0);
+                nodeList.video.classList.toggle('active', index === 1);
+                if ($heybike.isMobile) {
+                    nodeList.bar0.classList.toggle('active', index === 0);
+                    nodeList.bar1.classList.toggle('active', index === 1);
+                }
+            }
+        });
+        {%- endif -%}
+        $heybike.inView(node, () => {
+            $heybike.load({type: 'TNS'}, tns => {
+                const panels = [].concat(nodeList.panel);
+                const onChange = (obj, index) => {
+                    if ($heybike.isMobile) {
+                        const progress = (1 - (obj.index + 1) / obj.slideCount) * 100;
+                        nodeList[`bar${index}`].style.transform = `translateX(-${progress}%)`;
+                    }
+                };
+                {%- if youtubes.size > 0 -%}
+                const ySlide = tns({
+                    container: panels[0],
+                    items: 1.18,
+                    loop: false,
+                    nav: false,
+                    preventScrollOnTouch: true,
+                    mouseDrag: true,
+                    controls: true,
+                    controlsContainer: nodeList.youtube,
+                    responsive: {
+                        900: {
+                            items: 2.65
+                        }
+                    },
+                    onInit: () => {
+                        nodeList.box.classList.remove('__loading__');
+                        setTimeout(() => {
+                            onChange(ySlide.getInfo(), 0);
+                        }, 80);
+                    }
+                });
+                ySlide.events.on('transitionEnd', () => {
+                    onChange(ySlide.getInfo(), 0);
+                });
+                {%- endif -%}
+                {%- if videos.size > 0 -%}
+                const vSlide = tns({
+                    container: panels[panels.length - 1],
+                    items: 1.18,
+                    loop: false,
+                    nav: false,
+                    preventScrollOnTouch: true,
+                    mouseDrag: true,
+                    controls: true,
+                    controlsContainer: nodeList.video,
+                    responsive: {
+                        900: {
+                            items: 4
+                        },
+                        1440: {
+                            items: 5.1
+                        }
+                    },
+                    onInit: () => {
+                        setTimeout(() => {
+                            onChange(vSlide.getInfo(), 1);
+                        }, 80);
+                    }
+                });
+                vSlide.events.on('transitionEnd', () => {
+                    onChange(vSlide.getInfo(), 1);
+                });
+                {%- endif -%}
+            });
+        });
+    })()
+</script>
+{% schema %}
+{
+  "name": "MC Community Media Slide",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Community Media Slide"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Hear from Our Riders</p>"
+    },
+    {
+      "label": "Title decorate image",
+      "type": "image_picker",
+      "id": "title_decorate_image"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "header",
+      "content": "Tab"
+    },
+    {
+      "type": "text",
+      "id": "tab1",
+      "label": "YouTube video text",
+      "default": "YouTube video"
+    },
+    {
+      "type": "text",
+      "id": "tab2",
+      "label": "Instagram video text",
+      "default": "Instagram videos"
+    },
+    {
+      "type": "color",
+      "id": "tab_color",
+      "label": "Tab text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Tab active text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "tab_bg_color",
+      "label": "Tab background color",
+      "default": "#EAEAEA"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_bg_color",
+      "label": "Tab active background color",
+      "default": "#D30000"
+    },
+    {
+      "type": "header",
+      "content": "Instagram"
+    },
+    {
+      "type": "image_picker",
+      "id": "play_button_icon",
+      "label": "Play button icon"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "youtube",
+      "name": "Youtube",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Or embed video from URL",
+          "info": "Shows when no Shopify-hosted video is selected."
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "label": "URL",
+          "info": "Use a YouTube or Vimeo URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "header",
+          "content": "Mobile layout"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url_mobile",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "label": "Or embed video from URL",
+          "info": "Use a YouTube or Vimeo URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image_mobile",
+          "label": "Mobile cover image"
+        },
+        {
+          "type": "header",
+          "content": "Content settings"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "2025/10/29"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "1,194 people have given this bike a 4.5 star rating"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Rawstuntz"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Instagram videos",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Shopify-hosted video"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Video alt text",
+          "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#video)"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_video_autoplay",
+          "label": "Enable video autoplay",
+          "info": "Video are muted automatically to allow autoplay.",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_video_looping",
+          "label": "Enable video looping",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Mobile layout"
+        },
+        {
+          "type": "video",
+          "id": "video_mobile",
+          "label": "Mobile video"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image_mobile",
+          "label": "Mobile cover image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

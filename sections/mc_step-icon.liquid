@@ -1,0 +1,471 @@
+{%- liquid
+    assign ss = section.settings
+    assign cid = section.id | split: '__' | last
+-%}
+<style>
+    .{{ cid }} {
+        padding: 80px 0;
+        background-color: #000000;
+    }
+    .{{ cid }} .section-border-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transform: translateY(-{{ ss.image_offset_y }}%);
+    }
+    .{{ cid }} .section-border-image .image {
+        object-fit: contain;
+    }
+    .{{ cid }} .step-items {
+        align-items: flex-start;
+        width: 100%;
+    }
+    .{{ cid }} .step-item {
+        flex: 1;
+        position: relative;
+    }
+    .{{ cid }} .step-item:last-of-type:before {
+        display: none;
+    }
+    .{{ cid }} .step-item .icon-wrap {
+        width: 100%;
+        height: {{ 200 | times: ss.icon_scale }}px;
+    }
+    .{{ cid }} .step-item .icon-wrap .image {
+        object-fit: contain;
+    }
+    .{{ cid }} .step-item .info {
+        text-align: center;
+    }
+    .{{ cid }} .step-item .info .name,
+    .{{ cid }} .step-item .info .text {
+        line-height: 1.2;
+        word-break: break-word;
+        color: #ffffff;
+    }
+    .{{ cid }} .step-item .info .name {
+        margin-top: 36px;
+        font-weight: 700;
+        font-size: 24px;
+    }
+    .{{ cid }} .step-item .info .text {
+        margin-top: 14px;
+        font-size: 16px;
+    }
+    .{{ cid }} .grid-table {
+        width: 100%;
+        margin-top: 80px;
+        --color-border-light: #D4D4D4;
+        border-collapse: collapse;
+        border-spacing: 0;
+        overflow: hidden;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .{{ cid }} .grid-table.light {
+        --color-border-light: #262626;
+    }
+    .{{ cid }} .grid-table.light .text {
+        color: #d4d4d4;
+    }
+    .{{ cid }} .grid-table .table-row {
+        border-block-start: none;
+        height: 54px;
+    }
+    .{{ cid }} .grid-table .table-row:last-of-type {
+        border-bottom: 0 none;
+    }
+    .{{ cid }} .grid-table .table-row.gray {
+        font-weight: 700;
+    }
+    .{{ cid }} .grid-table .table-row.gray .text {
+        font-size: 20px;
+    }
+    .{{ cid }} .grid-table .text {
+        padding: 0;
+        width: 33.3%;
+        font-size: 18px;
+        vertical-align: middle;
+        line-height: 1.2;
+        border: 1px solid var(--color-border-light);
+        text-align: center;
+        word-break: break-word;
+    }
+    @media screen and (max-width: 1696px) {
+        .{{ cid }} {
+            padding: 68px 0;
+        }
+        .{{ cid }} .step-item:before {
+            width: 150.45px;
+            top: 85px;
+            left: 188.7px;
+        }
+        .{{ cid }} .step-item .icon-wrap {
+            height: {{ 170 | times: ss.icon_scale }}px;
+        }
+        .{{ cid }} .step-item .info .name {
+            margin-top: 30.6px;
+            font-size: 20.4px;
+        }
+        .{{ cid }} .step-item .info .text {
+            margin-top: 11.9px;
+            font-size: 13.6px;
+        }
+        .{{ cid }} .grid-table {
+            margin-top: 68px;
+        }
+        .{{ cid }} .grid-table .table-row {
+            height: 45.9px;
+        }
+        .{{ cid }} .grid-table .table-row.gray .text {
+            font-size: 17px;
+        }
+        .{{ cid }} .grid-table .text {
+            font-size: 15.3px;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .{{ cid }} {
+            padding: 2.5rem 0;
+        }
+        .{{ cid }} .step-items {
+            gap: 1.25rem 0;
+            flex-direction: column;
+        }
+        .{{ cid }} .step-item {
+            width: 100%;
+            flex-direction: row;
+            background-color: var(--card-background, #1a1a1a);
+            border-radius: 1rem;
+            padding: 0.875rem 1.125rem;
+        }
+        .{{ cid }} .step-item:before {
+            display: none;
+        }
+        .{{ cid }} .step-item .icon-wrap {
+            width: {{ 5.625 | times: ss.mb_icon_scale }}rem;
+            height: {{ 5.625 | times: ss.mb_icon_scale }}rem;
+        }
+        .{{ cid }} .step-item .info {
+            text-align: left;
+            flex: 1;
+            box-sizing: border-box;
+            padding-left: 1rem;
+        }
+        .{{ cid }} .step-item .info .name {
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+        .{{ cid }} .step-item .info .text {
+            margin-top: 0.625rem;
+            font-size: 1rem;
+        }
+        .{{ cid }} .grid-table {
+            margin-top: 3.125rem;
+            width: 100%;
+        }
+        .{{ cid }} .grid-table .table-row.gray .text {
+            font-size: 0.875rem;
+        }
+        .{{ cid }} .grid-table .text {
+            --sp-6: 8px;
+            --sp-7d5: 10px;
+            font-size: 0.75rem;
+            line-height: 1.2;
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="{{ cid }} section--page">
+    {%- if ss.border_image != blank -%}
+        <div class="section-border-image">
+            {% render 'global-image', desktop_img: ss.border_image, mobile_img: ss.mb_border_image %}
+        </div>
+    {%- endif -%}
+    {% render 'section-title', info: ss %}
+    <div class="step-content flex-center-col page-container">
+        <div class="step-items flex-center">
+            {%- assign icon_list = section.blocks | where: 'type', 'card' -%}
+            {%- for block in icon_list -%}
+                {%- assign bs = block.settings -%}
+                <div class="step-item flex-center-col" style="--card-background: {{ bs.mobile_card_color }}">
+                    <div class="icon-wrap flex-center">
+                        {%- render 'global-image', desktop_img: bs.image -%}
+                    </div>
+                    <div class="info">
+                        <div class="name" style="color: {{ bs.title_color }};">{{ bs.title }}</div>
+                        <div class="text" style="color: {{ bs.text_color }};">
+                            {{ bs.text }}
+                        </div>
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
+        {%- assign table = section.blocks | where: 'type', 'table' | first -%}
+        {%- if table != blank -%}
+            {%- assign bs = table.settings -%}
+            <table class="grid-table {{ bs.theme }}">
+                <tr class="table-row gray">
+                    {%- assign title_list = bs.title | split: '#' -%}
+                    {%- for title in title_list -%}
+                        <td class="text text-{{ forloop.index }}">{{ title }}</td>
+                    {%- endfor -%}
+                </tr>
+                {%- assign content_list = bs.content | newline_to_br | split: '<br />' -%}
+                {%- for content in content_list -%}
+                    <tr class="table-row">
+                        {%- assign text_list = content | split: '#' -%}
+                        {%- for text in text_list -%}
+                            <td class="text">{{ text }}</td>
+                        {%- endfor -%}
+                    </tr>
+                {%- endfor -%}
+            </table>
+        {%- endif -%}
+    </div>
+</div>
+{% schema %}
+{
+  "name": "MC Step Icon",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Step Icon"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    },
+    {
+      "type": "image_picker",
+      "id": "border_image",
+      "label": "Desktop top border image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mb_border_image",
+      "label": "Mobile top border image"
+    },
+    {
+      "type": "range",
+      "id": "image_offset_y",
+      "label": "Image offset y",
+      "min": 0,
+      "max": 99,
+      "step": 1,
+      "unit": "px",
+      "default": 99
+    },
+    {
+      "type": "range",
+      "id": "icon_scale",
+      "label": "Desktop icon scale",
+      "min": 0.1,
+      "max": 2,
+      "step": 0.1,
+      "unit": "m",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "mb_icon_scale",
+      "label": "Mobile icon scale",
+      "min": 0.1,
+      "max": 2,
+      "step": 0.1,
+      "unit": "m",
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Icon card",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon image"
+        },
+        {
+          "type": "color",
+          "id": "mobile_card_color",
+          "label": "Mobile card color",
+          "default": "#1a1a1a"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "name": "Table",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "theme",
+          "label": "Table theme",
+          "options": [
+            {
+              "value": "light",
+              "label": "Light"
+            },
+            {
+              "value": "dark",
+              "label": "Dark"
+            }
+          ],
+          "default": "light"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Table title"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Table content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

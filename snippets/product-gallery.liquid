@@ -1,0 +1,493 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+PRODUCT GALLERY COMPONENT
+----------------------------------------------------------------------------------------------------------------------
+
+This component is used to show the product gallery (used in product page and featured product section)
+
+********************************************
+Supported variables
+********************************************
+
+* product: the product to render (if empty, renders placeholder content)
+* product_form_id: the product form id
+{%- endcomment -%}
+
+{%- assign default_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+
+{%- comment -%}
+IMPLEMENTATION NOTE: Shopify does not natively offer a way to create a set of images per variant. This is often
+pretty limited when you have a lot of colors and would like to only see the images specific to a given color. To
+goes around that, Impact offers a hack using alt tags whose usage is described here: https://support.maestrooo.com/article/187-product-creating-variant-image-set
+The implementation is rather complex and inefficient due to a lot of string parsings, but it is, unfortunately, the
+only way to do it on Shopify right now.
+{%- endcomment -%}
+
+{%- liquid
+    assign filtered_indexes = null | sort
+    assign has_video = false
+    assign has_3d = false
+    assign v_size = product.variants.size
+    assign video_count = 0
+    assign model_count = 0
+
+    for media in product.media
+        if media.media_type == 'external_video' or media.media_type == 'video'
+            assign has_video = true
+            assign video_count = video_count | plus: 1
+        endif
+        if media.media_type == 'model'
+            assign has_3d = true
+            assign model_count = model_count | plus: 1
+        endif
+
+        if v_size > 1
+            if media.alt contains '#' and media.alt != product.title
+                assign alt_parts = media.alt | split: '#'
+
+                assign media_group_parts = alt_parts.last | split: '_'
+                assign option = product.options_by_name[media_group_parts.first]
+                assign option_value = option.selected_value | downcase
+
+                assign downcase_group_value = media_group_parts.last | strip | downcase
+
+                if option_value != downcase_group_value and media != default_media
+                    assign media_position = media.position | sort
+                    assign filtered_indexes = filtered_indexes | concat: media_position
+                endif
+            endif
+        endif
+    endfor
+
+    assign layout = section.settings.desktop_media_layout
+    case layout
+        when 'carousel_thumbnails_bottom'
+            capture sizes
+                echo '(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(760px, 42vw)'
+            endcapture
+        when 'carousel_thumbnails_left'
+            capture sizes
+                echo '(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(730px, 40vw)'
+            endcapture
+        when 'grid_one'
+            capture sizes
+                echo '(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(1200px, 60vw)'
+            endcapture
+        when 'grid'
+            capture sizes
+                echo '(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(580px, 30vw)'
+            endcapture
+    endcase
+    capture product_gallery_id
+        echo 'product-gallery-' | append: product.id | append: '-' | append: section.id
+    endcapture
+    if has_video
+        capture product_video_gallery_id
+            echo 'product-video-gallery-' | append: product.id | append: '-' | append: section.id
+        endcapture
+    endif
+    if has_3d
+        capture product_3d_gallery_id
+            echo 'product-3d-gallery-' | append: product.id | append: '-' | append: section.id
+        endcapture
+    endif
+-%}
+<product-gallery id="{{ product_form_id }}" form="{{ product_form_id }}"
+                 filtered-indexes="{{ filtered_indexes | json }}"
+                 {%- if section.settings.enable_image_zoom -%}allow-zoom="{{ section.settings.max_image_zoom_level }}"{% endif %}
+                 class="product-gallery {% if section.settings.mobile_carousel_control contains 'dots' %}product-gallery--mobile-dots{% endif %} {% if layout contains 'grid' %}product-gallery--desktop-grid{% else %}product-gallery--desktop-carousel{% endif %} {% if layout == 'carousel_thumbnails_left' %}product-gallery--desktop-thumbnails-left{% endif %} {% if section.settings.mobile_media_size == 'expanded' %}product-gallery--mobile-expanded{% endif %}">
+    {%- capture page_dots -%}
+        <page-dots
+            node-name="thumbnail"
+            class="page-dots {% if section.settings.mobile_carousel_control == 'floating_dots' %}page-dots--blurred{% endif %} md:hidden"
+            aria-controls="{{ product_gallery_id }}">
+            {%- for media in product.media -%}
+                {%- if media.media_type == 'image' -%}
+                    <button type="button" class="tap-area"
+                            {% if filtered_indexes contains media.position %}hidden{% endif %}
+                            aria-current="{% if media == default_media %}true{% else %}false{% endif %}">
+                        <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: media.position }}</span>
+                    </button>
+                {%- endif -%}
+            {%- endfor -%}
+        </page-dots>
+        {%- if has_video -%}
+            <page-dots
+                node-name="thumbnail"
+                class="page-dots hidden-important {% if section.settings.mobile_carousel_control == 'floating_dots' %}page-dots--blurred{% endif %} md:hidden"
+                aria-controls="{{ product_video_gallery_id }}">
+                {%- for media in product.media -%}
+                    {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                        <button type="button" class="tap-area"
+                                {% if filtered_indexes contains media.position %}hidden{% endif %}
+                                aria-current="{% if media == default_media %}true{% else %}false{% endif %}">
+                            <span
+                                class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: media.position }}</span>
+                        </button>
+                    {%- endif -%}
+                {%- endfor -%}
+            </page-dots>
+        {%- endif -%}
+        {%- if has_3d -%}
+            <page-dots
+                node-name="thumbnail"
+                class="page-dots hidden-important {% if section.settings.mobile_carousel_control == 'floating_dots' %}page-dots--blurred{% endif %} md:hidden"
+                aria-controls="{{ product_3d_gallery_id }}">
+                {%- for media in product.media -%}
+                    {%- if media.media_type == 'model' -%}
+                        <button type="button" class="tap-area"
+                                {% if filtered_indexes contains media.position %}hidden{% endif %}
+                                aria-current="{% if media == default_media %}true{% else %}false{% endif %}">
+                            <span
+                                class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: media.position }}</span>
+                        </button>
+                    {%- endif -%}
+                {%- endfor -%}
+            </page-dots>
+        {%- endif -%}
+    {%- endcapture -%}
+
+    <div class="product-gallery__ar-wrapper">
+        <div class="product-gallery__media-list-wrapper">
+            {%- comment -%}
+            --------------------------------------------------------------------------------------------------------------------
+            MEDIA LIST
+            --------------------------------------------------------------------------------------------------------------------
+            {%- endcomment -%}
+            <media-carousel
+                node-name="panel"
+                desktop-mode="{{ layout }}"
+                adaptive-height
+                prev-selector=".thumbnail-image-button-prev"
+                next-selector=".thumbnail-image-button-next"
+                initial-index="{{ default_media.position | minus: 1 }}"
+                {% if section.settings.enable_video_autoplay %}autoplay{% endif %} id="{{ product_gallery_id }}"
+                class="active product-gallery__media-list{% if layout contains 'carousel' and product.media.size > 1 %} is-first product-gallery__buttons{% endif %}  {% if section.settings.mobile_media_size == 'expanded' %}full-bleed{% else %}bleed{% endif %} scroll-area md:unbleed">
+                {%- assign media_attached_to_variant = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
+
+                {%- for media in product.media -%}
+                    {%- if media.media_type == 'image' -%}
+                        {%- if layout == 'grid_highlight' -%}
+                            {%- capture sizes -%}(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), {% if forloop.first or media_attached_to_variant contains media.src %}min(1200px, 60vw){% else %}min(580px, 30vw){% endif %}{%- endcapture -%}
+                        {%- endif -%}
+                        <div
+                            class="product-gallery__media flex-center {% if media.alt contains '@expand' %}product-gallery__media--expand{% endif %} {% if section.settings.mobile_carousel_control != 'free_scroll' %}snap-center{% endif %}"
+                            data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}"
+                            {% if filtered_indexes contains media.position %}hidden{% endif %}>
+                            {%- if default_media == media -%}
+                                {%- assign preload = true -%}
+                            {%- else -%}
+                                {%- assign preload = false -%}
+                            {%- endif -%}
+                            {%- render 'media', media: media, sizes: sizes, rounded: '', preload: preload, autoplay: section.settings.enable_video_autoplay, loop: section.settings.enable_video_looping, group: 'product' -%}
+                            {%- if section.settings.enable_image_zoom and layout contains 'grid' -%}
+                                <div class="product-gallery__zoom hidden md:block">
+                                    <button type="button" is="product-zoom-button"
+                                            class="circle-button circle-button--fill ring">
+                                        <span class="sr-only">{{ 'product.gallery.zoom' | t }}</span>
+                                        {%- render 'icon' with 'image-zoom' -%}
+                                    </button>
+                                </div>
+                            {%- endif -%}
+                        </div>
+                    {%- endif -%}
+                {%- endfor -%}
+            </media-carousel>
+            {%- if section.settings.enable_image_zoom -%}
+                <div
+                    class="product-gallery__zoom {% if layout contains 'grid' %}md:hidden{% endif %}">
+                    <button type="button" is="product-zoom-button" class="circle-button circle-button--fill ring">
+                        <span class="sr-only">{{ 'product.gallery.zoom' | t }}</span>
+                        {%- render 'icon' with 'image-zoom' -%}
+                    </button>
+                </div>
+            {%- endif -%}
+            {%- if has_video -%}
+                <media-carousel
+                    node-name="panel"
+                    desktop-mode="{{ layout }}"
+                    adaptive-height
+                    prev-selector=".thumbnail-video-button-prev"
+                    next-selector=".thumbnail-video-button-next"
+                    initial-index="{{ default_media.position | minus: 1 }}"
+                    {% if section.settings.enable_video_autoplay %}autoplay{% endif %}
+                    id="{{ product_video_gallery_id }}"
+                    class="product-gallery__other-list not-slide-button product-gallery__media-list{% if layout contains 'carousel' and product.media.size > 1 %} is-first product-gallery__buttons{% endif %}  {% if section.settings.mobile_media_size == 'expanded' %}full-bleed{% else %}bleed{% endif %} scroll-area md:unbleed">
+                    {%- assign media_attached_to_variant = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
+                    {%- for media in product.media -%}
+                        {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                            {%- if layout == 'grid_highlight' -%}
+                                {%- capture sizes -%}(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), {% if forloop.first or media_attached_to_variant contains media.src %}min(1200px, 60vw){% else %}min(580px, 30vw){% endif %}{%- endcapture -%}
+                            {%- endif -%}
+                            <div
+                                class="product-gallery__media flex-center {% if media.alt contains '@expand' %}product-gallery__media--expand{% endif %} {% if section.settings.mobile_carousel_control != 'free_scroll' %}snap-center{% endif %}"
+                                data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}"
+                                {% if filtered_indexes contains media.position %}hidden{% endif %}>
+                                {%- if default_media == media -%}
+                                    {%- assign preload = true -%}
+                                {%- else -%}
+                                    {%- assign preload = false -%}
+                                {%- endif -%}
+                                {%- render 'media', media: media, sizes: sizes, rounded: '', preload: preload, autoplay: section.settings.enable_video_autoplay, loop: section.settings.enable_video_looping, group: 'product' -%}
+                            </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </media-carousel>
+                {%- if video_count > 1 -%}
+                    <div class="media-other-button flex-center absolute z-2 media-button-prev">
+                        <div class="flex-center disabled thumbnail-video-button-prev thumbnail-slide-button">
+                            <img class="image"
+                                 src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
+                                 alt="Slide Prev"/>
+                        </div>
+                    </div>
+                    <div class="media-other-button flex-center absolute z-2 media-button-next">
+                        <div class="flex-center thumbnail-video-button-next thumbnail-slide-button">
+                            <img class="image"
+                                 src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
+                                 alt="Slide Prev"/>
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- endif -%}
+            {%- if has_3d -%}
+                <media-carousel
+                    node-name="panel"
+                    desktop-mode="{{ layout }}"
+                    adaptive-height
+                    prev-selector=".thumbnail-3d-button-prev"
+                    next-selector=".thumbnail-3d-button-next"
+                    initial-index="{{ default_media.position | minus: 1 }}"
+                    {% if section.settings.enable_video_autoplay %}autoplay{% endif %} id="{{ product_3d_gallery_id }}"
+                    class="product-gallery__other-list not-slide-button product-gallery__media-list{% if layout contains 'carousel' and product.media.size > 1 %} is-first product-gallery__buttons{% endif %}  {% if section.settings.mobile_media_size == 'expanded' %}full-bleed{% else %}bleed{% endif %} scroll-area md:unbleed">
+                    {%- assign media_attached_to_variant = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
+
+                    {%- for media in product.media -%}
+                        {%- if media.media_type == 'model' -%}
+                            {%- if layout == 'grid_highlight' -%}
+                                {%- capture sizes -%}(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), {% if forloop.first or media_attached_to_variant contains media.src %}min(1200px, 60vw){% else %}min(580px, 30vw){% endif %}{%- endcapture -%}
+                            {%- endif -%}
+
+                            <div
+                                class="product-gallery__media flex-center {% if media.alt contains '@expand' %}product-gallery__media--expand{% endif %} {% if section.settings.mobile_carousel_control != 'free_scroll' %}snap-center{% endif %}"
+                                data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}"
+                                {% if filtered_indexes contains media.position %}hidden{% endif %}>
+                                {%- render 'media', media: media, sizes: sizes, rounded: '', autoplay: section.settings.enable_video_autoplay, loop: section.settings.enable_video_looping, group: 'product' -%}
+                            </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </media-carousel>
+                <div class="media-other-button flex-center absolute z-2 media-button-prev">
+                    <div class="flex-center disabled thumbnail-3d-button-prev thumbnail-slide-button">
+                        <img class="image"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
+                             alt="Slide Prev"/>
+                    </div>
+                </div>
+                <div class="media-other-button flex-center absolute z-2 media-button-next">
+                    <div class="flex-center thumbnail-3d-button-next thumbnail-slide-button">
+                        <img class="image"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
+                             alt="Slide Prev"/>
+                    </div>
+                </div>
+            {%- endif -%}
+            {%- if product.media.size > 1 and section.settings.mobile_carousel_control == 'floating_dots' -%}
+                {{- page_dots -}}
+            {%- endif -%}
+        </div>
+
+        {%- comment -%}
+        ----------------------------------------------------------------------------------------------------------------------
+        VIEW IN YOUR SPACE
+        ----------------------------------------------------------------------------------------------------------------------
+        {%- endcomment -%}
+        {%- if has_3d -%}
+            <link rel="stylesheet"
+                  href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
+                  media="print" onload="this.media='all'">
+        {%- endif -%}
+    </div>
+
+    {%- comment -%}
+    --------------------------------------------------------------------------------------------------------------------
+    CONTROLS
+    --------------------------------------------------------------------------------------------------------------------
+    {%- endcomment -%}
+
+    {%- if product.media.size > 1 -%}
+        {%- if section.settings.mobile_carousel_control == 'dots' -%}
+            {{- page_dots -}}
+        {%- endif -%}
+
+        {%- if section.settings.mobile_carousel_control == 'thumbnails' or section.settings.desktop_media_layout contains 'thumbnails' -%}
+            <div class="flex-center gap-2.5" node-name="thumbnail">
+                <div class="flex-center disabled thumbnail-slide-button thumbnail-image-button-prev">
+                    <img class="image"
+                         src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
+                         alt="Slide Prev"/>
+                </div>
+                <div class="product-gallery__thumbnail-list-wrapper overflow-hidden">
+                    <page-dots align-selected class="product-gallery__thumbnail-list scroll-area bleed md:unbleed"
+                               aria-controls="{{ product_gallery_id }}">
+                        {%- for media in product.media -%}
+                            {%- if media.media_type == 'image' -%}
+                                <button type="button" class="product-gallery__thumbnail"
+                                        {% if filtered_indexes contains media.position %}hidden{% endif %}
+                                        aria-current="{% if media == default_media %}true{% else %}false{% endif %}"
+                                        aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
+
+                                    {{- media | image_url: width: media.preview_image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 56px, 64px', widths: '56,64,112,128,168,192', class: 'object-contain rounded-sm' -}}
+                                </button>
+                            {%- endif -%}
+                        {%- endfor -%}
+                    </page-dots>
+                </div>
+                <div class="flex-center thumbnail-slide-button thumbnail-image-button-next">
+                    <img class="image"
+                         src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
+                         alt="Slide Prev"/>
+                </div>
+            </div>
+            {%- if has_video and video_count > 1 -%}
+                <div class="flex-center hidden-important gap-2.5" node-name="thumbnail">
+                    <div class="flex-center disabled thumbnail-slide-button thumbnail-video-button-prev">
+                        <img class="image"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
+                             alt="Slide Prev"/>
+                    </div>
+                    <div class="product-gallery__thumbnail-list-wrapper overflow-hidden">
+                        <page-dots align-selected class="product-gallery__thumbnail-list scroll-area bleed md:unbleed"
+                                   aria-controls="{{ product_video_gallery_id }}">
+                            {%- assign first = true -%}
+                            {%- for media in product.media -%}
+                                {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                                    <button type="button" class="product-gallery__thumbnail"
+                                            {% if filtered_indexes contains media.position %}hidden{% endif %}
+                                            aria-current="{% if first %}true{% else %}false{% endif %}"
+                                            aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
+                                        {{- media | image_url: width: media.preview_image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 56px, 64px', widths: '56,64,112,128,168,192', class: 'object-contain rounded-sm' -}}
+                                        <div class="product-gallery__media-badge">
+                                            {%- render 'icon' with 'play-video', width: 7, height: 9 -%}
+                                        </div>
+                                    </button>
+                                    {%- assign first = false -%}
+                                {%- endif -%}
+
+                            {%- endfor -%}
+                        </page-dots>
+                    </div>
+                    <div class="flex-center thumbnail-slide-button thumbnail-video-button-next">
+                        <img class="image"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
+                             alt="Slide Prev"/>
+                    </div>
+                </div>
+            {%- endif -%}
+            {%- if has_3d and model_count > 1 -%}
+                <div class="flex-center hidden-important gap-2.5" node-name="thumbnail">
+                    <div class="flex-center disabled thumbnail-slide-button thumbnail-3d-button-prev">
+                        <img class="image"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
+                             alt="Slide Prev"/>
+                    </div>
+                    <div class="product-gallery__thumbnail-list-wrapper overflow-hidden">
+                        <page-dots align-selected class="product-gallery__thumbnail-list scroll-area bleed md:unbleed"
+                                   aria-controls="{{ product_3d_gallery_id }}">
+                            {%- assign first = true -%}
+                            {%- for media in product.media -%}
+                                {%- if media.media_type == 'model' -%}
+                                    <button type="button" class="product-gallery__thumbnail"
+                                            {% if filtered_indexes contains media.position %}hidden{% endif %}
+                                            aria-current="{% if first %}true{% else %}false{% endif %}"
+                                            aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
+                                        {{- media | image_url: width: media.preview_image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 56px, 64px', widths: '56,64,112,128,168,192', class: 'object-contain rounded-sm' -}}
+                                        <div class="product-gallery__media-badge">
+                                            {%- render 'icon' with 'play-model', width: 10, height: 12 -%}
+                                        </div>
+                                    </button>
+                                    {%- assign first = false -%}
+                                {%- endif -%}
+                            {%- endfor -%}
+                        </page-dots>
+                    </div>
+                    <div class="flex-center thumbnail-slide-button thumbnail-3d-button-next">
+                        <img class="image"
+                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
+                             alt="Slide Prev"/>
+                    </div>
+                </div>
+            {%- endif -%}
+        {%- endif -%}
+    {%- endif -%}
+    {%- if has_video or has_3d -%}
+        <div
+            class="category-selector flex-center">
+            <div class="selector-inner flex-center">
+                <button
+                    node-name="tab"
+                    data-proxy="tab"
+                    class="selector-item active flex-center">
+                    <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M2.44922 3.84424H14.4492V13.8442H2.44922V3.84424ZM6.68454 7.30596C6.68454 7.94321 6.21049 8.4598 5.62572 8.4598C5.04095 8.4598 4.56689 7.94321 4.56689 7.30596C4.56689 6.66871 5.04095 6.15211 5.62572 6.15211C6.21049 6.15211 6.68454 6.66871 6.68454 7.30596ZM5.27271 11.5368L6.95338 8.24008L7.96178 10.2181L9.97859 6.9214L12.3315 11.5368H5.27271Z"
+                              fill="#181818"></path>
+                    </svg>
+                    {{ 'products.product.photos' | t }}
+                </button>
+                {%- if has_video -%}
+                    <button
+                        node-name="tab"
+                        data-proxy="tab"
+                        class="selector-item flex-center">
+                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="16"
+                             viewBox="0 0 17 16" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M14.4507 3H2.45068V13H14.4507V3ZM7.56827 10.3318L10.2153 8.00018L7.56827 5.66857V10.3318Z"
+                                  fill="#181818"></path>
+                        </svg>
+                        {{ 'products.product.video' | t }}
+                    </button>
+                {%- endif -%}
+                {%- if has_3d -%}
+                    <button
+                        node-name="tab"
+                        data-proxy="tab"
+                        class="selector-item flex-center">
+                        <svg class="svg-icon svg-3d" width="17" height="16" viewBox="0 0 17 16" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.80425 14.001L3.30325 11.0014L3.30325 5.00231L8.80425 2.00275L14.3052 5.00231L14.3052 11.0014L8.80425 14.001Z"
+                                fill="#181818"></path>
+                            <path
+                                d="M8.80425 14.001L3.30325 11.0014L3.30325 5.00231L8.80425 2.00275L14.3052 5.00231L14.3052 11.0014L8.80425 14.001Z"
+                                fill="#181818"></path>
+                            <path
+                                d="M2.4541 4.57031L8.90829 7.86186M8.90829 7.86186V14.3898M8.90829 7.86186L14.5277 4.78882"
+                                stroke="#F9F9F8"></path>
+                        </svg>
+                        {{ 'products.product.3d' | t }}
+                    </button>
+                {%- endif -%}
+            </div>
+        </div>
+    {%- endif -%}
+    {%- assign specs = product.metafields.custom.specifications.value | default: false -%}
+    {% if specs and enable_specs %}
+        {% render 'product-specs', specs: specs, style: true, show_on: 'pc' %}
+    {% endif %}
+</product-gallery>
+{%- if has_video or has_3d -%}
+    <script>
+        $heybike.on('DOMContentLoaded', () => {
+            $heybike.tabSwitch({
+                root: document.getElementById('{{ product_form_id }}'),
+                cb: ({index, nodeList}) => {
+                    [].concat(nodeList.thumbnail).forEach((elem, i) => {
+                        elem.classList.toggle('hidden-important', index !== i);
+                    });
+                }
+            });
+        });
+    </script>
+{%- endif -%}

@@ -1,0 +1,454 @@
+{% assign ss = section.settings %}
+<style>
+    #shopify-section-{{ section.id }} {
+        position: sticky;
+        left: 0;
+        top: 0;
+        z-index: 9;
+        transition: all 0.2s ease;
+    }
+
+    .main-navigation {
+        width: 100%;
+        position: sticky;
+        left: 0;
+        top: 0;
+    }
+
+    .main-navigation .navigation-layout {
+        width: 100%;
+        background: {{ ss.page_color }};
+        position: relative;
+        z-index: 2;
+    }
+
+    .main-navigation .navigation-content .navigation-items {
+        flex: 1;
+        height: auto;
+        white-space: nowrap;
+        overflow-x: auto;
+        padding: 12px 0;
+    }
+
+    .main-navigation .navigation-content .navigation-items .item {
+        box-sizing: border-box;
+        padding: 0 {{ ss.desktop_tab_padding }}px;
+        height: {{ ss.desktop_tab_height }}px;
+        color: {{ ss.tab_color }};
+        font-size: {{ ss.desktop_tab_size }}px;
+        line-height: 1.2;
+        font-weight: {{ ss.tab_weight }};
+        margin: 0 12px;
+        transition: opacity 0.5s;
+        cursor: pointer;
+        position: relative;
+        border-radius: {{ ss.tab_radius }}px;
+        background-color: {{ ss.tab_bg_color }};
+        opacity: 0.95;
+    {%- if ss.show_tab_border -%}
+        box-shadow: inset 0 0 0 {{ ss.tab_border_width }}px {{ ss.tab_border_color }};
+    {%- endif -%}
+    }
+
+    .main-navigation .navigation-content .navigation-items .item.active {
+        color: {{ ss.tab_active_color }};
+        background-color: {{ ss.tab_bg_active_color }};
+    {%- if ss.show_tab_border -%}
+        box-shadow: inset 0 0 0 {{ ss.tab_border_width }}px {{ ss.tab_border_active_color }};
+    {%- endif -%}
+    }
+
+    .main-navigation .navigation-content .navigation-items .item:hover {
+        opacity: 1;
+    }
+
+    @media screen and (max-width: 1440px) {
+        .main-navigation .navigation-content .navigation-items .item {
+            padding: 0 {{ ss.desktop_tab_padding | times: 0.8 }}px;
+            height: {{ ss.desktop_tab_height | times: 0.8 }}px;
+            margin: 0 10px;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .main-navigation .navigation-content .navigation-items {
+            width: 100vw;
+            box-sizing: border-box;
+            padding: 0.4375rem 12px;
+        }
+
+        .main-navigation .navigation-content .navigation-items .item {
+            padding: 0 {{ ss.mobile_tab_padding }}px;
+            height: {{ ss.mobile_tab_height }}px;
+            font-size: {{ ss.mobile_tab_size }}px;
+            margin: 0 0.4375rem;
+        }
+    }
+
+
+</style>
+<section class="main-navigation"
+         id="{{ section.id }}-navigation">
+    <div class="navigation-layout">
+        <div class="page-width">
+            <div class="navigation-wrap flex-{{ ss.tab_align }}">
+                <div class="navigation-content flex-{{ ss.tab_align }}">
+                    <ul class="navigation-items hide-scroll-bar flex-left" node-name="scroll">
+                        {%- assign tabList = section.blocks | where: 'type', 'nav_tab' -%}
+                        {%- for block in tabList -%}
+                            <li node-name="tab"
+                                class="item flex-center"
+                                data-position="{{ block.settings.position }}">{{ block.settings.title }}</li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    (function () {
+        const box = document.getElementById('{{ section.id }}-navigation');
+        const nodeList = $heybike.getNodeList(box);
+        const tabList = [].concat(nodeList.tab);
+        const main = document.getElementById('main');
+        main.style.overflowX = 'visible';
+        const header = document.querySelector('.shopify-section--header');
+        const parentNode = document.getElementById('shopify-section-{{ section.id }}');
+        parentNode.style.top = `${header.offsetHeight}px`;
+        $heybike.bind('header:toggle', ({show}) => {
+            if (show) {
+                parentNode.style.top = `${header.offsetHeight}px`;
+            } else {
+                parentNode.style.top = `0px`;
+            }
+        });
+
+        let childList = [];
+        let isLock = false;
+        let minTop = 0;
+
+        tabList.forEach(node => {
+            if (!node) {
+                return false;
+            }
+            node.addEventListener('click', function () {
+                initAllNodes();
+                const value = Number(node.dataset.position);
+                let targetNode = childList[value - 1];
+                let offsetY = 80;
+                if (targetNode && node.closest(`#${targetNode.id}`)) {
+                    targetNode = childList[value];
+                    offsetY = 160;
+                }
+                if (targetNode) {
+                    window.scrollTo({
+                        top: $heybike.getOffset(targetNode).top - offsetY,
+                        behavior: 'smooth'
+                    });
+                }
+
+                if (node.classList.contains('item')) {
+                    isLock = true;
+                    tabList.forEach(node => {
+                        node.classList.remove('active');
+                    });
+                    node.classList.add('active');
+
+                    setTimeout(() => {
+                        isLock = false;
+                    }, 1000);
+                }
+            });
+        });
+
+        let offsets = [];
+
+        function initAllNodes() {
+            childList = [...main.childNodes].filter(item => item.nodeType === 1);
+            if (childList[0] && !childList[0].id.includes('shopify-section-template')) {
+                childList = [...childList[0].childNodes].filter(item => item.nodeType === 1);
+            }
+        }
+
+        function initOffset() {
+            const arr = [];
+            tabList.forEach(node => {
+                if (!node) {
+                    return false;
+                }
+                const index = Number(node.dataset.position) - 1;
+                let child = childList[index];
+                let offsetY = 0;
+                if (child && node.closest(`#${child.id}`)) {
+                    child = childList[index + 1];
+                    offsetY = 80;
+                }
+
+                if (child) {
+                    arr.push({
+                        node,
+                        width: node.offsetWidth,
+                        top: $heybike.getOffset(child).top - offsetY
+                    });
+                }
+            });
+
+            offsets = arr.sort((a, b) => a.top - b.top);
+            minTop = Math.min.apply(null, arr.map(item => item.top));
+        }
+
+        let currentIndex = -1, isMin = true;
+
+        function scrollTo(item) {
+            const left = $heybike.getOffset(item.node).left;
+            if (left + item.width >= $heybike.screenWidth) {
+                nodeList.scroll.scrollTo({
+                    left: nodeList.scroll.scrollLeft + item.width * 2,
+                    behavior: 'smooth'
+                });
+            } else if (left <= 0) {
+                nodeList.scroll.scrollTo({
+                    left: nodeList.scroll.scrollLeft - item.width * 2,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function pnCheckPosTop(scrollTop) {
+            if (isLock) {
+                return false;
+            }
+            scrollTop = scrollTop + 85;
+            if (scrollTop < minTop) {
+                if (!isMin) {
+                    isMin = true;
+                    currentIndex = 1;
+                    tabList.forEach(node => {
+                        node.classList.remove('active');
+                    });
+                }
+                return false;
+            }
+            offsets.forEach((item, i) => {
+                if (!item) {
+                    return false;
+                }
+                if (scrollTop >= item.top) {
+                    isMin = false;
+                    const next = offsets[i + 1]?.top;
+                    if (next && scrollTop < next && currentIndex !== i) {
+                        currentIndex = i;
+                        tabList.forEach(node => {
+                            node.classList.remove('active');
+                        });
+                        item.node.classList.add('active');
+                        scrollTo(item);
+                    } else if (!next && currentIndex !== i) {
+                        currentIndex = i;
+                        tabList.forEach(node => {
+                            node.classList.remove('active');
+                        });
+                        item.node.classList.add('active');
+                        scrollTo(item);
+                    }
+                }
+            });
+        }
+
+        setTimeout(() => {
+            initAllNodes();
+            initOffset();
+            pnCheckPosTop(window.scrollY || document.documentElement.scrollTop);
+        }, 2000);
+        let _timer = null;
+        $heybike.on('scroll', opt => {
+            if (isLock) {
+                clearTimeout(_timer);
+                _timer = setTimeout(() => {
+                    isLock = false;
+                }, 50);
+                return false;
+            }
+            pnCheckPosTop(opt.top);
+            clearTimeout(_timer);
+            _timer = setTimeout(() => {
+                initOffset();
+            }, 2000);
+        });
+    })();
+</script>
+{% schema %}
+{
+  "name": "Main Navigation",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "main-navigation"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "page_color",
+      "label": "Background color",
+      "default": "linear-gradient(#FFFFFF 0%, #FFFFFF 100%)"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text_alignment",
+      "id": "tab_align",
+      "label": "Button align",
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "tab_color",
+      "label": "Button text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_bg_color",
+      "label": "Button background color",
+      "default": "#FFDB00"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Button active text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_bg_active_color",
+      "label": "Button active background color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "tab_radius",
+      "label": "Button radius",
+      "default": 100
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tab_border",
+      "label": "Show button border",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Button border color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_active_color",
+      "label": "Button border active color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "tab_border_width",
+      "label": "Button border width",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "tab_weight",
+      "label": "Button text weight",
+      "min": 200,
+      "max": 900,
+      "step": 100,
+      "unit": "w",
+      "default": 500
+    },
+    {
+      "type": "number",
+      "id": "desktop_tab_height",
+      "label": "Desktop button height",
+      "default": 36
+    },
+    {
+      "type": "number",
+      "id": "mobile_tab_height",
+      "label": "Mobile button height",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "desktop_tab_size",
+      "label": "Desktop button text size",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_size",
+      "label": "Mobile button text size",
+      "min": 8,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desktop_tab_padding",
+      "label": "Desktop button left&right padding",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_padding",
+      "label": "Mobile button left&right padding",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_tab",
+      "name": "Tab button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab text",
+          "default": "Heybike"
+        },
+        {
+          "type": "range",
+          "id": "position",
+          "label": "Jump to the specified module",
+          "min": 1,
+          "max": 25,
+          "step": 1,
+          "unit": "sec",
+          "default": 3
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

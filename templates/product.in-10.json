@@ -1,0 +1,1456 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "mc_page_color": {
+      "type": "mc_page-color",
+      "settings": {
+        "background_color": "#171717"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "heading_tag": "h2"
+          }
+        },
+        "rating": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "8px 0px 8px 0px",
+            "show_empty": true
+          }
+        },
+        "review_score": {
+          "type": "review_score",
+          "settings": {
+            "padding": "7px 0px 16px 0px",
+            "mb_padding": "5px 0px 10px 0px",
+            "score": 5,
+            "review_text": "664 Reviews"
+          }
+        },
+        "text_HmxbbW": {
+          "type": "content",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "text": "<ul><li><strong>Motor: </strong>2600W</li><li><strong>Top Speed</strong>: 20Km/h</li><li><strong>Battery</strong>: 48V 23.4Ah </li><li><strong>Max Range</strong>: 85km</li><li><strong>Suitable Height</strong>: 3.94ft - 5.9ft</li></ul>"
+          }
+        },
+        "liquid_AQyQic": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "liquid": "<div style=\"\n  background-color: #f5f5f5; \n  color: #333333; \n  padding: 12px 16px; \n  border: 2px solid #cccccc; \n  border-radius: 8px; \n  font-size: 16px; \n  font-weight: 700;\n  line-height: 1.6;\n  text-align: left;\n  letter-spacing: 0.5px;\n\">\n  🔛 Shipping is expected to begin on January 5th.<br> -New Year Sale: $200 off instantly—no code needed!\n</div>"
+          }
+        },
+        "image_card_yycfhg": {
+          "type": "image_card",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "image": "shopify://shop_images/df.jpg",
+            "url": "shopify://pages/black-friday"
+          }
+        },
+        "inventory_PMqcYg": {
+          "type": "inventory",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "12px 0px 12px 0px",
+            "low_inventory_threshold": 50
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {
+            "padding": "36px 0px 4px 0px",
+            "mb_padding": "28px 0px 0px 0px",
+            "device": "all"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "padding": "12px 0px 4px 0px",
+            "mb_padding": "6px 0px 0px 0px",
+            "show_taxes_notice": false
+          }
+        },
+        "image_CyDTqU": {
+          "type": "image",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "image": "shopify://shop_images/750_164_4577bae7-59c5-499d-abd8-7cbf537aabf0.jpg",
+            "alignment": "start",
+            "image_fill": true,
+            "max_width": 500
+          }
+        },
+        "countdown_timer_gHWnpr": {
+          "type": "countdown_timer",
+          "disabled": true,
+          "settings": {
+            "padding": "10px 0px 0px 0px",
+            "mb_padding": "10px 0px 0px 0px",
+            "background_image": "shopify://shop_images/countdown-backdrop.jpg",
+            "title": "IN 10 Love For Riding Sale",
+            "custom_icon": "shopify://shop_images/dountdown-discount-icon.png",
+            "countdown_start_date": "2026-02-14T00:00:00",
+            "duration": 1,
+            "countdown_days": "DAYS",
+            "countdown_hours": "HRS",
+            "countdown_minutes": "MIN",
+            "countdown_seconds": "SEC",
+            "countdown_fill_color": "#000000",
+            "countdown_num_color": "#ffffff",
+            "countdown_text_color": "#999999",
+            "countdown_dot_color": "#000000",
+            "background": "",
+            "background_gradient": "linear-gradient(90deg, rgba(237, 237, 237, 1) 41%, rgba(237, 237, 237, 1) 97%)",
+            "title_color": "#000000"
+          }
+        },
+        "countdown_gHWnpr": {
+          "type": "countdown",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "countdown_lbl": "Hurry up!",
+            "countdown_lbl_content": "Sale Ends In",
+            "countdown_start_date": "2025-10-31T00:00:00",
+            "duration": 1,
+            "countdown_days": "DAYS",
+            "countdown_hours": "HRS",
+            "countdown_minutes": "MIN",
+            "countdown_seconds": "SEC",
+            "background": "",
+            "background_gradient": "linear-gradient(90deg, rgba(216, 35, 53, 1) 41%, rgba(207, 94, 105, 1) 97%)",
+            "text_color": "#ffffff"
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "bundled_sale_NbiiyC": {
+          "type": "bundled_sale",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "12px 0px 4px 0px",
+            "heading": "Accessories",
+            "free_list": [
+              "yozma-in-10-cycling-bag"
+            ],
+            "product_list": [
+              "yozma-electric-dirt-bike-street-tire-set-front-rear",
+              "yozma-in10-diy-colored-plastics-kit",
+              "yozma-keychain",
+              "yozma-dirt-bike-helmet",
+              "yozma-in-10-charger",
+              "yozma-in-10-battery"
+            ]
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "12px 0px 0px 0px",
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#ff0000",
+            "atc_button_text_color": "",
+            "payment_button_text": "CHECKOUT",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "separator_VaBbkK": {
+          "type": "separator",
+          "settings": {
+            "padding": "24px 0px 12px 0px",
+            "mb_padding": "30px 0px 4px 0px",
+            "device": "all"
+          }
+        },
+        "product_specs": {
+          "type": "product_specs",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "10px 0px 32px 0px"
+          }
+        },
+        "icons_list_jWPkpY": {
+          "type": "icons_list",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "icon_1": "shopify://shop_images/Priority_Customer_Support.svg",
+            "icon_2": "shopify://shop_images/Free_Shipping.svg",
+            "icon_3": "shopify://shop_images/1_Year_Warranty.svg",
+            "icon_4": "shopify://shop_images/Secure_Payment.svg"
+          }
+        },
+        "collapsible_text_icon_idrPXF": {
+          "type": "collapsible_text_icon",
+          "disabled": true,
+          "settings": {
+            "padding": "20px 0px 0px 0px",
+            "mb_padding": "10px 0px 0px 0px",
+            "cols_count": "4",
+            "mb_cols_count": "3",
+            "icon": "none",
+            "custom_icon": "shopify://shop_images/question-icon-1.png",
+            "icon_width": 24,
+            "title": "What‘s in the box?",
+            "image_icon1": "shopify://shop_images/56a85e16a046cb332aca2019e675a194_fde38af0-df30-4a1e-9557-b961e1509a7e.png",
+            "name1": "2600W",
+            "text1": "Motor",
+            "image_icon2": "shopify://shop_images/56a85e16a046cb332aca2019e675a194_fde38af0-df30-4a1e-9557-b961e1509a7e.png",
+            "name2": "2600W",
+            "text2": "Motor",
+            "image_icon3": "shopify://shop_images/56a85e16a046cb332aca2019e675a194_fde38af0-df30-4a1e-9557-b961e1509a7e.png",
+            "name3": "2600W",
+            "text3": "Motor",
+            "image_icon4": "shopify://shop_images/56a85e16a046cb332aca2019e675a194_fde38af0-df30-4a1e-9557-b961e1509a7e.png",
+            "name4": "2600W",
+            "text4": "Motor",
+            "name5": "",
+            "text5": "",
+            "name6": "",
+            "text6": "",
+            "name7": "",
+            "text7": "",
+            "name8": "",
+            "text8": "",
+            "name9": "",
+            "text9": ""
+          }
+        },
+        "collapsible_text_EkBdb4": {
+          "type": "collapsible_text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "icon": "none",
+            "custom_icon": "shopify://shop_images/question-icon-1.png",
+            "icon_width": 24,
+            "title": "What‘s in the box?",
+            "content": "<p>-Yozma IN 10 Dirt Bike*1<br/>-48V 23.4Ah Lithium-Ion*1<br/>-Battery Charger*1<br/>-Assembly Tools*1<br/>-Right Pedal*1<br/>-Handle Bars Shipped Installed On Bike*1<br/>-User Manual*1<br/>-Plate Stickers*1<br/>Note: Please keep this box for at least 30 days in case of return or after-sales service.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_idrPXF": {
+          "type": "collapsible_text",
+          "disabled": true,
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "icon": "none",
+            "icon_width": 24,
+            "title": "What‘s in the box?",
+            "content": "<p>-Yozma E-bike*1<br/>-48V 23.4Ah Lithium-Ion*1<br/>-Battery Charger*1<br/>-Assembly Tools*1<br/>-Pedals*2<br/>-Handle Bars Shipped Installed On Bike*1<br/>-User Manual*1<br/>-Number plate decals*1<br/>Note: Please keep this box for at least 30 days in case of return or after-sales service.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_TDxfg9": {
+          "type": "collapsible_text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "icon": "none",
+            "custom_icon": "shopify://shop_images/question-icon-3.png",
+            "icon_width": 24,
+            "title": "F&Q",
+            "content": "<p>1. How long does shipping take? When will my order been dispatched?<br/><br/>Yozma IN 10 ebikes are shipped from our California warehouse, and delivery typically takes 5 business days depending on your location. You’ll receive a tracking number once your order is on the way.<br/></p><p>2. What if the package is broken/missing?<br/><br/>Due to FedEx's failure to deliver the bike as required during transportation, parts of the wear and scratch may cause by the parts crashing together, although we have packed all the parts to prevent these situations as much as we can. Please send us the related pictures via support.eu@yozmasport.com, we will solve it for you.<br/><br/>3. Can I return my order for personal reasons ?<br/><br/>To be eligible for a return, your item must be in the same condition that you received it, unworn, unused, or the ebike must have less than ten (10) miles on the odometer and must include all items that were inside the box (charger, keys, hardware, etc.), and in its original packaging.For specific fees, please click HERE.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_wGUkgL": {
+          "type": "collapsible_text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "icon": "none",
+            "custom_icon": "shopify://shop_images/question-icon-2.png",
+            "icon_width": 24,
+            "title": "What should I consider before placing my order?",
+            "content": "<p>Before placing your order, please confirm that you are <strong>14</strong> years of age or older. When riding, always follow local laws and regulations, wear a helmet, and prioritize safety at all times.</p>",
+            "page": ""
+          }
+        },
+        "text_BdLLAy": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "text": "<p><strong>Important Notice:<br/></strong><br/>Thank you so much for your amazing support! We truly appreciate your enthusiasm for Yozma. Due to overwhelming demand, our stock has sold out, and we have now opened pre-sale. Orders placed now are expected to ship in 15 business days after your order is placed.</p><p>Once the products arrive at the warehouse, we will ship them in the order they were placed. We really appreciate your patience and understanding, and we are doing everything we can to fulfill your order as quickly as possible.😊</p><p>If you have any questions, feel free to reach out to us at support@yozmasport.com.</p>"
+          }
+        },
+        "share_buttons_yzh6EB": {
+          "type": "share_buttons",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "alignment": "start"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "rating",
+        "review_score",
+        "text_HmxbbW",
+        "liquid_AQyQic",
+        "image_card_yycfhg",
+        "inventory_PMqcYg",
+        "separator",
+        "price",
+        "image_CyDTqU",
+        "countdown_timer_gHWnpr",
+        "countdown_gHWnpr",
+        "payment_terms",
+        "variant_picker",
+        "bundled_sale_NbiiyC",
+        "quantity_selector",
+        "buy_buttons",
+        "separator_VaBbkK",
+        "product_specs",
+        "icons_list_jWPkpY",
+        "collapsible_text_icon_idrPXF",
+        "collapsible_text_EkBdb4",
+        "collapsible_text_idrPXF",
+        "collapsible_text_TDxfg9",
+        "collapsible_text_wGUkgL",
+        "text_BdLLAy",
+        "share_buttons_yzh6EB"
+      ],
+      "custom_css": [
+        "@media (min-width: 767px) {.product-gallery {position: sticky; top: 10px; }}"
+      ],
+      "settings": {
+        "full_width": true,
+        "enable_specs": true,
+        "specs_limit": "6",
+        "show_fixed_add_to_cart": true,
+        "show_fixed_discount_tag": true,
+        "fixed_discount_tag": "Saved",
+        "fixed_content": "Yozma IN 10 Electric Mini Dirt Bike For Teens & Adults",
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "thumbnails",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "text_with_icons_2508_VYhjtW": {
+      "type": "text-with-icons-2508",
+      "blocks": {
+        "item_HtBJ4L": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/56a85e16a046cb332aca2019e675a194_fde38af0-df30-4a1e-9557-b961e1509a7e.png",
+            "title": "2600W",
+            "content": "Motor"
+          }
+        },
+        "item_6MB9ML": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/56b14fbb1da9c3fef30b29b868a65c48.png",
+            "title": "146N.M",
+            "content": "Torque"
+          }
+        },
+        "item_46Kd7P": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/bfe670e2c212b2ca7129014495caea82_7574a88a-eddf-45b7-97ce-24f40b4d54a0.png",
+            "title": "28-40Mph",
+            "content": "Top Speed"
+          }
+        },
+        "item_6z7VY8": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/b37921b961e5adb84e66048a85bbee72_ed0bd5cf-03cb-44c7-bee9-6b9232a3cdd3.png",
+            "title": "23.4Ah",
+            "content": "Lithium Battery"
+          }
+        },
+        "item_MFg3Fd": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/465495c77d2cce5dfa5ab16369ed06cd.png",
+            "title": "53Miles",
+            "content": "Max Range"
+          }
+        },
+        "item_TANbnJ": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/b9b66352b3587cefc1c8600dc4175210.png",
+            "title": "265Ibs",
+            "content": "Max Load"
+          }
+        },
+        "item_Xq3jem": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/7313a4a346412fb9901d028a94702ac1.png",
+            "title": "≤30 Mins",
+            "content": "Easy Assembly"
+          }
+        },
+        "item_waW97C": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Group_22.png",
+            "title": "UL",
+            "content": "Certified"
+          }
+        }
+      },
+      "block_order": [
+        "item_HtBJ4L",
+        "item_6MB9ML",
+        "item_46Kd7P",
+        "item_6z7VY8",
+        "item_MFg3Fd",
+        "item_TANbnJ",
+        "item_Xq3jem",
+        "item_waW97C"
+      ],
+      "disabled": true,
+      "name": "Icon list",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "#000000"
+      }
+    },
+    "mc_media_image": {
+      "type": "mc_media-image",
+      "name": "MC Media Image",
+      "settings": {
+        "page_color": "",
+        "show_title": false,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_bold_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "pc_image": "shopify://shop_images/in_10_6ebdb0cd-40dd-48e7-8735-4ecc98057a97.png",
+        "mb_image": "shopify://shop_images/in_10-m.png",
+        "image_radius": 0,
+        "mb_image_radius": 0,
+        "image_width": 100,
+        "image_ratio": "",
+        "image_fill": false,
+        "mb_image_ratio": "",
+        "mb_image_fill": false
+      }
+    },
+    "mc_media_video": {
+      "type": "mc_media-video",
+      "name": "MC Media Video",
+      "settings": {
+        "page_color": "",
+        "show_title": false,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "show_border_image": false,
+        "play_button_size": "large",
+        "pc_border_thickness": "27px 27px",
+        "mb_border_thickness": "10px 10px",
+        "video": "shopify://files/videos/精简20-25s 1(1)-0904.mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_width": 100,
+        "video_ratio": "8 / 3",
+        "video_fill": true,
+        "video_url_mobile": "",
+        "mb_video_ratio": "",
+        "mb_video_fill": true
+      }
+    },
+    "mc_media_text_QXFf98": {
+      "type": "mc_media-text",
+      "blocks": {
+        "slide_HMXYGK": {
+          "type": "slide",
+          "settings": {
+            "title": "",
+            "media_type": "video",
+            "media_position": "left",
+            "video_desktop": "shopify://files/videos/2月9日 (1).mp4",
+            "media_ratio": "",
+            "mb_media_ratio": "",
+            "show_subhead": true,
+            "subhead": "Smooth rides with engineered shocks",
+            "subhead_color": "#ff0000",
+            "head": "Ride Harder, Land Smoother",
+            "head_color": "#ffffff",
+            "head_gradient_color": "",
+            "text": "<p>Equipped with a high-stiffness nitrogen air shock and independent suspension, combined with <strong>146 N·m torque</strong> and heavy-duty hydraulic brakes for smooth, controlled, and confident riding on rough terrain.</p>",
+            "text_color": "#b2b2b2",
+            "text_bold_color": "#ff0000"
+          }
+        },
+        "slide_bk4jPz": {
+          "type": "slide",
+          "settings": {
+            "title": "",
+            "media_type": "video",
+            "media_position": "right",
+            "video_desktop": "shopify://files/videos/2月10日(1).mp4",
+            "media_ratio": "",
+            "mb_media_ratio": "",
+            "show_subhead": true,
+            "subhead": "Instant power when you twist the throttle",
+            "subhead_color": "#ff0000",
+            "head": "Raw Power, Pure Speed",
+            "head_color": "#ffffff",
+            "head_gradient_color": "",
+            "text": "<p>The <strong>2600W </strong>mid-drive motor drives you smoothly up to <strong>20 Km/h</strong>, delivering precise control and rock-solid stability through every turn and jump. Twist the throttle and experience true dirt bike performance—pure adrenaline, total confidence.</p>",
+            "text_color": "#b2b2b2",
+            "text_bold_color": "#ff0000"
+          }
+        },
+        "slide_mJXatN": {
+          "type": "slide",
+          "settings": {
+            "title": "",
+            "media_type": "video",
+            "media_position": "left",
+            "video_desktop": "shopify://files/videos/2月10日(2).mp4",
+            "media_ratio": "",
+            "mb_media_ratio": "",
+            "show_subhead": true,
+            "subhead": "Long-lasting power fuels adventure",
+            "subhead_color": "#ff0000",
+            "head": "One Charge, Go Further",
+            "head_color": "#ffffff",
+            "head_gradient_color": "",
+            "text": "<p>The high-capacity <strong>48V 23.4Ah</strong> battery keeps you riding up to <strong>85 km</strong> on a single charge, giving you the freedom to explore trails, hills, and open terrain without worrying about running out of power.</p>",
+            "text_color": "#b2b2b2",
+            "text_bold_color": "#ff0000"
+          }
+        }
+      },
+      "block_order": [
+        "slide_HMXYGK",
+        "slide_bk4jPz",
+        "slide_mJXatN"
+      ],
+      "name": "MC Media Text",
+      "settings": {
+        "page_color": "",
+        "show_title": false,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "pc_card_subhead_size": 32,
+        "mb_card_subhead_size": 15,
+        "pc_card_head_size": 60,
+        "mb_card_head_size": 20,
+        "pc_card_text_size": 24,
+        "mb_card_text_size": 16
+      }
+    },
+    "mc_param_text_slide_MXiVG6": {
+      "type": "mc_param-text-slide",
+      "blocks": {
+        "slide_GVk3Wt": {
+          "type": "slide",
+          "settings": {
+            "title": "Geometry",
+            "pc_image": "shopify://shop_images/1_b046cdf1-f014-41ed-adf5-00b6db485bf9.png",
+            "param_text": "<ul><li>&lcub;A&rcub;<strong>Total Length</strong> 168cm</li><li>&lcub;B&rcub;<strong>Handlebar Height </strong>97cm</li><li>&lcub;C&rcub;<strong>Wheelbase </strong>41.7\"(106cm)</li><li>&lcub;D&rcub;<strong>Seat Height</strong> 28\"(72cm)</li><li>&lcub;E&rcub;<strong>Wheel Diameter </strong>14/12\"</li><li>&lcub;F&rcub;<strong>Seat Length </strong>69cm</li><li>&lcub;G&rcub;<strong>Handlebar Width </strong>28.34\"(72cm)</li><li>&lcub;H&rcub;<strong>Suitable Height</strong> 3.94ft - 5.9ft</li></ul>"
+          }
+        },
+        "slide_myF8AV": {
+          "type": "slide",
+          "settings": {
+            "title": "Specification",
+            "param_text": "<ul><li><strong>Top speed </strong>20 Km/h</li><li><strong>Range </strong>85 KM</li><li><strong>Motor </strong>2600W Peak, Brushless Motor</li><li><strong>Charger</strong> 48V5A Charger</li><li><strong>Charger Voltage </strong>100-230V, 50-60Hz</li><li><strong>Charging Time </strong>0%-100% 5.0-6.0 Hours</li><li><strong>Display</strong> LCD Display</li><li><strong>Ride Mode </strong>Three-speed Zero Start</li><li><strong>Drivetrain </strong>Chain Drive</li><li><strong>Battery</strong> 48V23.4Ah Lithium-ion Battery</li><li><strong>Suspension Type </strong>Hydraulic Suspension</li><li><strong>Brakes</strong> Heavy-duty Hydraulic Brakes</li><li><strong>Frame</strong> High Carbon Steel</li><li><strong>Chain</strong> 116links（420 chain）Heavy Duty Chain</li><li><strong>Max Climbing</strong> 30 degrees</li><li><strong>Front Suspension</strong> Hydraulic Suspension</li><li><strong>Rear Suspension</strong> Nitrogen Shock Absorber</li><li><strong>Waterproof</strong> IPX6</li><li><strong>Ground Clearance </strong>9(23cm)</li><li><strong>Bike Weight </strong>121lbs（55kg)</li><li><strong>Maximum Load </strong>265lbs（120kg)</li></ul>"
+          }
+        },
+        "slide_FafDa8": {
+          "type": "slide",
+          "settings": {
+            "title": "What's In The Box",
+            "param_text": "<ul><li>&lcub;A&rcub;Yozma IN 10 Dirt Bike*1</li><li>&lcub;B&rcub;48V 23.4Ah Lithium-Ion*1</li><li>&lcub;C&rcub;Battery Charger*1</li><li>&lcub;D&rcub;Assembly Tools*1</li><li>&lcub;E&rcub;Right Pedals*1</li><li>&lcub;F&rcub;Handle Bars Shipped Installed On Bike*1</li><li>&lcub;G&rcub;User Manual*1</li><li>&lcub;H&rcub;Plate Stickers*1</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "slide_GVk3Wt",
+        "slide_myF8AV",
+        "slide_FafDa8"
+      ],
+      "name": "MC Param Text Slide",
+      "settings": {
+        "page_color": "",
+        "title": "<p>Specifications And Parameters</p>",
+        "title_decorate_image": "shopify://shop_images/title-text-tag-3.png",
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "tab_color": "#000000",
+        "tab_active_color": "#ffffff",
+        "tab_bg_color": "#eaeaea",
+        "tab_active_bg_color": "#d30000",
+        "param_text_size": 18,
+        "mb_param_text_size": 14,
+        "card_bg_color": "#121212",
+        "param_text_color": "#ffffff",
+        "border_color": "#999999",
+        "order_bg_color": "#e9e9e9",
+        "order_text_color": "#000000",
+        "param_title1": "",
+        "param_title2": ""
+      }
+    },
+    "mc_section_text_ACpqK3": {
+      "type": "mc_section-text",
+      "blocks": {
+        "text_NrbR9Q": {
+          "type": "text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "text": "<p>Yozma IN 10 Electric Mini Dirt Bike</p>",
+            "text_decorate_image": "shopify://shop_images/title-text-tag-4.png",
+            "image_height": 40,
+            "mb_image_height": 14,
+            "position_left": 0,
+            "position_top": 26,
+            "mb_position_top": 10,
+            "alignment": "left",
+            "mb_alignment": "left",
+            "style": "italic",
+            "weight": 900,
+            "line_height": 120,
+            "pc_size": 48,
+            "mb_size": 17,
+            "width": 40,
+            "mb_width": 100,
+            "color": "#ffffff",
+            "bold_color": "#ffffff",
+            "gradient_color": ""
+          }
+        },
+        "text_cA3Bkw": {
+          "type": "text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "8px 0px 0px 0px",
+            "text": "<p>The Yozma IN 10 is built for teens and adults seeking an easy, approachable ride. Intuitive controls, smooth handling, and reliable performance make every ride effortless and confidence-inspiring—ideal for beginners and everyday use.</p>",
+            "image_height": 40,
+            "mb_image_height": 32,
+            "alignment": "left",
+            "mb_alignment": "left",
+            "style": "normal",
+            "weight": 400,
+            "line_height": 120,
+            "pc_size": 24,
+            "mb_size": 16,
+            "width": 50,
+            "mb_width": 100,
+            "color": "#b2b2b2",
+            "bold_color": "#ffffff",
+            "gradient_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_NrbR9Q",
+        "text_cA3Bkw"
+      ],
+      "name": "MC Section Text",
+      "settings": {
+        "page_color": "#171717",
+        "layout": "row",
+        "mb_layout": "column"
+      }
+    },
+    "mc_media_image_MEcse8": {
+      "type": "mc_media-image",
+      "name": "MC Media Image",
+      "settings": {
+        "page_color": "",
+        "page_top": 56,
+        "page_bottom": 0,
+        "show_title": false,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_bold_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "pc_image": "shopify://shop_images/product-yozma-bike.jpg",
+        "mb_image": "shopify://shop_images/product-mb-yozma-bike.jpg",
+        "image_radius": 0,
+        "mb_image_radius": 0,
+        "image_width": 100,
+        "image_ratio": "",
+        "image_fill": false,
+        "mb_image_ratio": "",
+        "mb_image_fill": false
+      }
+    },
+    "mc_product_compare_bVWf9P": {
+      "type": "mc_product-compare",
+      "blocks": {
+        "product_MaKYG3": {
+          "type": "product",
+          "settings": {
+            "product_group": "",
+            "product_image": "shopify://shop_images/compare-yozma-bike_cab70b10-6fd4-46d4-9604-55b7ef580ee8.png",
+            "product_title": "IN 10",
+            "show_button": true,
+            "button_bg_image": "shopify://shop_images/compare-button-bg.avif",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "shopify://products/in-10",
+            "product_params": "€1,299\n2600 W\n48V23.4 Ah\n146 Nm\n85Km\n20 Km/h\n265lbs（120kg)\n14''/12''\n3.94ft - 5.9ft\n5-6 Hours"
+          }
+        },
+        "product_RMxwXM": {
+          "type": "product",
+          "settings": {
+            "product_group": "IN 10 PRO",
+            "product_title": "Txxxxx Brand",
+            "show_button": true,
+            "button_bg_image": "shopify://shop_images/compare-button-bg.avif",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "",
+            "product_params": "€1,399.99\n2000 W\n48V 21Ah\n120Nm\n69 Km\n18 Km/h\n265 Ibs\n14''/12''\n3.9ft-5.7ft\n7-8 Hours\n84.79 lbs\n26'' x 4''\n5'4'' - 6'6''\n84.79 lbs"
+          }
+        }
+      },
+      "block_order": [
+        "product_MaKYG3",
+        "product_RMxwXM"
+      ],
+      "name": "MC Product Compare",
+      "settings": {
+        "page_color": "#171717",
+        "show_title": false,
+        "title": "Title",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "description",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "compare_title": "Price\nPeak Power\nBattery Capacity\nTorque\nMax Range\nTop Speed\nPayload\nTire\nSuitable Height\nCharging Time",
+        "features_text": "Features",
+        "product_title_size": 24,
+        "mb_product_title_size": 16,
+        "features_size": 24,
+        "mb_features_size": 16,
+        "param_name_size": 16,
+        "mb_param_name_size": 16,
+        "param_text_size": 16,
+        "mb_param_text_size": 15
+      }
+    },
+    "mc_community_media_slide_h8A3wc": {
+      "type": "mc_community-media-slide",
+      "blocks": {
+        "video_iRKdBQ": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/the Yozma IN10 has so much potential  USE CODE MATT at checkout@3mattq171100.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_8zxPjM": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/jahjah_4x_reel_2025_12_3_02_09_553778869200241396339.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_HefpKx": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/NO COMP ON YOZMA  CODE BIKESTARCHRIS FOR THE BEST DISCOUNT OK YOUR YOZMA IN10@bikestar.chris225429.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_Nw7TPQ": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Use code Talalala for 70 off your@dmvtalalala182245.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_WWBVWF": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/papajosh_on1wheel_reel_2025_12_1_02_59_533777466240743914198.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_pAyz4R": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/connor_stitt_reel_2025_11_27_06_02_173774657813202242219.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_aHP8PY": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/_mia_em_reel_2025_11_20_22_58_163770096967180517670.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "youtube_hGdkAh": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=aE6JMTf3sE4&t=78s",
+            "cover_image": "shopify://shop_images/aE6JMTf3sE4-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/10/13",
+            "content": "I Bought The Cheapest Electric Dirtbike (Yozma IN10)",
+            "avatar": "shopify://shop_images/channels4_profile_332012fe-b91c-415b-9ab3-960dc0a68ce8.jpg",
+            "author": "Rawstuntz"
+          }
+        },
+        "youtube_FBMggK": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=1BWf9zQho1g",
+            "cover_image": "shopify://shop_images/1BWf9zQho1g-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/09/20",
+            "content": "Best Electric Dirt Bike Under $1500!! Yozma Sport IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_2_648cfac0-24f1-49d2-8823-14099005e312.jpg",
+            "author": "Oneway Lilman"
+          }
+        },
+        "youtube_kmY6wG": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=6WoQyfm8BJk&t=88s",
+            "cover_image": "shopify://shop_images/6WoQyfm8BJk-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/10/18",
+            "content": "I Bought The BEST Budget Electric Mini Bike!",
+            "avatar": "shopify://shop_images/channels4_profile_3_c24bc340-59a0-45ba-a6dd-c6e1b696271f.jpg",
+            "author": "Phethanfix"
+          }
+        },
+        "youtube_a6a6DE": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=KTEI1CDjiQ0",
+            "cover_image": "shopify://shop_images/KTEI1CDjiQ0-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/10/29",
+            "content": "Cheapest ‘Legit’ Electric Dirt Bike… Actually Rips (Yozma IN-10)",
+            "avatar": "shopify://shop_images/channels4_profile_4_ac32e132-d920-4f67-92d0-904d4f59998b.jpg",
+            "author": "G Bear"
+          }
+        },
+        "youtube_TLCWVG": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=q5yuYyrjNA8",
+            "cover_image": "shopify://shop_images/q5yuYyrjNA8-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/09/22",
+            "content": "Electric Dirt Bikes Getting Cheaper and Better? Yozma IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_5_d03ebca7-69c9-4ab2-8b56-81b321b2429f.jpg",
+            "author": "Pat Outdoors"
+          }
+        },
+        "youtube_VQgGtR": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://youtu.be/UIFm5cPpgBs",
+            "cover_image": "shopify://shop_images/UIFm5cPpgBs-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/09/10",
+            "content": "This electric dirt bike cost less than a IPhone! Yozma IN10",
+            "avatar": "shopify://shop_images/channels4_profile_6.jpg",
+            "author": "ENDOPRYSM"
+          }
+        },
+        "youtube_3Vqy4B": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=kEY9Swu_WsM&t=4s",
+            "cover_image": "shopify://shop_images/kEY9Swu_WsM-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/10/04",
+            "content": "This CHEAP New E-Bike Is AMAZING! // Yozma IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_7.jpg",
+            "author": "Talaria Boys"
+          }
+        }
+      },
+      "block_order": [
+        "video_iRKdBQ",
+        "video_8zxPjM",
+        "video_HefpKx",
+        "video_Nw7TPQ",
+        "video_WWBVWF",
+        "video_pAyz4R",
+        "video_aHP8PY",
+        "youtube_hGdkAh",
+        "youtube_FBMggK",
+        "youtube_kmY6wG",
+        "youtube_a6a6DE",
+        "youtube_TLCWVG",
+        "youtube_VQgGtR",
+        "youtube_3Vqy4B"
+      ],
+      "name": "MC Community Media Slide",
+      "settings": {
+        "page_color": "",
+        "title": "<p>Hear from Our Riders</p>",
+        "title_decorate_image": "shopify://shop_images/title-text-tag-5.png",
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "tab1": "YouTube video",
+        "tab2": "Instagram videos",
+        "tab_color": "#000000",
+        "tab_active_color": "#ffffff",
+        "tab_bg_color": "#eaeaea",
+        "tab_active_bg_color": "#d30000",
+        "play_button_icon": "shopify://shop_images/video-play-button.png"
+      }
+    },
+    "mc_product_compare": {
+      "type": "mc_product-compare",
+      "blocks": {
+        "product1": {
+          "type": "product",
+          "settings": {
+            "product_group": "IN 10",
+            "product_image": "shopify://shop_images/compare-yozma-bike.png",
+            "product_title": "IN 10",
+            "show_button": true,
+            "button_bg_image": "shopify://shop_images/compare-button-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "",
+            "product_params": "$1,199.99\n2600 W\n48V23.4 Ah\n146 Nm\n85 KM\n20 Km/h\n265lbs（120kg)\n14''/12''\n3.94ft - 5.9ft\n5-6 Hours"
+          }
+        },
+        "product2": {
+          "type": "product",
+          "settings": {
+            "product_group": "IN 10 Pro",
+            "product_image": "shopify://shop_images/IN-10-PRO_824d9f20-f4e5-4a1b-a33d-d492a2824024.png",
+            "product_title": "IN 10 Pro",
+            "show_button": true,
+            "button_bg_image": "shopify://shop_images/compare-button-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "",
+            "product_params": "$????\n5000-5500 W\n60V27 Ah\n220 Nm\n55-60 Miles\n50 MPH\n330 lbs（150kg）\n17''/14''\n4.7ft - 6.3ft\n6-7 Hours"
+          }
+        },
+        "product_Fn6DA9": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product_group": "IN 10 Pro",
+            "product_title": "Rxxxxx Txxxx Brand",
+            "show_button": true,
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "",
+            "product_params": "$1,499.99\n2400W\n48V 27Ah\n106Nm\n62 Miles\n40 MPH\n265 Ibs\n14''/12''\n3.9ft-5.9ft\n7-8 Hours"
+          }
+        },
+        "product_8DJjcU": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product_group": "IN 10 Pro",
+            "product_title": "Txxxxx Brand",
+            "show_button": true,
+            "button_bg_image": "shopify://shop_images/title-tag-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "",
+            "product_params": "$1,399.99\n2000 W\n48V 21Ah\n120Nm\n43 Miles\n37 MPH\n265 Ibs\n14''/12''\n3.9ft-5.7ft\n7-8 Hours\n84.79 lbs"
+          }
+        }
+      },
+      "block_order": [
+        "product1",
+        "product2",
+        "product_Fn6DA9",
+        "product_8DJjcU"
+      ],
+      "disabled": true,
+      "name": "MC Product Compare",
+      "settings": {
+        "page_color": "#171717",
+        "show_title": false,
+        "title": "Title",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "description",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "compare_title": "Price\nPeak Power\nBattery Capacity\nTorque\nMax range\nTop Speed\nPayload\nTire\nSuitable Height\nCharging Time",
+        "features_text": "Features",
+        "product_title_size": 24,
+        "mb_product_title_size": 16,
+        "features_size": 24,
+        "mb_features_size": 16,
+        "param_name_size": 16,
+        "mb_param_name_size": 16,
+        "param_text_size": 16,
+        "mb_param_text_size": 15
+      }
+    },
+    "mc_section_text_XV7VXG": {
+      "type": "mc_section-text",
+      "blocks": {
+        "text_HH8Mrg": {
+          "type": "text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "text": "<p>Frequently asked questions</p>",
+            "image_height": 40,
+            "mb_image_height": 32,
+            "alignment": "left",
+            "mb_alignment": "left",
+            "style": "italic",
+            "weight": 900,
+            "line_height": 120,
+            "pc_size": 48,
+            "mb_size": 18,
+            "width": 100,
+            "mb_width": 100,
+            "color": "#ffffff",
+            "bold_color": "#ffffff",
+            "gradient_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_HH8Mrg"
+      ],
+      "disabled": true,
+      "name": "MC Section Text",
+      "settings": {
+        "page_color": "#171717",
+        "page_bottom": 40,
+        "layout": "column",
+        "mb_layout": "column"
+      }
+    },
+    "faq_Ld7yCC": {
+      "type": "faq",
+      "blocks": {
+        "item_7kpVea": {
+          "type": "item",
+          "settings": {
+            "title": "What is the top speed of the Yozma IN 10?",
+            "content": "<p>The Yozma IN 10 reaches up to 20km/h in the third speed mode.</p>"
+          }
+        },
+        "item_fcVKfM": {
+          "type": "item",
+          "settings": {
+            "title": "How long is the battery range on a full charge?",
+            "content": "<p>The 48V/23.4AH lithium battery offers a range of 35–53 miles (56–85 km) depending on load, terrain, speed, and temperature.</p>"
+          }
+        },
+        "item_UrTPVR": {
+          "type": "item",
+          "settings": {
+            "title": "What rider height is the IN 10 suitable for?",
+            "content": "<p>Recommended for users 3.94ft - 5.9ft tall and aged 14 years and above.</p>"
+          }
+        },
+        "item_kjznVh": {
+          "type": "item",
+          "settings": {
+            "title": "How long does it take to fully charge the battery?",
+            "content": "<p>With the included 48V/5A charger, a full charge typically takes 5–6 hours.</p>"
+          }
+        },
+        "item_LezKXa": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "title": "What type of motor does it use?",
+            "content": "<p>The IN 10 features a 1200W rated / 2600W peak direct drive brushless motor, offering strong acceleration and climbing power.</p>"
+          }
+        },
+        "item_3pnxn8": {
+          "type": "item",
+          "settings": {
+            "title": "Does the bike support multiple speed or riding modes?",
+            "content": "<p>Yes. Our e-bike features <strong>three adjustable riding modes</strong>, allowing you to choose the ideal balance between speed and range:</p><p><strong>- 1st Mode:</strong> 18 mph (29 km/h)<br/><strong>- 2nd Mode:</strong> 24 mph (38 km/h)<br/><strong>- 3rd Mode:</strong> 40 mph (64 km/h)</p><p>Range may vary depending on rider weight, terrain, temperature, riding habits, and throttle usage.</p>"
+          }
+        },
+        "item_mkLaNz": {
+          "type": "item",
+          "settings": {
+            "title": "Safety Instructions —— Important Tips",
+            "content": "<p>1. Wear Proper Protective Gear</p><p>Always wear an approved helmet when riding. Protective gear such as goggles, gloves, elbow and knee pads, and long pants is strongly recommended. Wear lace-up shoes with rubber soles. Do not ride barefoot, in open-toed shoes, or in high heels.</p><p>2. Ride Only in Safe and Legal Areas</p><p>Do not ride on highways, indoors, on slopes exceeding 30°, or on uneven, slippery, or unfamiliar terrain. Beginners should practice in an open area before riding in public spaces.</p><p>3. Operate Responsibly to Minimize Risk</p><p>Always hold the handlebars with both hands and avoid high-risk maneuvers. Do not ride under the influence of alcohol, medication, or when unwell. Obey local traffic laws and yield to pedestrians and other road users.</p><p>4. Battery Safety and Handling</p><p>Do not store batteries in environments above 70°F (21°C) or below 32°F (0°C). Batteries must be disposed of in accordance with local regulations. Do not throw batteries into fire or dispose of them with household waste.</p><p>5. Observe Weight and Weather Limits</p><p>Maximum load is 120 kg. The recommended rider weight is approximately 80 kg. Do not ride in rain, storms, fog, or other extreme weather conditions. Avoid water exposure to the motorcycle and battery.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_7kpVea",
+        "item_fcVKfM",
+        "item_UrTPVR",
+        "item_kjznVh",
+        "item_LezKXa",
+        "item_3pnxn8",
+        "item_mkLaNz"
+      ],
+      "disabled": true,
+      "name": "FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "team_avatar_width": 160,
+        "support_hours": "",
+        "answer_time": "",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "#171717",
+        "background_gradient": "",
+        "text_color": "#ffffff",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "#171717",
+        "accordion_text_color": ""
+      }
+    },
+    "mc_section_text_jFmHmk": {
+      "type": "mc_section-text",
+      "blocks": {
+        "text_P7HrqD": {
+          "type": "text",
+          "name": "春促Text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "text": "<p>🍃 Spring Sale FAQ</p>",
+            "image_height": 40,
+            "mb_image_height": 32,
+            "alignment": "left",
+            "mb_alignment": "left",
+            "style": "italic",
+            "weight": 900,
+            "line_height": 120,
+            "pc_size": 48,
+            "mb_size": 18,
+            "width": 100,
+            "mb_width": 100,
+            "color": "#ffffff",
+            "bold_color": "#ffffff",
+            "gradient_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_P7HrqD"
+      ],
+      "name": "MC Section Text",
+      "settings": {
+        "page_color": "#171717",
+        "page_bottom": 40,
+        "layout": "column",
+        "mb_layout": "column"
+      }
+    },
+    "faq_NjtRGW": {
+      "type": "faq",
+      "blocks": {
+        "item_3CNzMi": {
+          "type": "item",
+          "settings": {
+            "title": "1. What is the Spring Sale period?",
+            "content": "<p>The Spring Sale runs from <strong>February 27 to March 15</strong>.</p>"
+          }
+        },
+        "item_4mT3Pq": {
+          "type": "item",
+          "settings": {
+            "title": "2. Which models are included in this Spring Sale?",
+            "content": "<p>This Spring Sale is <strong>available for the YOZMA IN 10 model only</strong>.<br/><br/>Other models are not eligible for this promotion.</p>"
+          }
+        },
+        "item_QMHbRc": {
+          "type": "item",
+          "settings": {
+            "title": "3. Do I get a free gift when purchasing a bike?",
+            "content": "<p>Yes. <strong>Every purchase of a complete bike includes a FREE bike bag.</strong></p>"
+          }
+        },
+        "item_GB6DXn": {
+          "type": "item",
+          "settings": {
+            "title": "4. How do free gifts work based on order value?",
+            "content": "<p>Free gifts are determined by your <strong>order subtotal before tax</strong>:</p><ul><li>Orders over <strong>$1,499</strong>: FREE Riding Gloves</li><li>Orders over <strong>$2,399</strong>: FREE Helmet</li><li>Orders over <strong>$2,999</strong>: FREE Riding Safety Gear Set (Includes Helmet + Riding Gloves + Small Accessories)</li></ul>"
+          }
+        },
+        "item_jPNtWR": {
+          "type": "item",
+          "settings": {
+            "title": "5. Can I receive multiple free gifts?",
+            "content": "<p>No. <strong>Free gifts do not stack.</strong><br/><br/>You will receive <strong>only the highest-tier gift</strong> based on your order value.</p>"
+          }
+        },
+        "item_nzectQ": {
+          "type": "item",
+          "settings": {
+            "title": "6. What are “small accessories”?",
+            "content": "<p>Small accessories may include items such as <strong>keychains or small riding gear</strong>.<br/><br/>Accessories are <strong>sent at random</strong>.</p>"
+          }
+        },
+        "item_RYmhMd": {
+          "type": "item",
+          "settings": {
+            "title": "7. Is this promotion available while supplies last?",
+            "content": "<p>Yes. All free gifts are available <strong>while supplies last</strong>.</p>"
+          }
+        },
+        "item_G3YHFt": {
+          "type": "item",
+          "settings": {
+            "title": "8. Can this promotion be combined with other discounts or offers?",
+            "content": "<p>This promotion cannot be combined with any other promotions or discounts. Only one offer may be applied per order.</p>"
+          }
+        },
+        "item_pf66DX": {
+          "type": "item",
+          "settings": {
+            "title": "9. When will the free gifts be shipped?",
+            "content": "<p>Free gifts earned through this promotion are <strong>expected to ship in mid-March</strong>.<br/><br/>They may be shipped <strong>separately</strong> from the bike.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_3CNzMi",
+        "item_4mT3Pq",
+        "item_QMHbRc",
+        "item_GB6DXn",
+        "item_jPNtWR",
+        "item_nzectQ",
+        "item_RYmhMd",
+        "item_G3YHFt",
+        "item_pf66DX"
+      ],
+      "name": "春促FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "team_avatar_width": 160,
+        "support_hours": "",
+        "answer_time": "",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "#171717",
+        "background_gradient": "",
+        "text_color": "#ffffff",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "#171717",
+        "accordion_text_color": ""
+      }
+    },
+    "1759995049e645d62a": {
+      "type": "apps",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "mc_page_color",
+    "main",
+    "text_with_icons_2508_VYhjtW",
+    "mc_media_image",
+    "mc_media_video",
+    "mc_media_text_QXFf98",
+    "mc_param_text_slide_MXiVG6",
+    "mc_section_text_ACpqK3",
+    "mc_media_image_MEcse8",
+    "mc_product_compare_bVWf9P",
+    "mc_community_media_slide_h8A3wc",
+    "mc_product_compare",
+    "mc_section_text_XV7VXG",
+    "faq_Ld7yCC",
+    "mc_section_text_jFmHmk",
+    "faq_NjtRGW",
+    "1759995049e645d62a"
+  ]
+}

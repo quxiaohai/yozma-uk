@@ -1,0 +1,1208 @@
+{% doc %}
+  @prompt
+    A blog post layout.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-blog-layout-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .ai-blog-sidebar-{{ ai_gen_id }} {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-self: flex-start;
+    height: fit-content;
+  }
+
+  .ai-blog-main-{{ ai_gen_id }} {
+    min-width: 0;
+  }
+
+  .ai-blog-section-{{ ai_gen_id }} {
+    background-color: {{ block.settings.sidebar_background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: 24px;
+  }
+
+  .ai-blog-section-title-{{ ai_gen_id }} {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-blog-breadcrumbs-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 16px;
+  }
+
+  .ai-blog-breadcrumbs-{{ ai_gen_id }} a {
+    color: {{ block.settings.link_color }};
+    text-decoration: none;
+  }
+
+  .ai-blog-breadcrumbs-{{ ai_gen_id }} a:hover {
+    text-decoration: underline;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }} {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 8px;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }}::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }}::-webkit-scrollbar-track {
+    background: {{ block.settings.border_color }};
+    border-radius: 2px;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }}::-webkit-scrollbar-thumb {
+    background: #E63946;
+    border-radius: 2px;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }}::-webkit-scrollbar-thumb:hover {
+    background: #B02A37;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }} ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }} li {
+    margin-bottom: 8px;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }} a {
+    color: {{ block.settings.link_color }};
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.4;
+    display: block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }} a:hover {
+    background-color: {{ block.settings.sidebar_background_color }};
+    color: {{ block.settings.link_hover_color }};
+    transform: translateX(4px);
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }} a.active {
+    background-color: #E63946;
+    color: white;
+    font-weight: 600;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }} .ai-blog-toc-h3-{{ ai_gen_id }} {
+    margin-left: 16px;
+    font-size: 13px;
+  }
+
+  .ai-blog-toc-{{ ai_gen_id }} .ai-blog-toc-h3-{{ ai_gen_id }} a {
+    opacity: 0.8;
+  }
+
+  .ai-blog-related-products-{{ ai_gen_id }} {
+    display: grid;
+    gap: 16px;
+  }
+
+  .ai-blog-product-card-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ai-blog-product-image-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .ai-blog-product-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-blog-product-info-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ai-blog-product-title-{{ ai_gen_id }} {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    color: {{ block.settings.text_color }};
+    line-height: 1.3;
+  }
+
+  .ai-blog-product-price-{{ ai_gen_id }} {
+    font-size: 14px;
+    font-weight: 600;
+    color: {{ block.settings.price_color }};
+  }
+
+  .ai-blog-product-rating-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: {{ block.settings.meta_color }};
+  }
+
+  .ai-blog-product-stars-{{ ai_gen_id }} {
+    color: #ffa500;
+    letter-spacing: 2px;
+  }
+
+  .ai-blog-latest-posts-{{ ai_gen_id }} {
+    display: grid;
+    gap: 16px;
+  }
+
+  .ai-blog-post-item-{{ ai_gen_id }} {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-blog-post-item-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .ai-blog-post-thumbnail-{{ ai_gen_id }} {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .ai-blog-post-thumbnail-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-blog-post-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .ai-blog-post-title-{{ ai_gen_id }} {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .ai-blog-post-title-{{ ai_gen_id }} a {
+    color: {{ block.settings.text_color }};
+    text-decoration: none;
+  }
+
+  .ai-blog-post-title-{{ ai_gen_id }} a:hover {
+    color: {{ block.settings.link_color }};
+  }
+
+  .ai-blog-post-date-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.meta_color }};
+  }
+
+  .ai-blog-header-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 32px;
+  }
+
+  .ai-blog-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 700;
+    margin: 0;
+    color: {{ block.settings.heading_color }};
+    line-height: 1.2;
+  }
+
+  .ai-blog-featured-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 150px;
+  }
+
+  .ai-blog-featured-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-blog-meta-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 24px 0;
+    padding: 16px 0;
+    border-top: 1px solid {{ block.settings.border_color }};
+    border-bottom: 1px solid {{ block.settings.border_color }};
+    font-size: 14px;
+    color: {{ block.settings.meta_color }};
+  }
+
+  .ai-blog-meta-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    line-height: {{ block.settings.content_line_height }};
+    margin-bottom: 40px;
+    font-size: {{ block.settings.content_font_size }}px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} h1,
+  .ai-blog-content-{{ ai_gen_id }} h2,
+  .ai-blog-content-{{ ai_gen_id }} h3,
+  .ai-blog-content-{{ ai_gen_id }} h4,
+  .ai-blog-content-{{ ai_gen_id }} h5,
+  .ai-blog-content-{{ ai_gen_id }} h6 {
+    color: {{ block.settings.heading_color }};
+    font-weight: 700;
+    line-height: 1.3;margin: 0 0 16px 0;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} h1 {
+    font-size: {{ block.settings.content_font_size | times: 2.5 }}px;
+    margin: 40px 0 24px 0;
+    border-bottom: 3px solid #8C0000;
+    padding-bottom: 12px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} h2 {
+    font-size: {{ block.settings.content_font_size | times: 2 }}px;
+    margin: 36px 0 20px 0;
+    border-bottom: 2px solid #8C0000;
+    padding-bottom: 8px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} h3 {
+    font-size: {{ block.settings.content_font_size | times: 1.5 }}px;
+    margin: 32px 0 16px 0;
+    border-left: 4px solid #E63946;
+    padding-left: 16px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} h4 {
+    font-size: {{ block.settings.content_font_size | times: 1.25 }}px;
+    margin: 28px 0 14px 0;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} h5 {
+    font-size: {{ block.settings.content_font_size | times: 1.1 }}px;
+    margin: 24px 0 12px 0;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} h6 {
+    font-size: {{ block.settings.content_font_size }}px;
+    margin: 20px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} p {
+    margin: 0 0 20px 0;
+    line-height: inherit;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} a {
+    color: #E63946;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} a:hover {
+    color: #B02A37;
+    text-decoration-thickness: 2px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} strong,
+  .ai-blog-content-{{ ai_gen_id }} b {
+    font-weight: 700;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} em,
+  .ai-blog-content-{{ ai_gen_id }} i {
+    font-style: italic;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} ul,
+  .ai-blog-content-{{ ai_gen_id }} ol {
+    margin: 0 0 20px 0;
+    padding-left: 24px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} ul {
+    list-style-type: disc;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} ol {
+    list-style-type: decimal;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} li {
+    margin-bottom: 8px;
+    line-height: inherit;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} li:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} ul li::marker {
+    color: #E63946;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} ol li::marker {
+    color: #E63946;
+    font-weight: 600;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} ul ul,
+  .ai-blog-content-{{ ai_gen_id }} ol ol,
+  .ai-blog-content-{{ ai_gen_id }} ul ol,
+  .ai-blog-content-{{ ai_gen_id }} ol ul {
+    margin: 8px 0 0 0;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} blockquote {
+    margin: 32px 0;
+    padding: 20px 24px;
+    background-color: #FFF5F6;
+    border-left: 4px solid #E63946;
+    border-radius: 0 {{ block.settings.border_radius }}px {{ block.settings.border_radius }}px 0;
+    font-style: italic;
+    font-size: {{ block.settings.content_font_size | times: 1.1 }}px;
+    color: #555555;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} blockquote p {
+    margin: 0;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} blockquote cite {
+    display: block;
+    margin-top: 12px;
+    font-size: {{ block.settings.content_font_size | times: 0.9 }}px;
+    font-style: normal;
+    color: {{ block.settings.meta_color }};
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} blockquote cite:before {
+    content: "— ";
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} code {
+    background-color: {{ block.settings.code_background }};
+    color: {{ block.settings.code_text_color }};
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family:'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: {{ block.settings.content_font_size | times: 0.9 }}px;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} pre {
+    background-color: {{ block.settings.code_background }};
+    color: {{ block.settings.code_text_color }};
+    padding: 20px;
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow-x: auto;
+    margin: 24px 0;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: {{ block.settings.content_font_size | times: 0.9 }}px;
+    line-height: 1.4;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} img {
+    max-width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.border_radius }}px;
+    margin: 24px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    background-color: {{ block.settings.table_background }};
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    border: 2px solid #E63946;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} th,
+  .ai-blog-content-{{ ai_gen_id }} td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} th {
+    background-color: #8C0000;
+    font-weight: 600;
+    color: white;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} tr:hover {
+    background-color: #FFF0F1;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} tr:last-child td {
+    border-bottom: none;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #E63946, transparent);
+    margin: 40px 0;
+  }
+
+  .ai-blog-author-info-{{ ai_gen_id }} {
+    background-color: {{ block.settings.author_background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: 24px;
+    margin: 40px 0;
+  }
+
+  .ai-blog-author-title-{{ ai_gen_id }} {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-blog-author-bio-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    line-height: 1.5;
+  }
+
+  .ai-blog-tags-{{ ai_gen_id }} {
+    margin: 24px 0 32px 0;
+    padding: 20px;
+    background-color: {{ block.settings.sidebar_background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-blog-tags-title-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-blog-tags-list-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .ai-blog-tag-item-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background-color: {{ block.settings.tag_background_color }};
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: 4px;
+    font-size: 13px;
+    color: {{ block.settings.tag_text_color }};
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .ai-blog-tag-item-{{ ai_gen_id }}:hover {
+    background-color: #E63946;
+    color: white;
+    border-color: #E63946;
+  }
+
+  .ai-blog-tag-icon-{{ ai_gen_id }} {
+    width: 14px;
+    height: 14px;
+  }
+
+  .ai-blog-social-share-{{ ai_gen_id }} {
+    margin-top: 32px;
+  }
+
+  .ai-blog-social-title-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-blog-social-buttons-{{ ai_gen_id }} {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ai-blog-social-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .ai-blog-social-button-{{ ai_gen_id }}:hover {
+    transform: scale(1.1);
+  }
+
+  .ai-blog-social-facebook-{{ ai_gen_id }} {
+    background-color: #1877f2;
+    color: white;
+  }
+
+  .ai-blog-social-twitter-{{ ai_gen_id }} {
+    background-color: #1da1f2;
+    color: white;
+  }
+
+  .ai-blog-social-linkedin-{{ ai_gen_id }} {
+    background-color: #0077b5;
+    color: white;
+  }
+
+  .ai-blog-social-pinterest-{{ ai_gen_id }} {
+    background-color: #bd081c;
+    color: white;
+  }
+
+  .ai-blog-empty-state-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 20px;
+    color: {{ block.settings.meta_color }};
+    font-style: italic;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-blog-layout-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 20px 16px;
+    }
+
+    .ai-blog-header-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .ai-blog-featured-image-{{ ai_gen_id }} {
+      height: 200px;
+    }
+
+    .ai-blog-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-blog-content-{{ ai_gen_id }} h1 {
+      font-size: {{ block.settings.content_font_size | times: 2}}px;
+    }
+
+    .ai-blog-content-{{ ai_gen_id }} h2 {
+      font-size: {{ block.settings.content_font_size | times: 1.6 }}px;
+    }
+
+    .ai-blog-content-{{ ai_gen_id }} h3 {
+      font-size: {{ block.settings.content_font_size | times: 1.3 }}px;
+    }
+
+    .ai-blog-content-{{ ai_gen_id }} table {
+      font-size: 14px;
+    }
+
+    .ai-blog-content-{{ ai_gen_id }} th,
+    .ai-blog-content-{{ ai_gen_id }} td {
+      padding: 8px 12px;
+    }
+  }
+{% endstyle %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tocLinks = document.querySelectorAll('.ai-blog-toc-{{ ai_gen_id }} a');
+  const headings = document.querySelectorAll('.ai-blog-content-{{ ai_gen_id }} h2, .ai-blog-content-{{ ai_gen_id }} h3');
+  
+  if (tocLinks.length === 0 || headings.length === 0) return;
+
+  // 添加平滑滚动
+  tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetHeading = Array.from(headings).find(h => {
+        const headingText = h.textContent.trim();
+        const headingId = headingText.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+        return headingId === targetId;
+      });
+      
+      if (targetHeading) {
+        targetHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // 监听滚动，高亮当前阅读的标题
+  function highlightTOC() {
+    let currentHeading = null;
+    const scrollPosition = window.scrollY + 100;
+
+    headings.forEach(heading => {
+      if (heading.offsetTop <= scrollPosition) {
+        currentHeading = heading;
+      }
+    });
+
+    tocLinks.forEach(link => link.classList.remove('active'));
+
+    if (currentHeading) {
+      const headingText = currentHeading.textContent.trim();
+      const headingId = headingText.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+      const activeLink = Array.from(tocLinks).find(link => {
+        const href = link.getAttribute('href').substring(1);
+        return href === headingId;
+      });
+      if (activeLink) {
+        activeLink.classList.add('active');
+        // 自动滚动目录到可见位置
+        const tocNav = document.querySelector('.ai-blog-toc-{{ ai_gen_id }}');
+        if (tocNav) {
+          const linkTop = activeLink.offsetTop;
+          const navScrollTop = tocNav.scrollTop;
+          const navHeight = tocNav.clientHeight;
+          if (linkTop < navScrollTop || linkTop > navScrollTop + navHeight - 50) {
+            tocNav.scrollTop = linkTop - navHeight / 2;
+          }
+        }
+      }
+    }
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        highlightTOC();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  highlightTOC();
+});
+</script>
+
+<div class="ai-blog-layout-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <aside class="ai-blog-sidebar-{{ ai_gen_id }}">
+    {% if article.content contains '<h2>' or article.content contains '<h3>' %}
+      <div class="ai-blog-section-{{ ai_gen_id }}">
+        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Table of Contents</h3>
+        <nav class="ai-blog-toc-{{ ai_gen_id }}">
+          <ul>
+            {% assign headings = article.content | split: '<h' %}
+            {% for heading in headings %}
+              {% if heading contains '>' %}
+                {% assign heading_parts = heading | split: '>' %}
+                {% assign heading_tag = heading_parts[0] %}
+                {% assign heading_content = heading_parts[1] | split: '</h' | first | strip_html %}
+                {% if heading_tag contains '2' %}
+                  <li><a href="#{{ heading_content | handle }}">{{ heading_content }}</a></li>
+                {% elsif heading_tag contains '3' %}
+                  <li class="ai-blog-toc-h3-{{ ai_gen_id }}"><a href="#{{ heading_content | handle }}">{{ heading_content }}</a></li>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    {% endif %}
+
+    {% if block.settings.related_products != blank %}
+      <div class="ai-blog-section-{{ ai_gen_id }}">
+        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Related Products</h3>
+        <div class="ai-blog-related-products-{{ ai_gen_id }}">
+          {% for product in block.settings.related_products limit: 4 %}
+            <div class="ai-blog-product-card-{{ ai_gen_id }}">
+              <div class="ai-blog-product-image-{{ ai_gen_id }}">
+                {% if product.featured_image %}
+                  <img src="{{ product.featured_image | image_url: width: 300}}" alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+                {% else %}
+                  <div style="background: #f4f4f4; width: 100%; padding-bottom: 100%;"></div>
+                {% endif %}
+              </div>
+              <div class="ai-blog-product-info-{{ ai_gen_id }}">
+                <h4 class="ai-blog-product-title-{{ ai_gen_id }}">{{ product.title }}</h4>
+                <div class="ai-blog-product-price-{{ ai_gen_id }}">{{ product.price | money }}</div>
+                {% if product.metafields.reviews.rating.value %}
+                  <div class="ai-blog-product-rating-{{ ai_gen_id }}">
+                    <span class="ai-blog-product-stars-{{ ai_gen_id }}">★★★★★</span>
+                    <span>({{ product.metafields.reviews.rating_count }})</span>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <div class="ai-blog-section-{{ ai_gen_id }}">
+        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Related Products</h3>
+        <div class="ai-blog-empty-state-{{ ai_gen_id }}">
+          Add related products in the block settings
+        </div>
+      </div>
+    {% endif %}
+
+    {% if blog and article %}
+      <div class="ai-blog-section-{{ ai_gen_id }}">
+        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Related Articles</h3>
+        <div class="ai-blog-latest-posts-{{ ai_gen_id }}">
+          {% assign related_count = 0 %}
+          {% if article.tags.size > 0 %}
+            {% for post in blog.articles limit: 20 %}
+              {% unless post.id == article.id %}
+                {% assign has_common_tag = false %}
+                {% for tag in post.tags %}
+                  {% if article.tags contains tag %}
+                    {% assign has_common_tag = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+                
+                {% if has_common_tag %}
+                  {% assign related_count = related_count | plus: 1 %}
+                  <article class="ai-blog-post-item-{{ ai_gen_id }}">
+                    <div class="ai-blog-post-thumbnail-{{ ai_gen_id }}">
+                      {% if post.image %}
+                        <img src="{{ post.image | image_url: width: 160 }}" alt="{{ post.image.alt | escape }}" loading="lazy">
+                      {% else %}
+                        <div style="background: #f4f4f4; width: 100%; height: 100%;"></div>
+                      {% endif %}
+                    </div>
+                    <div class="ai-blog-post-content-{{ ai_gen_id }}">
+                      <h4 class="ai-blog-post-title-{{ ai_gen_id }}">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                      </h4>
+                      <div class="ai-blog-post-date-{{ ai_gen_id }}">{{ post.published_at | date: '%B %d, %Y' }}</div>
+                    </div>
+                  </article>
+                  {% if related_count >= 5 %}
+                    {% break %}
+                  {% endif %}
+                {% endif %}
+              {% endunless %}
+            {% endfor %}
+          {% endif %}
+          
+          {% if related_count == 0 %}
+            <div class="ai-blog-empty-state-{{ ai_gen_id }}">
+              No related articles found
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="ai-blog-section-{{ ai_gen_id }}">
+        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Latest Posts</h3>
+        <div class="ai-blog-latest-posts-{{ ai_gen_id }}">
+          {% for post in blog.articles limit: 5 %}
+            {% unless post.id == article.id %}
+              <article class="ai-blog-post-item-{{ ai_gen_id }}">
+                <div class="ai-blog-post-thumbnail-{{ ai_gen_id }}">
+                  {% if post.image %}
+                    <img src="{{ post.image | image_url: width: 160 }}" alt="{{ post.image.alt | escape }}" loading="lazy">
+                  {% else %}
+                    <div style="background: #f4f4f4; width: 100%; height: 100%;"></div>
+                  {% endif %}
+                </div>
+                <div class="ai-blog-post-content-{{ ai_gen_id }}">
+                  <h4 class="ai-blog-post-title-{{ ai_gen_id }}">
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                  </h4>
+                  <div class="ai-blog-post-date-{{ ai_gen_id }}">{{ post.published_at | date: '%B %d, %Y' }}</div>
+                </div>
+              </article>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </aside>
+
+  <main class="ai-blog-main-{{ ai_gen_id }}">
+    {% if article %}
+      {% if blog %}
+        <nav class="ai-blog-breadcrumbs-{{ ai_gen_id }}">
+          <a href="/">Home</a>
+          <span>/</span>
+          <a href="{{ blog.url }}">{{ blog.title }}</a>
+        </nav>
+      {% endif %}
+      
+      <header class="ai-blog-header-{{ ai_gen_id }}">
+        <div>
+          <h1 class="ai-blog-title-{{ ai_gen_id }}">{{ article.title }}</h1>
+        </div>
+        {% if article.image %}
+          <div class="ai-blog-featured-image-{{ ai_gen_id }}">
+            <img src="{{ article.image | image_url: width: 400 }}" alt="{{ article.image.alt | escape }}" loading="lazy">
+          </div>
+        {% endif %}
+      </header>
+
+      <div class="ai-blog-meta-{{ ai_gen_id }}">
+        {% if article.author %}
+          <div class="ai-blog-meta-item-{{ ai_gen_id }}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>{{ article.author }}</span>
+          </div>
+        {% endif %}<div class="ai-blog-meta-item-{{ ai_gen_id }}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>Published {{ article.published_at | date: '%B %d, %Y' }}</span>
+        </div>
+
+        {% if article.updated_at != article.published_at %}
+          <div class="ai-blog-meta-item-{{ ai_gen_id }}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+            </svg>
+            <span>Updated {{ article.updated_at | date: '%B %d, %Y' }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-blog-content-{{ ai_gen_id }}">
+        {{ article.content }}
+      </div>
+
+      {% if article.tags.size > 0 %}
+        <div class="ai-blog-tags-{{ ai_gen_id }}">
+          <h3 class="ai-blog-tags-title-{{ ai_gen_id }}">Tags</h3>
+          <div class="ai-blog-tags-list-{{ ai_gen_id }}">
+            {% for tag in article.tags %}
+              <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="ai-blog-tag-item-{{ ai_gen_id }}">
+                <svg class="ai-blog-tag-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+                {{ tag }}
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.author_bio != blank %}
+        <div class="ai-blog-author-info-{{ ai_gen_id }}">
+          <h3 class="ai-blog-author-title-{{ ai_gen_id }}">About the Author</h3>
+          <div class="ai-blog-author-bio-{{ ai_gen_id }}">{{ block.settings.author_bio }}</div>
+        </div>
+      {% endif %}
+
+      <div class="ai-blog-social-share-{{ ai_gen_id }}">
+        <h3 class="ai-blog-social-title-{{ ai_gen_id }}">Share this post</h3>
+        <div class="ai-blog-social-buttons-{{ ai_gen_id }}">
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}" target="_blank" class="ai-blog-social-button-{{ ai_gen_id }} ai-blog-social-facebook-{{ ai_gen_id }}" aria-label="Share on Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}&text={{ article.title | url_encode }}" target="_blank" class="ai-blog-social-button-{{ ai_gen_id }} ai-blog-social-twitter-{{ ai_gen_id }}" aria-label="Share on Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ shop.url }}{{ article.url }}" target="_blank" class="ai-blog-social-button-{{ ai_gen_id }} ai-blog-social-linkedin-{{ ai_gen_id }}" aria-label="Share on LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ article.url }}&description={{ article.title | url_encode }}" target="_blank" class="ai-blog-social-button-{{ ai_gen_id }} ai-blog-social-pinterest-{{ ai_gen_id }}" aria-label="Share on Pinterest">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    {% else %}
+      <div class="ai-blog-empty-state-{{ ai_gen_id }}">
+        <h2>Blog Post Layout</h2>
+        <p>This block displays blog post content when placed on an article page.</p>
+      </div>
+    {% endif %}
+  </main>
+</div>
+
+{% schema %}
+{
+  "name": "Blog post layout",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Related products"
+    },
+    {
+      "type": "product_list",
+      "id": "related_products",
+      "label": "Related products",
+      "limit": 4
+    },
+    {
+      "type": "header",
+      "content": "Author"
+    },
+    {
+      "type": "richtext",
+      "id": "author_bio",
+      "label": "Author bio",
+      "default": "<p>Write a brief bio about the author here.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "content_font_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Content font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "content_line_height",
+      "min": 1.2,
+      "max": 2,
+      "step": 0.1,
+      "label": "Content line height",
+      "default": 1.6
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "heading_accent_color",
+      "label": "Heading accent color",
+      "default": "#8C0000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#E63946"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#B02A37"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Meta text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_background_color",
+      "label": "Sidebar background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "author_background_color",
+      "label": "Author section background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "tag_background_color",
+      "label": "Tag background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Tag text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "blockquote_background",
+      "label": "Blockquote background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "blockquote_text_color",
+      "label": "Blockquote text color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "code_background",
+      "label": "Code background",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "code_text_color",
+      "label": "Code text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "table_background",
+      "label": "Table background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "table_header_background",
+      "label": "Table header background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "table_header_text_color",
+      "label": "Table header text color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog post layout"
+    }
+  ]
+}
+{% endschema %}

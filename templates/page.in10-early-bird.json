@@ -1,0 +1,955 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "slideshow_J8nNBh": {
+      "type": "slideshow",
+      "blocks": {
+        "image_bVhUqW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pc_372032fe-c522-4f28-b088-463cc7105e36.png",
+            "mobile_image": "shopify://shop_images/M.png",
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_bVhUqW"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "show_initial_transition": false,
+        "image_size": "md",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "newsletter_ky3HHm": {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": {
+        "fixed_mode": true,
+        "full_width": true,
+        "show_icon": false,
+        "title": "",
+        "content": "<p><strong>Secure Your Discount Now！</strong></p>",
+        "button_text": "Subscribe",
+        "subtext": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "multi_column_EBeEVP": {
+      "type": "multi-column",
+      "blocks": {
+        "item_tF6jyt": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Group_19_f3fbecc2-e3b7-4252-adba-0917501a8f84.png",
+            "show_controls": false,
+            "column_size": "4",
+            "title": "",
+            "heading_tag": "h4",
+            "content": "<h4>Exclusive Gifts：<br/>1*Front Bag<br/>1*Front Number Plate Decal</h4>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_pmY7E4": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/d787c1d97382113093b48fc17880b5d4.png",
+            "show_controls": false,
+            "column_size": "4",
+            "title": "Exclusive Discount Code for Accessories",
+            "heading_tag": "h4",
+            "content": "",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_d3mGtT": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/vip.png",
+            "show_controls": false,
+            "column_size": "4",
+            "title": "VIP Community Invitation",
+            "heading_tag": "h4",
+            "content": "",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_fW6Wgx": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/d3cdb5f8544d33aa08a90231b06aa660.png",
+            "show_controls": false,
+            "column_size": "4",
+            "title": "Access to Future Product Beta Tests",
+            "heading_tag": "h4",
+            "content": "",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_tF6jyt",
+        "item_pmY7E4",
+        "item_d3mGtT",
+        "item_fW6Wgx"
+      ],
+      "name": "Multi-column",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "medium",
+        "text_alignment_title": "center",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Thank You for Your Incredible Support!",
+        "content": "",
+        "title_width": "default",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "slideshow_ikzAia": {
+      "type": "slideshow",
+      "blocks": {
+        "image_KBAi7M": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11.png",
+            "mobile_image": "shopify://shop_images/1111.png",
+            "content_max_width": 400,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_KBAi7M"
+      ],
+      "disabled": true,
+      "name": "Slideshow",
+      "settings": {
+        "full_width": false,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "custom_html_9TEDPA": {
+      "type": "custom-html",
+      "disabled": true,
+      "name": "Custom HTML",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "html": "<link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap\" rel=\"stylesheet\">\n\n<style>\n  .spec-container {\n    display: flex;\n    justify-content: center;\n    gap: 40px;\n    padding: 0; /* 去掉内边距 */\n    flex-wrap: nowrap;\n    font-family: 'Roboto', sans-serif;\n  }\n\n  .spec-item {\n    flex: 1 1 0;\n    min-width: 80px;\n    text-align: center;\n  }\n\n  .spec-number {\n    font-weight: 700;\n    color: #222222;\n    font-size: clamp(20px, 3vw, 32px);\n  }\n\n  .spec-desc {\n    font-size: clamp(10px, 1.5vw, 14px);\n    color: #878787;\n    margin-top: 6px;\n  }\n</style>\n\n<div class=\"spec-container\">\n  <div class=\"spec-item\">\n    <div class=\"spec-number\">2600W</div>\n    <div class=\"spec-desc\">Motor</div>\n  </div>\n  <div class=\"spec-item\">\n    <div class=\"spec-number\">3-Speed</div>\n    <div class=\"spec-desc\">Torque</div>\n  </div>\n  <div class=\"spec-item\">\n    <div class=\"spec-number\">40 MPH</div>\n    <div class=\"spec-desc\">Top Speed</div>\n  </div>\n  <div class=\"spec-item\">\n    <div class=\"spec-number\">23Ah</div>\n    <div class=\"spec-desc\">Lithium Battery</div>\n  </div>\n  <div class=\"spec-item\">\n    <div class=\"spec-number\">65 km</div>\n    <div class=\"spec-desc\">Max Range</div>\n  </div>\n  <div class=\"spec-item\">\n    <div class=\"spec-number\">264 lbs</div>\n    <div class=\"spec-desc\">Max Load</div>\n  </div>\n</div>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "slideshow_bVigEi": {
+      "type": "slideshow",
+      "blocks": {
+        "image_6NWmR3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/de2b4142628b3df7c9fe4454e0573eb7_77cf3563-f123-4c8b-910b-591803b08f23.jpg",
+            "mobile_image": "shopify://shop_images/M_6ab06984-adc8-4aa2-9cea-22929edee506.jpg",
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-start-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "Your First Look at IN 10",
+            "heading_tag": "h3",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_6NWmR3"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "media_grid_yxDMwX": {
+      "type": "media-grid",
+      "blocks": {
+        "image_7gqG7j": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_128720997.png",
+            "title": "2600W Mid-drive Motor",
+            "heading_tag": "h4",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-end text-end",
+            "desktop_column_span_mb": 1,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 1,
+            "desktop_row_span": 3,
+            "desktop_text_position": "sm:place-self-end sm:text-end",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_kqHy43": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_128720999.png",
+            "title": "Motor Style Seat with Quick Release",
+            "heading_tag": "h5",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-start-center text-center",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 1,
+            "desktop_column_span": 1,
+            "desktop_row_span": 1,
+            "desktop_text_position": "sm:place-self-start-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_WdfJP7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_128721000.png",
+            "title": "More readable, <br>Colorful\nSmart Display",
+            "heading_tag": "h6",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center-start text-start",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 1,
+            "desktop_column_span": 1,
+            "desktop_row_span": 1,
+            "desktop_text_position": "sm:place-self-center-start sm:text-start",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_7MtrhC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_128721001.png",
+            "title": "Nitrogen Air<br>Shock Absorber",
+            "heading_tag": "h3",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-start text-start",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 1,
+            "desktop_column_span": 2,
+            "desktop_row_span": 2,
+            "desktop_text_position": "sm:place-self-start sm:text-start",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_n8EVWw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_128720998.png",
+            "title": "Automotive Grade Chip Battery",
+            "heading_tag": "h5",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-end-start text-start",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 1,
+            "desktop_row_span": 3,
+            "desktop_text_position": "sm:place-self-end-start sm:text-start",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_9PgCEh": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_128721002.png",
+            "title": "Dual-size <br>Puncture<br> Resistant <br>Fat Tires",
+            "heading_tag": "h5",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center-start text-start",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 1,
+            "desktop_row_span": 2,
+            "desktop_text_position": "sm:place-self-center-start sm:text-start",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_ryF8Wj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_128721005.png",
+            "title": "Front Hydraulic Suspension",
+            "heading_tag": "h5",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center-start text-start",
+            "desktop_column_span_mb": 1,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 1,
+            "desktop_row_span": 2,
+            "desktop_text_position": "sm:place-self-center-start sm:text-start",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_eLkXm9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_128721003.png",
+            "title": "Durable Cast Steel Footrests",
+            "heading_tag": "h4",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-end-center text-center",
+            "desktop_column_span_mb": 1,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 1,
+            "desktop_row_span": 2,
+            "desktop_text_position": "sm:place-self-end-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_Mm4RPf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_128721004.png",
+            "title": "Heavy-duty <br>Hydraulic Brakes",
+            "heading_tag": "h5",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center-start text-start",
+            "desktop_column_span_mb": 1,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 1,
+            "desktop_row_span": 2,
+            "desktop_text_position": "sm:place-self-center-start sm:text-start",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_7gqG7j",
+        "image_kqHy43",
+        "image_WdfJP7",
+        "image_7MtrhC",
+        "image_n8EVWw",
+        "image_9PgCEh",
+        "image_ryF8Wj",
+        "image_eLkXm9",
+        "image_Mm4RPf"
+      ],
+      "name": "Media grid",
+      "settings": {
+        "full_width": false,
+        "reduce_width": false,
+        "grid_gap": "sm",
+        "desktop_row_height": 150,
+        "mobile_row_height": 120,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "slideshow_KmJk7w": {
+      "type": "slideshow",
+      "blocks": {
+        "image_en6KbW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_959b213c-d916-4e44-81fc-cb22e52f2db4.png",
+            "mobile_image": "shopify://shop_images/kv2.png",
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h2",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_en6KbW"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "full_width": false,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#ffffff",
+        "background_gradient": ""
+      }
+    },
+    "multi_column_fRHxkP": {
+      "type": "multi-column",
+      "blocks": {
+        "item_qHKzMQ": {
+          "type": "item",
+          "settings": {
+            "show_controls": false,
+            "column_size": "3",
+            "title": "🎉 What’s the Deal?",
+            "heading_tag": "h5",
+            "content": "<ul><li>Get $300 OFF</li><li>Only for the first 50 customers</li><li>Directly Checkout</li></ul>{{ page.content }}",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_HmMWTt": {
+          "type": "item",
+          "settings": {
+            "show_controls": false,
+            "column_size": "3",
+            "title": "💎 Why You’ll Love It",
+            "heading_tag": "h5",
+            "content": "<p><strong>Perfect for</strong></p><ul><li>Urban Commuting,</li><li>Recreation & Off-Road, </li><li>Campus & Last-Mile Travel.</li></ul>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_GJXg4d": {
+          "type": "item",
+          "settings": {
+            "show_controls": false,
+            "column_size": "3",
+            "title": "🚀 How to Join the Flock",
+            "heading_tag": "h5",
+            "content": "<p><strong>Visit the IN 10 Product Page</strong></p><ul><li>Click the early bird special button</li><li>Add the new product to your cart</li><li>Enjoy your exclusive discount before it   flies away!</li></ul>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_qHKzMQ",
+        "item_HmMWTt",
+        "item_GJXg4d"
+      ],
+      "name": "Multi-column",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": true,
+        "gap": "small",
+        "text_alignment_title": "center",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "{{ page.title }}",
+        "content": "<p>Our Early Bird Package has officially sold out—thanks to you!</p><p>But don’t worry, the excitement isn’t over. We’re cooking up more exclusive discounts and surprise offers just around the corner. Stay tuned and keep checking back—you won’t want to miss what’s coming next!</p>",
+        "title_width": "default",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "media_grid_HtKEgm": {
+      "type": "media-grid",
+      "blocks": {
+        "image_hDtfnQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/132e60ce112545030e689bd163a97304bd180160ce34f0885987d41f98fe6956.jpg",
+            "title": "",
+            "heading_tag": "h1",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 2,
+            "desktop_row_span": 1,
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_d9YR7p": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/photo-8.jpg",
+            "title": "",
+            "heading_tag": "h1",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 2,
+            "desktop_row_span": 2,
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_tgTEkA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/output-_5.jpg",
+            "title": "",
+            "heading_tag": "h1",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 2,
+            "desktop_row_span": 2,
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_mKcptA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/9e70c5046bb4e8701bdf72d1f5e5bf211c09916336a73ce0e7f91d3faae431e9.jpg",
+            "title": "",
+            "heading_tag": "h1",
+            "link_url": "",
+            "link_text": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_column_span_mb": 2,
+            "desktop_row_span_mb": 2,
+            "desktop_column_span": 2,
+            "desktop_row_span": 1,
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_hDtfnQ",
+        "image_d9YR7p",
+        "image_tgTEkA",
+        "image_mKcptA"
+      ],
+      "name": "Media grid",
+      "settings": {
+        "full_width": true,
+        "reduce_width": false,
+        "grid_gap": "md",
+        "desktop_row_height": 290,
+        "mobile_row_height": 150,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "multi_column_nKELh9": {
+      "type": "multi-column",
+      "blocks": {
+        "item_ka67r7": {
+          "type": "item",
+          "settings": {
+            "show_controls": false,
+            "column_size": "3",
+            "title": "📦 Delivery Guarantee",
+            "heading_tag": "h5",
+            "content": "<p>We’re committed to delivering your order promptly and reliably. All our products are pre-manufactured and stocked in our warehouse, so delays are rare. However, if your order takes longer than <strong>15 business days</strong> to arrive, we’ll send you a <strong>complimentary motorcycle handlebar</strong> as a token of our appreciation.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_de33MR": {
+          "type": "item",
+          "settings": {
+            "show_controls": false,
+            "column_size": "3",
+            "title": "📩 Disclaimer of Liability",
+            "heading_tag": "h5",
+            "content": "<p>YozmaSport is not responsible for any accidents, injuries, or damages resulting from the use of our e-bikes. By purchasing, customers accept all associated risks. <strong>Riders should wear safety gear, follow local laws, and operate responsibly.</strong></p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_GVGnBG": {
+          "type": "item",
+          "settings": {
+            "show_controls": false,
+            "column_size": "3",
+            "title": "🔁Refund Policy",
+            "heading_tag": "h5",
+            "content": "<p>All orders are final once production is complete. YozmaSport does not offer refunds without a valid reason. <strong>Please review your order details and our cancellation policy carefully before checkout. </strong>By placing an order, you agree to these terms.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_ka67r7",
+        "item_de33MR",
+        "item_GVGnBG"
+      ],
+      "name": "Multi-column",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": true,
+        "gap": "medium",
+        "text_alignment_title": "center",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "title_width": "default",
+        "background": "#f0f0f0",
+        "background_gradient": "",
+        "text_color": "#1a1a1a"
+      }
+    },
+    "store_features_dHMRGd": {
+      "type": "store-features",
+      "blocks": {
+        "icon_GJ4L3Q": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/Priority_Customer_Support.svg",
+            "content": "Customer Service\nLifetime customer support."
+          }
+        },
+        "icon_K6jUJJ": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/Free_Shipping.svg",
+            "content": "Fast Shipping\n3 - 7 business days."
+          }
+        },
+        "icon_HUGkdg": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/1_Year_Warranty.svg",
+            "content": "Hassle-free Warranty\n12-Month Warranty Period."
+          }
+        },
+        "icon_VjkxBw": {
+          "type": "icon",
+          "settings": {
+            "icon": "shopify://shop_images/Secure_Payment.svg",
+            "content": "Secure Payment\nBuy with confidence."
+          }
+        }
+      },
+      "block_order": [
+        "icon_GJ4L3Q",
+        "icon_K6jUJJ",
+        "icon_HUGkdg",
+        "icon_VjkxBw"
+      ],
+      "name": "Store Features",
+      "settings": {
+        "title": "Join Our Facebook Group",
+        "btn_txt": "Join Now",
+        "link": "https://www.facebook.com/groups/yozmaoglobal",
+        "background": "",
+        "bg_img": "shopify://shop_images/132e60ce112545030e689bd163a97304bd180160ce34f0885987d41f98fe6956_46138888-abf0-485a-b22a-a3805c20650e.png",
+        "bg_img_mb": "shopify://shop_images/132e60ce112545030e689bd163a97304bd180160ce34f0885987d41f98fe6956_46138888-abf0-485a-b22a-a3805c20650e.jpg",
+        "background_gradient": "",
+        "text_color": "#000000",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "image_link_blocks_KCymKz": {
+      "type": "image-link-blocks",
+      "blocks": {
+        "item_KqzeJN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/kv_607608ab-cbf9-4301-9883-24f7cc08d65a.png",
+            "stretch_image": true,
+            "link_text": "",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_J4JUgN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/b1ea0accfeb83bd5049ec5ba34ab9895_1.png",
+            "stretch_image": true,
+            "link_text": "",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_Ud9RYz": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/DSC02970_1.png",
+            "stretch_image": true,
+            "link_text": "",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_hgdpBx": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/DSC02928_1.png",
+            "stretch_image": true,
+            "link_text": "",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_3Ved4B": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/DSC03015_1.png",
+            "stretch_image": true,
+            "link_text": "",
+            "link_url": "",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "item_KqzeJN",
+        "item_J4JUgN",
+        "item_Ud9RYz",
+        "item_hgdpBx",
+        "item_3Ved4B"
+      ],
+      "disabled": true,
+      "name": "Image link blocks",
+      "settings": {
+        "full_width": false,
+        "block_size": "large",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "link_url": "",
+        "link_text": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_J8nNBh",
+    "newsletter_ky3HHm",
+    "multi_column_EBeEVP",
+    "slideshow_ikzAia",
+    "custom_html_9TEDPA",
+    "slideshow_bVigEi",
+    "media_grid_yxDMwX",
+    "slideshow_KmJk7w",
+    "multi_column_fRHxkP",
+    "media_grid_HtKEgm",
+    "multi_column_nKELh9",
+    "store_features_dHMRGd",
+    "image_link_blocks_KCymKz"
+  ]
+}

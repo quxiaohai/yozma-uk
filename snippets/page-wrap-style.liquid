@@ -1,0 +1,70 @@
+{%- liquid
+    assign ss = section.settings
+    assign cls = '.section--page'
+    if class != blank
+        assign cls = class
+    endif
+    capture style_tag
+        if load_style
+            echo '<style>'
+        endif
+    endcapture
+
+    capture end_style_tag
+        if load_style
+            echo '</style>'
+        endif
+    endcapture
+
+    capture pc_style
+        if ss.page_color != blank
+            echo 'background: ' | append: ss.page_color | append: ';'
+        endif
+        if ss.pc_page_image != blank
+            assign url = info.pc_page_image | img_url: '1920x'
+            echo 'background-image: url("' | append: url | append: '");background-size: cover;'
+        endif
+        if ss.page_top != blank
+            assign top = ss.page_top | divided_by: 19.2
+            echo 'padding-top: ' | append: top | append: 'vw;'
+        endif
+        if ss.page_bottom != blank
+            assign bottom = ss.page_bottom | divided_by: 19.2
+            echo 'padding-bottom: ' | append: bottom | append: 'vw;'
+        endif
+    endcapture
+
+    capture mb_style
+        if ss.mb_page_top != blank
+            echo 'padding-top: ' | append: ss.mb_page_top | append: 'px;'
+        elsif ss.page_top != blank
+            assign top = ss.page_top | divided_by: 7.5
+            echo 'padding-top: ' | append: top | append: 'vw;'
+        endif
+        if ss.mb_page_bottom != blank
+            echo 'padding-bottom: ' | append: ss.mb_page_bottom | append: 'px;'
+        elsif ss.page_bottom != blank
+            assign bottom = ss.page_bottom | divided_by: 19.2
+            echo 'padding-bottom: ' | append: bottom | append: 'vw;'
+        endif
+        if ss.mb_page_image != blank
+            assign url = info.mb_page_image | img_url: '750x'
+            echo 'background-image: url("' | append: url | append: '");background-size: cover;'
+        endif
+    endcapture
+-%}
+
+{{ style_tag }}
+{%- if pc_style != blank -%}
+    #shopify-section-{{ section.id }} {{ cls }} {
+        {{ pc_style }}
+    }
+{%- endif -%}
+{%- if mb_style != blank -%}
+    @media screen and (max-width: 1023px) {
+        #shopify-section-{{ section.id }} {{ cls }} {
+            {{ mb_style }}
+        }
+    }
+{%- endif -%}
+{{ end_style_tag }}

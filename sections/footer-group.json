@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "mc_main_subscribe": {
+      "type": "mc_main-subscribe",
+      "name": "MC Main Subscribe",
+      "settings": {
+        "page_color": "#1a1a1a",
+        "page_bottom": 0,
+        "show_title": true,
+        "title": "<p>Join the Yozma Riding Family</p>",
+        "title_style": "italic",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#d30000",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#000000",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 0,
+        "description_mb_margin_bottom": 0,
+        "alert_duration": 3,
+        "button": "Subscribe",
+        "pc_button_size": 18,
+        "mb_button_size": 10,
+        "button_bg_color": "#d30000",
+        "button_text_color": "#ffffff",
+        "button_text_hover_color": "#000000",
+        "tag": "Sub",
+        "content": "Sub",
+        "placeholder": "Your email",
+        "input_bg_color": "#ffffff",
+        "input_border_color": "#d30000",
+        "input_text_color": "#000000",
+        "show_privacy": true,
+        "privacy_text": "<p>By submitting, I accept the <a href=\"/pages/terms-of-service-1\">Terms of Service</a> and <a href=\"/pages/privacy-policy\">Privacy Policy</a></p>",
+        "privacy_checked": true,
+        "privacy_color": "#d5d5d5",
+        "privacy_link_color": "#ffffff",
+        "privacy_link_hover_color": "#d30000",
+        "privacy_active_color": "#d30000"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "links_8UEx4m": {
+          "type": "links",
+          "settings": {
+            "menu": "support",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "links_9QcAUp": {
+          "type": "links",
+          "settings": {
+            "menu": "company",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "links": {
+          "type": "links",
+          "settings": {
+            "menu": "footer",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "image": "shopify://shop_images/yozma-white-logo.png",
+            "image_width": 160,
+            "heading_size": "h5",
+            "title": "",
+            "content": "<p>Support: support.eu@yozmasport.com</p><p>Marketing: marketing@yozmasport.com</p><p>Event: event@yozmasport.com</p><p>Business time: 9:00 AM - 6:00 PM (Mon.-Fri. EST)</p>"
+          }
+        },
+        "our": {
+          "type": "our",
+          "settings": {
+            "title": "Our Community #YOZMA",
+            "url": "shopify://products/in-10",
+            "image1": "shopify://shop_images/lQDPKcXz0BF4j9_NB4DNBaCwajxCwnYqbjIJFcPOt9J1AA_1440_1920.jpg",
+            "image2": "shopify://shop_images/DSC_3781_1.png",
+            "image3": "shopify://shop_images/product-mb-personal-show.jpg",
+            "image4": "shopify://shop_images/DSC_3705_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "links_8UEx4m",
+        "links_9QcAUp",
+        "links",
+        "newsletter",
+        "our"
+      ],
+      "custom_css": [],
+      "settings": {
+        "show_social_media": true,
+        "show_payment_icons": true,
+        "show_policy_links": true,
+        "show_country_selector": true,
+        "show_country_flag": true,
+        "show_country_name": true,
+        "show_locale_selector": true
+      }
+    }
+  },
+  "order": [
+    "mc_main_subscribe",
+    "footer"
+  ]
+}

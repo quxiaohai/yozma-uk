@@ -1,0 +1,895 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "mc_page_color": {
+      "type": "mc_page-color",
+      "settings": {
+        "background_color": "#790002"
+      }
+    },
+    "main_banner_RBXWch": {
+      "type": "main-banner",
+      "name": "main-banner",
+      "settings": {
+        "page_color": "#790002",
+        "pc_width": 1920,
+        "mb_width": 750,
+        "media_type": "image",
+        "pc_image_url": "shopify://shop_images/kv-0225.jpg",
+        "mb_image_url": "shopify://shop_images/yd-0225.jpg",
+        "content_pos": "center",
+        "mb_content_pos": "mb_top",
+        "video_play_show": false,
+        "backdrop_link": "shopify://pages/event-submission",
+        "pc_content_width": 1440,
+        "overlay_show": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 20
+      }
+    },
+    "rich_text_Uw7qL9": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_bEjD9w": {
+          "type": "heading",
+          "settings": {
+            "text": "What is the Yozma TikTok Challenge Event?",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_WyG8VA": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>You're not just a customer. You're part of our crew.</p><p>To encourage you to rock your ride with Yozma, we're launching an epic TikTok challenge event.</p><p>Show us how you innovate, create, and spark with us.</p><p>It's easy, fun, and up to €100 CASH REWARD!</p>",
+            "content_pc_size": 16,
+            "content_mb_size": 14
+          }
+        },
+        "button_idUUzp": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "size": "xl",
+            "text": "Submit Now",
+            "url": "shopify://pages/event-submission",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_bEjD9w",
+        "richtext_WyG8VA",
+        "button_idUUzp"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "text_font_style": "normal",
+        "background": "#790002",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "mc_loop_image": {
+      "type": "mc_loop-image",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC00383.jpg"
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/48-DSCF7844.jpg"
+          }
+        },
+        "image_j4Y6Gp": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_8578_75f5725e-3aad-4903-a683-3f476f7d0675.jpg"
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/photo-8_fd83925e-99a5-4a46-a735-ca18f1205b72.jpg"
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1972.jpg"
+          }
+        },
+        "image_7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/photo-44_6b3022ca-df1b-43a8-9329-1d018057d857.jpg"
+          }
+        },
+        "image_8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/lQDPKcXz0BF4j9_NB4DNBaCwajxCwnYqbjIJFcPOt9J1AA_1440_1920.jpg"
+          }
+        },
+        "image_9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_7327.jpg"
+          }
+        },
+        "image_KDdJxV": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_H4ccWf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC09997_1.png"
+          }
+        },
+        "image_tiRCjK": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_j4Y6Gp",
+        "image_3",
+        "image_4",
+        "image_7",
+        "image_8",
+        "image_9",
+        "image_KDdJxV",
+        "image_H4ccWf",
+        "image_tiRCjK"
+      ],
+      "name": "MC Loop Image",
+      "settings": {
+        "page_color": "#790002",
+        "page_top": 0,
+        "page_bottom": 140,
+        "show_title": false,
+        "title": "Title",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": true,
+        "description": "Filming requirements. Do not drive on prohibited roads.",
+        "description_color": "#b6b6b6",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "loop_speed": 1,
+        "image_ratio": "4/5"
+      }
+    },
+    "mc_step_icon": {
+      "type": "mc_step-icon",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/create-your-video.png",
+            "mobile_card_color": "#1a1a1a",
+            "title": "CREATE YOUR VIDEO",
+            "title_color": "#ffffff",
+            "text": "<p>- Showcase your Yozma dirt bike in action<br/>- Be creative and unique! </p>",
+            "text_color": "#d5d5d5"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/get-rewarded-for-views.png",
+            "mobile_card_color": "#1a1a1a",
+            "title": "POST & TAG",
+            "title_color": "#ffffff",
+            "text": "<p>- Upload your video to TikTok<br/>- Must use the official hashtag: <strong>#RidewithYozma</strong><br/>- Must tag our official account: <strong>@yozma_sport</strong></p>",
+            "text_color": "#d5d5d5"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/post-_-tag.png",
+            "mobile_card_color": "#1a1a1a",
+            "title": "GET REWARDED FOR VIEWS",
+            "title_color": "#ffffff",
+            "text": "<p>- Once your video is live, you can get a reward based on its performance</p>",
+            "text_color": "#d5d5d5"
+          }
+        },
+        "table": {
+          "type": "table",
+          "settings": {
+            "theme": "light",
+            "title": "Video Views#Cash Reward#Bonus Reward",
+            "content": "5,000+#€10#None\n20,000+#€15#Repost on official account\n100,000+#€40#Brand collaborations chance\n300,000+#€100#Brand collaborations chance"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "table"
+      ],
+      "name": "MC Step Icon",
+      "settings": {
+        "page_color": "#000000",
+        "page_top": 12,
+        "show_title": true,
+        "title": "How it works",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "description",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "border_image": "shopify://shop_images/tiktok-top-bg.png",
+        "mb_border_image": "shopify://shop_images/tiktok-mb-top-bg.png",
+        "image_offset_y": 99,
+        "icon_scale": 1,
+        "mb_icon_scale": 1
+      }
+    },
+    "rich_text_Ddh9Yd": {
+      "type": "rich-text",
+      "blocks": {
+        "richtext_ypUKtk": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p><a href=\"#template--20202678026378__faq_VMwpEf-faq\" title=\"#template--20202678026378__faq_VMwpEf-faq\">*Check the detailed rules in the FAQ</a></p>",
+            "content_pc_size": 20,
+            "content_mb_size": 16
+          }
+        }
+      },
+      "block_order": [
+        "richtext_ypUKtk"
+      ],
+      "custom_css": [],
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "text_font_style": "italic",
+        "background": "#000000",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "mc_step_icon_JzAJbh": {
+      "type": "mc_step-icon",
+      "blocks": {
+        "card_rKXTXi": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/a0d2fb31489be6bc2022f31d33b02412.svg",
+            "mobile_card_color": "#f7f7f7",
+            "title": "",
+            "title_color": "#000000",
+            "text": "<p>Take a screenshot of the TikTok video analytics</p>",
+            "text_color": "#000000"
+          }
+        },
+        "card_tCpPGV": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/09e7cb71c5f79acea55799c2741ab35b.svg",
+            "mobile_card_color": "#f7f7f7",
+            "title": "",
+            "title_color": "#000000",
+            "text": "<p>Click <a href=\"/pages/event-submission\" target=\"_blank\" title=\"Event Submission\"><strong>Submit</strong></a> to fill in the form and upload your video link and screenshots.<br/>Successful submission confirms your registration.</p>",
+            "text_color": "#000000"
+          }
+        },
+        "card_fT8DXe": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/e36c91d679de57488e1132109d563b4a.svg",
+            "mobile_card_color": "#f7f7f7",
+            "title": "",
+            "title_color": "#000000",
+            "text": "<p>We will verify and send your payment via <strong>PayPal</strong></p>",
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "card_rKXTXi",
+        "card_tCpPGV",
+        "card_fT8DXe"
+      ],
+      "name": "MC Step Icon",
+      "settings": {
+        "page_color": "#ffffff",
+        "show_title": true,
+        "title": "How to claim",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#000000",
+        "title_gradient_color": "",
+        "show_description": true,
+        "description": "Once your video views hits a reward milestone, then:",
+        "description_color": "#000000",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "border_image": "shopify://shop_images/tiktok-bottom-bg.png",
+        "mb_border_image": "shopify://shop_images/tiktok-mb-bottom-bg.png",
+        "image_offset_y": 0,
+        "icon_scale": 0.7,
+        "mb_icon_scale": 0.9
+      }
+    },
+    "mc_form_collect_DF434s": {
+      "type": "mc_form-collect",
+      "blocks": {
+        "group1": {
+          "type": "group",
+          "settings": {
+            "title": "Submission info",
+            "tip": ""
+          }
+        },
+        "group2": {
+          "type": "group",
+          "settings": {
+            "title": "How to submit",
+            "tip": "<p>Joined the <strong>YOZMA TikTok Challenge</strong>? Post your video on TikTok with <strong>#RidewithYozma</strong>, tag <strong>@yozma_sport</strong>, and submit your video link and analytics screenshot here to claim your reward.</p>"
+          }
+        },
+        "group3": {
+          "type": "group",
+          "settings": {
+            "title": "Your info",
+            "tip": ""
+          }
+        },
+        "radio1": {
+          "type": "radio",
+          "settings": {
+            "group_name": "Submission info",
+            "size_fill": true,
+            "title": "Content type",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "field": "content type",
+            "values": "Photo"
+          }
+        },
+        "radio2": {
+          "type": "radio",
+          "settings": {
+            "group_name": "Submission info",
+            "size_fill": true,
+            "title": "Product",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "field": "product",
+            "values": "IN 10"
+          }
+        },
+        "file1": {
+          "type": "file",
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "title": "Upload Video Analytics Screenshot",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "<p>1. Supported format: JPG/PNG.<br/>2. The screenshot must clearly show all relevant metrics: <strong>views, likes, comments, favorites, and shares</strong>.</p>",
+            "field": "file"
+          }
+        },
+        "input1": {
+          "type": "input",
+          "disabled": true,
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "type": "text",
+            "title": "Content title",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Enter content title",
+            "field": "content title",
+            "limit": 100
+          }
+        },
+        "input2": {
+          "type": "input",
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "type": "text",
+            "title": "Video Link",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "",
+            "field": "share text",
+            "limit": 100
+          }
+        },
+        "input_7DgPTJ": {
+          "type": "input",
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "type": "text",
+            "title": "TikTok Username",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "",
+            "field": "share text",
+            "limit": 100
+          }
+        },
+        "input3": {
+          "type": "input",
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": true,
+            "type": "textarea",
+            "title": "Share Your Feeling",
+            "required": false,
+            "required_text": "This field is required",
+            "tip": "<p>We’re always excited to hear about your riding experience with Yozma.<br/><br/>What did you enjoy most about the ride? Where did you ride, and how did it make you feel?</p><p>Share your riding story, experience, or thoughts with us here — your journey might inspire other riders in the Yozmasport community.</p>",
+            "placeholder": "",
+            "field": "content description",
+            "limit": 100
+          }
+        },
+        "select1": {
+          "type": "select",
+          "disabled": true,
+          "settings": {
+            "group_name": "How to submit",
+            "size_fill": false,
+            "type": "select",
+            "title": "Activity",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "<p>Please choose the category that best fits your submission.</p>",
+            "placeholder": "Please choose",
+            "parent_field": "Name",
+            "field": "activity",
+            "values": "Biking\nMotorcycling\nFamily"
+          }
+        },
+        "input4": {
+          "type": "input",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "text",
+            "title": "First name",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Enter first name",
+            "field": "First name",
+            "limit": 100
+          }
+        },
+        "input5": {
+          "type": "input",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "text",
+            "title": "Last name",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Enter last name",
+            "field": "Last name",
+            "limit": 100
+          }
+        },
+        "input6": {
+          "type": "input",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": true,
+            "type": "email",
+            "title": "Email",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "<p>Please provide a valid email address; this is how we'll contact you if you win. Any questions? Feel free to reach out at event@yozmasport.com</p>",
+            "placeholder": "Enter email",
+            "field": "Email",
+            "limit": 100
+          }
+        },
+        "select2": {
+          "type": "select",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "select",
+            "title": "Continent",
+            "required": true,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Please choose",
+            "parent_field": "Name",
+            "field": "Continent",
+            "values": "United States"
+          }
+        },
+        "select3": {
+          "type": "select",
+          "settings": {
+            "group_name": "Your info",
+            "size_fill": false,
+            "type": "cascade",
+            "title": "Country/Region",
+            "required": false,
+            "required_text": "This field is required",
+            "tip": "",
+            "placeholder": "Please choose",
+            "parent_field": "Continent",
+            "field": "Country",
+            "values": "United States=Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming|District of Columbia|Puerto Rico|Guam|American Samoa|U.S. Virgin Islands|Northern Mariana Islands"
+          }
+        }
+      },
+      "block_order": [
+        "group1",
+        "group2",
+        "group3",
+        "radio1",
+        "radio2",
+        "file1",
+        "input1",
+        "input2",
+        "input_7DgPTJ",
+        "input3",
+        "select1",
+        "input4",
+        "input5",
+        "input6",
+        "select2",
+        "select3"
+      ],
+      "disabled": true,
+      "name": "MC Form Collect",
+      "settings": {
+        "page_color": "#f5f5f5",
+        "show_title": true,
+        "title": "Yozma TikTok Challenge",
+        "title_color": "#181623",
+        "token": "AKfycbwISpnhVhybewDL81eF09u03U8hV2w6vVre7-2uyanUHPTN9J2UReepsGqQhSKw-K3E",
+        "btn": "Submit",
+        "btn_color": "#ffffff",
+        "btn_bg_color": "#c42624",
+        "show_privacy": true,
+        "privacy_checked": true,
+        "privacy_text": "<p>I agree to the <a href=\"/pages/terms-of-service-1\" target=\"_blank\" title=\"Terms of Service\">Terms of Service</a> and <a href=\"/pages/privacy-policy\" target=\"_blank\" title=\"Privacy Policy\">Privacy Policy</a></p>",
+        "success": "Thank you for submit!",
+        "fail": "fail to submit"
+      }
+    },
+    "main_community_video_AWjt6q": {
+      "type": "mc_community-video",
+      "blocks": {
+        "media_rjpeYJ": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/_mia_em_reel_2025_11_20_22_58_163770096967180517670.mp4",
+            "video_mobile": "shopify://files/videos/_mia_em_reel_2025_11_20_22_58_163770096967180517670.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_3mtHG6": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/connor_stitt_reel_2025_11_27_06_02_173774657813202242219.mp4",
+            "video_mobile": "shopify://files/videos/connor_stitt_reel_2025_11_27_06_02_173774657813202242219.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_ktYNxN": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/Go get your Yozma IN10 link in bio and USE CODE Q20DYLAN for a discount@q20dylan161654.mp4",
+            "video_mobile": "shopify://files/videos/Go get your Yozma IN10 link in bio and USE CODE Q20DYLAN for a discount@q20dylan161654.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_84PqAG": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/papajosh_on1wheel_reel_2025_12_1_02_59_533777466240743914198.mp4",
+            "video_mobile": "shopify://files/videos/papajosh_on1wheel_reel_2025_12_1_02_59_533777466240743914198.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_3GbzwP": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/Use code Talalala for 70 off your@dmvtalalala182245.mp4",
+            "video_mobile": "shopify://files/videos/Use code Talalala for 70 off your@dmvtalalala182245.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_iciLim": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/jahjah_4x_reel_2025_12_3_02_09_553778869200241396339.mp4",
+            "video_mobile": "shopify://files/videos/jahjah_4x_reel_2025_12_3_02_09_553778869200241396339.mp4",
+            "video_youtube": "",
+            "show_mark": false,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "profile_image": "shopify://shop_images/unnamed.jpg",
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_y8CmkL": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/NO COMP ON YOZMA  CODE BIKESTARCHRIS FOR THE BEST DISCOUNT OK YOUR YOZMA IN10@bikestar.chris225429.mp4",
+            "video_mobile": "shopify://files/videos/NO COMP ON YOZMA  CODE BIKESTARCHRIS FOR THE BEST DISCOUNT OK YOUR YOZMA IN10@bikestar.chris225429.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_WWRNJT": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/the Yozma IN10 has so much potential  USE CODE MATT at checkout@3mattq171100.mp4",
+            "video_mobile": "shopify://files/videos/the Yozma IN10 has so much potential  USE CODE MATT at checkout@3mattq171100.mp4",
+            "video_youtube": "",
+            "show_mark": false,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_mYptyn": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/talariaboys_reel_2025_10_8_01_35_153738286016948637210.mp4",
+            "video_mobile": "shopify://files/videos/talariaboys_reel_2025_10_8_01_35_153738286016948637210.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        },
+        "media_T9BkkQ": {
+          "type": "media",
+          "settings": {
+            "muted": false,
+            "video_desktop": "shopify://files/videos/kalanikai_reel_2025_11_21_14_00_563770550903062492494.mp4",
+            "video_mobile": "shopify://files/videos/kalanikai_reel_2025_11_21_14_00_563770550903062492494.mp4",
+            "video_youtube": "",
+            "show_mark": true,
+            "show_text": true,
+            "text": "",
+            "text_color": "#ffffff",
+            "show_profile": true,
+            "title": "",
+            "title_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "media_rjpeYJ",
+        "media_3mtHG6",
+        "media_ktYNxN",
+        "media_84PqAG",
+        "media_3GbzwP",
+        "media_iciLim",
+        "media_y8CmkL",
+        "media_WWRNJT",
+        "media_mYptyn",
+        "media_T9BkkQ"
+      ],
+      "name": "MC Community Video",
+      "settings": {
+        "page_color": "#000000",
+        "show_title": true,
+        "title": "<p><strong>Ready to Rock?</strong><br/>Search Yozma on TikTok to see example videos and get inspired!</p>",
+        "title_color": "#ffffff",
+        "theme": "dark"
+      }
+    },
+    "faq_VMwpEf": {
+      "type": "faq",
+      "blocks": {
+        "item_CezepJ": {
+          "type": "item",
+          "settings": {
+            "title": "What are the requirements for videos?",
+            "content": "<ul><li>Must be at least 10 seconds</li><li>Use an actual Yozma e-dirt bike to film</li><li>Video posting time must be after January 1st, 2026</li><li>The interaction rate must reach 3%（[Like+Comment+Share]/Views≥3%）</li><li>The video must be original content and based on TikTok creator dashboard</li><li>Please follow TikTok's Community Guidelines</li></ul>"
+          }
+        },
+        "item_iaij3W": {
+          "type": "item",
+          "settings": {
+            "title": "Who can participate in this event?",
+            "content": "<p>Anyone who has access to a Yozma e-dirt bike and meets the requirements can participate,  except for creators who are already collaborating with or officially sponsored by Yozmasport.</p>"
+          }
+        },
+        "item_aJBHGj": {
+          "type": "item",
+          "settings": {
+            "title": "How often does Yozmasport review content?",
+            "content": "<p>Submissions received each month will be reviewed by the 10th of the following month.</p>"
+          }
+        },
+        "item_npDmDh": {
+          "type": "item",
+          "settings": {
+            "title": "Is it possible to receive multiple awards?",
+            "content": "<ul><li>Every single video/link can only be redeemed for a reward once. (highest video views achieved)</li><li>You can film and upload different videos to get more chances to claim multiple rewards.</li><li>Each account can receive a maximum of 5 rewards per month.</li></ul>"
+          }
+        },
+        "item_8qJnwA": {
+          "type": "item",
+          "settings": {
+            "title": "When will the payment be made?",
+            "content": "<ul><li>Rewards will be paid during the last week of the following month for the previous month’s submissions.<br/></li><li>Submitting your screenshot via Submit is considered your official entry, and the submission time is based on when the screenshot is uploaded. All eligible rewards will be processed during the scheduled payout period.</li></ul>"
+          }
+        },
+        "item_4B46Yj": {
+          "type": "item",
+          "settings": {
+            "title": "How do I know my video has been rewarded?",
+            "content": "<ul><li>The official email address: event@yozmasport.com<strong> (one and only)</strong> will email you directly for additional details.</li><li>Make sure you provide a valid email address and keep an eye on your mailbox!</li><li>The amount is paid to you without deducting any taxes, duties, tariffs, or other related governmental fees. As required by relevant regulations, you will need to take responsibility for any such charges that may apply.</li><li>Participants must provide a valid PayPal account.  Failure to receive payment or account restrictions will be considered a forfeiture or require an alternative payment method.</li></ul>"
+          }
+        },
+        "item_Tjgjfc": {
+          "type": "item",
+          "settings": {
+            "title": "Disqualification / Fraud Prevention",
+            "content": "<p>We may reject claims for purchased/inorganic traffic, bots, repeated/duplicate content, copyright violations, or videos removed/private at the time of verification.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_CezepJ",
+        "item_iaij3W",
+        "item_aJBHGj",
+        "item_npDmDh",
+        "item_8qJnwA",
+        "item_4B46Yj",
+        "item_Tjgjfc"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "FAQ",
+        "content": "",
+        "team_avatar_width": 160,
+        "support_hours": "*YozmaSport reserves the right to make final decisions in cases of dispute, fraud, or rule interpretation.",
+        "answer_time": "",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "#000000",
+        "background_gradient": "",
+        "text_color": "#ffffff",
+        "heading_color": "#ffffff",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "#ffffff",
+        "accordion_background": "#000000",
+        "accordion_text_color": ""
+      }
+    }
+  },
+  "order": [
+    "mc_page_color",
+    "main_banner_RBXWch",
+    "rich_text_Uw7qL9",
+    "mc_loop_image",
+    "mc_step_icon",
+    "rich_text_Ddh9Yd",
+    "mc_step_icon_JzAJbh",
+    "mc_form_collect_DF434s",
+    "main_community_video_AWjt6q",
+    "faq_VMwpEf"
+  ]
+}

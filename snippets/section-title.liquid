@@ -1,0 +1,191 @@
+{% comment %}
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    }
+{% endcomment %}
+{%- if info.show_title or info.show_description -%}
+    {%- assign mid = section.id | split: '__' | last -%}
+    <style>
+        .{{ mid }}-section--title {
+            max-width: 1200px;
+            margin: 0 auto;
+            line-height: 1.2;
+        }
+        .{{ mid }}-section--title .title {
+            font-size: {% if info.title_pc_size != blank %}{{ info.title_pc_size }}px{% else %}48px{% endif %};
+            margin-bottom: {% if info.title_margin_bottom != blank %}{{ info.title_margin_bottom }}px{% else %}16px{% endif %};var(--title-mb, 16px);
+            font-weight: 900;
+            {%- if info.title_style -%}
+            font-style: {{ info.title_style }};
+            {%- endif -%}
+        }
+        {%- if info.title_bold_color -%}
+        .{{ mid }}-section--title .title strong {
+            color: {{ info.title_bold_color }};
+        }
+        {%- endif -%}
+        .{{ mid }}-section--title .description {
+            font-size: {% if info.description_pc_size != blank %}{{ info.description_pc_size }}px{% else %}18px{% endif %};
+            margin-bottom: {% if info.description_pc_margin_bottom != blank %}{{ info.description_pc_margin_bottom }}px{% else %}40px{% endif %};
+        }
+        {%- if info.description_bold_color -%}
+        .{{ mid }}-section--title .description strong {
+            color: {{ info.description_bold_color }};
+        }
+        {%- endif -%}
+        @media screen and (max-width: 1440px) {
+            .{{ mid }}-section--title {
+                max-width: 960px;
+                margin: 0 auto;
+            }
+            .{{ mid }}-section--title .title {
+                font-size: {% if info.title_pc_size != blank %}{{ info.title_pc_size | times: 0.8 }}px{% else %}38px{% endif %};;
+            }
+            .{{ mid }}-section--title .description {
+                font-size: {% if info.description_pc_size != blank %}{{ info.description_pc_size | times: 0.8 }}px{% else %}14px{% endif %};
+                margin-bottom: {% if info.description_pc_margin_bottom != blank %}{{ info.description_pc_margin_bottom | times: 0.8 }}px{% else %}32px{% endif %};
+            }
+        }
+        @media screen and (max-width: 1023px) {
+            .{{ mid }}-section--title {
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 0 0.9375rem;
+            }
+            .{{ mid }}-section--title .title {
+                font-size: {% if info.title_mb_size != blank %}{{ info.title_mb_size }}px{% else %}1.5rem{% endif %};
+            }
+            .{{ mid }}-section--title .description {
+                font-size: {% if info.description_mb_size != blank %}{{ info.description_mb_size }}px{% else %}0.875rem{% endif %};
+                margin-bottom: {% if info.description_mb_margin_bottom != blank %}{{ info.description_mb_margin_bottom }}px{% else %}30px{% endif %};
+            }
+        }
+    </style>
+    <div class="{{ mid }}-section--title w-full text-center">
+        {%- if info.show_title -%}
+            <div class="title{% if info.title_gradient_color != blank %} text-gradient{% endif %}"
+                 style="{% if info.title_gradient_color != blank %}--background: {{ info.title_color.rgb }}; --gradient: {{ info.title_gradient_color }};{% else %}color: {{ info.title_color }};{% endif %}">{{ info.title }}</div>
+        {%- endif -%}
+        {%- if info.show_description -%}
+            <div class="description" style="color: {{ info.description_color }};">
+                {{ info.description }}
+            </div>
+        {%- endif -%}
+    </div>
+{%- endif -%}

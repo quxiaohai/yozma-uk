@@ -1,0 +1,1449 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "heading_tag": "h2"
+          }
+        },
+        "review_score_PJciFN": {
+          "type": "review_score",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "score": 5,
+            "review_text": "1,642 Reviews"
+          }
+        },
+        "badges": {
+          "type": "badges",
+          "settings": {}
+        },
+        "content_p6Knzq": {
+          "type": "content",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "text": "<ul><li><strong>Motor:</strong> 5500W</li><li><strong>Top Speed:</strong> 20 Km/h</li><li><strong>Battery:</strong> 60V27Ah </li><li><strong>Max Range:</strong> 88Km</li><li><strong>Suitable Height:</strong> 4.7ft–6.3ft</li></ul>"
+          }
+        },
+        "separator_VBDgqA": {
+          "type": "separator",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "device": "all"
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "show_taxes_notice": false
+          }
+        },
+        "countdown_timer_agxNMF": {
+          "type": "countdown_timer",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "title": "IN 10 PRO Launch on",
+            "countdown_start_date": "2026-03-03T00:00:00",
+            "duration": 0,
+            "countdown_days": "DAYS",
+            "countdown_hours": "HRS",
+            "countdown_minutes": "MIN",
+            "countdown_seconds": "SEC",
+            "countdown_fill_color": "#000000",
+            "countdown_num_color": "#ffffff",
+            "countdown_text_color": "#999999",
+            "countdown_dot_color": "#000000",
+            "background": "",
+            "background_gradient": "linear-gradient(90deg, rgba(249, 86, 6, 1), rgba(255, 193, 5, 1) 100%)",
+            "title_color": "#000000"
+          }
+        },
+        "inventory_PMqcYg": {
+          "type": "inventory",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "low_inventory_threshold": 50
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "icon": "none",
+            "icon_width": 20,
+            "collapse_content": false
+          }
+        },
+        "bundled_sale_LbKnH8": {
+          "type": "bundled_sale",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "heading": "Accessories",
+            "free_list": [
+              "yozma-gift-box"
+            ],
+            "product_list": []
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "disabled": true,
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#ff0000",
+            "atc_button_text_color": "",
+            "payment_button_text": "CHECKOUT",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "collapsible_text_icon_zcfhmy": {
+          "type": "collapsible_text_icon",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "cols_count": "4",
+            "mb_cols_count": "3",
+            "icon": "none",
+            "custom_icon": "shopify://shop_images/question-icon-1.png",
+            "icon_width": 24,
+            "title": "What‘s in the box?",
+            "image_icon1": "shopify://shop_images/Group_161268850.png",
+            "name1": "IN 10 Pro*1",
+            "text1": "",
+            "image_icon2": "shopify://shop_images/Group_161268859.png",
+            "name2": "Charger*1",
+            "text2": "",
+            "image_icon3": "shopify://shop_images/Group_161268861.png",
+            "name3": "Battery*1",
+            "text3": "",
+            "image_icon4": "shopify://shop_images/Group_161268858.png",
+            "name4": "Assembly Tools*1",
+            "text4": "",
+            "image_icon5": "shopify://shop_images/Group_161268856.png",
+            "name5": "LCD Display*1",
+            "text5": "",
+            "image_icon6": "shopify://shop_images/Group_161268857.png",
+            "name6": "Wheels*2",
+            "text6": "",
+            "image_icon7": "shopify://shop_images/Group_161268849.png",
+            "name7": "Plate Stickers*1",
+            "text7": "",
+            "image_icon8": "shopify://shop_images/Group_161268860.png",
+            "name8": "Taillights*1",
+            "text8": "",
+            "name9": "",
+            "text9": ""
+          }
+        },
+        "collapsible_text_TDxfg9": {
+          "type": "collapsible_text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "icon": "none",
+            "custom_icon": "shopify://shop_images/question-icon-3.png",
+            "icon_width": 24,
+            "title": "F&Q",
+            "content": "<p>1. How long does shipping take? When will my order been dispatched?<br/><br/>Yozma IN 10 Pro ebikes are shipped from our California warehouse, and delivery typically takes 5 business days depending on your location. You’ll receive a tracking number once your order is on the way.<br/></p><p>2. What if the package is broken/missing?<br/><br/>Due to FedEx's failure to deliver the bike as required during transportation, parts of the wear and scratch may cause by the parts crashing together, although we have packed all the parts to prevent these situations as much as we can. Please send us the related pictures via support@yozmasport.com, we will solve it for you.<br/><br/>3. Can I return my order for personal reasons ?<br/><br/>To be eligible for a return, your item must be in the same condition that you received it, unworn, unused, or the ebike must have less than ten (10) miles on the odometer and must include all items that were inside the box (charger, keys, hardware, etc.), and in its original packaging.For specific fees, please click HERE.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_text_rLkHXf": {
+          "type": "collapsible_text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "icon": "none",
+            "custom_icon": "shopify://shop_images/question-icon-2.png",
+            "icon_width": 24,
+            "title": "Important Notice:",
+            "content": "<p>Before placing your order, please confirm that you are <strong>14</strong> years of age or older. When riding, always follow local laws and regulations, wear a helmet, and prioritize safety at all times.</p>",
+            "page": ""
+          }
+        },
+        "share_buttons_yzh6EB": {
+          "type": "share_buttons",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "alignment": "start"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "review_score_PJciFN",
+        "badges",
+        "content_p6Knzq",
+        "separator_VBDgqA",
+        "price",
+        "countdown_timer_agxNMF",
+        "inventory_PMqcYg",
+        "description",
+        "bundled_sale_LbKnH8",
+        "quantity_selector",
+        "buy_buttons",
+        "collapsible_text_icon_zcfhmy",
+        "collapsible_text_TDxfg9",
+        "collapsible_text_rLkHXf",
+        "share_buttons_yzh6EB"
+      ],
+      "custom_css": [
+        "@media (min-width: 767px) {.product-gallery {position: sticky; top: 10px; }}"
+      ],
+      "settings": {
+        "full_width": true,
+        "enable_specs": true,
+        "specs_limit": "6",
+        "show_fixed_add_to_cart": true,
+        "show_fixed_discount_tag": true,
+        "fixed_discount_tag": "Saved",
+        "fixed_content": "In Stock—Estimated delivery in 5-15 business days.",
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "thumbnails",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "mc_media_image_en4zgG": {
+      "type": "mc_media-image",
+      "name": "MC Media Image",
+      "settings": {
+        "page_color": "",
+        "show_title": false,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_bold_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "pc_image": "shopify://shop_images/in10_pro_1_8cf42739-02ef-4f3d-9419-04e3baf2e23d.png",
+        "mb_image": "shopify://shop_images/in_10_pro-m_1.png",
+        "image_radius": 0,
+        "mb_image_radius": 0,
+        "image_width": 100,
+        "image_ratio": "",
+        "image_fill": false,
+        "mb_image_ratio": "",
+        "mb_image_fill": false
+      }
+    },
+    "mc_media_image_FFefAk": {
+      "type": "mc_media-image",
+      "name": "MC Media Image",
+      "settings": {
+        "page_color": "",
+        "page_top": 0,
+        "page_bottom": 0,
+        "show_title": false,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_bold_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "pc_image": "shopify://shop_images/0c485e759453589b882f9509dae8753d.png",
+        "mb_image": "shopify://shop_images/0c485e759453589b882f9509dae8753d.png",
+        "image_radius": 0,
+        "mb_image_radius": 0,
+        "image_width": 100,
+        "image_ratio": "",
+        "image_fill": false,
+        "mb_image_ratio": "",
+        "mb_image_fill": false
+      }
+    },
+    "video_7KTgK9": {
+      "type": "video",
+      "blocks": {
+        "play_AWJyhT": {
+          "type": "play",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "play_AWJyhT"
+      ],
+      "disabled": true,
+      "name": "Video",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "autoplay": true,
+        "video_size": "lg",
+        "video": "shopify://files/videos/YOZMA IN 10 PRO V1-修改滤镜.mp4",
+        "external_video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "mc_media_text_69MnUW": {
+      "type": "mc_media-text",
+      "blocks": {
+        "slide_hqA4tG": {
+          "type": "slide",
+          "settings": {
+            "title": "",
+            "media_type": "video",
+            "media_position": "left",
+            "video_desktop": "shopify://files/videos/3.mp4",
+            "media_ratio": "",
+            "mb_media_ratio": "",
+            "show_subhead": true,
+            "subhead": "Advanced Suspension Smooth Every Ride",
+            "subhead_color": "#ff0000",
+            "head": "Superior Comfort and Stability",
+            "head_color": "#ffffff",
+            "head_gradient_color": "",
+            "text": "<p>Upgraded inverted hydraulic front fork and nitrogen rear shock, combined with <strong>220 N·m torque</strong>, deliver stable, controlled riding on rugged trails—finished with a <strong>rear brake light</strong> for added safety.</p>",
+            "text_color": "#b2b2b2",
+            "text_bold_color": "#ff0000"
+          }
+        },
+        "slide_9yB38d": {
+          "type": "slide",
+          "settings": {
+            "title": "",
+            "media_type": "video",
+            "media_position": "right",
+            "video_desktop": "shopify://files/videos/2.mp4",
+            "media_ratio": "",
+            "mb_media_ratio": "",
+            "show_subhead": true,
+            "subhead": "Powerful Motor Unleash 20 km/h",
+            "subhead_color": "#ff0000",
+            "head": "Enhanced Speed and Maneuverability",
+            "head_color": "#ffffff",
+            "head_gradient_color": "",
+            "text": "<p>Powered by a <strong>5500W </strong>peak brushless motor, the IN 10 Pro delivers faster acceleration and a higher top speed. Three riding modes and a <strong>reverse gear </strong>ensure effortless control in tight situations.</p>",
+            "text_color": "#b2b2b2",
+            "text_bold_color": "#ff0000"
+          }
+        },
+        "slide_RMkFmA": {
+          "type": "slide",
+          "settings": {
+            "title": "",
+            "media_type": "video",
+            "media_position": "left",
+            "video_desktop": "shopify://files/videos/1.mp4",
+            "media_ratio": "",
+            "mb_media_ratio": "",
+            "show_subhead": true,
+            "subhead": "Extended Battery Power for Longer Adventures",
+            "subhead_color": "#ff0000",
+            "head": "Ride More, Recharge Less",
+            "head_color": "#ffffff",
+            "head_gradient_color": "",
+            "text": "<p>The <strong>60V27Ah</strong> lithium-ion battery now delivers up to <strong>88 km </strong>per charge, surpassing the original IN10. Quick 6–7 hour charging keeps you on the move, supporting riders up to <strong>330 lbs</strong> on both trails and city roads.</p>",
+            "text_color": "#b2b2b2",
+            "text_bold_color": "#ff0000",
+            "param_image": "shopify://shop_images/Group_161268885_1_d2cad88e-09bd-4961-941c-8d0f658a1028.png"
+          }
+        }
+      },
+      "block_order": [
+        "slide_hqA4tG",
+        "slide_9yB38d",
+        "slide_RMkFmA"
+      ],
+      "name": "MC Media Text",
+      "settings": {
+        "page_color": "",
+        "show_title": false,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_pc_size": 30,
+        "description_mb_size": 18,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "pc_card_subhead_size": 32,
+        "mb_card_subhead_size": 15,
+        "pc_card_head_size": 60,
+        "mb_card_head_size": 19,
+        "pc_card_text_size": 24,
+        "mb_card_text_size": 16
+      }
+    },
+    "mc_param_text_slide_iDa9AN": {
+      "type": "mc_param-text-slide",
+      "blocks": {
+        "slide_hp9APG": {
+          "type": "slide",
+          "settings": {
+            "title": "Geometry",
+            "pc_image": "shopify://shop_images/IN_10_pro_-01-1.png",
+            "param_text": "<ul><li>&lcub;A&rcub;<strong>Total Length</strong> 168cm</li><li>&lcub;B&rcub;<strong>Handlebar Height  </strong>105cm</li><li>&lcub;C&rcub;<strong>Wheelbase </strong>114cm</li><li>&lcub;D&rcub;<strong>Seat Height</strong> 78cm</li><li>&lcub;E&rcub;<strong>Seat Length </strong>70cm</li><li>&lcub;F&rcub;<strong>Wheel Diameter </strong>17/14\"</li><li>&lcub;G&rcub;<strong>Handlebar Width </strong>70cm</li><li>&lcub;H&rcub;<strong>Suitable Height</strong> 4.7ft-6.3ft</li></ul>"
+          }
+        },
+        "slide_KAVeAe": {
+          "type": "slide",
+          "settings": {
+            "title": "Specification",
+            "param_text": "<ul><li><strong>Top speed </strong>50 Km/h</li><li><strong>Range </strong>88 km</li><li><strong>Motor </strong>5500W Peak, Brushless Motor</li><li><strong>Charger</strong> 60V5A Charger</li><li><strong>Charger Voltage </strong>100-220V, 50-60Hz</li><li><strong>Charging Time </strong>0%-100% 6.0-7.0 Hours</li><li><strong>Display</strong> LCD Display</li><li><strong>Ride Mode </strong>Three-speed with Reverse gear</li><li><strong>Drivetrain </strong>420H chain, 124 links</li><li><strong>Battery</strong> 60V27Ah Lithium-ion Battery</li><li><strong>Suspension Type </strong>Inverted hydraulic fork</li><li><strong>Brakes</strong> Heavy-duty Hydraulic Brakes</li><li><strong>Frame</strong> High Carbon Steel</li><li><strong>Chain</strong> 116links（420 chain）Heavy Duty Chain</li><li><strong>Max Climbing</strong> 30 degrees</li><li><strong>Front Suspension</strong> Hydraulic Suspension</li><li><strong>Rear Suspension</strong> Nitrogen Shock Absorber</li><li><strong>Waterproof</strong> IPX6</li><li><strong>Bike Weight </strong>121lbs（55kg)</li><li><strong>Maximum Load </strong>330lbs</li></ul>"
+          }
+        },
+        "slide_fnAFgV": {
+          "type": "slide",
+          "settings": {
+            "title": "What's In The Box",
+            "param_text": "<ul><li>&lcub;A&rcub;Yozma IN 10 Pro Dirt Bike*1</li><li>&lcub;B&rcub;60V 27Ah Lithium-Ion*1</li><li>&lcub;C&rcub;Battery Charger*1</li><li>&lcub;D&rcub;Assembly Tools*1</li><li>&lcub;E&rcub;Right Pedals*1</li><li>&lcub;F&rcub;Handle Bars Shipped Installed On Bike*1</li><li>&lcub;G&rcub;User Manual*1</li><li>&lcub;H&rcub;Plate Stickers*1</li><li>&lcub;I&rcub;Taillights*1</li><li>&lcub;J&rcub;Keys*2</li></ul>"
+          }
+        },
+        "slide_icon_7f63hV": {
+          "type": "slide_icon",
+          "disabled": true,
+          "settings": {
+            "title": "What's In The Box",
+            "icon1": "shopify://shop_images/Group_161268869.png",
+            "name1": "",
+            "name2": "",
+            "name3": "",
+            "name4": "",
+            "name5": "",
+            "name6": "",
+            "name7": "",
+            "name8": "",
+            "name9": "",
+            "name10": "",
+            "name11": "",
+            "name12": "",
+            "name13": "",
+            "name14": "",
+            "name15": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_hp9APG",
+        "slide_KAVeAe",
+        "slide_fnAFgV",
+        "slide_icon_7f63hV"
+      ],
+      "name": "MC Param Text Slide",
+      "settings": {
+        "page_color": "",
+        "title": "<p>Specifications And Parameters</p>",
+        "title_decorate_image": "shopify://shop_images/title-text-tag-3.png",
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "tab_color": "#000000",
+        "tab_active_color": "#ffffff",
+        "tab_bg_color": "#eaeaea",
+        "tab_active_bg_color": "#d30000",
+        "param_text_size": 18,
+        "mb_param_text_size": 14,
+        "card_bg_color": "#121212",
+        "param_text_color": "#ffffff",
+        "border_color": "#999999",
+        "order_bg_color": "#e9e9e9",
+        "order_text_color": "#000000",
+        "param_title1": "",
+        "param_title2": ""
+      }
+    },
+    "mc_section_text_JX3UnG": {
+      "type": "mc_section-text",
+      "blocks": {
+        "text_c9V8Gx": {
+          "type": "text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "text": "<p>IN 10 Pro Extreme-Power Electric Dirt Bike</p>",
+            "text_decorate_image": "shopify://shop_images/title-text-tag-4.png",
+            "image_height": 40,
+            "mb_image_height": 14,
+            "position_left": 0,
+            "position_top": 26,
+            "mb_position_top": 10,
+            "alignment": "left",
+            "mb_alignment": "left",
+            "style": "italic",
+            "weight": 900,
+            "line_height": 120,
+            "pc_size": 48,
+            "mb_size": 17,
+            "width": 40,
+            "mb_width": 100,
+            "color": "#ffffff",
+            "bold_color": "#ffffff",
+            "gradient_color": ""
+          }
+        },
+        "text_mAF4Hc": {
+          "type": "text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "8px 0px 0px 0px",
+            "text": "<p>Built for true off-road adventure, the IN 10 Pro delivers upgraded suspension and precise handling for smooth, confident control on rugged terrain—tougher, more thrilling, and ready for the wild.</p>",
+            "image_height": 40,
+            "mb_image_height": 32,
+            "alignment": "left",
+            "mb_alignment": "left",
+            "style": "normal",
+            "weight": 400,
+            "line_height": 120,
+            "pc_size": 24,
+            "mb_size": 16,
+            "width": 50,
+            "mb_width": 100,
+            "color": "#b2b2b2",
+            "bold_color": "#ffffff",
+            "gradient_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_c9V8Gx",
+        "text_mAF4Hc"
+      ],
+      "name": "MC Section Text",
+      "settings": {
+        "page_color": "#171717",
+        "layout": "row",
+        "mb_layout": "column"
+      }
+    },
+    "mc_media_image_RxUF4q": {
+      "type": "mc_media-image",
+      "name": "MC Media Image",
+      "settings": {
+        "page_color": "",
+        "page_top": 56,
+        "show_title": false,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_bold_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "pc_image": "shopify://shop_images/DSC_3615_1_ce4db3db-686a-480f-bec9-59bfc0614bd4.png",
+        "mb_image": "shopify://shop_images/DSC_3615_1.png",
+        "image_radius": 0,
+        "mb_image_radius": 0,
+        "image_width": 100,
+        "image_ratio": "",
+        "image_fill": false,
+        "mb_image_ratio": "",
+        "mb_image_fill": false
+      }
+    },
+    "mc_community_media_slide_LBp7PW": {
+      "type": "mc_community-media-slide",
+      "blocks": {
+        "video_hxzeU9": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/videoplayback (1).webm",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_jMHTwg": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/the Yozma IN10 has so much potential  USE CODE MATT at checkout@3mattq171100.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_eWjnjr": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/jahjah_4x_reel_2025_12_3_02_09_553778869200241396339.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_mcBgGr": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/NO COMP ON YOZMA  CODE BIKESTARCHRIS FOR THE BEST DISCOUNT OK YOUR YOZMA IN10@bikestar.chris225429.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_KEFNq8": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Use code Talalala for 70 off your@dmvtalalala182245.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_AYTnPG": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/papajosh_on1wheel_reel_2025_12_1_02_59_533777466240743914198.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_teEYPt": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/connor_stitt_reel_2025_11_27_06_02_173774657813202242219.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "video_zFQHTV": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/_mia_em_reel_2025_11_20_22_58_163770096967180517670.mp4",
+            "description": "",
+            "enable_video_autoplay": false,
+            "enable_video_looping": false
+          }
+        },
+        "youtube_CxMbEj": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=9qbqxaRZaJc",
+            "cover_image": "shopify://shop_images/9qbqxaRZaJc-SD.jpg",
+            "video_url_mobile": "",
+            "date": "2026/03/01",
+            "content": "I Hosted My First Ever Mini E-Bike Rideout",
+            "avatar": "shopify://shop_images/channels4_profile_8.jpg",
+            "author": "Offline Dylon"
+          }
+        },
+        "youtube_4xaXdG": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=6Fm4zauoqw4",
+            "cover_image": "shopify://shop_images/6Fm4zauoqw4-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2026/03/01",
+            "content": "I Lost Control Of My New E Bike..",
+            "avatar": "shopify://shop_images/channels4_profile_9.jpg",
+            "author": "Offline Red"
+          }
+        },
+        "youtube_CHLqLH": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=vUZml1VK6NM&t=129s",
+            "video_url_mobile": "",
+            "date": "2026/02/08",
+            "content": "This Unreleased Budget E-Bike Is Way Faster Than I Expected",
+            "avatar": "shopify://shop_images/unnamed_9b5b2738-dcbc-42aa-a778-9713d06a5c37.jpg",
+            "author": "Zay Solis"
+          }
+        },
+        "youtube_Bz8p7j": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=zNEjZ6eCxVw",
+            "video_url_mobile": "",
+            "date": "2026/03/01",
+            "content": "This is why you need a Yozma",
+            "avatar": "shopify://shop_images/channels4_profile_10.jpg",
+            "author": "luchi"
+          }
+        },
+        "youtube_QjEbP8": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=aE6JMTf3sE4&t=78s",
+            "cover_image": "shopify://shop_images/aE6JMTf3sE4-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/10/13",
+            "content": "I Bought The Cheapest Electric Dirtbike (Yozma IN10)",
+            "avatar": "shopify://shop_images/channels4_profile_332012fe-b91c-415b-9ab3-960dc0a68ce8.jpg",
+            "author": "Rawstuntz"
+          }
+        },
+        "youtube_8tPhJ3": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=1BWf9zQho1g",
+            "cover_image": "shopify://shop_images/1BWf9zQho1g-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/09/20",
+            "content": "Best Electric Dirt Bike Under $1500!! Yozma Sport IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_2_648cfac0-24f1-49d2-8823-14099005e312.jpg",
+            "author": "Oneway Lilman"
+          }
+        },
+        "youtube_w6TL6n": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=6WoQyfm8BJk&t=88s",
+            "cover_image": "shopify://shop_images/6WoQyfm8BJk-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/10/18",
+            "content": "I Bought The BEST Budget Electric Mini Bike!",
+            "avatar": "shopify://shop_images/channels4_profile_3_c24bc340-59a0-45ba-a6dd-c6e1b696271f.jpg",
+            "author": "Phethanfix"
+          }
+        },
+        "youtube_QgnFVR": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=KTEI1CDjiQ0",
+            "cover_image": "shopify://shop_images/KTEI1CDjiQ0-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/10/29",
+            "content": "Cheapest ‘Legit’ Electric Dirt Bike… Actually Rips (Yozma IN-10)",
+            "avatar": "shopify://shop_images/channels4_profile_4_ac32e132-d920-4f67-92d0-904d4f59998b.jpg",
+            "author": "G Bear"
+          }
+        },
+        "youtube_qKnE4L": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=q5yuYyrjNA8",
+            "cover_image": "shopify://shop_images/q5yuYyrjNA8-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/09/22",
+            "content": "Electric Dirt Bikes Getting Cheaper and Better? Yozma IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_5_d03ebca7-69c9-4ab2-8b56-81b321b2429f.jpg",
+            "author": "Pat Outdoors"
+          }
+        },
+        "youtube_xaWtnq": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://youtu.be/UIFm5cPpgBs",
+            "cover_image": "shopify://shop_images/UIFm5cPpgBs-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/09/10",
+            "content": "This electric dirt bike cost less than a IPhone! Yozma IN10",
+            "avatar": "shopify://shop_images/channels4_profile_6.jpg",
+            "author": "ENDOPRYSM"
+          }
+        },
+        "youtube_iJk7em": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=kEY9Swu_WsM&t=4s",
+            "cover_image": "shopify://shop_images/kEY9Swu_WsM-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/10/04",
+            "content": "This CHEAP New E-Bike Is AMAZING! // Yozma IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_7.jpg",
+            "author": "Talaria Boys"
+          }
+        }
+      },
+      "block_order": [
+        "video_hxzeU9",
+        "video_jMHTwg",
+        "video_eWjnjr",
+        "video_mcBgGr",
+        "video_KEFNq8",
+        "video_AYTnPG",
+        "video_teEYPt",
+        "video_zFQHTV",
+        "youtube_CxMbEj",
+        "youtube_4xaXdG",
+        "youtube_CHLqLH",
+        "youtube_Bz8p7j",
+        "youtube_QjEbP8",
+        "youtube_8tPhJ3",
+        "youtube_w6TL6n",
+        "youtube_QgnFVR",
+        "youtube_qKnE4L",
+        "youtube_xaWtnq",
+        "youtube_iJk7em"
+      ],
+      "name": "MC Community Media Slide",
+      "settings": {
+        "page_color": "",
+        "page_top": 0,
+        "title": "<p>Hear from Our Riders</p>",
+        "title_decorate_image": "shopify://shop_images/title-text-tag-5.png",
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "tab1": "YouTube video",
+        "tab2": "Instagram videos",
+        "tab_color": "#000000",
+        "tab_active_color": "#ffffff",
+        "tab_bg_color": "#eaeaea",
+        "tab_active_bg_color": "#d30000",
+        "play_button_icon": "shopify://shop_images/video-play-button.png"
+      }
+    },
+    "slideshow_gMx3Da": {
+      "type": "slideshow",
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "multiple_images_with_text_epUVmW": {
+      "type": "multiple-images-with-text",
+      "blocks": {
+        "item_f64m6i": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/kv_607608ab-cbf9-4301-9883-24f7cc08d65a.png",
+            "image_rotation_degrees": 0,
+            "subheading": "",
+            "title": "Image with text",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "button_url": "",
+            "button_text": ""
+          }
+        },
+        "item_TKqyHb": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/YR20-1.webp",
+            "image_rotation_degrees": -2,
+            "subheading": "",
+            "title": "Heading 1",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "button_url": "",
+            "button_text": ""
+          }
+        },
+        "item_UDNACj": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/DSC00375.jpg",
+            "image_rotation_degrees": 1.5,
+            "subheading": "",
+            "title": "Heading 2",
+            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+            "button_url": "",
+            "button_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_f64m6i",
+        "item_TKqyHb",
+        "item_UDNACj"
+      ],
+      "disabled": true,
+      "name": "Multiple images with text",
+      "settings": {
+        "full_width": true,
+        "img_pos": "tw-order-1",
+        "images_layout": "stacked",
+        "collage_images_alignment": "middle",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "slideshow_MQ3Er4": {
+      "type": "slideshow",
+      "blocks": {
+        "image_JY7E8A": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/0815.png",
+            "mobile_image": "shopify://shop_images/M_-0815.jpg",
+            "content_max_width": 400,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_JY7E8A"
+      ],
+      "disabled": true,
+      "name": "Slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade_with_text",
+        "autoplay": false,
+        "cycle_speed": 6,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "multicolumn_slide_2508_BFAQgx": {
+      "type": "multicolumn-slide-2508",
+      "blocks": {
+        "video_XfBNj7": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=1BWf9zQho1g",
+            "poster_image": "shopify://shop_images/1BWf9zQho1g-HD.jpg",
+            "show_video_controls": false,
+            "title": "oneway_lilman",
+            "content": ""
+          }
+        },
+        "video_Jkh3mp": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://youtu.be/xkNauLlRgjs",
+            "poster_image": "shopify://shop_images/xkNauLlRgjs-HD.jpg",
+            "show_video_controls": false,
+            "title": "oneway_lilman",
+            "content": ""
+          }
+        },
+        "video_XMmxBd": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=q5yuYyrjNA8",
+            "poster_image": "shopify://shop_images/q5yuYyrjNA8-HD.jpg",
+            "show_video_controls": false,
+            "title": "Pat Outdoors",
+            "content": ""
+          }
+        },
+        "video_fCqcct": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=GXaj-Gx3HoQ",
+            "poster_image": "shopify://shop_images/GXaj-Gx3HoQ-HD.jpg",
+            "show_video_controls": false,
+            "title": "ENDOPRYSM",
+            "content": ""
+          }
+        },
+        "video_hm3htB": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://youtu.be/UIFm5cPpgBs",
+            "poster_image": "shopify://shop_images/UIFm5cPpgBs-HD.jpg",
+            "show_video_controls": false,
+            "title": "ENDOPRYSM",
+            "content": ""
+          }
+        },
+        "video_GfWpYB": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=pY38Ro72HoY",
+            "poster_image": "shopify://shop_images/ytbtu_maxresdefault-1759219386.jpg",
+            "show_video_controls": false,
+            "title": "RunPlayBack",
+            "content": ""
+          }
+        },
+        "video_7ddwiM": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=cozJD_tbc8w&t=335s",
+            "poster_image": "shopify://shop_images/cozJD_tbc8w-HD.jpg",
+            "show_video_controls": false,
+            "title": "RunPlayBack",
+            "content": ""
+          }
+        },
+        "video_96LKKW": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=nX09VC134F4",
+            "poster_image": "shopify://shop_images/nX09VC134F4-HD.jpg",
+            "show_video_controls": false,
+            "title": "Rozzy",
+            "content": ""
+          }
+        },
+        "video_GiDDnU": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=qQTwlrbZO3E",
+            "poster_image": "shopify://shop_images/qQTwlrbZO3E-SD.jpg",
+            "show_video_controls": false,
+            "title": "szamuca",
+            "content": ""
+          }
+        },
+        "video_NfgV9c": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://youtu.be/hhh1sNrdGG4",
+            "poster_image": "shopify://shop_images/hhh1sNrdGG4-HD.jpg",
+            "show_video_controls": false,
+            "title": "Caleb Moll",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_XfBNj7",
+        "video_Jkh3mp",
+        "video_XMmxBd",
+        "video_fCqcct",
+        "video_hm3htB",
+        "video_GfWpYB",
+        "video_7ddwiM",
+        "video_96LKKW",
+        "video_GiDDnU",
+        "video_NfgV9c"
+      ],
+      "disabled": true,
+      "name": "Multicolumn slide",
+      "settings": {
+        "col_num": "3",
+        "txt_size": "md",
+        "item_bg_gd": "linear-gradient(180deg, rgba(240, 240, 240, 1) 100%, rgba(82, 218, 236, 1) 100%)",
+        "full_width": true,
+        "text_alignment_title": "start",
+        "subheading": "",
+        "title": "Rider Reviews",
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "mc_product_compare_NGeafQ": {
+      "type": "mc_product-compare",
+      "blocks": {
+        "product_JkKxiN": {
+          "type": "product",
+          "settings": {
+            "product_group": "IN 10",
+            "product_image": "shopify://shop_images/compare-yozma-bike.png",
+            "product_title": "IN 10",
+            "show_button": true,
+            "button_bg_image": "shopify://shop_images/compare-button-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "",
+            "product_params": "$1,199.99\n2600 W\n48V23.4 Ah\n146 Nm\n85 Km\n20 Km/h\n265lbs（120kg)\n14''/12''\n3.94ft - 5.9ft\n5-6 Hours"
+          }
+        },
+        "product_McNXfG": {
+          "type": "product",
+          "settings": {
+            "product_group": "IN 10 Pro",
+            "product_image": "shopify://shop_images/IN-10-PRO_824d9f20-f4e5-4a1b-a33d-d492a2824024.png",
+            "product_title": "IN 10 Pro",
+            "show_button": true,
+            "button_bg_image": "shopify://shop_images/compare-button-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "",
+            "product_params": "$????\n5000-5500 W\n60V27 Ah\n220 Nm\n88 Km\n20 Km/h\n330 lbs（150kg）\n17''/14''\n4.7ft - 6.3ft\n6-7 Hours"
+          }
+        },
+        "product_tVHKM3": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product_group": "IN 10 Pro",
+            "product_title": "Rxxxxx Txxxx Brand",
+            "show_button": true,
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "",
+            "product_params": "$1,499.99\n2400W\n48V 27Ah\n106Nm\n62 Miles\n40 MPH\n265 Ibs\n14''/12''\n3.9ft-5.9ft\n7-8 Hours"
+          }
+        },
+        "product_UjtgBR": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product_group": "IN 10 Pro",
+            "product_title": "Txxxxx Brand",
+            "show_button": true,
+            "button_bg_image": "shopify://shop_images/title-tag-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "",
+            "product_params": "$1,399.99\n2000 W\n48V 21Ah\n120Nm\n43 Miles\n37 MPH\n265 Ibs\n14''/12''\n3.9ft-5.7ft\n7-8 Hours\n84.79 lbs"
+          }
+        }
+      },
+      "block_order": [
+        "product_JkKxiN",
+        "product_McNXfG",
+        "product_tVHKM3",
+        "product_UjtgBR"
+      ],
+      "name": "MC Product Compare",
+      "settings": {
+        "page_color": "#171717",
+        "show_title": false,
+        "title": "Title",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "description",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 16,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "compare_title": "Price\nPeak Power\nBattery Capacity\nTorque\nMax Range\nTop Speed\nPayload\nTire\nSuitable Height\nCharging Time",
+        "features_text": "Features",
+        "product_title_size": 24,
+        "mb_product_title_size": 16,
+        "features_size": 24,
+        "mb_features_size": 16,
+        "param_name_size": 16,
+        "mb_param_name_size": 16,
+        "param_text_size": 16,
+        "mb_param_text_size": 15
+      }
+    },
+    "mc_section_text_QF9F3E": {
+      "type": "mc_section-text",
+      "blocks": {
+        "text_tmT63R": {
+          "type": "text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "text": "<p>Frequently asked questions</p>",
+            "image_height": 40,
+            "mb_image_height": 32,
+            "alignment": "left",
+            "mb_alignment": "left",
+            "style": "italic",
+            "weight": 900,
+            "line_height": 120,
+            "pc_size": 48,
+            "mb_size": 18,
+            "width": 100,
+            "mb_width": 100,
+            "color": "#ffffff",
+            "bold_color": "#ffffff",
+            "gradient_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_tmT63R"
+      ],
+      "name": "MC Section Text",
+      "settings": {
+        "page_color": "#171717",
+        "page_bottom": 40,
+        "layout": "column",
+        "mb_layout": "column"
+      }
+    },
+    "faq_Ld7yCC": {
+      "type": "faq",
+      "blocks": {
+        "item_7kpVea": {
+          "type": "item",
+          "settings": {
+            "title": "What is the top speed of the Yozma IN 10 Pro?",
+            "content": "<p>The top speed reaches 20km/h delivering powerful acceleration for both urban commuting and short leisure rides.</p>"
+          }
+        },
+        "item_fcVKfM": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "title": "How many riding modes are available?",
+            "content": "<p>IN 10 Pro offers three speed modes (approx. <strong>22 MPH</strong>, <strong>34 MPH</strong>, and <strong>47 MPH</strong>) to suit different riding preferences.</p>"
+          }
+        },
+        "item_UrTPVR": {
+          "type": "item",
+          "settings": {
+            "title": "What rider height is the IN 10 Pro suitable for?",
+            "content": "<p>The IN10 Pro is suitable for riders between 4.7 ft and 6.3 ft in height and is recommended for users aged 14 years and above.</p>"
+          }
+        },
+        "item_kjznVh": {
+          "type": "item",
+          "settings": {
+            "title": "How long does it take to fully charge the battery?",
+            "content": "<p>With the 60V 5A US standard charger (XLR head), a full charge takes about 6–7 hours.</p>"
+          }
+        },
+        "item_LezKXa": {
+          "type": "item",
+          "settings": {
+            "title": "What type of motor does it use?",
+            "content": "<p>IN 10 Pro features a 5500W mid-drive motor for superior power delivery and climbing ability compared to hub motors.</p>"
+          }
+        },
+        "item_D6ew6a": {
+          "type": "item",
+          "settings": {
+            "title": "What is the battery specification? Is it removable?",
+            "content": "<p>It comes with a 60V 27AH lithium battery that’s removable for convenient charging and maintenance.</p>"
+          }
+        },
+        "item_UGrEGQ": {
+          "type": "item",
+          "settings": {
+            "title": "Safety Instructions —— Important Tips",
+            "content": "<p>1. Wear Proper Protective Gear</p><p>Always wear an approved helmet when riding. Protective gear such as goggles, gloves, elbow and knee pads, and long pants is strongly recommended. Wear lace-up shoes with rubber soles. Do not ride barefoot, in open-toed shoes, or in high heels.</p><p>2. Ride Only in Safe and Legal Areas</p><p>Do not ride on highways, indoors, on slopes exceeding 30°, or on uneven, slippery, or unfamiliar terrain. Beginners should practice in an open area before riding in public spaces.</p><p>3. Operate Responsibly to Minimize Risk</p><p>Always hold the handlebars with both hands and avoid high-risk maneuvers. Do not ride under the influence of alcohol, medication, or when unwell. Obey local traffic laws and yield to pedestrians and other road users.</p><p>4. Battery Safety and Handling</p><p>Do not store batteries in environments above 70°F (21°C) or below 32°F (0°C). Batteries must be disposed of in accordance with local regulations. Do not throw batteries into fire or dispose of them with household waste.</p><p>5. Observe Weight and Weather Limits</p><p>Maximum load is 120 kg. The recommended rider weight is approximately 80 kg. Do not ride in rain, storms, fog, or other extreme weather conditions. Avoid water exposure to the motorcycle and battery.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_7kpVea",
+        "item_fcVKfM",
+        "item_UrTPVR",
+        "item_kjznVh",
+        "item_LezKXa",
+        "item_D6ew6a",
+        "item_UGrEGQ"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "team_avatar_width": 160,
+        "support_hours": "",
+        "answer_time": "",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "#171717",
+        "background_gradient": "",
+        "text_color": "#ffffff",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "#171717",
+        "accordion_text_color": ""
+      }
+    },
+    "specification_table_efdmkD": {
+      "type": "specification-table",
+      "blocks": {
+        "row_7B6iWr": {
+          "type": "row",
+          "settings": {
+            "heading": "Heading 1",
+            "value": "<p>Value 1</p>"
+          }
+        },
+        "row_9mNPUx": {
+          "type": "row",
+          "settings": {
+            "heading": "Heading 2",
+            "value": "<p>Value 2</p>"
+          }
+        },
+        "row_WWDHfm": {
+          "type": "row",
+          "settings": {
+            "heading": "Heading 3",
+            "value": "<p>Value 3</p>"
+          }
+        }
+      },
+      "block_order": [
+        "row_7B6iWr",
+        "row_9mNPUx",
+        "row_WWDHfm"
+      ],
+      "disabled": true,
+      "name": "Specification table",
+      "settings": {
+        "full_width": true,
+        "subheading": "Learn more",
+        "title": "Product specification",
+        "content": "<p>Showcase specifications about a product to help your customers making an informed decision about their purchase.</p>",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "start",
+        "max_rows": 5,
+        "view_all_text": "View all",
+        "view_less_text": "View less",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "chart_background": "",
+        "chart_text_color": "",
+        "chart_true_false_color": ""
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "recommendations_count": 3,
+        "products": [],
+        "full_width": true,
+        "stack_products": true,
+        "show_progress_bar": false,
+        "products_per_row_mobile": "1",
+        "products_per_row_desktop": 3,
+        "subheading": "",
+        "title": "You may also like",
+        "content": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    },
+    "1759995049e645d62a": {
+      "type": "apps",
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "mc_media_image_en4zgG",
+    "mc_media_image_FFefAk",
+    "video_7KTgK9",
+    "mc_media_text_69MnUW",
+    "mc_param_text_slide_iDa9AN",
+    "mc_section_text_JX3UnG",
+    "mc_media_image_RxUF4q",
+    "mc_community_media_slide_LBp7PW",
+    "slideshow_gMx3Da",
+    "multiple_images_with_text_epUVmW",
+    "slideshow_MQ3Er4",
+    "multicolumn_slide_2508_BFAQgx",
+    "mc_product_compare_NGeafQ",
+    "mc_section_text_QF9F3E",
+    "faq_Ld7yCC",
+    "specification_table_efdmkD",
+    "related-products",
+    "1759995049e645d62a"
+  ]
+}

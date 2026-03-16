@@ -1,0 +1,183 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "main_faq_kacRCa": {
+      "type": "main-faq",
+      "blocks": {
+        "faq_zTCH8g": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "title": "About IN 10 PRO",
+            "default_open_1": "No",
+            "title_1": "What is the top speed of the Yozma IN10 Pro?",
+            "answer_1": "<p>The top speed reaches 75KM/H, delivering powerful acceleration for both urban commuting and short leisure rides.</p>",
+            "default_open_2": "No",
+            "title_2": "How many riding modes are available?",
+            "answer_2": "<p>IN 10 Pro offers three speed modes (approx. 35KM/H, 55KM/H, 75KM/H) for different riding preferences.</p>",
+            "default_open_3": "No",
+            "title_3": "What rider height is the IN10 Pro suitable for?",
+            "answer_3": "<p>The IN10 Pro is suitable for riders between 4.7 ft and 6.3 ft in height and is recommended for users aged 14 years and above.</p>",
+            "default_open_4": "No",
+            "title_4": "How long does it take to fully charge the battery?",
+            "answer_4": "<p>With the 60V 5A US standard charger (XLR head), a full charge takes about 6–7 hours.</p>",
+            "default_open_5": "No",
+            "title_5": "What type of motor does it use?",
+            "answer_5": "<p>IN 10 Pro features a 5000W mid-drive motor for superior power delivery and climbing ability compared to hub motors.</p>",
+            "default_open_6": "No",
+            "title_6": "What is the battery specification? Is it removable?",
+            "answer_6": "<p>It comes with a 60V 27AH lithium battery that’s removable for convenient charging and maintenance.</p>",
+            "default_open_7": "No",
+            "title_7": "What is the max load capacity?",
+            "answer_7": "<p>The maximum load is 150KG, suitable for most riders.</p>",
+            "default_open_8": "No",
+            "title_8": "How is the suspension system?",
+            "answer_8": "<p>It features 45mm front and 48mm rear shock absorbers (black front, red rear) for enhanced stability on both urban and off-road terrain.</p>",
+            "default_open_9": "No",
+            "title_9": "How is the headlight performance at night?",
+            "answer_9": "<p>It comes with dual-beam headlights (separate high/low beams) offering wider, brighter, and more energy-efficient illumination.</p>",
+            "default_open_10": "No",
+            "title_10": "What are the seat height and dimensions?",
+            "answer_10": "<p>Seat height is 78CM, wheelbase 115CM, and overall size 168*70*105cm.</p>"
+          }
+        },
+        "faq_F8KTND": {
+          "type": "faq",
+          "settings": {
+            "title": "About IN 10",
+            "default_open_1": "Yes",
+            "title_1": "What‘s in the box?",
+            "answer_1": "<p>Yozma E-bike*1<br/>48V 23.4Ah Lithium-Ion*1<br/>Battery Charger*1<br/>Assembly Tools*1<br/>Pedals*2<br/>Handle Bars Shipped Installed On Bike*1<br/>User Manual*1<br/>Number plate decals*1 <br/>Note: Please keep this box for at least 30 days in case of return or after-sales service.</p>",
+            "default_open_2": "No",
+            "title_2": "What is the top speed of the Yozma IN10?",
+            "answer_2": "<p>The Yozma IN10 reaches up to 20 Km/h in the third speed mode.</p>",
+            "default_open_3": "No",
+            "title_3": "How long is the battery range on a full charge?",
+            "answer_3": "<p>The 48V/23.4AH lithium battery offers a range of 35–53 miles (56–85 km) depending on load, terrain, speed, and temperature</p>",
+            "default_open_4": "No",
+            "title_4": "What rider height is the IN10 suitable for?",
+            "answer_4": "<p>Recommended for users 120–175 cm tall and aged 14 years and above.</p>",
+            "default_open_5": "No",
+            "title_5": "How long does it take to fully charge the battery?",
+            "answer_5": "<p>With the included 48V/5A charger, a full charge typically takes 5–6 hours.</p>",
+            "default_open_6": "No",
+            "title_6": "What type of motor does it use?",
+            "answer_6": "<p>The IN10 features a 1200W rated / 3000W peak direct drive brushless motor, offering strong acceleration and climbing power.</p>",
+            "default_open_7": "No",
+            "title_7": "Is the Yozma IN10 waterproof?",
+            "answer_7": "<p>Yes, it is rated IPX6, which means it can withstand heavy rain and splashes from all directions.</p>",
+            "default_open_8": "No",
+            "title_8": "Does it come fully assembled?",
+            "answer_8": "<p>Yozma IN 10 comes 90% pre-assembled. You’ll need to install parts like the front wheel, handlebars, fenders, and pedals. We provide step-by-step instructions and video guides, and most people finish assembly in 3-5 minutes using basic tools.</p>",
+            "default_open_9": "No",
+            "title_9": "What is the max load capacity?",
+            "answer_9": "<p>The Yozma IN10 supports up to 120 kg (264 lbs).</p>",
+            "default_open_10": "No",
+            "title_10": "Does the IN 10 have any anti-theft features?",
+            "answer_10": "<p>Yes, our e-bikes come with essential anti-theft features. The battery is secured with a lock and can only be removed using the key, effectively preventing unauthorized removal. </p>"
+          }
+        },
+        "faq_6hjMxP": {
+          "type": "faq",
+          "settings": {
+            "title": "Regular Maintenance",
+            "default_open_1": "No",
+            "title_1": "The motorcycle won't start or run. What should I check?",
+            "answer_1": "<p>1.Make sure the battery is fully charged. The first charge should be 12 hours; regular charging time is 5–6 hours.<br/><br/>2.Check if any wires or cables are loose or improperly connected to the controller.</p>",
+            "default_open_2": "No",
+            "title_2": "The motorcycle starts but runs for a very short time. Why?",
+            "answer_2": "<p>1.The battery may not be fully charged.<br/>2.The battery may no longer hold a full charge and might need replacement (average battery life: 1–2 years).<br/>3.Rear tires may not be inflated properly.</p>",
+            "default_open_3": "No",
+            "title_3": "The motorcycle has a short travel distance after charging. What's wrong?",
+            "answer_3": "<p>1.Battery is not fully charged or battery life is declining.<br/>2.Tires may not be properly inflated.<br/>3.Frequent high-speed riding, uphill travel, heavy braking, or overloading can reduce range.</p>",
+            "default_open_4": "No",
+            "title_4": "The motorcycle runs slowly. How can I fix this?",
+            "answer_4": "<p>1.Brakes may be too tight—adjust brake tension for smoother operation. <br/>2.The motorcycle may be overloaded (recommended load: ≤ 80 kg).<br/>3.Rear tire pressure may be too low.<br/>4.Avoid heavy braking, excessive acceleration, or steep inclines.</p>",
+            "default_open_5": "No",
+            "title_5": "The motor makes noise while running. Is this normal?",
+            "answer_5": "<p>1.The chain may be dry—apply chain lubricant regularly.<br/>2.The motorcycle may be overloaded.</p>",
+            "default_open_6": "No",
+            "title_6": "",
+            "answer_6": "",
+            "default_open_7": "No",
+            "title_7": "",
+            "answer_7": "",
+            "default_open_8": "No",
+            "title_8": "",
+            "answer_8": "",
+            "default_open_9": "No",
+            "title_9": "",
+            "answer_9": "",
+            "default_open_10": "No",
+            "title_10": "",
+            "answer_10": ""
+          }
+        },
+        "faq_FxfLcC": {
+          "type": "faq",
+          "settings": {
+            "title": "About My Order",
+            "default_open_1": "No",
+            "title_1": "How long does shipping take? When will my order been dispatched?",
+            "answer_1": "<p>Yozma IN 10 ebikes are shipped from our California warehouse, and delivery typically takes 2 to 5 business days depending on your location. You’ll receive a tracking number once your order is on the way.</p>",
+            "default_open_2": "No",
+            "title_2": "What payment methods do you accept?",
+            "answer_2": "<p>Currently, we are able to securely process payments from American Express, Discover, Diner’s Club, JCB, Visa, Venmo, MasterCard, PayPal, Apple Pay thanks to secure payment processing from Stripe. Additionally, we have a financing partnership with Klarna. Be sure to choose Klarna at checkout to apply for financing options for your e-bike to pay over installments.</p>",
+            "default_open_3": "No",
+            "title_3": "Do you offer financing?",
+            "answer_3": "<p>We are offering financing.You can have direct access to Klarna financing through our partnership with Klarna. Now, you can pay for your next e-bike with installment payments after being approved for financing. Be sure to select Klarna at checkout and you will be taken to their secure payment process. For more details please click HERE</p>",
+            "default_open_4": "No",
+            "title_4": "How do I change or cancel my order?",
+            "answer_4": "<p>Your order can only be canceled before it ships.To cancel the order, please email us: support.eu@yozmasport.com. Canceling order requests may not be available during the weekend or holiday.</p>",
+            "default_open_5": "No",
+            "title_5": "What if the package is broken/missing?",
+            "answer_5": "<p>Due to FedEx's failure to deliver the bike as required during transportation, parts of the wear and scratch may cause by the parts crashing together, although we have packed all the parts to prevent these situations as much as we can. Please send us the related pictures via support.eu@yozmasport.com, we will solve it for you.</p>",
+            "default_open_6": "No",
+            "title_6": "Can I return my order for personal reasons ?",
+            "answer_6": "<p><br/>To be eligible for a return, your item must be in the same condition that you received it, unworn, unused, or the ebike must have less than ten (10) miles on the odometer and must include all items that were inside the box (charger, keys, hardware, etc.), and in its original packaging.For specific fees, please click HERE.<br/><br/></p>",
+            "default_open_7": "No",
+            "title_7": "",
+            "answer_7": "",
+            "default_open_8": "No",
+            "title_8": "",
+            "answer_8": "",
+            "default_open_9": "No",
+            "title_9": "",
+            "answer_9": "",
+            "default_open_10": "No",
+            "title_10": "",
+            "answer_10": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_zTCH8g",
+        "faq_F8KTND",
+        "faq_6hjMxP",
+        "faq_FxfLcC"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "page_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main_faq_kacRCa"
+  ]
+}

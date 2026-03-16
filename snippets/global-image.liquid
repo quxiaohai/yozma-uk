@@ -1,0 +1,175 @@
+{%- liquid
+    if adaptive == blank
+        assign adaptive = 'fill'
+    endif
+    assign loading = 'lazy'
+    if request.design_mode or preload
+        assign loading = 'eager'
+    endif
+    if image != blank
+        assign desktop_img = image
+    endif
+    if image_size != blank
+        assign desktop_size = image_size
+    endif
+    if class != blank
+        assign desktop_class = class
+    endif
+    if desktop_size == blank
+        if desktop_img != blank
+            assign desktop_size = desktop_img.width
+        else
+            assign desktop_size = 1920
+        endif
+    endif
+    if mobile_size == blank
+        if mobile_img != blank
+            assign mobile_size = mobile_img.width
+        else
+            assign mobile_size = 750
+        endif
+    endif
+    assign mb_style = style
+    if mobile_img != blank
+        if mobile_size > mobile_img.width
+            assign mobile_size = mobile_img.width
+        endif
+        if show_size
+            assign mb_style = '--width: ' | append: mobile_img.width | append: 'px; --height: ' | append: mobile_img.height | append: 'px;--aspect-ratio: ' | append: mobile_img.aspect_ratio | append: ';' | append: style
+        endif
+        assign mb_alt = mobile_img.alt | escape_once
+        if mb_alt == blank
+            assign mb_alt = mobile_img.src | replace: 'files/', '' | replace: '.jpg', '' | replace: '.png', '' | escape_once
+        endif
+        assign mobile_size = mobile_size | replace: 'x', '' | times: 1
+        assign mobile_cls = '_mp mobile-done image ' | append: mobile_class
+    endif
+    assign pc_style = style
+    if desktop_img != blank
+        if desktop_size > desktop_img.width
+            assign desktop_size = desktop_img.width
+        endif
+        if show_size
+            assign pc_style = '--width: ' | append: desktop_img.width | append: 'px; --height: ' | append: desktop_img.height | append: 'px; --aspect-ratio: ' | append: desktop_img.aspect_ratio | append: ';' | append: style
+        endif
+        assign pc_alt = desktop_img.alt | escape_once
+        if pc_alt == blank
+            assign pc_alt = desktop_img.src | replace: 'files/', '' | replace: '.jpg', '' | replace: '.png', '' | escape_once
+        endif
+        assign desktop_size = desktop_size | replace: 'x', '' | times: 1
+        assign desktop_pic_cls = '_dp image ' | append: desktop_class
+        if mobile_img != blank
+            assign desktop_cls = '_dp desktop-done image ' | append: desktop_class
+        else
+            assign desktop_cls = '_dp image ' | append: desktop_class
+        endif
+    endif
+-%}
+{%- if media_type == 'icon' -%}
+    {% if mobile_img != blank %}
+        {{- mobile_img | image_url: width: mobile_size | image_tag: alt: mb_alt, class: mobile_cls, style: mb_style, loading: loading -}}
+    {% endif %}
+    {%- if desktop_img != blank -%}
+        {{- desktop_img | image_url: width: desktop_size | image_tag: alt: pc_alt, class: desktop_cls, style: pc_style, loading: loading -}}
+    {%- endif -%}
+{%- else -%}
+    {%- liquid
+        assign d_srcsets = ''
+        assign m_srcsets = ''
+        assign widths = '180,360,540,720,900,1080,1400,1800,1920,2200,2400,2800'
+        assign arr = widths | split: ','
+        if desktop_img != blank
+            assign widths = ''
+            assign is_over = false
+            for v in arr
+                assign v1 = v | times: 1
+                if v1 > desktop_size and is_over == false
+                    assign widths = widths | append: desktop_size
+                    assign url = desktop_img | image_url: width: desktop_size | append: ' ' | append: desktop_size | append: 'w'
+                    assign d_srcsets = d_srcsets | append: url
+                    assign is_over = true
+                endif
+                if is_over == false
+                    assign widths = widths | append: v1
+                    assign url = desktop_img | image_url: width: v1 | append: ' ' | append: v1 | append: 'w'
+                    assign d_srcsets = d_srcsets | append: url
+                    if forloop.last == false
+                        assign widths = widths | append: ','
+                        assign d_srcsets = d_srcsets | append: ', '
+                    endif
+                endif
+            endfor
+        endif
+        if mobile_img != blank
+            assign m_widths = '180,360,540,720,900,1080'
+            assign m_arr = m_widths | split: ','
+            assign is_over = false
+            for v in m_arr
+                assign v1 = v | times: 1
+                if v1 > mobile_size and is_over == false
+                    assign url = mobile_img | image_url: width: mobile_size | append: ' ' | append: mobile_size | append: 'w'
+                    assign m_srcsets = m_srcsets | append: url
+                    assign is_over = true
+                endif
+                if is_over == false
+                    assign url = mobile_img | image_url: width: v1 | append: ' ' | append: v1 | append: 'w'
+                    assign m_srcsets = m_srcsets | append: url
+                    if forloop.last == false
+                        assign m_srcsets = m_srcsets | append: ', '
+                    endif
+                endif
+            endfor
+        endif
+    -%}
+    {%- if adaptive == 'fill' -%}
+        {%- if mobile_img != blank -%}
+            <picture
+                {% if show_size or style %}style="{% if show_size %}--desktop-width: {{ desktop_img.width }}px; --desktop-height: {{ desktop_img.height }}px; --desktop-aspect-ratio: {{ desktop_img.aspect_ratio }}; --mobile-width: {{ mobile_img.width }}px; --mobile-height: {{ mobile_img.height }}px; --mobile-aspect-ratio: {{ mobile_img.aspect_ratio }};{% endif %}{{ style }}"{% endif %}
+                class="_ap media {{ desktop_class }} {{ mobile_class }} image overflow-hidden{% if animate %} block{% endif %}"{% if animate %} data-animate="zoom-out" is="animate-picture"{% endif %}>
+                <source media="(max-width: 1023px)"
+                        class="image {{ mobile_class }}"
+                        srcset="{{ m_srcsets }}"
+                        width="{{ mobile_img.width }}"
+                        height="{{ mobile_img.height }}">
+                {%- if desktop_img != blank -%}
+                    {%- if fetchpriority -%}
+                        {{- desktop_img | image_url: width: desktop_size | image_tag: alt: pc_alt, class: desktop_pic_cls, loading: loading, widths: widths, sizes: sizes, fetchpriority: 'high', is: 'lazy-image' -}}
+                    {%- else -%}
+                        {{- desktop_img | image_url: width: desktop_size | image_tag: alt: pc_alt, class: desktop_pic_cls, loading: loading, widths: widths, sizes: sizes, is: 'lazy-image' -}}
+                    {%- endif -%}
+                {%- endif -%}
+            </picture>
+        {%- else -%}
+            {%- if desktop_img != blank -%}
+                {%- if fetchpriority -%}
+                    {{- desktop_img | image_url: width: desktop_size | image_tag: alt: pc_alt, class: desktop_pic_cls, loading: loading, widths: widths, sizes: sizes, style: pc_style, fetchpriority: 'high', is: 'lazy-image' -}}
+                {%- else -%}
+                    {{- desktop_img | image_url: width: desktop_size | image_tag: alt: pc_alt, class: desktop_pic_cls, loading: loading, widths: widths, sizes: sizes, style: pc_style, is: 'lazy-image' -}}
+                {%- endif -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- else -%}
+        {%- if desktop_img != blank -%}
+            <img alt="{{ pc_alt }}"
+                 {% if show_size or style %}style="{% if show_size %}{{ pc_style }}{% else %}{{ style }}{% endif %}"{% endif %}
+                 height="{{ desktop_img.height }}"
+                 width="{{ desktop_img.width }}"
+                 src="{% if loading == 'eager' %}{{ desktop_img | image_url: width: desktop_size }}{% else %}data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpi+P//PwNAgAEACPwC/tuiTRYAAAAASUVORK5CYII={% endif %}"
+                 data-srcset="{{ d_srcsets }}"
+                 class="{{ desktop_cls }}"
+                 is="lazy-image"
+            />
+        {%- endif -%}
+        {%- if mobile_img != blank -%}
+            <img alt="{{ mb_alt }}"
+                 {% if show_size or style %}style="{% if show_size %}{{ mb_style }}{% else %}{{ style }}{% endif %}"{% endif %}
+                 height="{{ mobile_img.height }}"
+                 width="{{ mobile_img.width }}"
+                 src="{% if loading == 'eager' %}{{ mobile_img | image_url: width: mobile_size }}{% else %}data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpi+P//PwNAgAEACPwC/tuiTRYAAAAASUVORK5CYII={% endif %}"
+                 data-srcset="{{ m_srcsets }}"
+                 class="{{ mobile_cls }}}"
+                 is="lazy-image"
+            />
+        {%- endif -%}
+    {%- endif -%}
+{%- endif -%}

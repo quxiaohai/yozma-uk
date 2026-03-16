@@ -1,0 +1,125 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1755451287074e244d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_812bae4_z9WU4y": {
+          "type": "ai_gen_block_812bae4",
+          "settings": {
+            "related_products": [
+              "in-10",
+              "yozma-license-plate-stickers",
+              "yozma-handlebar-bag"
+            ],
+            "author_bio": "<p>With over 15 years of experience wrenching on and riding everything with two wheels, Ricky lives and breathes dirt bikes. He grew up on the sound and smell of gas engines but has become a passionate advocate for the electric revolution, embracing the instant torque and low-maintenance fun they offer. Ricky combines his technical know-how with a love for teaching, breaking down complex topics into easy-to-understand advice. His mission is to help new riders and families confidently and safely enter the exciting world of off-road riding. When he's not writing, you'll find him exploring new trails or building backyard tracks with his kids.</p>",
+            "title_size": 36,
+            "content_font_size": 16,
+            "content_line_height": 1.6,
+            "heading_color": "#000000",
+            "heading_accent_color": "#db2335",
+            "text_color": "#333333",
+            "link_color": "#0066cc",
+            "link_hover_color": "#004499",
+            "meta_color": "#666666",
+            "price_color": "#000000",
+            "border_color": "#e5e5e5",
+            "sidebar_background_color": "#f8f8f8",
+            "author_background_color": "#f8f8f8",
+            "tag_background_color": "#ffffff",
+            "tag_text_color": "#333333",
+            "blockquote_background": "#f9f9f9",
+            "blockquote_text_color": "#555555",
+            "code_background": "#f4f4f4",
+            "code_text_color": "#333333",
+            "table_background": "#ffffff",
+            "table_header_background": "#f8f8f8",
+            "table_header_text_color": "#333333",
+            "border_radius": 8
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_812bae4_z9WU4y"
+      ],
+      "name": "Blog post - Ricky",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "navigation": {
+          "type": "navigation",
+          "settings": {}
+        },
+        "comments": {
+          "type": "comments",
+          "settings": {
+            "show_gravatar": true,
+            "comments_per_page": 5
+          }
+        }
+      },
+      "block_order": [
+        "navigation",
+        "comments"
+      ],
+      "disabled": true,
+      "settings": {
+        "allow_transparent_header": false,
+        "layout": "content_first",
+        "show_author": true,
+        "show_date": true,
+        "show_comments_count": true,
+        "show_share_buttons": true,
+        "banner_background": "",
+        "banner_text_color": "",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "content_width": "750px"
+      }
+    },
+    "blog-comment": {
+      "type": "blog-comment",
+      "blocks": {
+        "comments": {
+          "type": "comments",
+          "settings": {
+            "show_gravatar": true,
+            "comments_per_page": 5
+          }
+        }
+      },
+      "block_order": [
+        "comments"
+      ],
+      "settings": {
+        "allow_transparent_header": false,
+        "layout": "content_first",
+        "show_author": true,
+        "show_date": true,
+        "show_comments_count": true,
+        "show_share_buttons": true,
+        "banner_background": "",
+        "banner_text_color": "",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "content_width": "750px"
+      }
+    }
+  },
+  "order": [
+    "1755451287074e244d",
+    "main",
+    "blog-comment"
+  ]
+}

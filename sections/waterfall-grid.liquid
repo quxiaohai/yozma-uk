@@ -1,0 +1,290 @@
+  <style>
+    #shopify-section-{{ section.id }} {
+      {% if section.settings.remove_vertical_spacing %}--section-spacing-block: 0px;{% endif %}
+      {% if section.settings.remove_horizontal_spacing %}--section-spacing-inline: 0px;{% endif %}
+    }
+    #shopify-section-{{ section.id }}.sticky-section{
+      z-index: 9;
+      position: sticky;
+    }
+  </style>
+
+  {%- render 'section-spacing-collapsing' -%}
+
+  {%- assign specs = product.metafields.custom.specifications.value -%}
+
+  <div>
+
+      <div {% render 'surface', class: 'newsletter-box', background: section.settings.background, background_gradient: section.settings.background_gradient, background_fallback: 'bg-secondary', text_color: section.settings.text_color %}>
+        {% for i in (0..7) %}
+          {% if specs.title_list.value[i] != blank and specs.content_list.value[i] != blank %}
+            <div forloop="{{i}}" class="item 2xl:tw-w-auto lg:tw-w-1/4 md:tw-w-1/3 tw-w-1/2 md:tw-p-0 tw-p-1 2xl:tw-flex-1 {% if forloop.last %}tw-block md:tw-hidden {% endif %}">
+              <div class="tw-p-2 tw-h-full tw-text-center">
+                <div class="md:tw-w-1/4 tw-w-1/5 tw-shrink-0 tw-text-center tw-mx-auto">
+                  {% for url in specs.icon_list.value %}
+                    {% assign i2 = forloop.index | minus: 1 %}
+                    {% if i2 == i %}
+                      {{- url | image_url: width: url.width | image_tag: loading: 'lazy', class: 'image-icon' -}} 
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <div class="item-content tw-flex tw-flex-col"> 
+                  <p class="2xl:tw-text-2xl md:tw-text-xl tw-text-lg tw-font-semibold tw-mb-0">{{ specs.title_list.value[i] }} </p>
+                  <p class="tw-text-stone-700 tw-whitespace-nowrap">{{ specs.content_list.value[i] }} </p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+
+
+
+      </div>
+
+  </div>
+
+
+
+{% schema %}
+{
+  "name": "Waterfall grid",
+  "class":"waterfall-section",
+  "settings": [
+    {
+    "type": "header",
+    "content": "Section interval set"
+    },
+    {
+      "type": "select",
+      "id": "top_padding",
+      "label": "Top padding (PC)",
+      "default": "md", 
+      "options": [
+        {
+          "value": "xl",
+          "label": "xl"
+        },
+        {
+          "value": "lg",
+          "label": "Default"
+        },
+        {
+          "value": "md",
+          "label": "md"
+        },
+        {
+          "value": "sm",
+          "label": "sm"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "bottom_padding",
+      "label": "Bottom padding (PC)",
+      "default": "md",
+      "options": [
+        {
+          "value": "xl",
+          "label": "xl"
+        },
+        {
+          "value": "lg",
+          "label": "lg"
+        },
+        {
+          "value": "md",
+          "label": "md"
+        },
+        {
+          "value": "sm",
+          "label": "sm"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "top_margin",
+      "label": "Top margin (PC)",
+      "default": "md",
+      "options": [
+        {
+          "value": "xl",
+          "label": "xl"
+        },
+        {
+          "value": "lg",
+          "label": "Default"
+        },
+        {
+          "value": "md",
+          "label": "md"
+        },
+        {
+          "value": "sm",
+          "label": "sm"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "bottom_margin",
+      "label": "Bottom margin (PC)",
+      "default": "md",
+      "options": [
+        {
+          "value": "xl",
+          "label": "xl"
+        },
+        {
+          "value": "lg",
+          "label": "lg"
+        },
+        {
+          "value": "md",
+          "label": "md"
+        },
+        {
+          "value": "sm",
+          "label": "sm"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "top_padding_mb",
+      "label": "Top padding (Mobile)",
+      "default": "md", 
+      "options": [
+        {
+          "value": "xl",
+          "label": "xl"
+        },
+        {
+          "value": "lg",
+          "label": "lg"
+        },
+        {
+          "value": "md",
+          "label": "md"
+        },
+        {
+          "value": "sm",
+          "label": "sm"
+        },
+        {
+          "value": "none",
+          "label": "none"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "bottom_padding_mb",
+      "label": "Bottom padding (Mobile)",
+      "default": "md",
+      "options": [
+        {
+          "value": "xl",
+          "label": "xl"
+        },
+        {
+          "value": "lg",
+          "label": "lg"
+        },
+        {
+          "value": "md",
+          "label": "md"
+        },
+        {
+          "value": "sm",
+          "label": "sm"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "top_margin_mb",
+      "label": "Top margin (Mobile)",
+      "default": "md",
+      "options": [
+        {
+          "value": "xl",
+          "label": "xl"
+        },
+        {
+          "value": "lg",
+          "label": "lg"
+        },
+        {
+          "value": "md",
+          "label": "md"
+        },
+        {
+          "value": "sm",
+          "label": "sm"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "bottom_margin_mb",
+      "label": "Bottom margin (Mobile)",
+      "default": "md",
+      "options": [
+        {
+          "value": "xl",
+          "label": "xl"
+        },
+        {
+          "value": "lg",
+          "label": "lg"
+        },
+        {
+          "value": "md",
+          "label": "md"
+        },
+        {
+          "value": "sm",
+          "label": "sm"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Customize",
+      "name": "Waterfall grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,744 @@
+{%- assign ss = section.settings -%}
+<style>
+    .main-community-video {
+        background: #ffffff;
+        width: 100%;
+        padding: 40px 0;
+    }
+
+    .main-community-video .title {
+        margin: 0 auto;
+        width: 100%;
+        text-align: left;
+        font-size: 48px;
+        font-weight: 600;
+        line-height: 1.2;
+        color: #181623;
+        word-break: break-word;
+        padding-bottom: 40px;
+    }
+
+    .main-community-video .title strong {
+        background: linear-gradient(103deg, #ff0000 24.76%, #e84a4a 49.15%, #5433eb 88.19%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .main-community-video .media-content {
+        width: 100%;
+    }
+
+    .main-community-video .media-content.light .tns-controls .slider-prev,
+    .main-community-video .media-content.light .tns-controls .slider-next {
+        background-color: #ffffff;
+    }
+
+    .main-community-video .media-content.light .tns-controls .slider-prev .icon path,
+    .main-community-video .media-content.light .tns-controls .slider-next .icon path {
+        fill: #333333;
+        transition: fill 0.5s;
+    }
+
+    .main-community-video .media-content.light .tns-controls .slider-prev:not([disabled]):hover,
+    .main-community-video .media-content.light .tns-controls .slider-next:not([disabled]):hover {
+        background-color: #4a4a4a;
+    }
+
+    .main-community-video .media-content.light .tns-controls .slider-prev:not([disabled]):hover .icon path,
+    .main-community-video .media-content.light .tns-controls .slider-next:not([disabled]):hover .icon path {
+        fill: #ffffff;
+    }
+
+    .main-community-video .media-content .tns-liveregion {
+        display: none;
+    }
+
+    .main-community-video .media-content .video-slide .media-item {
+        width: 100%;
+        aspect-ratio: 77 / 118;
+        border-radius: 16px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .main-community-video .media-content .video-slide .media-item.off > .image {
+        opacity: 0;
+    }
+
+    .main-community-video .media-content .video-slide .media-item.play .content .desc {
+        opacity: 0;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .play {
+        position: absolute;
+        top: 29px;
+        right: 20px;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        cursor: pointer;
+        z-index: 3;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .play .svg-icon {
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .play .svg-icon.hide {
+        display: none;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .play .svg-icon * {
+        transition: all 0.3s;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .play:hover .svg-icon circle {
+        stroke-opacity: 1;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .play .progress-circle,
+    .main-community-video .media-content .video-slide .media-item .play .progress-circle-bg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .play .progress-circle .svg-circle,
+    .main-community-video .media-content .video-slide .media-item .play .progress-circle-bg .svg-circle {
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .play .progress-circle .progress-bar,
+    .main-community-video .media-content .video-slide .media-item .play .progress-circle-bg .progress-bar {
+        transition: stroke-dashoffset 200ms linear;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .play .progress-circle {
+        z-index: 2;
+    }
+
+    .main-community-video .media-content .video-slide .media-item > .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.5s;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .content .user {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .content .user .photo {
+        background: #FFFFFF;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        padding: 1px;
+        margin-right: 18px;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .content .user .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .content .name,
+    .main-community-video .media-content .video-slide .media-item .content .desc {
+        line-height: 1.2;
+        font-weight: 600;
+        color: #ffffff;
+        word-break: break-word;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .content .name {
+        font-size: 20px;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .content .quotation-mark {
+        padding-bottom: 12px;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .content .quotation-mark .svg-icon {
+        width: 20px;
+        height: 18px;
+    }
+
+    .main-community-video .media-content .video-slide .media-item .content .desc {
+        font-size: 16px;
+        transition: opacity 0.5s;
+        padding: 20px;
+        box-sizing: border-box;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) -0.13%, rgba(4, 0, 0, 0.36) 49.94%, rgba(0, 0, 0, 0.72) 100%);
+        backdrop-filter: blur(1px);
+    }
+
+    .main-community-video .media-content .tns-controls {
+        padding-top: 34px;
+        gap: 20px;
+    }
+
+    .main-community-video .media-content .tns-controls > button[disabled] {
+        opacity: 0.3;
+    }
+
+    .main-community-video .media-content .tns-controls .slider-prev,
+    .main-community-video .media-content .tns-controls .slider-next {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #4a4a4a;
+        transition: background-color 0.5s;
+    }
+
+    .main-community-video .media-content .tns-controls .slider-prev:not([disabled]):hover,
+    .main-community-video .media-content .tns-controls .slider-next:not([disabled]):hover {
+        background-color: #000000;
+    }
+
+    .main-community-video .media-content .tns-controls .slider-prev .icon,
+    .main-community-video .media-content .tns-controls .slider-next .icon {
+        width: 40%;
+        height: 40%;
+    }
+
+    @media screen and (max-width: 1696px) {
+        .main-community-video {
+            padding: 36px 0;
+        }
+
+        .main-community-video .title {
+            font-size: 43.2px;
+            padding-bottom: 36px;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .main-community-video {
+            padding: 2.5rem 0;
+        }
+
+        .main-community-video .title {
+            width: 87.6923076923vw;
+            font-size: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .main-community-video .media-content .video-slide .media-item .play {
+            transform: translate3d(0, 0, 0);
+            top: 1.25rem;
+            left: auto;
+            right: 1rem;
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .main-community-video .media-content .video-slide .media-item .content .user .photo {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin-right: 1rem;
+        }
+
+        .main-community-video .media-content .video-slide .media-item .content .name {
+            font-size: 1rem;
+        }
+
+        .main-community-video .media-content .video-slide .media-item .content .desc {
+            padding: 1rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .main-community-video .media-content .video-slide .media-item .content .desc .quotation-mark {
+            padding-bottom: 0.5rem;
+        }
+
+        .main-community-video .media-content .video-slide .media-item .content .desc .quotation-mark .svg-icon {
+            width: 1rem;
+            height: 0.875rem;
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="main-community-video section--page" id="{{ section.id }}-video">
+    <div class="media-content {{ ss.theme }} page-container">
+        {%- if ss.show_title -%}
+            <h3 class="title" style="color: {{ ss.title_color }};">{{ ss.title }}</h3>
+        {%- endif -%}
+        <div class="tw-overflow-hidden video-inner tns-inner tw-relative">
+            <div id="multicolumn-slide-{{ section.id }}" class="video-slide tns-slider tw-flex">
+                {%- for block in section.blocks -%}
+                    {%- assign bs = block.settings -%}
+                    <div class="tns-item">
+                        <div class="media-item">
+                            {% render 'global-image',
+                                desktop_img: bs.desktop_image,
+                                desktop_size: 300,
+                                mobile_img: bs.mobile_image,
+                                mobile_size: 350
+                            %}
+                            {%- if bs.video_desktop != blank or bs.video_mobile != blank -%}
+                                {%- assign index = forloop.index0 -%}
+                                {%- liquid
+                                    assign pc_video = 'pc_video_' | append: index
+                                    assign mb_video = 'mb_video_' | append: index
+                                -%}
+                                {% render 'global-video',
+                                    desktop_video: bs.video_desktop,
+                                    desktop_cover: bs.desktop_image,
+                                    desktop_size: 300,
+                                    desktop_node: pc_video,
+                                    mobile_video: bs.video_mobile,
+                                    mobile_cover: bs.mobile_image,
+                                    mobile_size: 350,
+                                    mobile_node: mb_video,
+                                    muted: bs.muted
+                                %}
+                                <div
+                                    data-type="video"
+                                    node-name="play"
+                                    data-index="{{ index }}"
+                                    class="play flex-center">
+                                    <svg
+                                        node-name="play_{{ index }}"
+                                        class="svg-icon"
+                                        xmlns="http://www.w3.org/2000/svg" width="38" height="38"
+                                        viewBox="0 0 38 38" fill="none">
+                                        <path
+                                            d="M27.5 18.134C28.1667 18.5189 28.1667 19.4811 27.5 19.866L15.5 26.7942C14.8333 27.1791 14 26.698 14 25.9282L14 12.0718C14 11.302 14.8333 10.8209 15.5 11.2058L27.5 18.134Z"
+                                            fill="white"/>
+                                    </svg>
+                                    <svg
+                                        node-name="pause_{{ index }}"
+                                        class="svg-icon hide" viewBox="0 0 48 48"
+                                        xmlns="http://www.w3.org/2000/svg" fill="#ffffff"
+                                        stroke="#ffffff" stroke-width="0">
+                                        <rect x="17" y="15" width="4" height="18" rx="2" ry="2"></rect>
+                                        <rect x="27" y="15" width="4" height="18" rx="2" ry="2"></rect>
+                                    </svg>
+                                    <div class="progress-circle-bg">
+                                        <svg class="svg-circle" viewBox="0 0 101 101">
+                                            <circle cx="50.5" cy="50.5" r="48" fill="none" stroke="#ffffff"
+                                                    stroke-width="5"
+                                                    stroke-opacity="0.4"
+                                                    stroke-dasharray="301.44" stroke-dashoffset="0"></circle>
+                                        </svg>
+                                    </div>
+                                    <div class="progress-circle">
+                                        <svg class="svg-circle" viewBox="0 0 101 101">
+                                            <circle
+                                                node-name="bar_{{ index }}"
+                                                class="progress-bar" cx="50.5" cy="50.5" r="48" fill="none"
+                                                stroke="#ffffff"
+                                                stroke-width="5"
+                                                stroke-dasharray="301.44"
+                                                stroke-dashoffset="301.44"></circle>
+                                        </svg>
+                                    </div>
+                                </div>
+                            {%- else -%}
+                                <div
+                                    node-name="play"
+                                    data-type="youtube"
+                                    data-index="{{ index }}"
+                                    class="play flex-center">
+                                    <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="38"
+                                         height="38"
+                                         viewBox="0 0 38 38"
+                                         fill="none">
+                                        <circle cx="19" cy="19" r="18" stroke="white" stroke-opacity="0.4"
+                                                stroke-width="2"/>
+                                        <path
+                                            d="M27.5 18.134C28.1667 18.5189 28.1667 19.4811 27.5 19.866L15.5 26.7942C14.8333 27.1791 14 26.698 14 25.9282L14 12.0718C14 11.302 14.8333 10.8209 15.5 11.2058L27.5 18.134Z"
+                                            fill="white"/>
+                                    </svg>
+                                </div>
+                            {%- endif -%}
+                            <div class="content">
+                                {%- if ss.show_profile -%}
+                                    <div class="user flex-left">
+                                        <div class="photo">
+                                            {% render 'global-image',
+                                                desktop_img: bs.profile_image,
+                                                desktop_size: 200,
+                                                media_type: 'icon'
+                                            %}
+                                        </div>
+                                        <div class="name" style="color: {{ bs.title_color }};">{{ bs.title }}</div>
+                                    </div>
+                                {%- endif -%}
+                                {%- if ss.show_text -%}
+                                    <div class="desc" style="color: {{ bs.text_color }};">
+                                        {%- if bs.show_mark -%}
+                                            <div class="quotation-mark flex-left">
+                                                <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="16"
+                                                     height="15"
+                                                     viewBox="0 0 16 15" fill="none">
+                                                    <path
+                                                        d="M3.74768 14.0739C2.71344 14.0739 1.85696 13.6699 1.17824 12.8619C0.499516 12.0216 0.160156 10.7773 0.160156 9.12896C0.160156 6.7696 0.822716 4.78192 2.14784 3.16592C3.47296 1.54991 5.16976 0.547995 7.23824 0.160156V2.87504C4.84656 3.58607 3.55376 5.16975 3.35984 7.62608H3.74768C4.65264 7.62608 5.37984 7.93312 5.92928 8.5472C6.51104 9.16127 6.80192 9.92079 6.80192 10.8258C6.80192 11.7307 6.51104 12.5064 5.92928 13.1528C5.37984 13.7669 4.65264 14.0739 3.74768 14.0739ZM12.3771 14.0739C11.3429 14.0739 10.4864 13.6699 9.80768 12.8619C9.12896 12.0216 8.7896 10.7773 8.7896 9.12896C8.7896 6.7696 9.45216 4.78192 10.7773 3.16592C12.1024 1.54991 13.7992 0.547995 15.8677 0.160156V2.87504C13.476 3.58607 12.1832 5.16975 11.9893 7.62608H12.3771C13.2821 7.62608 14.0093 7.93312 14.5587 8.5472C15.1405 9.16127 15.4314 9.92079 15.4314 10.8258C15.4314 11.7307 15.1405 12.5064 14.5587 13.1528C14.0093 13.7669 13.2821 14.0739 12.3771 14.0739Z"
+                                                        fill="white"/>
+                                                </svg>
+                                            </div>
+                                        {%- endif -%}
+                                        {{ bs.text }}
+                                    </div>
+                                {%- endif -%}
+                            </div>
+                        </div>
+                    </div>
+                {%- endfor -%}
+            </div>
+            <div id="{{ section.id }}-controls" class="tns-controls desktop-done flex-right"
+                 aria-label="Carousel Navigation" tabindex="0">
+                <button class="slider-prev flex-center" type="button" data-controls="prev" tabindex="-1"
+                        aria-controls="base">
+                    <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                        <path
+                            d="M783.128464 97.117329L363.044017 511.98592l420.068448 414.868592a56.398449 56.398449 0 0 1 0 80.461787 58.110402 58.110402 0 0 1-81.46976 0l-460.787328-455.107485a56.398449 56.398449 0 0 1 0-80.445787l460.787328-455.107485a58.110402 58.110402 0 0 1 81.46976 0 56.398449 56.398449 0 0 1 0 80.461787z"
+                            fill="#ffffff"
+                        ></path>
+                    </svg>
+                </button>
+                <button class="slider-next flex-center" type="button" data-controls="next" tabindex="-1"
+                        aria-controls="base">
+                    <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="200"
+                         height="200">
+                        <path
+                            d="M240.871694 97.117314a56.39844 56.39844 0 0 1 0-80.461775 58.110393 58.110393 0 0 1 81.469746 0l460.787257 455.107414a56.39844 56.39844 0 0 1 0 80.445775L322.34144 1007.332141a58.110393 58.110393 0 0 1-81.469746 0 56.39844 56.39844 0 0 1 0-80.461775L660.956076 511.98584 240.871694 97.117314z"
+                            fill="#ffffff"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{%- if section.blocks.size > 0 -%}
+    <script>
+        (function () {
+            const node = document.getElementById('{{ section.id }}-video');
+            let nodeList = $heybike.getNodeList(node);
+
+            const onPlay = (elem, code) => {
+                const parent = elem.parentNode;
+                parent.innerHTML = code;
+                const iframe_elem = parent.querySelector("iframe");
+                if (!iframe_elem) {
+                    return false;
+                }
+                const iframe_src = iframe_elem.getAttribute("src");
+                let url_char = "&";
+                if (iframe_src.indexOf("?") < 0) {
+                    url_char = "?";
+                }
+
+                parent.classList.add("off");
+                iframe_elem.setAttribute("src", `${iframe_src}${url_char}autoplay=1&v=${Date.now()}`);
+            };
+
+            const youtubeList = [
+                {%- for block in instagramList -%}
+                {%- assign bs = block.settings -%}
+                `{{ bs.video_youtube }}`,
+                {%- endfor -%}
+            ];
+
+            let timer = null;
+            let isPlay = false;
+            let current = 0;
+            const progressList = [{% for v in (1..section.blocks.size) %}{num: 1}{% if forloop.last != true %},{% endif %}{% endfor %}];
+            const updateProgress = (percentage) => {
+                progressList[current].num = percentage;
+                nodeList[`bar_${current}`].style.strokeDashoffset = (1 - percentage / 100) * 301.44;
+            };
+
+            const onVideoPlay = () => {
+                const type = $heybike.isMobile ? "mb" : "pc";
+                const elem = nodeList[`${type}_video_${current}`];
+                elem.parentNode.classList.add("off");
+                elem.parentNode.classList.add("play");
+                elem.play()
+                    .then(res => {
+                        console.log("播放成功");
+                        startPro(elem.duration);
+                        nodeList[`play_${current}`].classList.add("hide");
+                        nodeList[`pause_${current}`].classList.remove("hide");
+                        isPlay = true;
+                    }).catch(err => {
+                    console.log("播放失败", err);
+                    isPlay = false;
+                });
+            };
+
+            const onVideoPause = () => {
+                const type = $heybike.isMobile ? "mb" : "pc";
+                const elem = nodeList[`${type}_video_${current}`];
+                nodeList[`play_${current}`].classList.remove("hide");
+                nodeList[`pause_${current}`].classList.add("hide");
+                elem.pause();
+                isPlay = false;
+                if (progressList[current].num === 0) {
+                    elem.currentTime = 0; // 将视频的当前播放时间设置为0秒
+                }
+                elem.parentNode.classList.remove("play");
+                clearTimeout(timer);
+            };
+            const startPro = (duration) => {
+                let i = progressList[current].num;
+                const type = $heybike.isMobile ? "mb" : "pc";
+                clearInterval(timer);
+                updateProgress(i, type);
+                setTimeout(() => {
+                    nodeList[`bar_${current}`].style.transitionDuration = `${duration * 10}ms`;
+                }, duration * 10);
+                timer = setInterval(() => {
+                    if (i >= 100) {
+                        endPro();
+                        if (isPlay) {
+                            onVideoPause();
+                        }
+                        return false;
+                    }
+                    i++;
+                    updateProgress(i, type);
+                }, duration * 10);
+            };
+
+            const endPro = () => {
+                nodeList[`bar_${current}`].style.transitionDuration = "0ms";
+                updateProgress(0);
+                clearInterval(timer);
+            };
+
+            nodeList.play.forEach(elem => {
+                elem.addEventListener("click", ev => {
+                    ev.stopPropagation();
+                    const index = Number(elem.dataset.index);
+                    if (elem.dataset.type === "video") {
+                        if (current !== index && isPlay) {
+                            onVideoPause();
+                        }
+
+                        current = index;
+                        if (isPlay) {
+                            onVideoPause();
+                        } else {
+                            onVideoPlay();
+                        }
+                    } else {
+                        onPlay(elem, youtubeList[index]);
+                    }
+                });
+            });
+
+            const tnsElem = document.getElementById('multicolumn-slide-{{ section.id }}');
+            $heybike.inView(tnsElem, () => {
+                $heybike.load({type: 'TNS'}, tns => {
+                    tns({
+                        container: tnsElem,
+                        items: 1.25,
+                        loop: false,
+                        gutter: 12,
+                        nav: false,
+                        preventScrollOnTouch: true,
+                        mouseDrag: true,
+                        controls: true,
+                        controlsContainer: '#{{ section.id }}-controls',
+                        responsive: {
+                            1023: {
+                                items: 3,
+                                gutter: 20
+                            },
+                            1280: {
+                                items: 4,
+                                gutter: 20
+                            }
+                        }
+                    });
+                });
+            }, {margin: '500px 0px 500px 0px'})
+        })();
+    </script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "MC Community Video",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Community Video"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Rider Reviews:<br/><strong>What Experts Are Saying</strong></p>"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "theme",
+      "label": "Button theme",
+      "options": [
+        {
+          "value": "dark",
+          "label": "Dark"
+        },
+        {
+          "value": "light",
+          "label": "Light"
+        }
+      ],
+      "default": "dark"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "media",
+      "name": "Media",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop video cover"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile video cover"
+        },
+        {
+          "type": "checkbox",
+          "id": "muted",
+          "label": "Disable muted",
+          "default": true
+        },
+        {
+          "type": "video",
+          "id": "video_desktop",
+          "label": "Video (Desktop)"
+        },
+        {
+          "type": "video",
+          "id": "video_mobile",
+          "label": "Video (Mobile)"
+        },
+        {
+          "type": "textarea",
+          "id": "video_youtube",
+          "label": "Instagram Embed Code",
+          "info": "Will replace .mp4 video"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_mark",
+          "label": "Show mark",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_text",
+          "label": "Show text",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_profile",
+          "label": "Show profile",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "profile_image",
+          "label": "Profile Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Profile Username"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Profile Username color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,319 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "image_with_text_overlay_8Xqrme": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "subheading_eGLE3W": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_YWJW4z": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "text": "Rock your rideImage with text overlay",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_tUbGhb": {
+          "type": "richtext",
+          "settings": {
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "subheading_eGLE3W",
+        "heading_YWJW4z",
+        "richtext_tUbGhb"
+      ],
+      "disabled": true,
+      "name": "Image with text overlay",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "enable_parallax": false,
+        "image_size": "auto",
+        "image": "shopify://shop_images/pc_kv.png",
+        "mobile_image": "shopify://shop_images/kv.png",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
+    },
+    "images_with_text_scrolling_dQr4V3": {
+      "type": "images-with-text-scrolling",
+      "blocks": {
+        "item_M8chi4": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/mohammad-reza-LXPjN6U_2J8-unsplash.jpg",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Spark the Charge",
+            "content": "<p>In a world that tells you to blend in, Yozma was made to stand out. We started with a simple question: Why settle for overpriced gas bikes, slow e-scooters, and cookie-cutter designs? So we built something better, electric performance with real personality. We knew the next generation deserved better.</p>"
+          }
+        },
+        "item_GkTw9j": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/jordan-andrews-L-Ospt4R0Ns-unsplash.jpg",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "You Were Built to Move Different",
+            "content": "<p>The streets don’t wait, and neither should you. Yozma delivers power you can feel and silence you’ll love. Instant torque. Zero emissions. Low noise. Just smooth, responsive acceleration that lets you own the city, from alleyways to wide-open boulevards. You weren’t made to blend in– you want a ride that speaks. More speed. More style. More freedom. You care about the planet and how you show up. So do we. Yozma reflects both. The frame? Sleek. The tech? Smart. Every detail is engineered for mobility without compromise.</p>"
+          }
+        },
+        "item_rNLqVi": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/photo-44_3.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "The Yozma Mindset",
+            "content": "<p>You’re not just getting from A to B. You’re moving with purpose, on your terms. With power. With edge. You don’t follow the crowd, you lead it. You zig when others zag. You ride different. That’s why Yozma exists: for the outsiders, the creators, the ones who carve their own path—louder, cleaner, sharper. Every detail is designed to move like you do—fast, bold, and without compromise. No noise. No emissions. Just instant power and a look that turns heads at every stoplight. Your ride should match your mindset: sharp, bold, and unapologetically you. Yozma isn’t just a bike. It’s your story in motion. You’re not just getting there. You’re making every second count.</p>"
+          }
+        },
+        "item_t6bMBF": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/tristan-frank-YeR-mNtYgkg-unsplash.jpg",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Join the Charge",
+            "content": "<p>Yozma is more than a brand– it’s a community charging forward one ride, one run, one breakthrough at a time. A crew of electric-first riders who believe in smarter movement, bolder design, and owning every block like a boss. You bring the fire. Yozma fuels the ride. So plug in, power up, and ride the future your way. Yozma: Rock Your Ride.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_M8chi4",
+        "item_GkTw9j",
+        "item_rNLqVi",
+        "item_t6bMBF"
+      ],
+      "name": "Images and text scrolling",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "show_counter": true,
+        "desktop_image_effect": "reveal",
+        "image_position": "end",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "rich_text_c7gHrJ": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_NhVJgT": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_DV6NUM": {
+          "type": "heading",
+          "settings": {
+            "text": "Spark the Charge",
+            "heading_tag": "h3",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_A7T7fD": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>In a world that tells you to blend in, Yozma was made to stand out. We started with a simple question: Why settle for overpriced gas bikes, slow e-scooters, and cookie-cutter designs? So we built something better, electric performance with real personality. We knew the next generation deserved better.</p>",
+            "content_pc_size": 16,
+            "content_mb_size": 14
+          }
+        }
+      },
+      "block_order": [
+        "subheading_NhVJgT",
+        "heading_DV6NUM",
+        "richtext_A7T7fD"
+      ],
+      "disabled": true,
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "large",
+        "text_position": "center",
+        "text_font_style": "normal",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "rich_text_W4XMAQ": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_ecMFDx": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_CtKVVf": {
+          "type": "heading",
+          "settings": {
+            "text": "You Were Built to Move Different",
+            "heading_tag": "h3",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_xdHfTQ": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>The streets don’t wait, and neither should you. Yozma delivers power you can feel and silence you’ll love. Instant torque. Zero emissions. No noise. Just smooth, responsive acceleration that lets you own the city, from alleyways to wide-open boulevards. You weren’t made to blend in– you want a ride that speaks. More speed. More style. More freedom. You care about the planet and how you show up. So do we. Yozma reflects both. The frame? Sleek. The tech? Smart. Every detail is engineered for mobility without compromise.</p>",
+            "content_pc_size": 16,
+            "content_mb_size": 14
+          }
+        }
+      },
+      "block_order": [
+        "subheading_ecMFDx",
+        "heading_CtKVVf",
+        "richtext_xdHfTQ"
+      ],
+      "disabled": true,
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "large",
+        "text_position": "center",
+        "text_font_style": "normal",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "rich_text_Lwiw9i": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_kWfnUb": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_mwbcyt": {
+          "type": "heading",
+          "settings": {
+            "text": "The Yozma Mindset",
+            "heading_tag": "h3",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_zMhK7A": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>You’re not just getting from A to B. You’re moving with purpose, on your terms. With power. With edge. You don’t follow the crowd, you lead it. You zig when others zag. You ride different. That’s why Yozma exists: for the outsiders, the creators, the ones who carve their own path—louder, cleaner, sharper. Every detail is designed to move like you do—fast, bold, and without compromise. No noise. No emissions. Just instant power and a look that turns heads at every stoplight. Your ride should match your mindset: sharp, bold, and unapologetically you. Yozma isn’t just a bike. It’s your story in motion. You’re not just getting there. You’re making every second count.</p>",
+            "content_pc_size": 16,
+            "content_mb_size": 14
+          }
+        }
+      },
+      "block_order": [
+        "subheading_kWfnUb",
+        "heading_mwbcyt",
+        "richtext_zMhK7A"
+      ],
+      "disabled": true,
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "large",
+        "text_position": "center",
+        "text_font_style": "normal",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "rich_text_8PPe4V": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_YdBFq8": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_xBjE49": {
+          "type": "heading",
+          "settings": {
+            "text": "Join the Charge",
+            "heading_tag": "h3",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_RQrzqc": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Yozma is more than a brand– it’s a community charging forward one ride, one run, one breakthrough at a time. A crew of electric-first riders who believe in smarter movement, bolder design, and owning every block like a boss. You bring the fire. Yozma fuels the ride. So plug in, power up, and ride the future your way. Yozma: Rock Your Ride.</p>",
+            "content_pc_size": 16,
+            "content_mb_size": 14
+          }
+        }
+      },
+      "block_order": [
+        "subheading_YdBFq8",
+        "heading_xBjE49",
+        "richtext_RQrzqc"
+      ],
+      "disabled": true,
+      "name": "Rich text",
+      "settings": {
+        "full_width": true,
+        "content_width": "large",
+        "text_position": "center",
+        "text_font_style": "normal",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_overlay_8Xqrme",
+    "images_with_text_scrolling_dQr4V3",
+    "rich_text_c7gHrJ",
+    "rich_text_W4XMAQ",
+    "rich_text_Lwiw9i",
+    "rich_text_8PPe4V"
+  ]
+}
