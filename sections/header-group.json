@@ -142,7 +142,16 @@
           "type": "country_select",
           "settings": {
             "country_name": "England",
-            "country_code": "GB"
+            "country_code": "GB",
+            "country_url": ""
+          }
+        },
+        "country_select_Hm9xjY": {
+          "type": "country_select",
+          "settings": {
+            "country_name": "Europe",
+            "country_code": "EUROPE",
+            "country_url": "https://eu.yozmasport.com/"
           }
         },
         "country_select_mkExeQ": {
@@ -160,21 +169,13 @@
             "country_code": "CA",
             "country_url": "https://ca.yozmasport.com/"
           }
-        },
-        "country_select_Hm9xjY": {
-          "type": "country_select",
-          "settings": {
-            "country_name": "Europe",
-            "country_code": "EUROPE",
-            "country_url": "https://eu.yozmasport.com/"
-          }
         }
       },
       "block_order": [
         "country_select_Hm9xjS",
+        "country_select_Hm9xjY",
         "country_select_mkExeQ",
-        "country_select_48xPMD",
-        "country_select_Hm9xjY"
+        "country_select_48xPMD"
       ],
       "settings": {
         "enable_sticky": true,
