@@ -680,10 +680,12 @@
           }
         },
         "slide_iyDQ7j": {
-          "type": "slide",
+          "type": "slide_file",
           "settings": {
             "title": "User Manual",
-            "param_text": "<p>IN 10 <a href=\"https://cdn.shopify.com/s/files/1/0856/4303/4658/files/YOZMA_IN10_User_Manual_20250828_01ee5f3f-4413-473b-a53d-6c5da1531b58.pdf?v=1773718277\" target=\"_blank\" title=\"Yozma IN 10 User Manual\">User Manual.pdf</a></p>"
+            "file_title": "Yozma IN 10 User Manual",
+            "file_name": "User Manual.pdf",
+            "file_url": "https://cdn.shopify.com/s/files/1/0856/4303/4658/files/YOZMA_IN10_User_Manual_20250828_01ee5f3f-4413-473b-a53d-6c5da1531b58.pdf?v=1773718277"
           }
         }
       },
