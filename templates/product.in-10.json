@@ -325,6 +325,19 @@
             "page": ""
           }
         },
+        "collapsible_text_ECe7bD": {
+          "type": "collapsible_text",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "icon": "none",
+            "custom_icon": "shopify://shop_images/400w-TW5KDcHjgao.jpg",
+            "icon_width": 24,
+            "title": "Safety Reminder for Yozma Riders",
+            "content": "<p>To ensure a safe and responsible riding experience, please review these key guidelines before use:</p><ul><li><strong>Wear proper protective gear</strong>, including a helmet, elbow pads, and knee pads.</li><li><strong>Check essential components</strong> before each ride: brakes, tires, handlebar stability, and battery security/charge level.</li><li><strong>Select an appropriate speed mode</strong> based on the rider’s experience. Young riders and beginners should start with low-speed mode and follow all local regulations.</li><li><strong>Use the original charger only</strong>; avoid third-party charging devices. Unplug after charging or when not in use.</li><li><strong>No unauthorized modifications</strong>, as alterations may lead to safety risks or improper operation.</li></ul>",
+            "page": ""
+          }
+        },
         "text_BdLLAy": {
           "type": "text",
           "disabled": true,
@@ -370,6 +383,7 @@
         "collapsible_text_idrPXF",
         "collapsible_text_TDxfg9",
         "collapsible_text_wGUkgL",
+        "collapsible_text_ECe7bD",
         "text_BdLLAy",
         "share_buttons_yzh6EB"
       ],
