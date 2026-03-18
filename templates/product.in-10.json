@@ -1318,7 +1318,7 @@
           "settings": {
             "padding": "0px 0px 0px 0px",
             "mb_padding": "0px 0px 0px 0px",
-            "text": "<p>🍃 Spring Sale FAQ</p>",
+            "text": "<p><strong>Frequently asked questions</strong></p>",
             "image_height": 40,
             "mb_image_height": 32,
             "alignment": "left",
@@ -1353,8 +1353,8 @@
         "item_3CNzMi": {
           "type": "item",
           "settings": {
-            "title": "1. What is the Spring Sale period?",
-            "content": "<p>The Spring Sale runs from <strong>February 27 to March 15</strong>.</p>"
+            "title": "1.What is the top speed of the Yozma IN 10?",
+            "content": "<p>The Yozma IN 10 reaches up to 20KM/H  in the third speed mode.</p>"
           }
         },
         "item_4mT3Pq": {
