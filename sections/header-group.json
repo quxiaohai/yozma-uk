@@ -62,7 +62,7 @@
           "type": "message",
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
-            "text": "<p>IN 10: Up to £400 OFF — Ride for love, don’t miss out!</p>",
+            "text": "<p>IN 10: Up to £300 OFF — Ride for love, don’t miss out!</p>",
             "url": "shopify://products/in-10"
           }
         },
