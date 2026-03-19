@@ -70,7 +70,7 @@
           "type": "message",
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
-            "text": "<p>Buy Two IN 10 Save An Extra £800!</p>",
+            "text": "<p>Buy Two IN 10 Save More!</p>",
             "url": "shopify://products/in-10"
           }
         },
