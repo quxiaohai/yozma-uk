@@ -114,6 +114,16 @@
             "title": "Built to Stand Behind",
             "content": "<p>What you ride should be built with intention. At Yozma, we build what we believe in. Every model starts with our team, from design to performance tuning to the way it feels on the ride. Each bike is tested, refined, and fully assembled before it ever reaches you, shaped by real-world riding and attention to the details that matter. It's not just about how it looks, but how it performs, how it responds, and how it holds up over time. Because standing out isn't just something you say. It's something you build.</p>"
           }
+        },
+        "item_Jy7z3j": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/E232A98E-73BA-44E7-9EA2-BD6AE0113998.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Good Quality and Reliability",
+            "content": "<p>Units are assembled, inspected, and prepared in batches to maintain consistent quality and performance. From final checks to delivery readiness, every step is designed to ensure reliability from the moment your ride arrives.</p><p>After-sales Email: <a href=\"https://uk.yozmasport.com/pages/contact\" target=\"_blank\" title=\"Contact Us\"><strong>support.eu@yozmasport.com</strong></a></p><p>Marketing: marketing@yozmasport.com</p><p>Event: event@yozmasport.com</p><p>Business Time: 9:00 AM - 6:00 PM (Mon.-Fri. EST)</p>"
+          }
         }
       },
       "block_order": [
@@ -121,7 +131,8 @@
         "item_GkTw9j",
         "item_rNLqVi",
         "item_t6bMBF",
-        "item_izJGKN"
+        "item_izJGKN",
+        "item_Jy7z3j"
       ],
       "name": "Images and text scrolling",
       "settings": {
