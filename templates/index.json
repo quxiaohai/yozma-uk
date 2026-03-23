@@ -433,6 +433,7 @@
     },
     "mc_review_slide": {
       "type": "mc_review-slide",
+      "disabled": true,
       "name": "MC Review Slide",
       "settings": {
         "page_color": "#ffffff",
