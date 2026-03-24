@@ -290,8 +290,8 @@
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/cleantechnica-logo2.png",
-            "icon_url": "",
-            "content": "<p>On steep inclines, Yozma’s mid-drive climbs where hub motors struggle. It feels closer to a gas dirt bike than an e-commuter, which makes a massive difference for adventurous riders.</p>",
+            "icon_url": "https://cleantechnica.com/2025/09/11/power-meets-play-exploring-the-yozma-in-10-electric-dirt-bike/",
+            "content": "<p><a href=\"https://cleantechnica.com/2025/09/11/power-meets-play-exploring-the-yozma-in-10-electric-dirt-bike/\" target=\"_blank\" title=\"Clean Technica\">On steep inclines, Yozma’s mid-drive climbs where hub motors struggle. It feels closer to a gas dirt bike than an e-commuter, which makes a massive difference for adventurous riders.</a></p>",
             "remark": "Trusted by Industry Leading Media Worldwide"
           }
         },
