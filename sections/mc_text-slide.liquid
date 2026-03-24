@@ -134,13 +134,20 @@
         <div class="slide-box">
             <div class="icon-slide-items w-full flex-center">
                 {%- for block in section.blocks -%}
-                    {%- assign bs = block.settings -%}
-                    <div
+                    {%- liquid
+                        assign bs = block.settings
+                        assign tag = 'div'
+                        if bs.icon_url != blank
+                            assign tag = 'a'
+                        endif
+                    -%}
+                    <{{ tag }}
+                        {% if bs.icon_url != blank %}href="{{ bs.icon_url }}"{% endif %}
                         node-name="tab"
                         data-proxy="tab"
                         class="item flex-center cursor-pointer{% if forloop.first %} active{% endif %}">
                         {%- render 'global-image', image: bs.icon, image_size: 300 -%}
-                    </div>
+                    </{{ tag }}>
                 {%- endfor -%}
             </div>
             <div class="text-slide-items w-full">
@@ -329,6 +336,11 @@
           "type": "image_picker",
           "id": "icon",
           "label": "Icon"
+        },
+        {
+          "type": "url",
+          "id": "icon_url",
+          "label": "Icon url"
         },
         {
           "type": "richtext",
