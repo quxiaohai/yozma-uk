@@ -299,8 +299,8 @@
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/avrider-logo.jpg",
-            "icon_url": "",
-            "content": "<p>The 2600 W mid‑drive outperforms hub motors on steep terrain, delivering a riding experience closer to a gas dirt bike. Yozma IN 10 is for serious off-roaders, backyard explorers, and e-adventure pioneers alike.</p>",
+            "icon_url": "https://www.advrider.com/the-yozma-in-10-electric-dirt-bike/",
+            "content": "<p><a href=\"https://www.advrider.com/the-yozma-in-10-electric-dirt-bike/\" target=\"_blank\" title=\"Adventure Rider\">The 2600 W mid‑drive outperforms hub motors on steep terrain, delivering a riding experience closer to a gas dirt bike. Yozma IN 10 is for serious off-roaders, backyard explorers, and e-adventure pioneers alike.</a></p>",
             "remark": "Trusted by Industry Leading Media Worldwide"
           }
         },
