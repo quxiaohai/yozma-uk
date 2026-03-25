@@ -290,7 +290,8 @@
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/cleantechnica-logo2.png",
-            "content": "<p>On steep inclines, Yozma’s mid-drive climbs where hub motors struggle. It feels closer to a gas dirt bike than an e-commuter, which makes a massive difference for adventurous riders.</p>",
+            "icon_url": "https://cleantechnica.com/2025/09/11/power-meets-play-exploring-the-yozma-in-10-electric-dirt-bike/",
+            "content": "<p><a href=\"https://cleantechnica.com/2025/09/11/power-meets-play-exploring-the-yozma-in-10-electric-dirt-bike/\" target=\"_blank\" title=\"Clean Technica\">On steep inclines, Yozma’s mid-drive climbs where hub motors struggle. It feels closer to a gas dirt bike than an e-commuter, which makes a massive difference for adventurous riders.</a></p>",
             "remark": "Trusted by Industry Leading Media Worldwide"
           }
         },
@@ -298,7 +299,8 @@
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/avrider-logo.jpg",
-            "content": "<p>The 2600 W mid‑drive outperforms hub motors on steep terrain, delivering a riding experience closer to a gas dirt bike. Yozma IN 10 is for serious off-roaders, backyard explorers, and e-adventure pioneers alike.</p>",
+            "icon_url": "https://www.advrider.com/the-yozma-in-10-electric-dirt-bike/",
+            "content": "<p><a href=\"https://www.advrider.com/the-yozma-in-10-electric-dirt-bike/\" target=\"_blank\" title=\"Adventure Rider\">The 2600 W mid‑drive outperforms hub motors on steep terrain, delivering a riding experience closer to a gas dirt bike. Yozma IN 10 is for serious off-roaders, backyard explorers, and e-adventure pioneers alike.</a></p>",
             "remark": "Trusted by Industry Leading Media Worldwide"
           }
         },
@@ -306,7 +308,8 @@
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/2_ee77a665-3ae8-466a-9661-a69664cee74f.png",
-            "content": "<p>Combining serious performance with everyday usability, the Yozma Electric Dirt Bike stands out in the fast-growing e-dirt bike category. </p>",
+            "icon_url": "https://racerxonline.com/2025/11/25/introducing-the-yozma-electric-dirt-bike",
+            "content": "<p><a href=\"https://racerxonline.com/2025/11/25/introducing-the-yozma-electric-dirt-bike\" target=\"_blank\" title=\"Racer X Online\">Combining serious performance with everyday usability, the Yozma Electric Dirt Bike stands out in the fast-growing e-dirt bike category. </a></p>",
             "remark": "Trusted by Industry Leading Media Worldwide"
           }
         }
