@@ -4,6 +4,7 @@
         padding: 80px 0;
         background-color: #ffffff;
     }
+
     .mc_review-slide .title {
         font-weight: 900;
         font-size: 48px;
@@ -11,6 +12,7 @@
         line-height: 1.2;
         color: #000000;
     }
+
     .mc_review-slide .title .image {
         height: 26px;
         width: auto;
@@ -19,29 +21,36 @@
         left: -2px;
         bottom: -4px;
     }
+
     .mc_review-slide .more {
         --button-color: #fff;
         --button-size: 32px;
         --button-width: 201px;
     }
+
     .mc_review-slide .more:hover {
         --button-color: #d30000;
     }
+
     .mc_review-slide .review-wrapper {
         padding-top: 58px;
         min-height: 200px;
     }
+
     @media screen and (min-width: 1024px) and (max-width: 2600px) {
         .mc_review-slide .review-wrapper {
             padding-right: 0 !important;
         }
     }
+
     .mc_review-slide .__loading__ .review-items:before {
         display: block;
     }
+
     .mc_review-slide .review-items {
         gap: 0 20px;
     }
+
     .mc_review-slide .review-items:before {
         content: "";
         width: 100%;
@@ -52,13 +61,16 @@
         top: 0;
         display: none;
     }
+
     .mc_review-slide .review-item {
         border-radius: 8px;
         aspect-ratio: 0.737;
     }
+
     .mc_review-slide .review-item:hover .info-wrap {
         transform: translateY(0);
     }
+
     .mc_review-slide .review-item .info-wrap {
         left: 0;
         bottom: 0;
@@ -67,10 +79,12 @@
         transform: translateY(100%);
         transition: transform 0.4s;
     }
+
     .mc_review-slide .review-item .score-items {
         padding-top: 8px;
         --score-size: 24px;
     }
+
     .mc_review-slide .review-item .name {
         font-weight: 800;
         font-size: 32px;
@@ -78,6 +92,7 @@
         color: #ffffff;
         line-height: 1.2;
     }
+
     .mc_review-slide .review-item .intro {
         margin-top: 30px;
         font-size: 24px;
@@ -86,6 +101,7 @@
         word-break: break-word;
         height: 144px;
     }
+
     .mc_review-slide .review-item .nickname {
         color: #fff;
         font-size: 24px;
@@ -93,12 +109,14 @@
         font-weight: 800;
         line-height: 1.1;
     }
+
     .mc_review-slide .review-item .text {
         color: #c3c3c3;
         font-size: 12px;
         line-height: 1.2;
         padding-top: 3px;
     }
+
     .mc_review-slide .review-item .avatar-photo {
         margin-right: 15px;
         width: 52px;
@@ -108,84 +126,106 @@
         font-weight: bold;
         color: #000000;
     }
+
     .mc_review-slide .review-item .avatar-box {
         padding-top: 42px;
     }
+
     .mc_review-slide .control-box {
         padding-top: 16px;
         gap: 0 20px;
     }
+
     .mc_review-slide .slider-button {
         width: 48px;
         height: 48px;
     }
+
     .mc_review-slide .slider-button .image {
         object-fit: fill;
         transition: transform 0.3s;
     }
+
     .mc_review-slide .slider-button:hover .image {
         transform: scale(1.05);
     }
+
     .mc_review-slide .slider-button[disabled] {
         opacity: 0.9;
     }
+
     .mc_review-slide .slider-button[disabled] .image {
         filter: grayscale(1);
     }
+
     .mc_review-slide .prev-button {
         transform: rotateY(180deg);
     }
+
     @media screen and (max-width: 1600px) {
         .mc_review-slide {
             padding: 64px 0;
         }
+
         .mc_review-slide .title {
             font-size: 38px;
         }
+
         .mc_review-slide .title .image {
             height: 30px;
             right: -19px;
             bottom: -4px;
         }
+
         .mc_review-slide .more {
             --button-size: 26px;
             --button-height: 45px;
             --button-width: 161px;
         }
+
         .mc_review-slide .review-wrapper {
             padding-top: 46px;
         }
+
         .mc_review-slide .review-item {
             border-radius: 6px;
         }
+
         .mc_review-slide .review-item .info-wrap {
             left: 0;
             bottom: 0;
             padding: 1.4583333333vw 1.5625vw 2.9166666667vw;
         }
+
         .mc_review-slide .review-item .score-items {
             --score-size: 1.25vw;
         }
+
         .mc_review-slide .review-item .name {
             font-size: 1.6666666667vw;
         }
+
         .mc_review-slide .review-item .intro {
             margin-top: 1.5625vw;
             font-size: 1.25vw;
             height: 7.5vw;
         }
+
         .mc_review-slide .review-item .nickname {
             font-size: 1.25vw;
         }
+
         .mc_review-slide .review-item .text {
             padding-top: 0.15625vw;
         }
+
         .mc_review-slide .review-item .avatar-photo {
             margin-right: 0.78125vw;
             width: 2.7083333333vw;
             height: 2.7083333333vw;
             font-size: 1.4583333333vw;
         }
+
         .mc_review-slide .review-item .avatar-box {
             padding-top: 2.1875vw;
         }
@@ -314,7 +354,7 @@
                 <a
                     hover
                     style="--button-color: {{ ss.button_color }}; --button-hover-color: {{ ss.button_hover_color }};"
-                    href="{{ ss.url }}" class="more image-button relative flex-center">
+                    href="{{ ss.button_url }}" class="more image-button relative flex-center">
                     {% render 'global-image',
                         image: ss.button_bg_image,
                         image_size: 300
@@ -403,28 +443,29 @@
             return scoreList.join('');
         }
 
-        function onReviewList() {
-            fetch('https://api.judge.me/api/v1/widgets/all_reviews_page?api_token=I8Y3RppWygWQ0JqBfCYLmnEBQkg&shop_domain=garpsz-r9.myshopify.com&review_type=product-reviews&page=1', {
+        const getReviewList = async (page) => {
+            const res = await fetch(`https://api.judge.me/api/v1/widgets/all_reviews_page?api_token=I8Y3RppWygWQ0JqBfCYLmnEBQkg&shop_domain=garpsz-r9.myshopify.com&review_type=product-reviews&page=${page}`, {
                 method: 'GET'
-            }).then((response) => response.json()).then((data) => {
-                const parsedHTML = new DOMParser().parseFromString(data.all_reviews, 'text/html');
-                const reviewList = [];
-                const photo = `{%- render 'icon' with 'header_account' -%}`;
-                Array.from(parsedHTML.querySelectorAll('.jdgm-rev')).forEach((node) => {
-                    const images = Array.from(node.querySelectorAll('.jdgm-rev__pic-img')).map((img) => {
-                        return `<img alt="" src="${img.getAttribute('data-src').replace('w=160', 'w=700')}" class="image" loading="lazy" />`
-                    });
-                    if (images.length > 0) {
-                        const score = Number(node.querySelector('.jdgm-rev__rating').getAttribute('data-score') || 5);
-                        const date = new Date(node.querySelector('.jdgm-rev__timestamp').getAttribute('data-content'));
-                        const dateStr = `${getDoubleNum(date.getMonth())}/${getDoubleNum(date.getDay())}/${date.getFullYear()}`;
-                        const author = node.querySelector('.jdgm-rev__author').innerText;
-                        const shop = node.querySelector('.jdgm-rev__verification-badge-img')?.getAttribute('data-src') || '';
-                        const title = node.querySelector('.jdgm-rev__title').innerText;
-                        const content = node.querySelector('.jdgm-rev__body').innerHTML;
-                        const product = node.querySelector('.jdgm-rev__prod-link');
+            });
+            const data = await res.json();
+            const parsedHTML = new DOMParser().parseFromString(data.all_reviews, 'text/html');
+            const reviewList = [];
+            {% comment %}const photo = `{%- render 'icon' with 'header_account' -%}`;{% endcomment %}
+            Array.from(parsedHTML.querySelectorAll('.jdgm-rev')).forEach((node) => {
+                const images = Array.from(node.querySelectorAll('.jdgm-rev__pic-img')).map((img) => {
+                    return `<img alt="" src="${img.getAttribute('data-src').replace('w=160', 'w=700')}" class="image" loading="lazy" />`
+                });
+                if (images.length > 0) {
+                    const score = Number(node.querySelector('.jdgm-rev__rating').getAttribute('data-score') || 5);
+                    const date = new Date(node.querySelector('.jdgm-rev__timestamp').getAttribute('data-content'));
+                    const dateStr = `${getDoubleNum(date.getMonth())}/${getDoubleNum(date.getDay())}/${date.getFullYear()}`;
+                    const author = node.querySelector('.jdgm-rev__author').innerText;
+                    const shop = node.querySelector('.jdgm-rev__verification-badge-img')?.getAttribute('data-src') || '';
+                    const title = node.querySelector('.jdgm-rev__title').innerText;
+                    const content = node.querySelector('.jdgm-rev__body').innerHTML;
+                    const product = node.querySelector('.jdgm-rev__prod-link');
 
-                        reviewList.push(`<div class="review-item tns-item overflow-hidden relative">
+                    reviewList.push(`<div class="review-item tns-item overflow-hidden relative">
                             ${images[0]}
                             <div class="info-wrap absolute z-1 w-full">
                                 <div class="name">${title}</div>
@@ -443,96 +484,105 @@
                                     </div>
                                 </div>
                     </div></div>`);
+                }
+            });
+            return reviewList;
+        }
+
+        async function onReviewList() {
+            let page = 1;
+            let reviewList = await getReviewList(page);
+            if (reviewList.length < 10) {
+                page++;
+                reviewList = reviewList.concat(await getReviewList(page));
+            }
+            $heybike.inView(node, () => {
+                nodeList.slider.innerHTML = nodeList.slider.innerHTML + reviewList.join('');
+                $heybike.load({type: 'TNS'}, () => {
+                    let timer = null, current = null;
+                    const onChange = (obj) => {
+                        current = obj;
+                        if ($heybike.isMobile) {
+                            const progress = (1 - (obj.index + 1) / obj.slideCount) * 100;
+                            nodeList.bar.style.transform = `translateX(-${progress}%)`;
+                        }
                     }
-                });
-                $heybike.inView(node, () => {
-                    nodeList.slider.innerHTML = nodeList.slider.innerHTML + reviewList.join('');
-                    $heybike.load({type: 'TNS'}, () => {
-                        let timer = null, current = null;
-                        const onChange = (obj) => {
-                            current = obj;
-                            if ($heybike.isMobile) {
-                                const progress = (1 - (obj.index + 1) / obj.slideCount) * 100;
-                                nodeList.bar.style.transform = `translateX(-${progress}%)`;
-                            }
-                        }
-                        const slider = tns({
-                            container: nodeList.slider,
-                            loop: false,
-                            items: 1.4,
-                            nav: false,
-                            speed: 500,
-                            preventScrollOnTouch: true,
-                            mouseDrag: true,
-                            controls: true,
-                            controlsContainer: nodeList.control,
-                            responsive: {
-                                900: {
-                                    items: {{ ss.slide_item | round }}
-                                },
-                                1440: {
-                                    items: {{ ss.slide_item }}
-                                }
+                    const slider = tns({
+                        container: nodeList.slider,
+                        loop: false,
+                        items: 1.4,
+                        nav: false,
+                        speed: 500,
+                        preventScrollOnTouch: true,
+                        mouseDrag: true,
+                        controls: true,
+                        controlsContainer: nodeList.control,
+                        responsive: {
+                            900: {
+                                items: {{ ss.slide_item | round }}
                             },
-                            onInit() {
-                                nodeList.box.classList.remove('__loading__');
-                                setTimeout(() => {
-                                    onChange(slider.getInfo());
-                                    {%- if ss.auto_slide -%}
-                                    onStart();
-                                    {%- endif -%}
-                                }, 80);
+                            1440: {
+                                items: {{ ss.slide_item }}
                             }
-                        });
-
-                        slider.events.on('transitionEnd', () => {
-                            onChange(slider.getInfo());
-                            {%- if ss.auto_slide -%}
+                        },
+                        onInit() {
+                            nodeList.box.classList.remove('__loading__');
                             setTimeout(() => {
+                                onChange(slider.getInfo());
+                                {%- if ss.auto_slide -%}
                                 onStart();
-                            }, 10);
-                            {%- endif -%}
-                        });
+                                {%- endif -%}
+                            }, 80);
+                        }
+                    });
 
+                    slider.events.on('transitionEnd', () => {
+                        onChange(slider.getInfo());
                         {%- if ss.auto_slide -%}
-                        const onStart = () => {
-                            clearTimeout(timer);
-                            timer = setTimeout(() => {
-                                if (current?.nextButton.hasAttribute('disabled')) {
-                                    slider.goTo('first');
-                                } else {
-                                    slider.goTo('next');
-                                }
-                            }, {{ ss.duration | times: 1000 }});
-                        }
-                        const onEnd = () => {
-                            clearTimeout(timer);
-                        }
-
-                        $heybike.inView(node, () => {
+                        setTimeout(() => {
                             onStart();
-                            return () => {
-                                onEnd();
-                            }
-                        });
-
-                        nodeList.slider.addEventListener('mouseenter', () => {
-                            if ($heybike.isMobile) {
-                                return false;
-                            }
-                            onEnd();
-                        });
-
-                        nodeList.slider.addEventListener('mouseleave', () => {
-                            if ($heybike.isMobile) {
-                                return false;
-                            }
-                            onStart();
-                        });
+                        }, 10);
                         {%- endif -%}
                     });
-                }, {margin: '200px 0px 200px 0px'});
-            })
+
+                    {%- if ss.auto_slide -%}
+                    const onStart = () => {
+                        clearTimeout(timer);
+                        timer = setTimeout(() => {
+                            if (current?.nextButton.hasAttribute('disabled')) {
+                                slider.goTo('first');
+                            } else {
+                                slider.goTo('next');
+                            }
+                        }, {{ ss.duration | times: 1000 }});
+                    }
+                    const onEnd = () => {
+                        clearTimeout(timer);
+                    }
+
+                    $heybike.inView(node, () => {
+                        onStart();
+                        return () => {
+                            onEnd();
+                        }
+                    });
+
+                    nodeList.slider.addEventListener('mouseenter', () => {
+                        if ($heybike.isMobile) {
+                            return false;
+                        }
+                        onEnd();
+                    });
+
+                    nodeList.slider.addEventListener('mouseleave', () => {
+                        if ($heybike.isMobile) {
+                            return false;
+                        }
+                        onStart();
+                    });
+                    {%- endif -%}
+                });
+            }, {margin: '200px 0px 200px 0px'});
         }
 
         onReviewList();

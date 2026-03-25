@@ -235,7 +235,7 @@
                 <a
                     hover
                     style="--button-color: {{ ss.button_color }}; --button-hover-color: {{ ss.button_hover_color }};"
-                    href="{{ ss.url }}" class="more image-button relative flex-center">
+                    href="{{ ss.button_url }}" class="more image-button relative flex-center">
                     {% render 'global-image',
                         image: ss.button_bg_image,
                         image_size: 300
@@ -298,7 +298,6 @@
             $heybike.inView(node, () => {
                 $heybike.load({type: 'TNS'}, () => {
                     const onChange = (obj) => {
-                        current = obj;
                         if ($heybike.isMobile) {
                             const progress = (1 - (obj.index + 1) / obj.slideCount) * 100;
                             nodeList.bar.style.transform = `translateX(-${progress}%)`;
