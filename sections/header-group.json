@@ -60,6 +60,7 @@
         },
         "message_Hm9xjY": {
           "type": "message",
+          "disabled": true,
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
             "text": "<p>IN 10: Up to £300 OFF — Ride for love, don’t miss out!</p>",
@@ -68,6 +69,7 @@
         },
         "message_Hm9xjS": {
           "type": "message",
+          "disabled": true,
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
             "text": "<p>Buy Two IN 10 Save More!</p>",
