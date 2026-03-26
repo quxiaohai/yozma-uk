@@ -15,8 +15,8 @@
         "media_Yi7pih": {
           "type": "media",
           "settings": {
-            "pc_image_url": "shopify://shop_images/kv_d534ae51-64db-4b58-bb2f-5dafbaa4db7e.jpg",
-            "mb_image_url": "shopify://shop_images/13f1406ea0571d88d4ee1669228e85fb.jpg",
+            "pc_image_url": "shopify://shop_images/UK_PC_3840_x_1599.jpg",
+            "mb_image_url": "shopify://shop_images/UK_1500_x_2180.jpg",
             "image_link": "shopify://products/in-10-pro",
             "slide_tab": "",
             "show_subtitle": true,
@@ -35,6 +35,7 @@
         },
         "media2": {
           "type": "media",
+          "disabled": true,
           "settings": {
             "pc_image_url": "shopify://shop_images/3840_1599333.jpg",
             "mb_image_url": "shopify://shop_images/1500_x_2180111.jpg",
