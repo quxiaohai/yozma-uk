@@ -343,6 +343,61 @@
         "description_mb_margin_bottom": 38
       }
     },
+    "mc_media_text_ex99Wk": {
+      "type": "mc_media-text",
+      "blocks": {
+        "slide_QAxLtE": {
+          "type": "slide",
+          "settings": {
+            "title": "",
+            "media_type": "video",
+            "media_position": "left",
+            "video_desktop": "shopify://files/videos/配送区域视频.mp4",
+            "video_mobile": "shopify://files/videos/配送区域视频.mp4",
+            "media_ratio": "",
+            "mb_media_ratio": "",
+            "show_subhead": true,
+            "subhead": "",
+            "subhead_color": "#FF0000",
+            "head": "EU Countries We Ship to",
+            "head_color": "#ff0000",
+            "head_gradient_color": "",
+            "text": "<p>We ship from our warehouse in <strong>Germany  or Itlay</strong> to the following 25 countries:<br/>Austria, Belgium, Bulgaria, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Italy, Ireland, Latvia, Lithuania, Luxembourg, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden.<br/><br/></p>",
+            "text_color": "#B2B2B2",
+            "text_bold_color": "#ff0000"
+          }
+        }
+      },
+      "block_order": [
+        "slide_QAxLtE"
+      ],
+      "name": "MC Media Text",
+      "settings": {
+        "page_color": "",
+        "show_title": false,
+        "title": "",
+        "title_style": "normal",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "pc_card_subhead_size": 32,
+        "mb_card_subhead_size": 15,
+        "pc_card_head_size": 60,
+        "mb_card_head_size": 20,
+        "pc_card_text_size": 24,
+        "mb_card_text_size": 16
+      }
+    },
     "mc_main_ces": {
       "type": "mc_main-ces",
       "blocks": {
@@ -514,6 +569,7 @@
     "mc_product_list",
     "mc_media_slide",
     "mc_text_slide",
+    "mc_media_text_ex99Wk",
     "mc_main_ces",
     "mc_review_slide",
     "mc_shop_service"
