@@ -1400,7 +1400,7 @@
           "type": "item",
           "settings": {
             "title": "3.What rider height is the IN 10 suitable for?",
-            "content": "<p>Recommended for users 3.94ft - 5.9ft tall and aged 14 years and above.</p>"
+            "content": "<p>Recommended for users 3.94ft - 5.9ft(120 cm-180 cm) tall and aged 14 years and above.</p>"
           }
         },
         "item_GB6DXn": {
@@ -1413,7 +1413,7 @@
         "item_jPNtWR": {
           "type": "item",
           "settings": {
-            "title": "5. What type of motor does it use?",
+            "title": "5. What type of bike does it use?",
             "content": "<p>The IN 10 features a 1200W rated / 2600W peak direct drive brushless motor, offering strong acceleration and climbing power.</p>"
           }
         },
