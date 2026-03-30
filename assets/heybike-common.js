@@ -132,6 +132,10 @@ class HeybikeCommon {
         }
     }
 
+    ready(cb) {
+        this.on('DOMContentLoaded', cb);
+    }
+
     trigger(event, node, target) {
         node = this._getCurrentNode(event, node);
         if (!this._events.has(event)) {

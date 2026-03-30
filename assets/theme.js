@@ -1127,7 +1127,11 @@ var BaseCarousel = class extends HTMLElement {
     }
 
     get selectedIndex() {
-        return this._selectedIndex = this._selectedIndex ?? parseInt(this.getAttribute("initial-index") || 0);
+        if (typeof this._selectedIndex === "undefined") {
+            const index = parseInt(this.getAttribute("initial-index") || 0);
+            this._selectedIndex = this.querySelector(`.product-gallery__media[data-media-position="${index}"]`)?.dataset.index || 0;
+        }
+        return this._selectedIndex;
     }
 
     get selectedIndexAmongVisible() {
@@ -1301,10 +1305,15 @@ var ScrollCarousel = class extends BaseCarousel {
         const total = this.totalPages;
         index = this.items.indexOf(this.visibleItems[Math.min(total, indexAmongVisible)]);
         if (elem) {
-            this.prevElem?.forEach(elem => elem.classList.toggle('disabled', index === 0));
-            this.nextElem?.forEach(elem => elem.classList.toggle('disabled', index === total - 1));
-            elem.classList.toggle("is-first", index === 0);
-            elem.classList.toggle("is-last", index === total - 1);
+            let btn_index = index;
+            const curElem = this.items[index];
+            if (curElem.hasAttribute('data-variant-type')) {
+                btn_index = Number(curElem.getAttribute('data-variant-index'));
+            }
+            this.prevElem?.forEach(elem => elem.classList.toggle('disabled', btn_index === 0));
+            this.nextElem?.forEach(elem => elem.classList.toggle('disabled', btn_index === total - 1));
+            elem.classList.toggle("is-first", btn_index === 0);
+            elem.classList.toggle("is-last", btn_index === total - 1);
         }
         this._selectedIndex = index;
         this._dispatchEvent("carousel:select", index);
@@ -3178,8 +3187,6 @@ var ProductForm = class extends HTMLFormElement {
 
             config.body = JSON.stringify(allFormData);
 
-            console.log('allFormData', allFormData);
-
             config.headers['Content-Type'] = 'application/json';
         }
 
@@ -3357,7 +3364,7 @@ var ProductGallery = class extends HTMLElement {
      * Open the zoom by dynamically creating a data source based on the filtered items
      */
     openZoom(index = 0) {
-        const dataSource = Array.from(this.querySelectorAll('.product-gallery__media[data-media-type="image"]:not([hidden]) > img')).map((image) => {
+        const dataSource = Array.from(this.querySelectorAll('.product-gallery__media[data-media-type="image"]:not([hidden]):not([data-hidden]) > img')).map((image) => {
             return {
                 thumbnailElement: image,
                 src: image.src,
@@ -3390,14 +3397,37 @@ var ProductGallery = class extends HTMLElement {
         if (!event.detail.variant) {
             return;
         }
+        console.log('--------event-----------', event.detail.variant.options[0]);
         let newMediaPosition;
         if (event.detail.previousVariant === null) {
-            newMediaPosition = event.detail.variant["featured_media"]["position"] - 1;
+            newMediaPosition = event.detail.variant["featured_media"]["position"];
         } else if (event.detail.variant["featured_media"] && event.detail.previousVariant["featured_media"] && event.detail.previousVariant["featured_media"]["id"] !== event.detail.variant["featured_media"]["id"] || !event.detail.previousVariant["featured_media"] && event.detail.variant["featured_media"]) {
-            newMediaPosition = event.detail.variant["featured_media"]["position"] - 1;
+            newMediaPosition = event.detail.variant["featured_media"]["position"];
         }
+
         if (newMediaPosition !== void 0) {
-            this._carousels.forEach((carousel) => carousel.select(newMediaPosition, {animate: false}));
+            this._carousels.forEach((carousel) => {
+                if  (carousel.dataset.type === 'image') {
+                    const elem = carousel.querySelector(`.product-gallery__media[data-media-position="${newMediaPosition}"]`);
+                    if (elem) {
+                        if (elem.hasAttribute('data-variant-type')) {
+                            const list = Array.from(carousel.querySelectorAll(`.product-gallery__media`));
+                            const thumbnails = Array.from(document.querySelectorAll('.product-gallery__thumbnail-image-list .product-gallery__thumbnail'));
+                            const current = event.detail.variant.options[0];
+                            list.concat(thumbnails).forEach((elem) => {
+                                const value = elem.getAttribute('data-variant-type');
+                                if (value === current) {
+                                    elem.removeAttribute('data-hidden');
+                                } else {
+                                    elem.setAttribute('data-hidden', true);
+                                }
+                            });
+                        }
+
+                        carousel.select(elem.dataset.index, {animate: false}, carousel);
+                    }
+                }
+            });
         }
     }
 
@@ -3477,7 +3507,7 @@ var MediaCarousel = class extends ScrollCarousel {
 
     _onGestureChanged(event) {
         event.preventDefault();
-        if (event.scale > 1.5) {
+        if (event.scale > 1.5 && this.dataset.type === 'image') {
             const visibleImages = this.visibleItems.filter((item) => item.getAttribute("data-media-type") === "image"),
                 openIndex = visibleImages.indexOf(this.selectedSlide);
             this.dispatchEvent(new CustomEvent("lightbox:open", {bubbles: true, detail: {index: openIndex}}));
@@ -3838,7 +3868,7 @@ onIntersection_fn = function (entries) {
     }
 };
 renderForCombination_fn = async function (optionValues) {
-    const optionValuesAsString = optionValues.join(",");
+    let optionValuesAsString = optionValues.join(",");
     const hashKey = __privateMethod(this, _VariantPicker_instances, createHashKeyForHtml_fn).call(this, optionValuesAsString);
     let productUrl = `${Shopify.routes.root}products/${this.productHandle}`;
     for (const optionValue of optionValues) {

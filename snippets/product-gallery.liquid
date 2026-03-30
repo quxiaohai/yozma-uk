@@ -59,6 +59,12 @@ only way to do it on Shopify right now.
         endif
     endfor
 
+    assign model = product.metafields.custom.model.value
+    if model != blank and model.model_list.value.size > 0
+        assign has_3d = true
+        assign model_count = model_count | plus: model.model_list.value.size
+    endif
+
     assign layout = section.settings.desktop_media_layout
     case layout
         when 'carousel_thumbnails_bottom'
@@ -91,11 +97,26 @@ only way to do it on Shopify right now.
             echo 'product-3d-gallery-' | append: product.id | append: '-' | append: section.id
         endcapture
     endif
+
+    assign label = product.options_with_values[0].name | downcase
+    assign color_list = ''
+    assign image_list = ''
+    if label contains 'color'
+        for value in product.options_with_values[0].values
+            assign color_list = color_list | append: value | append: ','
+            assign image_list = image_list | append: value.variant.featured_image | append: ','
+        endfor
+    endif
+    assign variant_index = 0
+    assign color_list = color_list | remove_last: ',' | split: ','
+    assign image_list = image_list | remove_last: ',' | split: ','
+    assign current_color = product.selected_or_first_available_variant.options[0]
 -%}
-<product-gallery id="{{ product_form_id }}" form="{{ product_form_id }}"
-                 filtered-indexes="{{ filtered_indexes | json }}"
-                 {%- if section.settings.enable_image_zoom -%}allow-zoom="{{ section.settings.max_image_zoom_level }}"{% endif %}
-                 class="product-gallery {% if section.settings.mobile_carousel_control contains 'dots' %}product-gallery--mobile-dots{% endif %} {% if layout contains 'grid' %}product-gallery--desktop-grid{% else %}product-gallery--desktop-carousel{% endif %} {% if layout == 'carousel_thumbnails_left' %}product-gallery--desktop-thumbnails-left{% endif %} {% if section.settings.mobile_media_size == 'expanded' %}product-gallery--mobile-expanded{% endif %}">
+<product-gallery
+    form="{{ product_form_id }}"
+    filtered-indexes="{{ filtered_indexes | json }}"
+    {%- if section.settings.enable_image_zoom -%}allow-zoom="{{ section.settings.max_image_zoom_level }}"{% endif %}
+    class="product-gallery {% if section.settings.mobile_carousel_control contains 'dots' %}product-gallery--mobile-dots{% endif %} {% if layout contains 'grid' %}product-gallery--desktop-grid{% else %}product-gallery--desktop-carousel{% endif %} {% if layout == 'carousel_thumbnails_left' %}product-gallery--desktop-thumbnails-left{% endif %} {% if section.settings.mobile_media_size == 'expanded' %}product-gallery--mobile-expanded{% endif %}">
     {%- capture page_dots -%}
         <page-dots
             node-name="thumbnail"
@@ -133,6 +154,14 @@ only way to do it on Shopify right now.
                 node-name="thumbnail"
                 class="page-dots hidden-important {% if section.settings.mobile_carousel_control == 'floating_dots' %}page-dots--blurred{% endif %} md:hidden"
                 aria-controls="{{ product_3d_gallery_id }}">
+                {%- if model != blank and model.model_list.value.size > 0 -%}
+                    {%- for media in model.model_list.value -%}
+                        <button type="button" class="tap-area" aria-current="false">
+                            <span
+                                class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: media.position }}</span>
+                        </button>
+                    {%- endfor -%}
+                {%- endif -%}
                 {%- for media in product.media -%}
                     {%- if media.media_type == 'model' -%}
                         <button type="button" class="tap-area"
@@ -158,21 +187,47 @@ only way to do it on Shopify right now.
                 node-name="panel"
                 desktop-mode="{{ layout }}"
                 adaptive-height
+                data-type="image"
                 prev-selector=".thumbnail-image-button-prev"
                 next-selector=".thumbnail-image-button-next"
-                initial-index="{{ default_media.position | minus: 1 }}"
-                {% if section.settings.enable_video_autoplay %}autoplay{% endif %} id="{{ product_gallery_id }}"
+                initial-index="{{ default_media.position }}"
+                {% if section.settings.enable_video_autoplay %}autoplay{% endif %}
+                id="{{ product_gallery_id }}"
                 class="active product-gallery__media-list{% if layout contains 'carousel' and product.media.size > 1 %} is-first product-gallery__buttons{% endif %}  {% if section.settings.mobile_media_size == 'expanded' %}full-bleed{% else %}bleed{% endif %} scroll-area md:unbleed">
                 {%- assign media_attached_to_variant = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
 
+                {%- liquid
+                    assign image_index = 0
+                    assign current_index = 0
+                -%}
                 {%- for media in product.media -%}
                     {%- if media.media_type == 'image' -%}
                         {%- if layout == 'grid_highlight' -%}
                             {%- capture sizes -%}(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), {% if forloop.first or media_attached_to_variant contains media.src %}min(1200px, 60vw){% else %}min(580px, 30vw){% endif %}{%- endcapture -%}
                         {%- endif -%}
                         <div
+                            {% if color_list != blank -%}
+                                {%- liquid
+                                    assign url = media | image_url: width: 100
+                                    if url contains image_list[variant_index]
+                                        assign variant_index = variant_index | plus: 1
+                                        assign current_index = 0
+                                    endif
+                                    assign color_index = variant_index | minus: 1
+                                    if color_index < 0
+                                        assign color_index = 0
+                                    endif
+                                -%}
+                                {% if color_list[color_index] != current_color %}data-hidden{% endif %}
+                                data-variant-index="{{ current_index }}"
+                                data-variant-type="{{ color_list[color_index] }}"
+                                {%- assign current_index = current_index | plus: 1 -%}
+                            {%- endif %}
                             class="product-gallery__media flex-center {% if media.alt contains '@expand' %}product-gallery__media--expand{% endif %} {% if section.settings.mobile_carousel_control != 'free_scroll' %}snap-center{% endif %}"
-                            data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}"
+                            data-media-type="{{ media.media_type }}"
+                            data-index="{{ image_index }}"
+                            data-media-position="{{ media.position }}"
+                            data-media-id="{{ media.id }}"
                             {% if filtered_indexes contains media.position %}hidden{% endif %}>
                             {%- if default_media == media -%}
                                 {%- assign preload = true -%}
@@ -190,6 +245,7 @@ only way to do it on Shopify right now.
                                 </div>
                             {%- endif -%}
                         </div>
+                        {%- assign image_index = image_index | plus: 1 -%}
                     {%- endif -%}
                 {%- endfor -%}
             </media-carousel>
@@ -261,7 +317,20 @@ only way to do it on Shopify right now.
                     {% if section.settings.enable_video_autoplay %}autoplay{% endif %} id="{{ product_3d_gallery_id }}"
                     class="product-gallery__other-list not-slide-button product-gallery__media-list{% if layout contains 'carousel' and product.media.size > 1 %} is-first product-gallery__buttons{% endif %}  {% if section.settings.mobile_media_size == 'expanded' %}full-bleed{% else %}bleed{% endif %} scroll-area md:unbleed">
                     {%- assign media_attached_to_variant = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
+                    {%- if model != blank and model.model_list.value.size > 0 -%}
+                        {%- for media in model.model_list.value -%}
+                            {%- if layout == 'grid_highlight' -%}
+                                {%- capture sizes -%}(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), {% if forloop.first or media_attached_to_variant contains media.src %}min(1200px, 60vw){% else %}min(580px, 30vw){% endif %}{%- endcapture -%}
+                            {%- endif -%}
 
+                            <div
+                                class="product-gallery__media flex-center {% if media.alt contains '@expand' %}product-gallery__media--expand{% endif %} {% if section.settings.mobile_carousel_control != 'free_scroll' %}snap-center{% endif %}"
+                                data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}"
+                                {% if filtered_indexes contains media.position %}hidden{% endif %}>
+                                {%- render 'media', media: media, model_url: model.url_list.value[forloop.index0], sizes: sizes, rounded: '', autoplay: section.settings.enable_video_autoplay, loop: section.settings.enable_video_looping, group: 'product' -%}
+                            </div>
+                        {%- endfor -%}
+                    {%- endif -%}
                     {%- for media in product.media -%}
                         {%- if media.media_type == 'model' -%}
                             {%- if layout == 'grid_highlight' -%}
@@ -277,20 +346,22 @@ only way to do it on Shopify right now.
                         {%- endif -%}
                     {%- endfor -%}
                 </media-carousel>
-                <div class="media-other-button flex-center absolute z-2 media-button-prev">
-                    <div class="flex-center disabled thumbnail-3d-button-prev thumbnail-slide-button">
-                        <img class="image"
-                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
-                             alt="Slide Prev"/>
+                {%- if model_count > 1 -%}
+                    <div class="media-other-button flex-center absolute z-2 media-button-prev">
+                        <div class="flex-center disabled thumbnail-3d-button-prev thumbnail-slide-button">
+                            <img class="image"
+                                 src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
+                                 alt="Slide Prev"/>
+                        </div>
                     </div>
-                </div>
-                <div class="media-other-button flex-center absolute z-2 media-button-next">
-                    <div class="flex-center thumbnail-3d-button-next thumbnail-slide-button">
-                        <img class="image"
-                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
-                             alt="Slide Prev"/>
+                    <div class="media-other-button flex-center absolute z-2 media-button-next">
+                        <div class="flex-center thumbnail-3d-button-next thumbnail-slide-button">
+                            <img class="image"
+                                 src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
+                                 alt="Slide Prev"/>
+                        </div>
                     </div>
-                </div>
+                {%- endif -%}
             {%- endif -%}
             {%- if product.media.size > 1 and section.settings.mobile_carousel_control == 'floating_dots' -%}
                 {{- page_dots -}}
@@ -328,11 +399,28 @@ only way to do it on Shopify right now.
                          alt="Slide Prev"/>
                 </div>
                 <div class="product-gallery__thumbnail-list-wrapper overflow-hidden">
-                    <page-dots align-selected class="product-gallery__thumbnail-list scroll-area bleed md:unbleed"
+                    <page-dots align-selected class="product-gallery__thumbnail-list product-gallery__thumbnail-image-list scroll-area bleed md:unbleed"
                                aria-controls="{{ product_gallery_id }}">
+                        {%- assign variant_index = 0 -%}
                         {%- for media in product.media -%}
                             {%- if media.media_type == 'image' -%}
-                                <button type="button" class="product-gallery__thumbnail"
+                                <button
+                                        type="button"
+                                    {% if color_list != blank -%}
+                                        {%- liquid
+                                            assign url = media | image_url: width: 100
+                                            if url contains image_list[variant_index]
+                                                assign variant_index = variant_index | plus: 1
+                                            endif
+                                            assign color_index = variant_index | minus: 1
+                                            if color_index < 0
+                                                assign color_index = 0
+                                            endif
+                                        -%}
+                                        {% if color_list[color_index] != current_color %}data-hidden{% endif %}
+                                        data-variant-type="{{ color_list[color_index] }}"
+                                    {%- endif %}
+                                        class="product-gallery__thumbnail"
                                         {% if filtered_indexes contains media.position %}hidden{% endif %}
                                         aria-current="{% if media == default_media %}true{% else %}false{% endif %}"
                                         aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
@@ -349,73 +437,91 @@ only way to do it on Shopify right now.
                          alt="Slide Prev"/>
                 </div>
             </div>
-            {%- if has_video and video_count > 1 -%}
-                <div class="flex-center hidden-important gap-2.5" node-name="thumbnail">
-                    <div class="flex-center disabled thumbnail-slide-button thumbnail-video-button-prev">
-                        <img class="image"
-                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
-                             alt="Slide Prev"/>
-                    </div>
-                    <div class="product-gallery__thumbnail-list-wrapper overflow-hidden">
-                        <page-dots align-selected class="product-gallery__thumbnail-list scroll-area bleed md:unbleed"
-                                   aria-controls="{{ product_video_gallery_id }}">
-                            {%- assign first = true -%}
-                            {%- for media in product.media -%}
-                                {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
-                                    <button type="button" class="product-gallery__thumbnail"
-                                            {% if filtered_indexes contains media.position %}hidden{% endif %}
-                                            aria-current="{% if first %}true{% else %}false{% endif %}"
-                                            aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
-                                        {{- media | image_url: width: media.preview_image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 56px, 64px', widths: '56,64,112,128,168,192', class: 'object-contain rounded-sm' -}}
-                                        <div class="product-gallery__media-badge">
-                                            {%- render 'icon' with 'play-video', width: 7, height: 9 -%}
-                                        </div>
-                                    </button>
-                                    {%- assign first = false -%}
-                                {%- endif -%}
+            {%- if has_video -%}
+                <div {% if video_count == 1 %}style="display: none"{% endif %} class="flex-center hidden-important gap-2.5" node-name="thumbnail">
+                    {%- if video_count > 1 -%}
+                        <div class="flex-center disabled thumbnail-slide-button thumbnail-video-button-prev">
+                            <img class="image"
+                                 src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
+                                 alt="Slide Prev"/>
+                        </div>
+                        <div class="product-gallery__thumbnail-list-wrapper overflow-hidden">
+                            <page-dots align-selected class="product-gallery__thumbnail-list scroll-area bleed md:unbleed"
+                                       aria-controls="{{ product_video_gallery_id }}">
+                                {%- assign first = true -%}
+                                {%- for media in product.media -%}
+                                    {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                                        <button type="button" class="product-gallery__thumbnail"
+                                                {% if filtered_indexes contains media.position %}hidden{% endif %}
+                                                aria-current="{% if first %}true{% else %}false{% endif %}"
+                                                aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
+                                            {{- media | image_url: width: media.preview_image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 56px, 64px', widths: '56,64,112,128,168,192', class: 'object-contain rounded-sm' -}}
+                                            <div class="product-gallery__media-badge">
+                                                {%- render 'icon' with 'play-video', width: 7, height: 9 -%}
+                                            </div>
+                                        </button>
+                                        {%- assign first = false -%}
+                                    {%- endif -%}
 
-                            {%- endfor -%}
-                        </page-dots>
-                    </div>
-                    <div class="flex-center thumbnail-slide-button thumbnail-video-button-next">
-                        <img class="image"
-                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
-                             alt="Slide Prev"/>
-                    </div>
+                                {%- endfor -%}
+                            </page-dots>
+                        </div>
+                        <div class="flex-center thumbnail-slide-button thumbnail-video-button-next">
+                            <img class="image"
+                                 src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
+                                 alt="Slide Prev"/>
+                        </div>
+                    {%- endif -%}
                 </div>
             {%- endif -%}
-            {%- if has_3d and model_count > 1 -%}
-                <div class="flex-center hidden-important gap-2.5" node-name="thumbnail">
-                    <div class="flex-center disabled thumbnail-slide-button thumbnail-3d-button-prev">
-                        <img class="image"
-                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
-                             alt="Slide Prev"/>
-                    </div>
-                    <div class="product-gallery__thumbnail-list-wrapper overflow-hidden">
-                        <page-dots align-selected class="product-gallery__thumbnail-list scroll-area bleed md:unbleed"
-                                   aria-controls="{{ product_3d_gallery_id }}">
-                            {%- assign first = true -%}
-                            {%- for media in product.media -%}
-                                {%- if media.media_type == 'model' -%}
-                                    <button type="button" class="product-gallery__thumbnail"
-                                            {% if filtered_indexes contains media.position %}hidden{% endif %}
-                                            aria-current="{% if first %}true{% else %}false{% endif %}"
-                                            aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
-                                        {{- media | image_url: width: media.preview_image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 56px, 64px', widths: '56,64,112,128,168,192', class: 'object-contain rounded-sm' -}}
-                                        <div class="product-gallery__media-badge">
-                                            {%- render 'icon' with 'play-model', width: 10, height: 12 -%}
-                                        </div>
-                                    </button>
-                                    {%- assign first = false -%}
+            {%- if has_3d -%}
+                <div {% if model_count == 1 %}style="display: none"{% endif %} class="flex-center hidden-important gap-2.5" node-name="thumbnail">
+                    {%- if model_count > 1 -%}
+                        <div class="flex-center disabled thumbnail-slide-button thumbnail-3d-button-prev">
+                            <img class="image"
+                                 src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn-prev.png?v=1770282771"
+                                 alt="Slide Prev"/>
+                        </div>
+                        <div class="product-gallery__thumbnail-list-wrapper overflow-hidden">
+                            <page-dots align-selected class="product-gallery__thumbnail-list scroll-area bleed md:unbleed"
+                                       aria-controls="{{ product_3d_gallery_id }}">
+                                {%- assign first = true -%}
+                                {%- if model != blank and model.model_list.value.size > 0 -%}
+                                    {%- for media in model.model_list.value -%}
+                                        <button type="button" class="product-gallery__thumbnail"
+                                                {% if filtered_indexes contains media.position %}hidden{% endif %}
+                                                aria-current="{% if first %}true{% else %}false{% endif %}"
+                                                aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
+                                            {{- media | image_url: width: media.preview_image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 56px, 64px', widths: '56,64,112,128,168,192', class: 'object-contain rounded-sm' -}}
+                                            <div class="product-gallery__media-badge">
+                                                {%- render 'icon' with 'play-model', width: 10, height: 12 -%}
+                                            </div>
+                                        </button>
+                                        {%- assign first = false -%}
+                                    {%- endfor -%}
                                 {%- endif -%}
-                            {%- endfor -%}
-                        </page-dots>
-                    </div>
-                    <div class="flex-center thumbnail-slide-button thumbnail-3d-button-next">
-                        <img class="image"
-                             src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
-                             alt="Slide Prev"/>
-                    </div>
+                                {%- for media in product.media -%}
+                                    {%- if media.media_type == 'model' -%}
+                                        <button type="button" class="product-gallery__thumbnail"
+                                                {% if filtered_indexes contains media.position %}hidden{% endif %}
+                                                aria-current="{% if first %}true{% else %}false{% endif %}"
+                                                aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
+                                            {{- media | image_url: width: media.preview_image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 56px, 64px', widths: '56,64,112,128,168,192', class: 'object-contain rounded-sm' -}}
+                                            <div class="product-gallery__media-badge">
+                                                {%- render 'icon' with 'play-model', width: 10, height: 12 -%}
+                                            </div>
+                                        </button>
+                                        {%- assign first = false -%}
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            </page-dots>
+                        </div>
+                        <div class="flex-center thumbnail-slide-button thumbnail-3d-button-next">
+                            <img class="image"
+                                 src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/product-gallery-slide-btn.png?v=1770280623"
+                                 alt="Slide Prev"/>
+                        </div>
+                    {%- endif -%}
                 </div>
             {%- endif -%}
         {%- endif -%}
@@ -481,7 +587,7 @@ only way to do it on Shopify right now.
     <script>
         $heybike.on('DOMContentLoaded', () => {
             $heybike.tabSwitch({
-                root: document.getElementById('{{ product_form_id }}'),
+                root: document.querySelector('product-gallery'),
                 cb: ({index, nodeList}) => {
                     [].concat(nodeList.thumbnail).forEach((elem, i) => {
                         elem.classList.toggle('hidden-important', index !== i);

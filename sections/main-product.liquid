@@ -13,6 +13,10 @@
     bottom: 80px !important;
     }
 
+    .product-gallery [data-hidden] {
+        display: none;
+    }
+
     #shopify-section-{{ section.id }} .product-info > * + * {
         --product-info-block-spacing: 0 !important;
     }
@@ -400,6 +404,11 @@
             font-size: 11px;
             line-height: 1.2;
         }
+
+        /*.shopify-model-viewer-ui .shopify-model-viewer-ui__controls-area {*/
+        /*    opacity: 1 !important;*/
+        /*    display: flex !important;*/
+        /*}*/
     }
 
     {%- assign content = section.blocks | where: 'type', 'content' | first -%}
