@@ -49,7 +49,7 @@
           "settings": {
             "padding": "0px 0px 0px 0px",
             "mb_padding": "0px 0px 0px 0px",
-            "text": "<ul><li><strong>Motor: </strong>2600W</li><li><strong>Top Speed</strong>: 20Km/h</li><li><strong>Battery</strong>: 48V 23.4Ah </li><li><strong>Max Range</strong>: 85km</li><li><strong>Suitable Height</strong>: 3.94ft - 5.9ft</li></ul>"
+            "text": "<ul><li><strong>Torque:</strong>146 N.M</li><li><strong>Max Load</strong>: 120 kg</li><li><strong>Battery</strong>: 48V 23.4Ah</li><li><strong>Max Range</strong>: 85km</li><li><strong>Suitable Height</strong>: 120 cm-180 cm</li></ul>"
           }
         },
         "liquid_AQyQic": {
@@ -520,8 +520,8 @@
         "description_mb_size": 14,
         "description_pc_margin_bottom": 40,
         "description_mb_margin_bottom": 30,
-        "pc_image": "shopify://shop_images/in-10-pc.png",
-        "mb_image": "shopify://shop_images/in_10-m_63ed8fb3-eae9-493d-a8ed-a847e52e24af.png",
+        "pc_image": "shopify://shop_images/PC_3-30_IN_10_W.png",
+        "mb_image": "shopify://shop_images/3-30_IN_10_W.png",
         "image_radius": 0,
         "mb_image_radius": 0,
         "image_width": 100,
@@ -606,7 +606,7 @@
             "head": "Raw Power, Pure Speed",
             "head_color": "#ffffff",
             "head_gradient_color": "",
-            "text": "<p>The <strong>2600W </strong>mid-drive motor drives you smoothly up to <strong>20 Km/h</strong>, delivering precise control and rock-solid stability through every turn and jump. Twist the throttle and experience true dirt bike performance—pure adrenaline, total confidence.</p>",
+            "text": "<p>Powered by a high-performance motor, this electric dirt bike delivers precise control and rock-solid stability through every turn and jump. Speed varies depending on terrain and riding conditions. Hit the throttle and experience true off-road performance—pure adrenaline and total confidence.<br/><br/></p>",
             "text_color": "#b2b2b2",
             "text_bold_color": "#ff0000"
           }
