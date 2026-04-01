@@ -145,7 +145,7 @@ Supported variables
                     {%- if product.selected_or_first_available_variant != nil -%}
                         <div class="product-info__price">
                             <div class="rating-with-text">
-                                {%- render 'price-list', variant: product.selected_or_first_available_variant, size: 'lg' -%}
+                                {%- render 'price-list', variant: product.selected_or_first_available_variant, saved: true, size: 'lg' -%}
                                 {%- render 'product-badges', types: 'sold_out, discount', product: product, context: 'product', class: 'product-info__badge-list' -%}
 
                                 {%- comment -%}If the next block is a rating block, then we add it as part of this one to have it inline{%- endcomment -%}

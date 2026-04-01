@@ -351,6 +351,7 @@
           "settings": {
             "title": "",
             "media_type": "video",
+            "media_size": "auto",
             "media_position": "left",
             "video_desktop": "shopify://files/videos/配送区域视频.mp4",
             "video_mobile": "shopify://files/videos/配送区域视频.mp4",

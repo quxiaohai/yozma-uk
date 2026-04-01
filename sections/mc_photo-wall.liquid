@@ -1,0 +1,306 @@
+{% assign ss = section.settings %}
+{%- assign size = section.blocks.size -%}
+<style>
+    .mc_photo-wall {
+        padding: 80px 0;
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+
+    @keyframes loop-image {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .mc_photo-wall .wall-content {
+        width: 100%;
+        overflow-x: hidden;
+        display: flex;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    .mc_photo-wall .wall-content .wall-card {
+        height: 290px;
+        width: 687px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+    }
+
+    .mc_photo-wall .wall-content .wall-card .image {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        border-radius: {{ ss.image_border_radius }}px;
+    }
+
+    .mc_photo-wall .wall-content:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .mc_photo-wall .wall-content .marquee-box {
+        flex: 0 0 auto;
+        min-width: 100%;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        animation: var(--duration) linear 1s infinite normal none running loop-image;
+        animation-direction: var(--direction);
+        flex-wrap: nowrap;
+    }
+
+    .mc_photo-wall .wall-content .marquee-box:hover {
+        animation-play-state: paused;
+    }
+
+    .mc_photo-wall .wall-content .image {
+        height: 290px;
+        width: auto;
+        aspect-ratio: var(--image_ratio);
+        border-radius: {{ ss.image_border_radius }}px;
+        margin: 0 12px;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .mc_photo-wall {
+            padding: 2.5rem 0;
+        }
+
+        .mc_photo-wall .wall-content {
+            margin-bottom: 0.6875rem;
+        }
+
+        .mc_photo-wall .wall-content .wall-card {
+            height: 7.21875rem;
+            width: 15.625rem;
+        }
+
+        .mc_photo-wall .wall-content:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .mc_photo-wall .wall-content .marquee-box:hover {
+            animation-play-state: running;
+        }
+
+        .mc_photo-wall .wall-content .image {
+            height: 7.21875rem;
+            margin: 0 0.3125rem;
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_photo-wall section--page">
+    {% render 'section-title', info: ss %}
+    {%- assign size = section.blocks.size -%}
+    {%- for a in (1..2) -%}
+        {%- liquid
+            if a == 1
+                assign duration = size | times: 6.6 | times: ss.loop_speed
+            else
+                assign duration = size | times: 4.4 | times: ss.loop_speed
+            endif
+        -%}
+        <div class="wall-content">
+            <div class="marquee-box"
+                 style="--direction: {% if a == 2 %}normal{% else %}reverse{% endif %}; --duration: {{ duration }}s;">
+                {%- for v in (1..4) -%}
+                    <div class="marquee-items flex-left">
+                        {%- for block in section.blocks -%}
+                            {%- liquid
+                                assign bs = block.settings
+                                assign image_ratio = '--image_ratio: 33/29'
+                                if bs.image_ratio != blank
+                                    assign image_ratio = '--image_ratio: ' | append: bs.image_ratio
+                                endif
+                            -%}
+                            {%- render 'global-image', image: block.settings.image, style: image_ratio, sizes: '(min-width: 1024px) 400w, 600w' -%}
+                        {%- endfor -%}
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+    {%- endfor -%}
+</div>
+{% schema %}
+{
+  "name": "MC Photo Wall",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Photo Wall"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>description</p>"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "range",
+      "id": "loop_speed",
+      "label": "Loop speed",
+      "min": 0.1,
+      "max": 2,
+      "step": 0.1,
+      "unit": "s",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 99,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_ratio",
+          "label": "Image ratio"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

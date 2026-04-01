@@ -82,10 +82,10 @@
         }
     }
     @media screen and (min-width: 1024px) and (max-width: 2600px) {
-        .mc_media-text .text-content.normal {
+        .mc_media-text .fill.normal {
             padding-right: 0;
         }
-        .mc_media-text .text-content.reverse {
+        .mc_media-text .fill.reverse {
             padding-left: 0;
         }
     }
@@ -183,7 +183,7 @@
     {%- render 'section-title', info: ss -%}
     {%- for block in section.blocks -%}
         {%- assign bs = block.settings -%}
-        <div class="text-content{% if bs.media_position == 'right' %} normal{% else %} reverse{% endif %} page-width">
+        <div class="text-content {{ bs.media_size }}{% if bs.media_position == 'right' %} normal{% else %} reverse{% endif %} page-width">
             <animate-element class="card-item flex-between">
                 <div class="info-wrap">
                     {%- if bs.show_subhead -%}
@@ -510,6 +510,22 @@
             }
           ],
           "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "media_size",
+          "label": "Media size",
+          "options": [
+            {
+              "label": "Fill",
+              "value": "fill"
+            },
+            {
+              "label": "Auto",
+              "value": "auto"
+            }
+          ],
+          "default": "fill"
         },
         {
           "type": "image_picker",

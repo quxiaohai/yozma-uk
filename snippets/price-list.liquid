@@ -66,10 +66,20 @@ Supported variables
 
         {%- if settings.currency_code_enabled -%}
           {{- variant.compare_at_price | money_with_currency -}}
-        {%- else -%}
+          {%- else -%}
           {{- variant.compare_at_price | money -}}
         {%- endif -%}
       </compare-at-price>
+      {%- if saved -%}
+        {%- assign saved_price = variant.compare_at_price | minus: variant.price -%}
+        <span class="save-badge lh-2 flex-center">
+          {%- if settings.currency_code_enabled -%}
+            {{ section.settings.fixed_discount_tag }} {{- saved_price | money_with_currency -}}
+          {%- else -%}
+            {{ section.settings.fixed_discount_tag }} {{- saved_price | money -}}
+          {%- endif -%}
+        </span>
+      {%- endif -%}
     {%- endif -%}
   {%- elsif line_item != blank -%}
     {%- comment -%}

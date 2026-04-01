@@ -348,7 +348,7 @@
                         {%- assign pass = true -%}
                         <div class="product-item" node-name="{{ group }}">
                             <a
-                                href="{% if bs.show_button %}{{ bs.url }}{% else %}javascript:void(0){% endif %}"
+                                href="{% if bs.show_button %}{{ bs.button_url }}{% else %}javascript:void(0){% endif %}"
                                 class="cover relative flex-left"
                                 node-name="cover">
                                 {% render 'global-image',
@@ -370,7 +370,7 @@
                                         <a
                                             hover
                                             style="--button-color: {{ bs.button_color }}; --button-hover-color: {{ bs.button_hover_color }};"
-                                            href="{{ bs.url }}" class="image-button relative flex-center">
+                                            href="{{ bs.button_url }}" class="image-button relative flex-center">
                                             {% render 'global-image',
                                                 image: bs.button_bg_image,
                                                 image_size: 300,
