@@ -15,8 +15,8 @@
         "media_Yi7pih": {
           "type": "media",
           "settings": {
-            "pc_image_url": "shopify://shop_images/UK_PC_3840_x_1599.jpg",
-            "mb_image_url": "shopify://shop_images/UK_1500_x_2180.jpg",
+            "pc_image_url": "shopify://shop_images/EU_PC_3840_x_1599.jpg",
+            "mb_image_url": "shopify://shop_images/EU_1500_x_2180.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "",
             "show_subtitle": true,
@@ -351,20 +351,20 @@
           "settings": {
             "title": "",
             "media_type": "video",
-            "media_size": "auto",
             "media_position": "left",
+            "media_size": "auto",
             "video_desktop": "shopify://files/videos/配送区域视频.mp4",
             "video_mobile": "shopify://files/videos/配送区域视频.mp4",
             "media_ratio": "",
             "mb_media_ratio": "",
             "show_subhead": true,
             "subhead": "",
-            "subhead_color": "#FF0000",
+            "subhead_color": "#ff0000",
             "head": "EU Countries We Ship to",
             "head_color": "#ff0000",
             "head_gradient_color": "",
             "text": "<p>We ship from our warehouse in <strong>Germany  or Itlay</strong> to the following 25 countries:<br/>Austria, Belgium, Bulgaria, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Italy, Ireland, Latvia, Lithuania, Luxembourg, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden.<br/><br/></p>",
-            "text_color": "#B2B2B2",
+            "text_color": "#b2b2b2",
             "text_bold_color": "#ff0000"
           }
         }
