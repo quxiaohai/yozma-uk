@@ -73,22 +73,6 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
     {{- 'tw-custom.css' | asset_url | stylesheet_tag: preload: true -}}
   {% include 'pagefly-app-header' %}
-  {%- if settings.show_livechat -%}
-<!-- Nextop LiveChat {literal} -->
-<script>
-    (function(d, w, c) {
-        w.NextopLiveChatID = 'LIVECHAT:1722496402746:730532587909611520';
-        w[c] = w[c] || function() {
-            (w[c].q = w[c].q || []).push(arguments);
-        };
-        var s = d.createElement('script');
-        s.async = true;
-        s.src = 'https://livechat.nextop.com/nextop-im-sdk.min.js';
-        if (d.head) d.head.appendChild(s);
-        })(document, window, 'NextopLiveChat');
-</script>
-<!-- / Nextop LiveChat {/literal} -->
-{%- endif -%}
     <script>
       $heybike.on("DOMContentLoaded", () => {
         const observer = new MutationObserver((mutationsList) => {
@@ -152,5 +136,21 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
         {%- sections 'footer-group' -%}
       {%- endif -%}
     </main>
+    {%- if settings.show_livechat -%}
+      <!-- Nextop LiveChat {literal} -->
+      <script>
+        (function(d, w, c) {
+          w.NextopLiveChatID = 'LIVECHAT:1722496402746:790264263617236992';
+          w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+          };
+          var s = d.createElement('script');
+          s.async = true;
+          s.src = 'https://livechat.nextop.com/nextop-im-sdk.min.js';
+          if (d.head) d.head.appendChild(s);
+        })(document, window, 'NextopLiveChat');
+      </script>
+      <!-- / Nextop LiveChat {/literal} -->
+    {%- endif -%}
   </body>
 </html>
