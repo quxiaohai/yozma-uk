@@ -325,6 +325,8 @@
         "page_color": "#ffffff",
         "desktop_image": "shopify://shop_images/trust-backdrop.jpg",
         "mobile_image": "shopify://shop_images/trust-mb-backdrop.jpg",
+        "page_top": 5,
+        "page_bottom": 5,
         "show_title": true,
         "title": "<p><strong>What They Say </strong></p><p>About Yozma’s Outstanding Ride Experience</p>",
         "title_style": "italic",
