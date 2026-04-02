@@ -150,7 +150,6 @@
         },
         "country_select_Hm9xjY": {
           "type": "country_select",
-          "disabled": true,
           "settings": {
             "country_name": "Europe",
             "country_code": "EUROPE",
@@ -159,7 +158,6 @@
         },
         "country_select_mkExeQ": {
           "type": "country_select",
-          "disabled": true,
           "settings": {
             "country_name": "United States",
             "country_code": "US",
@@ -168,7 +166,6 @@
         },
         "country_select_48xPMD": {
           "type": "country_select",
-          "disabled": true,
           "settings": {
             "country_name": "Canada",
             "country_code": "CA",
