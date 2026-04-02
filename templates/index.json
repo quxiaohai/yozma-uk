@@ -481,6 +481,8 @@
       "name": "MC Main Ces",
       "settings": {
         "page_color": "#ffffff",
+        "page_top": 0,
+        "page_bottom": 0,
         "title": "<p>Discover the world of YOZMA</p>",
         "title_decorate_image": "shopify://shop_images/title-text-tag.png",
         "title_color": "#000000",
@@ -563,6 +565,8 @@
       "name": "MC Shop Service",
       "settings": {
         "page_color": "#ffffff",
+        "page_top": 20,
+        "page_bottom": 40,
         "card_nama_color": "#000000",
         "card_text_color": "#7a7a7a"
       }
