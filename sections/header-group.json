@@ -49,6 +49,14 @@
     "announcement-slide-bar": {
       "type": "announcement-slide-bar",
       "blocks": {
+        "message_48xPMD": {
+          "type": "message",
+          "settings": {
+            "icon": "shopify://shop_images/yozma-bar-icon.png",
+            "text": "<p>The IN 10 will launch on April 14th</p>",
+            "url": "https://uk.yozmasport.com/products/in-10"
+          }
+        },
         "message_Mke4Hc": {
           "type": "message",
           "settings": {
@@ -56,13 +64,12 @@
             "url": ""
           }
         },
-        "message_48xPMD": {
+        "message_43xPMD": {
           "type": "message",
-          "disabled": true,
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
-            "text": "<p>The IN 10 will launch on April 14th</p>",
-            "url": "https://uk.yozmasport.com/products/in-10"
+            "text": "<p>Over £<em><strong>49 </strong></em>Free Shipping on All Dirt Bikes!</p>",
+            "url": "https://www.yozmasport.com/products/in-10?_pos=1&_psq=IN+10&_ss=e&_v=1.0"
           }
         },
         "message_Hm9xjY": {
@@ -82,22 +89,14 @@
             "text": "<p>Buy Two IN 10 Save More!</p>",
             "url": "shopify://products/in-10"
           }
-        },
-        "message_43xPMD": {
-          "type": "message",
-          "settings": {
-            "icon": "shopify://shop_images/yozma-bar-icon.png",
-            "text": "<p>Over £<em><strong>49 </strong></em>Free Shipping on All Dirt Bikes!</p>",
-            "url": "https://www.yozmasport.com/products/in-10?_pos=1&_psq=IN+10&_ss=e&_v=1.0"
-          }
         }
       },
       "block_order": [
-        "message_Mke4Hc",
         "message_48xPMD",
+        "message_Mke4Hc",
+        "message_43xPMD",
         "message_Hm9xjY",
-        "message_Hm9xjS",
-        "message_43xPMD"
+        "message_Hm9xjS"
       ],
       "settings": {
         "padding": 12,
