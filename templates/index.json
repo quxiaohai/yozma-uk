@@ -348,7 +348,7 @@
       "name": "MC Media Slide",
       "settings": {
         "page_color": "#ffffff",
-        "page_top": 0,
+        "page_top": 20,
         "page_bottom": 240,
         "mb_page_bottom": 40,
         "show_title": true,
