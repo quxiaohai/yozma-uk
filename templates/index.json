@@ -322,9 +322,9 @@
         "media2": {
           "type": "media",
           "settings": {
-            "desktop_image": "shopify://shop_images/1edited.jpg",
+            "desktop_image": "shopify://shop_images/12.jpg",
             "muted": true,
-            "video_desktop": "shopify://files/videos/yozma-横屏.mp4",
+            "video_desktop": "shopify://files/videos/UK横版.mp4",
             "title": "Ride Together, Share Every Moment",
             "text": "<p>Air time is yours. From ramps to unexpected drops, your ride reacts with precision, letting you experience the thrill of off-road action without limits.</p>"
           }
