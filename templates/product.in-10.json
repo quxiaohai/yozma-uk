@@ -136,14 +136,13 @@
         },
         "countdown_gHWnpr": {
           "type": "countdown",
-          "disabled": true,
           "settings": {
             "padding": "12px 0px 12px 0px",
             "mb_padding": "4px 0px 4px 0px",
-            "countdown_lbl": "Hurry up!",
-            "countdown_lbl_content": "Sale Ends In",
-            "countdown_start_date": "2025-10-31T00:00:00",
-            "duration": 1,
+            "countdown_lbl": "New IN 10",
+            "countdown_lbl_content": "Sale Starts In",
+            "countdown_start_date": "2026-4-14 10:00:00",
+            "duration": 9,
             "countdown_days": "DAYS",
             "countdown_hours": "HRS",
             "countdown_minutes": "MIN",
