@@ -312,7 +312,7 @@
         "media1": {
           "type": "media",
           "settings": {
-            "desktop_image": "shopify://shop_images/DSC_3323_1.png",
+            "desktop_image": "shopify://shop_images/IMG_4674.jpg",
             "muted": true,
             "video_desktop": "shopify://files/videos/UK横版.mp4",
             "title": "Yozma – Ride Beyond Limits",
@@ -322,7 +322,7 @@
         "media2": {
           "type": "media",
           "settings": {
-            "desktop_image": "shopify://shop_images/DSC_3781_1.png",
+            "desktop_image": "shopify://shop_images/1edited.jpg",
             "muted": true,
             "video_desktop": "shopify://files/videos/yozma-横屏.mp4",
             "title": "Ride Together, Share Every Moment",
@@ -332,7 +332,7 @@
         "media3": {
           "type": "media",
           "settings": {
-            "desktop_image": "shopify://shop_images/DSC_3705_1.png",
+            "desktop_image": "shopify://shop_images/IMG_4674.jpg",
             "muted": true,
             "video_desktop": "shopify://files/videos/YOZMA-IN10-b(1)-0828-15秒.mp4",
             "title": "Embrace Adventure, Ride Without Limits",
