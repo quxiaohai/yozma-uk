@@ -23,7 +23,6 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
     <meta name="theme-color" content="{{ settings.header_background }}">
 
     <title>{% if page_title == blank %}{{ shop.name }}{% else %}{{ page_title }}{% if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}{% endif %}</title>
-    <meta name="google-site-verification" content="6wQ6kidsLqAlsSP_-848e369dBap4gKpFx7KCC9dWTE" />
     {%- if page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
