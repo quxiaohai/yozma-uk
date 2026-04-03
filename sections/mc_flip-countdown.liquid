@@ -1,0 +1,515 @@
+{% assign ss = section.settings %}
+{%- assign countdown = section.blocks | where: 'type', 'countdown' | first -%}
+{%- assign cs = countdown.settings -%}
+<style>
+    .mc_flip-countdown {
+        padding: 25px 0;
+        --center-border: 1px solid{{ cs.countdown_separator_color }};
+        --col-width: 120px;
+        --col-height: 72px;
+        --font-size: 56px;
+        --col-color: {{ cs.countdown_num_color }};
+        --col-bg: {{ cs.countdown_fill_color }};
+    }
+
+    .mc_flip-countdown .flip-countdown {
+        gap: 40px;
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-wrap {
+        width: var(--col-width);
+        position: relative;
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-wrap:last-of-type:before {
+        display: none;
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-wrap:before {
+        content: ":";
+        font-size: 48px;
+        font-weight: 900;
+        color: {{ cs.countdown_dot_color }};
+        position: absolute;
+        right: -26px;
+        top: 28px;
+        transform: translateY(-50%);
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-item {
+        width: 100%;
+        gap: 0 6px;
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col {
+        flex: 1;
+        height: var(--col-height);
+        perspective: var(--col-height);
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .curr,
+    .mc_flip-countdown .flip-countdown .flip-col .next {
+        position: relative;
+        width: 100%;
+        height: calc(var(--col-height) / 2);
+        font-size: var(--font-size);
+        font-weight: 900;
+        background: var(--col-bg);
+        border-radius: 6px;
+        color: var(--col-color);
+        overflow: hidden;
+        box-sizing: border-box;
+        display: block;
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .flip .curr:before,
+    .mc_flip-countdown .flip-countdown .flip-col .flip .next:before, .mc_flip-countdown .flip-countdown .flip-col > .curr:before, .mc_flip-countdown .flip-countdown .flip-col > .next:before {
+        position: absolute;
+        content: attr(data-t);
+        line-height: var(--col-height);
+        text-align: center;
+        height: var(--col-height);
+        left: 0;
+        right: 0;
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .flip .curr:before, .mc_flip-countdown .flip-countdown .flip-col > .next:before {
+        top: 0;
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .flip .next:before, .mc_flip-countdown .flip-countdown .flip-col > .curr:before {
+        bottom: 0;
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .flip .curr, .mc_flip-countdown .flip-countdown .flip-col > .next {
+        border-bottom: var(--center-border);
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .flip .next, .mc_flip-countdown .flip-countdown .flip-col > .curr {
+        border-top: var(--center-border);
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .flip {
+        position: absolute;
+        width: 100%;
+        height: var(--col-height);
+        z-index: 1;
+        transform-style: preserve-3d;
+        transition: transform 0s;
+        transform: rotateX(0);
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .flip.active {
+        transition: all 0.5s ease-in-out;
+        transform: rotateX(-180deg);
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .flip .next {
+        transform: rotateX(-180deg);
+        backface-visibility: hidden;
+    }
+
+    .mc_flip-countdown .flip-countdown .flip-col .flip .curr {
+        position: absolute;
+        top: 0;
+        backface-visibility: hidden;
+    }
+
+    .mc_flip-countdown .flip-countdown .name {
+        font-size: 16px;
+        line-height: 1.2;
+        font-weight: 400;
+        color: {{ cs.countdown_text_color }};
+        text-align: center;
+        padding-top: 8px;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .mc_flip-countdown {
+            padding: 1.5rem 0;
+            --col-width: 64px;
+            --col-height: 38px;
+            --font-size: 32px;
+        }
+
+        .mc_flip-countdown .flip-countdown {
+            gap: 1.25rem;
+        }
+
+        .mc_flip-countdown .flip-countdown .flip-wrap {
+            width: var(--col-width);
+        }
+
+        .mc_flip-countdown .flip-countdown .flip-wrap:before {
+            font-size: 1.5rem;
+            right: -0.8125rem;
+            top: 1.0625rem;
+        }
+
+        .mc_flip-countdown .flip-countdown .flip-item {
+            width: 100%;
+            gap: 0 0.25rem;
+        }
+
+        .mc_flip-countdown .flip-countdown .flip-col {
+            height: var(--col-height);
+            perspective: var(--col-height);
+        }
+
+        .mc_flip-countdown .flip-countdown .flip-col .curr,
+        .mc_flip-countdown .flip-countdown .flip-col .next {
+            height: calc(var(--col-height) / 2);
+            font-size: var(--font-size);
+            background: var(--col-bg);
+            border-radius: 0.25rem;
+        }
+
+        .mc_flip-countdown .flip-countdown .flip-col .flip .curr:before,
+        .mc_flip-countdown .flip-countdown .flip-col .flip .next:before, .mc_flip-countdown .flip-countdown .flip-col > .curr:before, .mc_flip-countdown .flip-countdown .flip-col > .next:before {
+            line-height: var(--col-height);
+            height: var(--col-height);
+        }
+
+        .mc_flip-countdown .flip-countdown .flip-col .flip {
+            height: var(--col-height);
+        }
+
+        .mc_flip-countdown .flip-countdown .name {
+            font-size: 0.625rem;
+            padding-top: 0.375rem;
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_flip-countdown w-full section--page" id="{{ section.id }}-countdown">
+    {% render 'section-title', info: ss %}
+    {%- if countdown != blank -%}
+        {%- assign bs = countdown.settings -%}
+        <div class="flip-countdown flex-center">
+            {%- for v in (1..4) -%}
+                <div class="flip-wrap tw-relative flex-center-col">
+                    <div class="flip-item flex-top">
+                        <div class="flip-col">
+                            <div class="flip" node-name="flip">
+                                <div class="next" node-name="flipNext" data-t="0"></div>
+                                <div class="curr" node-name="flipCurr" data-t="0"></div>
+                            </div>
+                            <div class="next" node-name="next" data-t="0"></div>
+                            <div class="curr" node-name="curr" data-t="0"></div>
+                        </div>
+                        <div class="flip-col">
+                            <div class="flip" node-name="flip">
+                                <div class="next" node-name="flipNext" data-t="0"></div>
+                                <div class="curr" node-name="flipCurr" data-t="0"></div>
+                            </div>
+                            <div class="next" node-name="next" data-t="0"></div>
+                            <div class="curr" node-name="curr" data-t="0"></div>
+                        </div>
+                    </div>
+                    <div class="name">
+                        {%- if v == 1 -%}
+                            {{ bs.day }}
+                        {%- elsif v == 2 -%}
+                            {{ bs.hour }}
+                        {%- elsif v == 3 -%}
+                            {{ bs.minute }}
+                        {%- else -%}
+                            {{ bs.second }}
+                        {%- endif -%}
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+</div>
+{%- if countdown != blank -%}
+    <script>
+        (function () {
+            const node = document.getElementById('{{ section.id }}-countdown');
+            const nodeList = $heybike.getNodeList(node);
+            const colElms = [];
+            const MILLISECONDS_SECOND = 1000;
+            const MILLISECONDS_MINUTE = 60 * MILLISECONDS_SECOND;
+            const MILLISECONDS_HOUR = 60 * MILLISECONDS_MINUTE;
+            const MILLISECONDS_DAY = 24 * MILLISECONDS_HOUR;
+            const getDoubleDigit = (val) => {
+                if (val < 10) {
+                    return `0${val}`;
+                }
+                return val;
+            };
+
+            function getCol(i) {
+                return {
+                    toggleActive: () => nodeList.flip[i].classList.toggle('active'),
+                    getCurr: () => nodeList.curr[i].dataset.t,
+                    setCurr: (t) => [nodeList.flipCurr[i], nodeList.curr[i]].forEach((el) => (el.dataset.t = t)),
+                    setNext: (t) => [nodeList.flipNext[i], nodeList.next[i]].forEach((el) => (el.dataset.t = t))
+                };
+            }
+
+            for (let i = 0; i < 8; i++) {
+                colElms.push(getCol(i));
+            }
+
+            const formatTime = (count) => {
+                const days = Math.max(0, Math.floor(count / MILLISECONDS_DAY));
+                const hours = Math.max(0, Math.floor((count % MILLISECONDS_DAY) / MILLISECONDS_HOUR));
+                const minutes = Math.max(0, Math.floor((count % MILLISECONDS_HOUR) / MILLISECONDS_MINUTE));
+                const seconds = Math.max(0, Math.floor((count % MILLISECONDS_MINUTE) / MILLISECONDS_SECOND));
+                const currStr = `${getDoubleDigit(days)}${getDoubleDigit(hours)}${getDoubleDigit(minutes)}${getDoubleDigit(seconds)}`;
+                colElms.forEach(({ toggleActive, getCurr, setCurr, setNext }, i) => {
+                    const currTxt = getCurr();
+                    setNext(currStr[i]);
+                    if (currTxt !== currStr[i]) {
+                        toggleActive();
+                        setTimeout(() => {
+                            toggleActive();
+                            setCurr(currStr[i]);
+                        }, 500);
+                    }
+                });
+            };
+
+            let startDate = new Date("{{ countdown.settings.countdown_start_date }}");// 目标时间
+            let lastSec = startDate.getSeconds();
+            const storeNow = new Date("{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}").getTime(); // 初始店铺时间
+            const timeOffset = storeNow - Date.now();
+            const cycleDuration = {{ countdown.settings.duration }} * 24 * 60 * 60 * 1000; // 周期长度，单位为毫秒
+            const startTimer = () => {
+                const second = new Date().getSeconds();
+                if (lastSec === second) {
+                    return false;
+                }
+                lastSec = second;
+                const now = Date.now() + timeOffset;
+                // 计算从初始时间到当前时间的差值
+                const elapsedTime = now - startDate;
+                // 计算当前周期剩余的时间
+                const remainingTime = cycleDuration - (elapsedTime % cycleDuration);  // 取余数确保倒计时保持周期性
+                formatTime(remainingTime);
+                // 如果倒计时完成，重新开始下一个周期
+                if (remainingTime <= 0) {
+                    // 设置新的开始时间为当前时间
+                    startDate = Date.now();
+                }
+            };
+
+            startTimer();
+            setInterval(startTimer, 20);
+        })();
+    </script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "MC Flip Countdown",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Flip Countdown"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "countdown",
+      "name": "Countdown",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "countdown_start_date",
+          "label": "Select start date for countdown",
+          "default": "2024-12-02T00:00:00",
+          "info": "2024-12-02T00:00:00"
+        },
+        {
+          "type": "range",
+          "id": "duration",
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "unit": "Day",
+          "label": "Duration days",
+          "default": 7
+        },
+        {
+          "type": "text",
+          "id": "day",
+          "label": "Day",
+          "default": "Days"
+        },
+        {
+          "type": "text",
+          "id": "hour",
+          "label": "Hour",
+          "default": "Hours"
+        },
+        {
+          "type": "text",
+          "id": "minute",
+          "label": "Minute",
+          "default": "Mins"
+        },
+        {
+          "type": "text",
+          "id": "second",
+          "label": "Second",
+          "default": "Secs"
+        },
+        {
+          "type": "header",
+          "content": "Color"
+        },
+        {
+          "label": "Countdown fill color",
+          "type": "color",
+          "id": "countdown_fill_color",
+          "default": "#ba201a"
+        },
+        {
+          "label": "countdown num color",
+          "type": "color",
+          "id": "countdown_num_color",
+          "default": "#ffffff"
+        },
+        {
+          "label": "Countdown separator color",
+          "type": "color",
+          "id": "countdown_separator_color",
+          "default": "#650101"
+        },
+        {
+          "label": "Countdown dot color",
+          "type": "color",
+          "id": "countdown_dot_color",
+          "default": "#000000"
+        },
+        {
+          "label": "Countdown text color",
+          "type": "color",
+          "id": "countdown_text_color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
