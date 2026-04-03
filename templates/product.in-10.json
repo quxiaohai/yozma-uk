@@ -196,6 +196,7 @@
         },
         "buy_buttons": {
           "type": "buy_buttons",
+          "disabled": true,
           "settings": {
             "padding": "12px 0px 12px 0px",
             "mb_padding": "12px 0px 0px 0px",
