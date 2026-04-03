@@ -1003,28 +1003,28 @@
             "enable_video_looping": false
           }
         },
-        "youtube_hGdkAh": {
+        "youtube_VQgGtR": {
           "type": "youtube",
           "settings": {
-            "video_url": "https://www.youtube.com/watch?v=aE6JMTf3sE4&t=78s",
-            "cover_image": "shopify://shop_images/aE6JMTf3sE4-HD.jpg",
+            "video_url": "https://youtu.be/UIFm5cPpgBs",
+            "cover_image": "shopify://shop_images/UIFm5cPpgBs-HD.jpg",
             "video_url_mobile": "",
-            "date": "2025/10/13",
-            "content": "I Bought The Cheapest Electric Dirtbike (Yozma IN10)",
-            "avatar": "shopify://shop_images/channels4_profile_332012fe-b91c-415b-9ab3-960dc0a68ce8.jpg",
-            "author": "Rawstuntz"
+            "date": "2025/09/10",
+            "content": "This electric dirt bike cost less than a IPhone! Yozma IN10",
+            "avatar": "shopify://shop_images/channels4_profile_6.jpg",
+            "author": "ENDOPRYSM"
           }
         },
-        "youtube_FBMggK": {
+        "youtube_TLCWVG": {
           "type": "youtube",
           "settings": {
-            "video_url": "https://www.youtube.com/watch?v=1BWf9zQho1g",
-            "cover_image": "shopify://shop_images/1BWf9zQho1g-HD.jpg",
+            "video_url": "https://www.youtube.com/watch?v=q5yuYyrjNA8",
+            "cover_image": "shopify://shop_images/q5yuYyrjNA8-HD.jpg",
             "video_url_mobile": "",
-            "date": "2025/09/20",
-            "content": "Best Electric Dirt Bike Under $1500!! Yozma Sport IN 10",
-            "avatar": "shopify://shop_images/channels4_profile_2_648cfac0-24f1-49d2-8823-14099005e312.jpg",
-            "author": "Oneway Lilman"
+            "date": "2025/09/22",
+            "content": "Electric Dirt Bikes Getting Cheaper and Better? Yozma IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_5_d03ebca7-69c9-4ab2-8b56-81b321b2429f.jpg",
+            "author": "Pat Outdoors"
           }
         },
         "youtube_kmY6wG": {
@@ -1051,30 +1051,6 @@
             "author": "G Bear"
           }
         },
-        "youtube_TLCWVG": {
-          "type": "youtube",
-          "settings": {
-            "video_url": "https://www.youtube.com/watch?v=q5yuYyrjNA8",
-            "cover_image": "shopify://shop_images/q5yuYyrjNA8-HD.jpg",
-            "video_url_mobile": "",
-            "date": "2025/09/22",
-            "content": "Electric Dirt Bikes Getting Cheaper and Better? Yozma IN 10",
-            "avatar": "shopify://shop_images/channels4_profile_5_d03ebca7-69c9-4ab2-8b56-81b321b2429f.jpg",
-            "author": "Pat Outdoors"
-          }
-        },
-        "youtube_VQgGtR": {
-          "type": "youtube",
-          "settings": {
-            "video_url": "https://youtu.be/UIFm5cPpgBs",
-            "cover_image": "shopify://shop_images/UIFm5cPpgBs-HD.jpg",
-            "video_url_mobile": "",
-            "date": "2025/09/10",
-            "content": "This electric dirt bike cost less than a IPhone! Yozma IN10",
-            "avatar": "shopify://shop_images/channels4_profile_6.jpg",
-            "author": "ENDOPRYSM"
-          }
-        },
         "youtube_3Vqy4B": {
           "type": "youtube",
           "settings": {
@@ -1086,6 +1062,30 @@
             "avatar": "shopify://shop_images/channels4_profile_7.jpg",
             "author": "Talaria Boys"
           }
+        },
+        "youtube_hGdkAh": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=aE6JMTf3sE4&t=78s",
+            "cover_image": "shopify://shop_images/aE6JMTf3sE4-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/10/13",
+            "content": "I Bought The Cheapest Electric Dirtbike (Yozma IN10)",
+            "avatar": "shopify://shop_images/channels4_profile_332012fe-b91c-415b-9ab3-960dc0a68ce8.jpg",
+            "author": "Rawstuntz"
+          }
+        },
+        "youtube_FBMggK": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=1BWf9zQho1g",
+            "cover_image": "shopify://shop_images/1BWf9zQho1g-HD.jpg",
+            "video_url_mobile": "",
+            "date": "2025/09/20",
+            "content": "Best Electric Dirt Bike Under $1500!! Yozma Sport IN 10",
+            "avatar": "shopify://shop_images/channels4_profile_2_648cfac0-24f1-49d2-8823-14099005e312.jpg",
+            "author": "Oneway Lilman"
+          }
         }
       },
       "block_order": [
@@ -1096,13 +1096,13 @@
         "video_WWBVWF",
         "video_pAyz4R",
         "video_aHP8PY",
-        "youtube_hGdkAh",
-        "youtube_FBMggK",
+        "youtube_VQgGtR",
+        "youtube_TLCWVG",
         "youtube_kmY6wG",
         "youtube_a6a6DE",
-        "youtube_TLCWVG",
-        "youtube_VQgGtR",
-        "youtube_3Vqy4B"
+        "youtube_3Vqy4B",
+        "youtube_hGdkAh",
+        "youtube_FBMggK"
       ],
       "name": "MC Community Media Slide",
       "settings": {
