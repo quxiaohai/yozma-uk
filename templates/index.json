@@ -98,33 +98,13 @@
             "button_hover_color": "#ffffff",
             "button_url": ""
           }
-        },
-        "media_69dmfz": {
-          "type": "media",
-          "disabled": true,
-          "settings": {
-            "image_link": "",
-            "slide_tab": "",
-            "show_subtitle": true,
-            "subtitle": "",
-            "subtitle_color": "#ffffff",
-            "show_title": true,
-            "title": "",
-            "title_color": "#ffffff",
-            "show_button": true,
-            "button_text": "",
-            "button_color": "#000000",
-            "button_hover_color": "#ffffff",
-            "button_url": ""
-          }
         }
       },
       "block_order": [
         "media_Yi7pih",
         "media2",
         "media3",
-        "media1",
-        "media_69dmfz"
+        "media1"
       ],
       "name": "MC Banner Slide",
       "settings": {
@@ -165,7 +145,7 @@
       "name": "MC Flip Countdown",
       "settings": {
         "page_color": "#1a1a1a",
-        "page_top": 15,
+        "page_top": 20,
         "show_title": true,
         "title": "IN 10 Official Release: 14th April",
         "title_pc_size": 60,
@@ -287,9 +267,9 @@
       "settings": {
         "page_color": "#1a1a1a",
         "page_top": 20,
-        "page_bottom": 10,
+        "page_bottom": 15,
         "show_title": true,
-        "title": "<p><strong>Be the first to know about new arrival and exclusive offers!</strong></p>",
+        "title": "<p>Subscribe for Early Access & Launch Offers</p>",
         "title_style": "normal",
         "title_pc_size": 48,
         "title_mb_size": 24,
@@ -308,22 +288,22 @@
         "button": "Subscribe",
         "pc_button_size": 18,
         "mb_button_size": 10,
-        "button_bg_color": "#D30000",
+        "button_bg_color": "#d30000",
         "button_text_color": "#ffffff",
         "button_text_hover_color": "#000000",
         "tag": "Sub",
         "content": "Sub",
         "placeholder": "Your email",
         "input_bg_color": "#ffffff",
-        "input_border_color": "#D30000",
+        "input_border_color": "#d30000",
         "input_text_color": "#000000",
         "show_privacy": true,
         "privacy_text": "<p>By submitting this form, I accept the <a href=\"/pages/terms-of-service-1\">Terms of Sale</a>  and <a href=\"/pages/privacy-policy\">Privacy Policy</a></p>",
         "privacy_checked": true,
         "privacy_color": "#d5d5d5",
         "privacy_link_color": "#ffffff",
-        "privacy_link_hover_color": "#D30000",
-        "privacy_active_color": "#D30000"
+        "privacy_link_hover_color": "#d30000",
+        "privacy_active_color": "#d30000"
       }
     },
     "mc_media_slide": {
