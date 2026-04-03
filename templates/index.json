@@ -98,13 +98,32 @@
             "button_hover_color": "#ffffff",
             "button_url": ""
           }
+        },
+        "media_69dmfz": {
+          "type": "media",
+          "settings": {
+            "image_link": "",
+            "slide_tab": "",
+            "show_subtitle": true,
+            "subtitle": "",
+            "subtitle_color": "#ffffff",
+            "show_title": true,
+            "title": "",
+            "title_color": "#ffffff",
+            "show_button": true,
+            "button_text": "",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
         }
       },
       "block_order": [
         "media_Yi7pih",
         "media2",
         "media3",
-        "media1"
+        "media1",
+        "media_69dmfz"
       ],
       "name": "MC Banner Slide",
       "settings": {
@@ -117,6 +136,49 @@
         "duration": 4,
         "slide_tab_color": "#999999",
         "slide_tab_active_color": "#ffffff"
+      }
+    },
+    "mc_flip_countdown_eXKM4G": {
+      "type": "mc_flip-countdown",
+      "blocks": {
+        "countdown_g3VNgw": {
+          "type": "countdown",
+          "settings": {
+            "countdown_start_date": "2026-4-14 10:00:00",
+            "duration": 9,
+            "day": "Days",
+            "hour": "Hours",
+            "minute": "Mins",
+            "second": "Secs",
+            "countdown_fill_color": "#ba201a",
+            "countdown_num_color": "#ffffff",
+            "countdown_separator_color": "#650101",
+            "countdown_dot_color": "#000000",
+            "countdown_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "countdown_g3VNgw"
+      ],
+      "name": "MC Flip Countdown",
+      "settings": {
+        "page_color": "#1a1a1a",
+        "page_top": 15,
+        "show_title": true,
+        "title": "IN 10 Official Release: 14 April",
+        "title_pc_size": 60,
+        "title_mb_size": 35,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_gradient_color": "",
+        "show_description": false,
+        "description": "",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30
       }
     },
     "mc_product_list": {
@@ -574,6 +636,7 @@
   },
   "order": [
     "mc_banner_slide",
+    "mc_flip_countdown_eXKM4G",
     "mc_product_list",
     "mc_media_slide",
     "mc_text_slide",
