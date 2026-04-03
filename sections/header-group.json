@@ -49,6 +49,13 @@
     "announcement-slide-bar": {
       "type": "announcement-slide-bar",
       "blocks": {
+        "message_Mke4Hc": {
+          "type": "message",
+          "settings": {
+            "text": "<p>All prices shown include VAT — no additional tax will be added at checkout.</p>",
+            "url": ""
+          }
+        },
         "message_48xPMD": {
           "type": "message",
           "disabled": true,
@@ -86,6 +93,7 @@
         }
       },
       "block_order": [
+        "message_Mke4Hc",
         "message_48xPMD",
         "message_Hm9xjY",
         "message_Hm9xjS",
