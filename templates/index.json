@@ -126,7 +126,7 @@
           "type": "countdown",
           "settings": {
             "countdown_start_date": "2026-4-14 10:00:00",
-            "duration": 9,
+            "duration": 10,
             "day": "Days",
             "hour": "Hours",
             "minute": "Mins",
