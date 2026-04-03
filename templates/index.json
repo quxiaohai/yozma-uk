@@ -15,8 +15,8 @@
         "media_Yi7pih": {
           "type": "media",
           "settings": {
-            "pc_image_url": "shopify://shop_images/EU_PC_3840_x_1599.jpg",
-            "mb_image_url": "shopify://shop_images/EU_1500_x_2180.jpg",
+            "pc_image_url": "shopify://shop_images/UK_PC_3840_x_1599_dfdb4dc0-15ff-41ad-a4a5-79e7297aead3.jpg",
+            "mb_image_url": "shopify://shop_images/UK_1500_x_2180_7875c6ac-0a44-40b9-9a11-4d31ef7991a0.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "",
             "show_subtitle": true,
@@ -101,6 +101,7 @@
         },
         "media_69dmfz": {
           "type": "media",
+          "disabled": true,
           "settings": {
             "image_link": "",
             "slide_tab": "",
