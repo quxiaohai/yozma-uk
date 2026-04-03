@@ -91,6 +91,7 @@
         },
         "price": {
           "type": "price",
+          "disabled": true,
           "settings": {
             "padding": "12px 0px 4px 0px",
             "mb_padding": "6px 0px 0px 0px",
