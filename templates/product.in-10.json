@@ -37,6 +37,7 @@
         },
         "review_score": {
           "type": "review_score",
+          "disabled": true,
           "settings": {
             "padding": "7px 0px 16px 0px",
             "mb_padding": "5px 0px 10px 0px",
@@ -47,8 +48,8 @@
         "text_HmxbbW": {
           "type": "content",
           "settings": {
-            "padding": "0px 0px 0px 0px",
-            "mb_padding": "0px 0px 0px 0px",
+            "padding": "10px 0px 0px 0px",
+            "mb_padding": "10px 0px 0px 0px",
             "text": "<ul><li><strong>Torque:</strong>146 N.M</li><li><strong>Max Load</strong>: 120 kg</li><li><strong>Battery</strong>: 48V 23.4Ah</li><li><strong>Max Range</strong>: 85km</li><li><strong>Suitable Height</strong>: 120 cm-180 cm</li></ul>"
           }
         },
@@ -90,6 +91,7 @@
         },
         "price": {
           "type": "price",
+          "disabled": true,
           "settings": {
             "padding": "12px 0px 4px 0px",
             "mb_padding": "6px 0px 0px 0px",
@@ -194,6 +196,7 @@
         },
         "buy_buttons": {
           "type": "buy_buttons",
+          "disabled": true,
           "settings": {
             "padding": "12px 0px 12px 0px",
             "mb_padding": "12px 0px 0px 0px",
@@ -577,6 +580,7 @@
             "title": "",
             "media_type": "video",
             "media_position": "left",
+            "media_size": "fill",
             "video_desktop": "shopify://files/videos/2月9日 (1).mp4",
             "media_ratio": "",
             "mb_media_ratio": "",
@@ -597,6 +601,7 @@
             "title": "",
             "media_type": "video",
             "media_position": "right",
+            "media_size": "fill",
             "video_desktop": "shopify://files/videos/2月10日(1).mp4",
             "media_ratio": "",
             "mb_media_ratio": "",
@@ -617,6 +622,7 @@
             "title": "",
             "media_type": "video",
             "media_position": "left",
+            "media_size": "fill",
             "video_desktop": "shopify://files/videos/2月10日(2).mp4",
             "media_ratio": "",
             "mb_media_ratio": "",
@@ -672,14 +678,14 @@
           "settings": {
             "title": "Geometry",
             "pc_image": "shopify://shop_images/1_b046cdf1-f014-41ed-adf5-00b6db485bf9.png",
-            "param_text": "<ul><li>&lcub;A&rcub;<strong>Total Length</strong> 168cm</li><li>&lcub;B&rcub;<strong>Handlebar Height </strong>97cm</li><li>&lcub;C&rcub;<strong>Wheelbase </strong>41.7\"(106cm)</li><li>&lcub;D&rcub;<strong>Seat Height</strong> 28\"(72cm)</li><li>&lcub;E&rcub;<strong>Wheel Diameter </strong>14/12\"</li><li>&lcub;F&rcub;<strong>Seat Length </strong>69cm</li><li>&lcub;G&rcub;<strong>Handlebar Width </strong>28.34\"(72cm)</li><li>&lcub;H&rcub;<strong>Suitable Height</strong> 3.94ft - 5.9ft</li></ul>"
+            "param_text": "<ul><li>&lcub;A&rcub;<strong>Total Length</strong> 168cm</li><li>&lcub;B&rcub;<strong>Handlebar Height </strong>97cm</li><li>&lcub;C&rcub;<strong>Wheelbase </strong>41.7\"(106cm)</li><li>&lcub;D&rcub;<strong>Seat Height</strong> 28\"(72cm)</li><li>&lcub;E&rcub;<strong>Wheel Diameter </strong>14/12\"</li><li>&lcub;F&rcub;<strong>Seat Length </strong>69cm</li><li>&lcub;G&rcub;<strong>Handlebar Width </strong>28.34\"(72cm)</li><li>&lcub;H&rcub;<strong>Suitable Height</strong> 3.94ft - 5.9ft(120 cm-180 cm)</li></ul>"
           }
         },
         "slide_myF8AV": {
           "type": "slide",
           "settings": {
             "title": "Specification",
-            "param_text": "<ul><li><strong>Top speed </strong>20 Km/h</li><li><strong>Range </strong>85 KM</li><li><strong>Motor </strong>2600W Peak, Brushless Motor</li><li><strong>Charger</strong> 48V5A Charger</li><li><strong>Charger Voltage </strong>100-230V, 50-60Hz</li><li><strong>Charging Time </strong>0%-100% 5.0-6.0 Hours</li><li><strong>Display</strong> LCD Display</li><li><strong>Ride Mode </strong>Three-speed Zero Start</li><li><strong>Drivetrain </strong>Chain Drive</li><li><strong>Battery</strong> 48V23.4Ah Lithium-ion Battery</li><li><strong>Suspension Type </strong>Hydraulic Suspension</li><li><strong>Brakes</strong> Heavy-duty Hydraulic Brakes</li><li><strong>Frame</strong> High Carbon Steel</li><li><strong>Chain</strong> 116links（420 chain）Heavy Duty Chain</li><li><strong>Max Climbing</strong> 30 degrees</li><li><strong>Front Suspension</strong> Hydraulic Suspension</li><li><strong>Rear Suspension</strong> Nitrogen Shock Absorber</li><li><strong>Waterproof</strong> IPX6</li><li><strong>Ground Clearance </strong>9(23cm)</li><li><strong>Bike Weight </strong>121lbs（55kg)</li><li><strong>Maximum Load </strong>265lbs（120kg)</li></ul>"
+            "param_text": "<p></p><ul><li><strong>Range </strong>85 KM</li><li><strong>Motor </strong>High-Torque Brushless Motor</li><li><strong>Charger</strong> 48V5A Charger</li><li><strong>Charger Voltage </strong>100-230V, 50-60Hz</li><li><strong>Charging Time </strong>0%-100% 5.0-6.0 Hours</li><li><strong>Display</strong> LCD Display</li><li><strong>Ride Mode </strong>Three-speed Zero Start</li><li><strong>Drivetrain </strong>Chain Drive</li><li><strong>Battery</strong> 48V23.4Ah Lithium-ion Battery</li><li><strong>Suspension Type </strong>Hydraulic Suspension</li><li><strong>Brakes</strong> Heavy-duty Hydraulic Brakes</li><li><strong>Frame</strong> High Carbon Steel</li><li><strong>Chain</strong> 116links（420 chain）Heavy Duty Chain</li><li><strong>Max Climbing</strong> 30 degrees</li><li><strong>Front Suspension</strong> Hydraulic Suspension</li><li><strong>Rear Suspension</strong> Nitrogen Shock Absorber</li><li><strong>Waterproof</strong> IPX6</li><li><strong>Ground Clearance </strong>9(23cm)</li><li><strong>Bike Weight </strong>121lbs（55kg)</li><li><strong>Maximum Load </strong>265lbs（120kg)</li></ul>"
           }
         },
         "slide_FafDa8": {
@@ -864,6 +870,7 @@
         "product_MaKYG3",
         "product_RMxwXM"
       ],
+      "disabled": true,
       "name": "MC Product Compare",
       "settings": {
         "page_color": "#171717",
@@ -1385,8 +1392,8 @@
         "item_3CNzMi": {
           "type": "item",
           "settings": {
-            "title": "1.What is the top speed of the Yozma IN 10?",
-            "content": "<p>The Yozma IN 10 reaches up to 20KM/H  in the third speed mode.</p>"
+            "title": "1.What is speed modes of the Yozma IN 10?",
+            "content": "<p>The IN10 offers three riding modes, allowing riders to easily switch between smooth control and a more dynamic riding experience depending on terrain and riding style.</p>"
           }
         },
         "item_4mT3Pq": {
@@ -1414,7 +1421,7 @@
           "type": "item",
           "settings": {
             "title": "5. What type of bike does it use?",
-            "content": "<p>The IN 10 features a 1200W rated / 2600W peak direct drive brushless motor, offering strong acceleration and climbing power.</p>"
+            "content": "<p>Powered by a high-torque direct-drive brushless motor, the IN 10 offers instant throttle response, dynamic acceleration, and excellent hill-climbing ability.<br/></p>"
           }
         },
         "item_nzectQ": {

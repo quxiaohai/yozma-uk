@@ -15,8 +15,8 @@
         "media_Yi7pih": {
           "type": "media",
           "settings": {
-            "pc_image_url": "shopify://shop_images/UK_PC_3840_x_1599.jpg",
-            "mb_image_url": "shopify://shop_images/UK_1500_x_2180.jpg",
+            "pc_image_url": "shopify://shop_images/EU_PC_3840_x_1599.jpg",
+            "mb_image_url": "shopify://shop_images/EU_1500_x_2180.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "",
             "show_subtitle": true,
@@ -150,15 +150,15 @@
             "product_description": "Electric Mini Dirt Bike For Teens & Adults",
             "product_image": "shopify://shop_images/118_5e507202-c482-4530-bba7-a265dbdc9bfc.png",
             "video": "shopify://files/videos/Yozma IN 10  lilman1.mp4",
-            "icon1": "shopify://shop_images/param-icon-1.png",
-            "title1": "2600W",
-            "content1": "Motor",
-            "icon2": "shopify://shop_images/param-icon-2.png",
-            "title2": "146N.M",
-            "content2": "Torque",
-            "icon3": "shopify://shop_images/param-icon-3.png",
-            "title3": "20Km/h",
-            "content3": "Top Speed"
+            "icon1": "shopify://shop_images/199dbfa1fc6cf277a8ae542d1c5fa9a2.png",
+            "title1": "146N.M",
+            "content1": "Torque",
+            "icon2": "shopify://shop_images/1815a82372d12b55cdd8d7567d9caa9c.png",
+            "title2": "85KM",
+            "content2": "Max Range",
+            "icon3": "shopify://shop_images/32029198db61f160ba465e85628fa5ed.png",
+            "title3": "23.4Ah",
+            "content3": "Battery"
           }
         },
         "card2": {
@@ -169,15 +169,15 @@
             "product_description": "Combo Pack – Best Value Dual Set",
             "product_image": "shopify://shop_images/combo.png",
             "video": "shopify://files/videos/connor_stitt_reel_2025_11_27_06_02_173774657813202242219.mp4",
-            "icon1": "shopify://shop_images/param-icon-1.png",
-            "title1": "2600W",
-            "content1": "Motor",
-            "icon2": "shopify://shop_images/param-icon-2.png",
-            "title2": "146N.M",
-            "content2": "Torque",
-            "icon3": "shopify://shop_images/param-icon-3.png",
-            "title3": "20Km/h",
-            "content3": "Top Speed"
+            "icon1": "shopify://shop_images/199dbfa1fc6cf277a8ae542d1c5fa9a2.png",
+            "title1": "146N.M",
+            "content1": "Torque",
+            "icon2": "shopify://shop_images/1815a82372d12b55cdd8d7567d9caa9c.png",
+            "title2": "85KM",
+            "content2": "Max Range",
+            "icon3": "shopify://shop_images/32029198db61f160ba465e85628fa5ed.png",
+            "title3": "23.4Ah",
+            "content3": "Battery"
           }
         }
       },
@@ -325,6 +325,8 @@
         "page_color": "#ffffff",
         "desktop_image": "shopify://shop_images/trust-backdrop.jpg",
         "mobile_image": "shopify://shop_images/trust-mb-backdrop.jpg",
+        "page_top": 5,
+        "page_bottom": 5,
         "show_title": true,
         "title": "<p><strong>What They Say </strong></p><p>About Yozma’s Outstanding Ride Experience</p>",
         "title_style": "italic",
@@ -351,20 +353,20 @@
           "settings": {
             "title": "",
             "media_type": "video",
-            "media_size": "auto",
             "media_position": "left",
+            "media_size": "auto",
             "video_desktop": "shopify://files/videos/配送区域视频.mp4",
             "video_mobile": "shopify://files/videos/配送区域视频.mp4",
             "media_ratio": "",
             "mb_media_ratio": "",
             "show_subhead": true,
             "subhead": "",
-            "subhead_color": "#FF0000",
+            "subhead_color": "#ff0000",
             "head": "EU Countries We Ship to",
             "head_color": "#ff0000",
             "head_gradient_color": "",
             "text": "<p>We ship from our warehouse in <strong>Germany  or Itlay</strong> to the following 25 countries:<br/>Austria, Belgium, Bulgaria, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Italy, Ireland, Latvia, Lithuania, Luxembourg, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden.<br/><br/></p>",
-            "text_color": "#B2B2B2",
+            "text_color": "#b2b2b2",
             "text_bold_color": "#ff0000"
           }
         }
@@ -372,6 +374,7 @@
       "block_order": [
         "slide_QAxLtE"
       ],
+      "disabled": true,
       "name": "MC Media Text",
       "settings": {
         "page_color": "",
@@ -478,6 +481,8 @@
       "name": "MC Main Ces",
       "settings": {
         "page_color": "#ffffff",
+        "page_top": 0,
+        "page_bottom": 0,
         "title": "<p>Discover the world of YOZMA</p>",
         "title_decorate_image": "shopify://shop_images/title-text-tag.png",
         "title_color": "#000000",
@@ -560,6 +565,8 @@
       "name": "MC Shop Service",
       "settings": {
         "page_color": "#ffffff",
+        "page_top": 20,
+        "page_bottom": 40,
         "card_nama_color": "#000000",
         "card_text_color": "#7a7a7a"
       }
