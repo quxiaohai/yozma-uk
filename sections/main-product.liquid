@@ -959,7 +959,6 @@
         </div>
     </product-rerender>
 </div>
-
 {%- assign buy_buttons_block = section.blocks | where: 'type', 'buy_buttons' | first -%}
 
 {%- if ss.show_fixed_add_to_cart and product.available and buy_buttons_block != blank -%}
@@ -2837,7 +2836,24 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "unit": "px",
           "label": "Width",
           "default": 150
-        }
+        },
+        {
+          "type": "checkbox",
+          "id": "image_position",
+          "label": "Image click position",
+          "default": false
+        },
+         {
+          "type": "range",
+          "id": "position",
+          "label": "Image position section",
+          "min": 1,
+          "max": 25,
+          "step": 1,
+          "unit": "sec",
+          "default": 3,
+          "visible_if": "{{ block.settings.image_position }}"
+        },
       ]
     },
     {

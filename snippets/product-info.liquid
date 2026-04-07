@@ -21,7 +21,7 @@ Supported variables
 
     {%- for block in section.blocks -%}
         {%- liquid
-            assign bk_stts = block.settings
+            assign bs = block.settings
             assign previous_block_index = forloop.index0 | minus: 1
             assign next_block_index = forloop.index0 | plus: 1
             assign previous_block = section.blocks[previous_block_index]
@@ -74,13 +74,13 @@ Supported variables
                     <div class="tw-flex tw-gap-4 tw-justify-between product-info__icons_list">
                         {% for i in (1..4) %}
                             {% assign img_key = 'icon_' | append: i %}
-                            {% if bk_stts[img_key] != blank %}
+                            {% if bs[img_key] != blank %}
                                 <div class="tw-text-center tw-flex tw-flex-col  tw-items-center tw-gap-2">
                                     <div class="tw-w-8">
-                                        {{ bk_stts[img_key] | image_url: width: '65' | image_tag: width: '65' }}
+                                        {{ bs[img_key] | image_url: width: '65' | image_tag: width: '65' }}
                                     </div>
-                                    {% if bk_stts[img_key].alt %}
-                                        <p class="tw-mb-0">{{ bk_stts[img_key].alt }}</p>
+                                    {% if bs[img_key].alt %}
+                                        <p class="tw-mb-0">{{ bs[img_key].alt }}</p>
                                     {% endif %}
                                 </div>
                             {% endif %}
@@ -120,8 +120,8 @@ Supported variables
                     {%- endif -%}
                 {%- when 'review_score' -%}
                     <div class="review--score flex-left">
-                        {%- render 'icon-score', score: bk_stts.score -%}
-                        <span class="review-text">{{ bk_stts.review_text }}</span>
+                        {%- render 'icon-score', score: bs.score -%}
+                        <span class="review-text">{{ bs.review_text }}</span>
                     </div>
                 {%- when 'content' -%}
                     {%- if block.settings.text != blank -%}
@@ -170,37 +170,37 @@ Supported variables
                         </div>
                     {%- endif -%}
                 {%- when 'countdown_timer' -%}
-                    <div {% render 'surface', class: 'countdown-timer-wrapper overflow-hidden relative w-full', background_gradient: bk_stts.background_gradient, background: bk_stts.background, text_color: bk_stts.title_color %}>
-                        {%- if bk_stts.background_image != blank -%}
-                            {%- render 'global-image', image: bk_stts.background_image, image_size: 700, class: 'backdrop-img absolute w-full h-full' -%}
+                    <div {% render 'surface', class: 'countdown-timer-wrapper overflow-hidden relative w-full', background_gradient: bs.background_gradient, background: bs.background, text_color: bs.title_color %}>
+                        {%- if bs.background_image != blank -%}
+                            {%- render 'global-image', image: bs.background_image, image_size: 700, class: 'backdrop-img absolute w-full h-full' -%}
                         {%- endif -%}
                         <div class="countdown-box w-full h-full relative z-1 flex-between">
                             <div class="message-info flex-left">
-                                {%- if bk_stts.custom_icon != blank -%}
-                                    {%- render 'global-image', image: bk_stts.custom_icon, image_size: 80 -%}
+                                {%- if bs.custom_icon != blank -%}
+                                    {%- render 'global-image', image: bs.custom_icon, image_size: 80 -%}
                                 {%- endif -%}
-                                <div class="text fw-900 italic lh-2">{{ bk_stts.title }}</div>
+                                <div class="text fw-900 italic lh-2">{{ bs.title }}</div>
                             </div>
                             <countdown-timer
-                                cycle-duration="{{ bk_stts.duration }}"
+                                cycle-duration="{{ bs.duration }}"
                                 data-store="{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}"
-                                data-date="{{ bk_stts.countdown_start_date }}">
+                                data-date="{{ bs.countdown_start_date }}">
                                 <div class="countdown--bar flex-center">
                                     <div class="countdown--item relative flex-center-col">
                                         <input node-name="day" disabled type="text" class="num" value="00">
-                                        <div class="name">{{ bk_stts.countdown_days }}</div>
+                                        <div class="name">{{ bs.countdown_days }}</div>
                                     </div>
                                     <div class="countdown--item relative flex-center-col">
                                         <input node-name="hour" disabled type="text" class="num" value="00">
-                                        <div class="name">{{ bk_stts.countdown_hours }}</div>
+                                        <div class="name">{{ bs.countdown_hours }}</div>
                                     </div>
                                     <div class="countdown--item relative flex-center-col">
                                         <input node-name="minute" disabled type="text" class="num" value="00">
-                                        <div class="name">{{ bk_stts.countdown_minutes }}</div>
+                                        <div class="name">{{ bs.countdown_minutes }}</div>
                                     </div>
                                     <div class="countdown--item relative flex-center-col">
                                         <input node-name="second" disabled type="text" class="num" value="00">
-                                        <div class="name">{{ bk_stts.countdown_seconds }}</div>
+                                        <div class="name">{{ bs.countdown_seconds }}</div>
                                     </div>
                                 </div>
                             </countdown-timer>
@@ -698,18 +698,18 @@ Supported variables
 
                 {%- when 'image' -%}
                     {%- if block.settings.image != blank -%}
-                        <div class="product-info__image">
-                            {%- unless bk_stts.image_fill -%}
+                        <div class="product-info__image"{% if bs.image_position %} onclick="$heybike.position({{ bs.position }})"{% endif %}>
+                            {%- unless bs.image_fill -%}
                                 {%- capture sizes -%}{{ block.settings.max_width }}px{%- endcapture -%}
                                 {%- capture widths -%}{{ block.settings.max_width }}, {{ block.settings.max_width | times: 2 | at_most: block.settings.image.width }}{%- endcapture -%}
                             {%- endunless -%}
-                            {%- capture style -%}width: {% if bk_stts.image_fill %}100%{% else %}{{ block.settings.max_width }}px{% endif %}; {% if block.settings.alignment == 'center' %}margin-inline: auto{% elsif block.settings.alignment == 'end' %}margin-inline-start: auto;{% endif %}{%- endcapture -%}
+                            {%- capture style -%}width: {% if bs.image_fill %}100%{% else %}{{ block.settings.max_width }}px{% endif %}; {% if block.settings.alignment == 'center' %}margin-inline: auto{% elsif block.settings.alignment == 'end' %}margin-inline-start: auto;{% endif %}{%- endcapture -%}
                             {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: style: style, sizes: sizes, widths: widths -}}
                         </div>
                     {%- endif -%}
 
                 {%- when 'discount' -%}
-                    {%- render 'mc_discount-code', info: bk_stts -%}
+                    {%- render 'mc_discount-code', info: bs -%}
                 {%- when 'button' -%}
                     {%- if block.settings.text != blank -%}
                         <div class="product-info__button">

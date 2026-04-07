@@ -470,6 +470,18 @@ class HeybikeCommon {
         return '{{ shop.money_format }}'.replace(/\{\{\s*(\w+)\s*\}\}/, formatWithDelimiters(amount, 2));
     }
 
+    position(index) {
+        const main = document.getElementById('main');
+        let childList = [...main.childNodes].filter(item => item.nodeType === 1);
+        if (childList[0] && !childList[0].id.includes('shopify-section-template')) {
+            childList = [...childList[0].childNodes].filter(item => item.nodeType === 1);
+        }
+        let targetNode = childList[index - 1];
+        if (targetNode) {
+            window.scrollTo(0, this.getOffset(targetNode).top - 80);
+        }
+    }
+
     async clearCart(e) {
         return new Promise((t, n) => {
             fetch(window.Shopify.routes.root + 'cart/clear.js', {
