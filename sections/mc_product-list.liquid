@@ -97,13 +97,22 @@
         gap: 0 14px;
     }
 
-    .mc_product-list ._product-card .btn-group .image-button {
+    .mc_product-list .btn-group .image-button {
         flex: 1;
         --button-color: #ffffff;
         --button-width: 100%;
         --button-height: auto;
         --button-size: 26px;
         aspect-ratio: 3.6;
+    }
+
+    .mc_product-list .image-button .text {
+        gap: 4px;
+    }
+    .mc_product-list .image-button .text .svg-icon {
+        width: calc(var(--button-size) * 1.5);
+        height: calc(var(--button-size) * 1.5);
+        transform: translateY(-4%);
     }
 
     .mc_product-list .active {
@@ -173,7 +182,7 @@
             gap: 0 0.7291666667vw;
         }
 
-        .mc_product-list ._product-card .btn-group .image-button {
+        .mc_product-list .btn-group .image-button {
             --button-size: 1.4vw;
         }
     }
@@ -242,8 +251,12 @@
             gap: 0 0.53125rem;
         }
 
-        .mc_product-list ._product-card .btn-group .image-button {
+        .mc_product-list .btn-group .image-button {
             --button-size: 0.8125rem;
+        }
+
+        .mc_product-list .image-button .text .svg-icon {
+            transform: translateY(-10%);
         }
 
         .mc_product-list .progress {
@@ -320,7 +333,27 @@
                             data-variant="{{ variant.id }}"
                             class="image-button relative flex-center">
                             {% render 'global-image', image: ss.button2_bg_image, image_size: 300 %}
-                            <span class="text z-1 relative">{{ ss.button2_text }}</span>
+                            <span class="text z-1 flex-center relative">
+                                <svg class="svg-icon"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     width="36"
+                                     height="36"
+                                     viewBox="0 0 26 26">
+                                    <path
+                                        d="M6.48623 6.72536C6.10744 5.46635 4.94813 4.60449 3.63338 4.60449H2.96262C2.51389 4.60449 2.15012 4.96826 2.15012 5.41699C2.15012 5.86572 2.51389 6.22949 2.96262 6.22949H3.63338C4.23099 6.22949 4.75795 6.62124 4.93012 7.19352L7.42424 15.4836C7.80304 16.7426 8.9624 17.6045 10.2772 17.6044L18.3809 17.6042C19.6137 17.6041 20.7192 16.8447 21.1615 15.694L22.918 11.1251C23.6681 9.17382 22.2277 7.07694 20.1372 7.07694H10.3794C9.93065 7.07694 9.56688 7.44071 9.56688 7.88944C9.56688 8.33817 9.93065 8.70194 10.3794 8.70194H20.1372C21.0874 8.70194 21.7421 9.65507 21.4012 10.542L19.6448 15.1109C19.4437 15.634 18.9412 15.9791 18.3808 15.9792L10.2771 15.9794C9.67951 15.9795 9.15252 15.5877 8.98034 15.0154L6.48623 6.72536Z"
+                                        fill="currentColor"/>
+                                    <path
+                                        d="M18.6872 18.9583C19.435 18.9583 20.0413 19.5646 20.0413 20.3125C20.0413 21.0603 19.435 21.6666 18.6872 21.6666C17.9393 21.6666 17.333 21.0603 17.333 20.3125C17.333 19.5646 17.9393 18.9583 18.6872 18.9583Z"
+                                        fill="currentColor"/>
+                                    <path
+                                        d="M10.0205 18.9583C10.7684 18.9583 11.3747 19.5646 11.3747 20.3125C11.3747 21.0603 10.7684 21.6666 10.0205 21.6666C9.2726 21.6666 8.66632 21.0603 8.66632 20.3125C8.66632 19.5646 9.2726 18.9583 10.0205 18.9583Z"
+                                        fill="currentColor"/>
+                                    <path
+                                        d="M14.6245 9.47906C14.1758 9.47906 13.812 9.84283 13.812 10.2916V11.3749H12.7287C12.28 11.3749 11.9162 11.7387 11.9162 12.1874C11.9162 12.6361 12.28 12.9999 12.7287 12.9999H13.812V14.0832C13.812 14.532 14.1758 14.8957 14.6245 14.8957C15.0733 14.8957 15.437 14.532 15.437 14.0832V12.9999H16.5204C16.9691 12.9999 17.3329 12.6361 17.3329 12.1874C17.3329 11.7387 16.9691 11.3749 16.5204 11.3749H15.437V10.2916C15.437 9.84283 15.0733 9.47906 14.6245 9.47906Z"
+                                        fill="currentColor"/>
+                                </svg>
+                                {{ ss.button2_text }}
+                            </span>
                         </button>
                     </div>
                     <ul class="text-items relative z-2 w-full flex-between-top">

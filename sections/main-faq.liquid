@@ -3,20 +3,39 @@
     .main-faq {
         background-color: #ffffff;
     }
+
     .main-faq .faq-menus {
         width: 300px;
     }
+
     .main-faq .faq-content {
         flex: 1;
     }
+
+    .main-faq .accordion-wrapper-inner {
+        display: none;
+    }
+
+    .main-faq .contact-form {
+        background-color: var(--background-color);
+        display: none;
+    }
+
+    .main-faq .accordion-wrapper-inner.active,
+    .main-faq .contact-form.active {
+        display: block;
+    }
+
     .main-faq .nav-wrapper {
         border-left: 1px solid #d5d5d5;
     }
+
     .main-faq .nav-wrapper .nav-item {
         position: relative;
         padding-left: 20px;
         line-height: 32px;
     }
+
     .main-faq .nav-wrapper .nav-item:before {
         content: "";
         position: absolute;
@@ -28,13 +47,16 @@
         opacity: 0;
         transition: opacity 0.3s ease;
     }
+
     .main-faq .nav-wrapper .nav-item.active .nav-handler, .main-faq .nav-wrapper .nav-item:hover .nav-handler {
         font-weight: 600;
         opacity: 1;
     }
+
     .main-faq .nav-wrapper .nav-item.active:before, .main-faq .nav-wrapper .nav-item:hover:before {
         opacity: 1;
     }
+
     .main-faq .nav-wrapper .nav-handler {
         color: #000000;
         transition: 0.3s ease all;
@@ -42,19 +64,23 @@
         font-weight: 400;
         font-size: 15px;
     }
+
     .main-faq .faq-wrapper .title {
         font-size: 30px;
         line-height: 1.3;
         font-weight: 700;
         margin-bottom: 40px;
     }
+
     .main-faq .faq-wrapper .accordion {
         border-top: 1px solid #d5d5d5;
     }
+
     .main-faq .faq-wrapper .problem-box {
         padding: 20px 0 18px;
         cursor: pointer;
     }
+
     .main-faq .faq-wrapper .problem-box .problem {
         line-height: 1.2;
         font-size: 15px;
@@ -62,31 +88,38 @@
         font-weight: 600;
         padding-right: 10px;
     }
+
     .main-faq .faq-wrapper .problem-box.active .plus {
         display: flex;
     }
+
     .main-faq .faq-wrapper .problem-box.active .minus {
         display: none;
     }
+
     .main-faq .faq-wrapper .problem-box.active + .answer {
         padding-right: 40px;
         margin-bottom: 20px;
         height: auto;
     }
+
     .main-faq .faq-wrapper .problem-box .plus,
     .main-faq .faq-wrapper .problem-box .minus {
         width: 12px;
         height: 12px;
         transform: translateY(2px);
     }
+
     .main-faq .faq-wrapper .problem-box .plus svg,
     .main-faq .faq-wrapper .problem-box .minus svg {
         width: 100%;
         height: 100%;
     }
+
     .main-faq .faq-wrapper .problem-box .plus {
         display: none;
     }
+
     .main-faq .faq-wrapper .answer {
         font-size: 15px;
         color: #5a5a5a;
@@ -97,21 +130,26 @@
         overflow: hidden;
         transition: all 0.3s;
     }
+
     @media screen and (max-width: 1440px) {
         .main-faq .faq-menus {
             width: 240px;
         }
     }
+
     @media screen and (max-width: 1023px) {
         .main-faq .faq-section {
             flex-direction: column;
         }
+
         .main-faq .faq-menus {
             width: 100%;
         }
+
         .main-faq .faq-content {
             flex: 1;
         }
+
         .main-faq .nav-wrapper {
             border-left: 0 none;
             border-bottom: 1px solid #d5d5d5;
@@ -122,10 +160,12 @@
             padding: 0 0.625rem;
             box-sizing: border-box;
         }
+
         .main-faq .nav-wrapper .nav-item {
             padding-left: 0;
             line-height: 2.625rem;
         }
+
         .main-faq .nav-wrapper .nav-item:before {
             left: 0;
             top: auto;
@@ -133,63 +173,86 @@
             width: 100%;
             height: 2px;
         }
+
         .main-faq .nav-wrapper .nav-item:hover .nav-handler {
             font-weight: 400;
             opacity: 0.5;
         }
+
         .main-faq .nav-wrapper .nav-item.active .nav-handler {
             font-weight: 600 !important;
             opacity: 1 !important;
         }
+
         .main-faq .nav-wrapper .nav-item:hover:before {
             opacity: 0;
         }
+
         .main-faq .nav-wrapper .nav-item.active:before {
             opacity: 1 !important;
         }
+
         .main-faq .nav-wrapper .nav-handler {
             font-size: 0.875rem;
         }
+
         .main-faq .faq-wrapper .title {
             display: none;
         }
+
         .main-faq .faq-wrapper .accordion {
             overflow: hidden;
             border-top: 0 none;
             border-bottom: 1px solid #d5d5d5;
         }
+
         .main-faq .faq-wrapper .accordion:last-of-type {
             border-bottom: 0 none;
         }
+
         .main-faq .faq-wrapper .problem-box {
             padding: 1.25rem 0 1.125rem;
             cursor: pointer;
         }
+
         .main-faq .faq-wrapper .problem-box .problem {
             font-size: 0.875rem;
         }
+
         .main-faq .faq-wrapper .problem-box.active + .answer {
             padding-right: 1.25rem;
             margin-bottom: 1.25rem;
         }
+
         .main-faq .faq-wrapper .answer {
             font-size: 0.875rem;
         }
     }
+
     {% render 'page-wrap-style', info: ss, class: '.main-faq' %}
 </style>
 <div class="main-faq" id="{{ section.id }}-faq">
     <div class="section section-full">
         {%- assign faqList = section.blocks | where: 'type', 'faq' -%}
+        {%- assign contact = section.blocks | where: 'type', 'contact' | first -%}
         <div class="faq-section w-full flex-between-top">
             <div class="faq-menus">
                 <ul class="nav-wrapper">
                     {%- for block in faqList -%}
                         {%- assign bs = block.settings -%}
-                        <li class="nav-item{% if forloop.first %} active{% endif %}" node-name="nav">
+                        <li class="nav-item{% if forloop.first %} active{% endif %}"
+                            data-proxy="nav"
+                            data-type="faq"
+                            data-index="{{ forloop.index0 }}"
+                            node-name="nav">
                             <a href="#" class="nav-handler">{{ bs.title }}</a>
                         </li>
                     {%- endfor -%}
+                    {%- if contact != blank -%}
+                        <li class="nav-item" data-proxy="nav" node-name="nav" data-type="contact">
+                            <a href="#" class="nav-handler">{{ contact.settings.title }}</a>
+                        </li>
+                    {%- endif -%}
                 </ul>
             </div>
             <div class="faq-content">
@@ -197,7 +260,7 @@
                 {%- if faqInfo != blank -%}
                     <div class="faq-wrapper">
                         <h4 class="title" node-name="title">{{ faqInfo.title }}</h4>
-                        <div class="accordion-wrapper-inner" node-name="content">
+                        <div class="accordion-wrapper-inner active" node-name="content">
                             {%- for j in (1..10) -%}
                                 {%- assign title = 'title_' | append: j -%}
                                 {%- assign title = faqInfo[title] -%}
@@ -211,7 +274,8 @@
                                 {% endif %}
                                 {%- if title != blank -%}
                                     <div class="accordion">
-                                        <div class="problem-box flex-between-top {% if default_active %}active{% endif %}">
+                                        <div data-proxy="problem"
+                                             class="problem-box flex-between-top {% if default_active %}active{% endif %}">
                                             <div class="problem">{{ title }}</div>
                                             <div class="icon-wrapper">
                                                 <div class="plus flex-center">
@@ -219,22 +283,22 @@
                                                          viewBox="0 0 13 13">
                                                         <g transform="translate(0.5 0.5)">
                                                             <path
-                                                                    d="M7.5,18h12"
-                                                                    transform="translate(-7.5 -12)"
-                                                                    fill="none"
-                                                                    stroke="#181623"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    stroke-width="1"
+                                                                d="M7.5,18h12"
+                                                                transform="translate(-7.5 -12)"
+                                                                fill="none"
+                                                                stroke="#181623"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                stroke-width="1"
                                                             ></path>
                                                             <path
-                                                                    d="M0,0H12"
-                                                                    transform="translate(6) rotate(90)"
-                                                                    fill="none"
-                                                                    stroke="#181623"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    stroke-width="1"
+                                                                d="M0,0H12"
+                                                                transform="translate(6) rotate(90)"
+                                                                fill="none"
+                                                                stroke="#181623"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                stroke-width="1"
                                                             ></path>
                                                         </g>
                                                     </svg>
@@ -244,13 +308,13 @@
                                                          viewBox="0 0 13 1">
                                                         <g transform="translate(0.5 -5.5)">
                                                             <path
-                                                                    d="M7.5,18h12"
-                                                                    transform="translate(-7.5 -12)"
-                                                                    fill="none"
-                                                                    stroke="#181623"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    stroke-width="1"
+                                                                d="M7.5,18h12"
+                                                                transform="translate(-7.5 -12)"
+                                                                fill="none"
+                                                                stroke="#181623"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                stroke-width="1"
                                                             ></path>
                                                         </g>
                                                     </svg>
@@ -264,6 +328,40 @@
                                 {%- endif -%}
                             {%- endfor -%}
                         </div>
+                        {%- if contact != blank -%}
+                            <div node-name="contact" class="contact-form"
+                                 style="--background-color: {{ contact.settings.background_color }};">
+                                {%- capture contact_form_id -%}contact-form-{{ section.id }}{%- endcapture -%}
+                                {%- form 'contact', id: contact_form_id, class: 'form' -%}
+                                    <div class="fieldset">
+                                        {%- if form.posted_successfully? -%}
+                                            {%- capture content -%}{{- 'contact.form.success_message' | t -}}{%- endcapture -%}
+                                            {%- render 'banner', status: 'success', content: content -%}
+                                        {%- endif -%}
+                                        {%- if form.errors -%}
+                                            {%- capture content -%}{{ form.errors.translated_fields[form.errors.first] | capitalize }} {{ form.errors.messages[form.errors.first] }}{%- endcapture -%}
+                                            {%- render 'banner', status: 'error', content: content -%}
+                                        {%- endif -%}
+                                        <div class="input-row">
+                                            {%- capture label -%}{{ 'contact.form.name' | t }}{%- endcapture -%}
+                                            {%- render 'input', type: 'text', name: 'contact[name]', label: label, value: customer.name, required: true, autocomplete: 'name' -%}
+
+                                            {%- capture label -%}{{ 'contact.form.email' | t }}{%- endcapture -%}
+                                            {%- render 'input', type: 'email', name: 'contact[email]', label: label, value: customer.email, required: true, autocomplete: 'email' -%}
+                                        </div>
+                                        {%- capture label -%}{{ 'contact.form.product_name' | t }}{%- endcapture -%}
+                                        {%- render 'input', type: 'text', name: 'contact[product_name]', label: label, required: true, autocomplete: 'product_name' -%}
+                                        {%- capture label -%}{{ 'contact.form.question' | t }}{%- endcapture -%}
+                                        {%- render 'input', name: 'contact[body]', label: label, multiline: 4, required: true -%}
+                                    </div>
+                                    <div class="flex-left">
+                                        <button type="submit" class="button button--xl" is="custom-button">
+                                            <span class="btn-text">{{ contact.settings.button_text }}</span>
+                                        </button>
+                                    </div>
+                                {%- endform -%}
+                            </div>
+                        {%- endif -%}
                     </div>
                 {%- endif -%}
             </div>
@@ -311,89 +409,93 @@
             const list = [];
             faqInfo.childList.forEach(child => {
                 list.push(`<div class="accordion">
-                                        <div class="problem-box flex-between-top ${child.open}">
-                                            <div class="problem">${child.title}</div>
-                                            <div class="icon-wrapper">
-                                                <div class="plus flex-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
-                                                         viewBox="0 0 13 13">
-                                                        <g transform="translate(0.5 0.5)">
-                                                            <path
-                                                                    d="M7.5,18h12"
-                                                                    transform="translate(-7.5 -12)"
-                                                                    fill="none"
-                                                                    stroke="#181623"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    stroke-width="1"
-                                                            ></path>
-                                                            <path
-                                                                    d="M0,0H12"
-                                                                    transform="translate(6) rotate(90)"
-                                                                    fill="none"
-                                                                    stroke="#181623"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    stroke-width="1"
-                                                            ></path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                                <div class="minus flex-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="1"
-                                                         viewBox="0 0 13 1">
-                                                        <g transform="translate(0.5 -5.5)">
-                                                            <path
-                                                                    d="M7.5,18h12"
-                                                                    transform="translate(-7.5 -12)"
-                                                                    fill="none"
-                                                                    stroke="#181623"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    stroke-width="1"
-                                                            ></path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="answer">
-                                            ${child.answer}
-                                        </div>
-                                    </div>`)
+                    <div class="problem-box flex-between-top ${child.open}">
+                        <div class="problem">${child.title}</div>
+                        <div class="icon-wrapper">
+                            <div class="plus flex-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                     viewBox="0 0 13 13">
+                                    <g transform="translate(0.5 0.5)">
+                                        <path
+                                                d="M7.5,18h12"
+                                                transform="translate(-7.5 -12)"
+                                                fill="none"
+                                                stroke="#181623"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="1"
+                                        ></path>
+                                        <path
+                                                d="M0,0H12"
+                                                transform="translate(6) rotate(90)"
+                                                fill="none"
+                                                stroke="#181623"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="1"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="minus flex-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="1"
+                                     viewBox="0 0 13 1">
+                                    <g transform="translate(0.5 -5.5)">
+                                        <path
+                                                d="M7.5,18h12"
+                                                transform="translate(-7.5 -12)"
+                                                fill="none"
+                                                stroke="#181623"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="1"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        ${child.answer}
+                    </div>
+                </div>`)
             });
             nodeList.title.innerHTML = faqInfo.title;
             return list.join('');
         }
 
-        navList.forEach((elem, index) => {
-            elem.addEventListener('click', (e) => {
-                e.preventDefault();
+        const {trigger} = $heybike.proxy(node, ['nav', 'problem'], ({elem, type, event}) => {
+            event.preventDefault && event.preventDefault();
+            if (type === "nav") {
                 if (!elem.classList.contains('active')) {
                     navList.forEach((elem) => {
                         elem.classList.remove('active');
                     });
                     elem.classList.add('active');
-                    nodeList.content.innerHTML = renderHTML(index);
+                    const isNav = elem.dataset.type === 'faq';
+                    nodeList.content.classList.toggle('active', isNav);
+                    nodeList.contact.classList.toggle('active', !isNav);
+                    if (isNav) {
+                        nodeList.content.innerHTML = renderHTML(elem.dataset.index);
+                    } else {
+                        nodeList.title.innerHTML = elem.innerText;
+                    }
                 }
-            });
+            } else {
+                const next = elem.nextElementSibling;
+                if (elem.classList.contains('active')) {
+                    next.style.height = '0px';
+                    elem.classList.remove('active');
+                } else {
+                    next.style.height = `${next.scrollHeight}px`;
+                    elem.classList.add('active');
+                }
+            }
         });
 
-        nodeList.content.addEventListener('click', (e) => {
-            const box = e.target.closest('.problem-box');
-            if (!box) {
-                return false;
-            }
-
-            const next = box.nextElementSibling;
-            if (box.classList.contains('active')) {
-                next.style.height = '0px';
-                box.classList.remove('active');
-            } else {
-                next.style.height = `${next.scrollHeight}px`;
-                box.classList.add('active');
-            }
-        })
+        if (location.href.includes('contact_posted')) {
+            trigger(navList[navList.length - 1]);
+        }
     })()
 </script>
 
@@ -691,6 +793,31 @@
           "type": "richtext",
           "id": "answer_10",
           "label": "Answer #10"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#fbfbfb"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Contact",
+          "default": "Contact US"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Send message"
         }
       ]
     }

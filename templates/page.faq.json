@@ -162,13 +162,17 @@
             "title_10": "",
             "answer_10": ""
           }
+        },
+        "contact": {
+          "type": "contact"
         }
       },
       "block_order": [
         "faq_zTCH8g",
         "faq_F8KTND",
         "faq_6hjMxP",
-        "faq_FxfLcC"
+        "faq_FxfLcC",
+        "contact"
       ],
       "name": "FAQ",
       "settings": {

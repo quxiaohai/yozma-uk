@@ -216,6 +216,8 @@
       "name": "Name",
       "email": "E-mail",
       "message": "Message",
+      "question": "Questions",
+      "product_name": "Product name",
       "submit": "Send message",
       "success_message": "Your message has been sent."
     }

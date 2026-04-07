@@ -1,0 +1,48 @@
+<style>
+    .back__to-top {
+        cursor: pointer;
+        background: #fff;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+        position: fixed;
+        right: 15px;
+        bottom: 100px;
+        z-index: 102;
+        transition: background-color 0.3s ease-out;
+        color: #8c8c8c;
+    }
+
+    .back__to-top.hidden {
+        display: none;
+    }
+
+    .back__to-top:hover {
+        background-color: #d30000;
+        color: #FFFFFF;
+    }
+</style>
+<div class="back__to-top hidden flex-center" id="back__to-top">
+    <svg focusable="false" width="28" height="28" aria-hidden="true" viewBox="0 0 24 24">
+        <path fill="currentColor" d="m12 8-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path>
+    </svg>
+</div>
+<script>
+    $heybike.ready(() => {
+        const elem = document.getElementById('back__to-top');
+        const show = $heybike.ref(false);
+        $heybike.on('scroll', ({top}) => {
+            show.value = top > 100;
+        });
+        $heybike.watch(show, (n) => {
+           elem.classList.toggle('hidden', !n);
+        });
+        elem.addEventListener('click', () => {
+            requestAnimationFrame(() => window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            }));
+        });
+    });
+</script>
