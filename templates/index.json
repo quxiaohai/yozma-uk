@@ -125,8 +125,8 @@
         "countdown_g3VNgw": {
           "type": "countdown",
           "settings": {
-            "countdown_start_date": "2026-4-14 10:00:00",
-            "duration": 5,
+            "countdown_start_date": "2026-4-5 10:00:00",
+            "duration": 9,
             "day": "Days",
             "hour": "Hours",
             "minute": "Mins",
