@@ -50,7 +50,7 @@
         "richtext_WyG8VA": {
           "type": "richtext",
           "settings": {
-            "content": "<p>You're not just a customer. You're part of our crew.</p><p>To encourage you to rock your ride with Yozma, we're launching an epic TikTok challenge event.</p><p>Show us how you innovate, create, and spark with us.</p><p>It's easy, fun, and up to €100 CASH REWARD!</p>",
+            "content": "<p>You're not just a customer. You're part of our crew.</p><p>To encourage you to rock your ride with Yozma, we're launching an epic TikTok challenge event.</p><p>Show us how you innovate, create, and spark with us.</p><p>It's easy, fun, and up to £100 CASH REWARD!</p>",
             "content_pc_size": 16,
             "content_mb_size": 14
           }
@@ -215,7 +215,7 @@
           "settings": {
             "image": "shopify://shop_images/post-_-tag.png",
             "mobile_card_color": "#1a1a1a",
-            "title": "GET REWARDED FOR VIEWS",
+            "title": "GET REWARD FOR VIEWS",
             "title_color": "#ffffff",
             "text": "<p>- Once your video is live, you can get a reward based on its performance</p>",
             "text_color": "#d5d5d5"
@@ -226,7 +226,7 @@
           "settings": {
             "theme": "light",
             "title": "Video Views#Cash Reward#Bonus Reward",
-            "content": "5,000+#€10#None\n20,000+#€15#Repost on official account\n100,000+#€40#Brand collaborations chance\n300,000+#€100#Brand collaborations chance"
+            "content": "5,000+#£10#None\n20,000+#£15#Repost on official account\n100,000+#£40#Brand collaborations chance\n300,000+#£100#Brand collaborations chance"
           }
         }
       },
