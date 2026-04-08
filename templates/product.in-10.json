@@ -156,6 +156,7 @@
         },
         "image_d7M4Fx": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "padding": "0px 0px 0px 0px",
             "mb_padding": "0px 0px 0px 0px",
