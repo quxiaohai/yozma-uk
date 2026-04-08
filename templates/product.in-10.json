@@ -107,7 +107,9 @@
             "image": "shopify://shop_images/750_164_4577bae7-59c5-499d-abd8-7cbf537aabf0.jpg",
             "alignment": "start",
             "image_fill": true,
-            "max_width": 500
+            "max_width": 500,
+            "image_position": false,
+            "position": 3
           }
         },
         "countdown_timer_gHWnpr": {
@@ -150,6 +152,19 @@
             "background": "",
             "background_gradient": "linear-gradient(90deg, rgba(216, 35, 53, 1) 41%, rgba(207, 94, 105, 1) 97%)",
             "text_color": "#ffffff"
+          }
+        },
+        "image_d7M4Fx": {
+          "type": "image",
+          "settings": {
+            "padding": "0px 0px 0px 0px",
+            "mb_padding": "0px 0px 0px 0px",
+            "image": "shopify://shop_images/compare-button-bg.avif",
+            "alignment": "center",
+            "image_fill": true,
+            "max_width": 50,
+            "image_position": true,
+            "position": 1
           }
         },
         "payment_terms": {
@@ -368,6 +383,7 @@
         "image_CyDTqU",
         "countdown_timer_gHWnpr",
         "countdown_gHWnpr",
+        "image_d7M4Fx",
         "payment_terms",
         "variant_picker",
         "bundled_sale_NbiiyC",
