@@ -91,7 +91,6 @@
         },
         "price": {
           "type": "price",
-          "disabled": true,
           "settings": {
             "padding": "12px 0px 4px 0px",
             "mb_padding": "6px 0px 0px 0px",
@@ -138,6 +137,7 @@
         },
         "countdown_gHWnpr": {
           "type": "countdown",
+          "disabled": true,
           "settings": {
             "padding": "12px 0px 12px 0px",
             "mb_padding": "4px 0px 4px 0px",
@@ -178,7 +178,6 @@
         },
         "variant_picker": {
           "type": "variant_picker",
-          "disabled": true,
           "settings": {
             "padding": "12px 0px 12px 0px",
             "mb_padding": "4px 0px 4px 0px",
@@ -211,7 +210,6 @@
         },
         "buy_buttons": {
           "type": "buy_buttons",
-          "disabled": true,
           "settings": {
             "padding": "12px 0px 12px 0px",
             "mb_padding": "12px 0px 0px 0px",
