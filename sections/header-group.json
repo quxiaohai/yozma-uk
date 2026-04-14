@@ -51,6 +51,7 @@
       "blocks": {
         "message_48xPMD": {
           "type": "message",
+          "disabled": true,
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
             "text": "<p>The IN 10 will launch on April 14th</p>",
@@ -59,7 +60,6 @@
         },
         "message_Mke4Hc": {
           "type": "message",
-          "disabled": true,
           "settings": {
             "text": "<p>All prices shown include VAT — no additional tax will be added at checkout.</p>",
             "url": ""
@@ -75,16 +75,14 @@
         },
         "message_Hm9xjY": {
           "type": "message",
-          "disabled": true,
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
-            "text": "<p>IN 10: Up to £300 OFF — Ride for love, don’t miss out!</p>",
+            "text": "<p>IN 10: Up to £200 OFF — Ride for love, don’t miss out!</p>",
             "url": "shopify://products/in-10"
           }
         },
         "message_Hm9xjS": {
           "type": "message",
-          "disabled": true,
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
             "text": "<p>Buy Two IN 10 Save More!</p>",
