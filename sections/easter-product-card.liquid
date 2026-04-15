@@ -126,7 +126,10 @@
         font-size: 16px;
     }
     .easter-product-card .easter-content .product--card .product--info .button-group {
-        gap: 0 16px;
+        gap: 10px;
+    }
+    .easter-product-card .quantity {
+        height: 42px;
     }
     .easter-product-card .easter-content .product--card .product--info .button-group .button {
         transition: all 0.3s;
@@ -198,8 +201,9 @@
             padding-left: 8.5px;
             font-size: 13.6px;
         }
+        .easter-product-card .quantity,
         .easter-product-card .easter-content .product--card .product--info .button-group .button {
-            height: 35.7px;
+            height: 36px;
         }
     }
     @media screen and (max-width: 1100px) {
@@ -281,8 +285,13 @@
             font-size: 0.8125rem;
         }
         .easter-product-card .easter-content .product--card .product--info .button-group {
-            gap: 0 10px;
+            gap: 10px;
+            width: 100%;
         }
+        .easter-product-card .button2 {
+            flex: 1;
+        }
+        .easter-product-card .quantity,
         .easter-product-card .easter-content .product--card .product--info .button-group .button {
             height: 2.25rem;
         }
@@ -358,7 +367,7 @@
                     <div class="product-description">
                         {{ bs.product_intro }}
                     </div>
-                    <div class="product-footer flex-between">
+                    <div class="product-footer flex-between-top">
                         <div class="price-box flex-left">
                             <div style="color: {{ bs.product_price_color }};" class="price tw-font-semibold">
                                 {%- if bs.product_price != blank -%}
@@ -375,17 +384,32 @@
                                 {%- endif -%}
                             </div>
                         </div>
-                        <div class="button-group flex-center">
-                            <button class="button flex-center button1"
-                                    onclick="$heybike.addToCart({items: [{ quantity: 1, id: '{{ variant.id }}'}],  button: event.target.closest('.button')})"
-                                    style="color: {{ bs.button1_text_color }}; background: {{ bs.button1_bg_color }};"
-                                    is="custom-button">
-                                {{ bs.button1 }}
-                            </button>
-                            <a href="{{ bs.product.url }}" class="button flex-center button2"
-                                    style="color: {{ bs.button2_text_color }}; background: {{ bs.button2_bg_color }};">
-                                {{ bs.button2 }}
-                            </a>
+                        <div class="button-group flex-column">
+                            <div class="flex-between w-full gap-4">
+                                <quantity-selector class="quantity fw-600 h-full tw-inline-flex">
+                                    <button type="button" name="minus" class="quantity__button tw-px-4" aria-label="Translation missing: en.products.quantity.decrease"><svg role="presentation" focusable="false" width="7" height="10" class="transform icon icon-chevron-left" viewBox="0 0 7 10">
+                                            <path d="M6 1 2 5l4 4" fill="none" stroke="currentColor" stroke-width="2"></path>
+                                        </svg></button>
+                                    <input id="{{ section.id }}-quantity" type="number" is="quantity-input" inputmode="numeric" class="quantity__input quantity-selector__input" name="quantity" autocomplete="off" data-min="1" min="1" step="1" value="1">
+                                    <button type="button" name="plus" class="quantity__button tw-px-4" aria-label="Translation missing: en.products.quantity.increase"><svg role="presentation" focusable="false" width="7" height="10" class="transform icon icon-chevron-right" viewBox="0 0 7 10">
+                                            <path d="m1 9 4-4-4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
+                                        </svg></button>
+                                </quantity-selector>
+                                <button
+                                    onclick="$heybike.addToCart({items: [{ quantity: (() => document.getElementById('{{ section.id }}-quantity').value)(), id: '{{ variant.id }}'}],  button: event.target.closest('.button')}, true)"
+                                    class="button flex-center button2"
+                                   style="color: {{ bs.button2_text_color }}; background: {{ bs.button2_bg_color }};">
+                                    {{ bs.button2 }}
+                                </button>
+                            </div>
+                            {%- if bs.show_button1 -%}
+                                <button class="button flex-center w-full button1"
+                                        onclick="$heybike.addToCart({items: [{ quantity: (() => document.getElementById('{{ section.id }}-quantity').value)(), id: '{{ variant.id }}'}],  button: event.target.closest('.button')})"
+                                        style="color: {{ bs.button1_text_color }}; background: {{ bs.button1_bg_color }};"
+                                        is="custom-button">
+                                    {{ bs.button1 }}
+                                </button>
+                            {%- endif -%}
                         </div>
                     </div>
                 </div>
@@ -613,6 +637,12 @@
         {
           "type": "header",
           "content": "Button configuration"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_button1",
+          "label": "Show button1",
+          "default": true
         },
         {
           "type": "text",

@@ -91,13 +91,19 @@
                 {%- for v in (1..4) -%}
                     <div class="message-items flex-left">
                         {%- for block in section.blocks -%}
-                            {%- assign bs = block.settings -%}
-                            <div class="item flex-left">
+                            {%- liquid
+                                assign bs = block.settings
+                                assign tag = 'div'
+                                if bs.url != blank
+                                    assign tag = 'a'
+                                endif
+                            -%}
+                            <{{ tag }}{% if bs.url != blank %} href="{{ bs.url }}"{% endif %} class="item flex-left">
                                 {%- if bs.icon != blank -%}
                                     {%- render 'global-image', image: bs.icon, media_type: 'icon' -%}
                                 {%- endif -%}
                                 {{ bs.text }}
-                            </div>
+                            </{{ tag }}>
                         {%- endfor -%}
                     </div>
                 {%- endfor -%}
