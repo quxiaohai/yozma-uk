@@ -10397,6 +10397,11 @@ shopify-accelerated-checkout, shopify-accelerated-checkout-cart {
     align-items: center;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .flex-center-col {
     display: flex;
     justify-content: center;
@@ -10581,7 +10586,4 @@ shopify-accelerated-checkout, shopify-accelerated-checkout-cart {
 .score-items .score-item {
   width: var(--score-size);
   height: var(--score-size);
-}
-#usercentrics-cmp-ui {
-  display: none;
 }
