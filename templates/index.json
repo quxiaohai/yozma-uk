@@ -371,7 +371,7 @@
         "description_mb_margin_bottom": 30,
         "top_image": "shopify://shop_images/video-decorate-back.png",
         "bottom_image": "shopify://shop_images/video-decorate.png",
-        "auto_play": false,
+        "auto_play": true,
         "play_button_icon": "shopify://shop_images/video-play-button.png"
       }
     },
@@ -532,15 +532,6 @@
             "url": "shopify://blogs/ebike/kids-electric-dirt-bike-transition-guide"
           }
         },
-        "card_dAUNGr": {
-          "type": "card",
-          "settings": {
-            "desktop_image": "shopify://shop_images/image.webp",
-            "title": "Mini Dirt Bike Safety Gear: Essential Protection for Kids!",
-            "text": "",
-            "url": "shopify://blogs/ebike/kids-dirt-bike-safety-gear-guide"
-          }
-        },
         "media4": {
           "type": "card",
           "settings": {
@@ -558,6 +549,15 @@
             "text": "",
             "url": "https://yozmasport.com/blogs/ebike/parent-guide-kids-electric-dirt-bike-lessons"
           }
+        },
+        "card_dAUNGr": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/image.webp",
+            "title": "Mini Dirt Bike Safety Gear: Essential Protection for Kids!",
+            "text": "",
+            "url": "shopify://blogs/ebike/kids-dirt-bike-safety-gear-guide"
+          }
         }
       },
       "block_order": [
@@ -565,9 +565,9 @@
         "media1",
         "card_whmxzD",
         "card_Rgk6tT",
-        "card_dAUNGr",
         "media4",
-        "media2"
+        "media2",
+        "card_dAUNGr"
       ],
       "name": "MC Main Ces",
       "settings": {
