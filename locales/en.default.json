@@ -28,7 +28,8 @@
       "next": "Next",
       "previous": "Previous",
       "play_video": "Play video",
-      "read_more": "Read more"
+      "read_more": "Read more",
+      "load_video": "Load video: {{ description }}"
     },
     "label": {
       "color": "Color,Colour",
