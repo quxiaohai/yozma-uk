@@ -158,10 +158,14 @@
 
   .ai-blog-product-title-{{ ai_gen_id }} {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     margin: 0;
     color: {{ block.settings.text_color }};
     line-height: 1.3;
+  }
+
+  .ai-blog-product-title-{{ ai_gen_id }}:hover {
+    text-decoration: underline;
   }
 
   .ai-blog-product-price-{{ ai_gen_id }} {
@@ -755,13 +759,76 @@ document.addEventListener('DOMContentLoaded', function() {
 
   highlightTOC();
 });
+
+customElements.define('blog-product-card', class extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        this.productInfo();
+        $heybike.proxy(this, ['cart', 'checkout'], ({elem, type}) => {
+            $heybike.addToCart({
+                items: [{id: elem.dataset.variant, quantity: 1}],
+                button: elem
+            }, type === 'checkout');
+        });
+    }
+
+    async productInfo() {
+        const response = await fetch(`/products/${this.handle}?view=blog-card`);
+        if (!response.ok) {
+            this.hidden = true;
+            return false;
+        }
+        let data = await (await response.text());
+        if (!data.includes('blog-product-card')) {
+            return false;
+        }
+        if (this.cart) {
+            data = data.replace('#cart#', this.cart).replace('@cart', '');
+        } else {
+            data = data.replace('@cart', 'style="display: none;"');
+        }
+
+        if (this.checkout) {
+            data = data.replace('#checkout#', this.checkout).replace('@checkout', '');
+        } else {
+            data = data.replace('@checkout', 'display: none;');
+        }
+
+        if (this.more) {
+            data = data.replace('#more#', this.more).replace('@more', '');
+        } else {
+            data = data.replace('@more', 'style="display: none;"');
+        }
+
+        this.innerHTML = data;
+    }
+
+    get handle() {
+        return this.getAttribute('handle');
+    }
+
+    get cart() {
+        return this.getAttribute('cart');
+    }
+
+    get more() {
+        return this.getAttribute('more');
+    }
+
+    get checkout() {
+        return this.getAttribute('checkout');
+    }
+});
 </script>
 
 <div class="ai-blog-layout-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <aside class="ai-blog-sidebar-{{ ai_gen_id }}">
     {% if article.content contains '<h2>' or article.content contains '<h3>' %}
       <div class="ai-blog-section-{{ ai_gen_id }}">
-        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Table of Contents</h3>
+        <div class="ai-blog-section-title-{{ ai_gen_id }}">Table of Contents</div>
         <nav class="ai-blog-toc-{{ ai_gen_id }}">
           <ul>
             {% assign headings = article.content | split: '<h' %}
@@ -784,7 +851,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     {% if block.settings.related_products != blank %}
       <div class="ai-blog-section-{{ ai_gen_id }}">
-        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Related Products</h3>
+        <div class="ai-blog-section-title-{{ ai_gen_id }}">Related Products</div>
         <div class="ai-blog-related-products-{{ ai_gen_id }}">
           {% for product in block.settings.related_products limit: 4 %}
             <div class="ai-blog-product-card-{{ ai_gen_id }}">
@@ -796,7 +863,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 {% endif %}
               </div>
               <div class="ai-blog-product-info-{{ ai_gen_id }}">
-                <h4 class="ai-blog-product-title-{{ ai_gen_id }}">{{ product.title }}</h4>
+                <a href="{{ product.url }}" class="ai-blog-product-title-{{ ai_gen_id }}">{{ product.title }}</a>
                 <div class="ai-blog-product-price-{{ ai_gen_id }}">{{ product.price | money }}</div>
                 {% if product.metafields.reviews.rating.value %}
                   <div class="ai-blog-product-rating-{{ ai_gen_id }}">
@@ -811,7 +878,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     {% else %}
       <div class="ai-blog-section-{{ ai_gen_id }}">
-        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Related Products</h3>
+        <div class="ai-blog-section-title-{{ ai_gen_id }}">Related Products</div>
         <div class="ai-blog-empty-state-{{ ai_gen_id }}">
           Add related products in the block settings
         </div>
@@ -820,7 +887,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     {% if blog and article %}
       <div class="ai-blog-section-{{ ai_gen_id }}">
-        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Related Articles</h3>
+        <div class="ai-blog-section-title-{{ ai_gen_id }}">Related Articles</div>
         <div class="ai-blog-latest-posts-{{ ai_gen_id }}">
           {% assign related_count = 0 %}
           {% if article.tags.size > 0 %}
@@ -845,9 +912,9 @@ document.addEventListener('DOMContentLoaded', function() {
                       {% endif %}
                     </div>
                     <div class="ai-blog-post-content-{{ ai_gen_id }}">
-                      <h4 class="ai-blog-post-title-{{ ai_gen_id }}">
+                      <div class="ai-blog-post-title-{{ ai_gen_id }}">
                         <a href="{{ post.url }}">{{ post.title }}</a>
-                      </h4>
+                      </div>
                       <div class="ai-blog-post-date-{{ ai_gen_id }}">{{ post.published_at | date: '%B %d, %Y' }}</div>
                     </div>
                   </article>
@@ -868,7 +935,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       
       <div class="ai-blog-section-{{ ai_gen_id }}">
-        <h3 class="ai-blog-section-title-{{ ai_gen_id }}">Latest Posts</h3>
+        <div class="ai-blog-section-title-{{ ai_gen_id }}">Latest Posts</div>
         <div class="ai-blog-latest-posts-{{ ai_gen_id }}">
           {% for post in blog.articles limit: 5 %}
             {% unless post.id == article.id %}
@@ -881,9 +948,9 @@ document.addEventListener('DOMContentLoaded', function() {
                   {% endif %}
                 </div>
                 <div class="ai-blog-post-content-{{ ai_gen_id }}">
-                  <h4 class="ai-blog-post-title-{{ ai_gen_id }}">
+                  <div class="ai-blog-post-title-{{ ai_gen_id }}">
                     <a href="{{ post.url }}">{{ post.title }}</a>
-                  </h4>
+                  </div>
                   <div class="ai-blog-post-date-{{ ai_gen_id }}">{{ post.published_at | date: '%B %d, %Y' }}</div>
                 </div>
               </article>
@@ -947,12 +1014,31 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
       <div class="ai-blog-content-{{ ai_gen_id }}">
-        {{ article.content }}
+          {%- liquid
+              assign article_content = article.content
+              assign block_matches = article_content | split: '<blockquote'
+              for match in block_matches
+                  if forloop.first == false and match contains 'application/ld+json'
+                      assign json = match | split: '</blockquote>' | first | split: '>' | last
+                      assign o_text = '<blockquote data-type="application/ld+json">' | append: json | append: '</blockquote>'
+                      assign n_text = '<script type="application/ld+json">' | append: json | append: '</script>'
+                      assign article_content = article_content | replace: o_text, n_text
+                  endif
+              endfor
+              if article_content contains 'data-type="application/ld+json"'
+                  assign article_content = article_content | replace: 'data-type="application/ld+json"', 'style="display: none !important;" data-type="application/ld+json"'
+              endif
+
+              assign article_content = article_content | replace: '\\u0026', '&'
+              assign article_content = article_content | replace: '&lt;blog-product-card', '<blog-product-card' | replace: '&gt;&lt;/blog-product-card&gt;', '></blog-product-card>'
+
+          -%}
+          {{ article_content }}
       </div>
 
       {% if article.tags.size > 0 %}
         <div class="ai-blog-tags-{{ ai_gen_id }}">
-          <h3 class="ai-blog-tags-title-{{ ai_gen_id }}">Tags</h3>
+          <div class="ai-blog-tags-title-{{ ai_gen_id }}">Tags</div>
           <div class="ai-blog-tags-list-{{ ai_gen_id }}">
             {% for tag in article.tags %}
               <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="ai-blog-tag-item-{{ ai_gen_id }}">
@@ -969,13 +1055,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
       {% if block.settings.author_bio != blank %}
         <div class="ai-blog-author-info-{{ ai_gen_id }}">
-          <h3 class="ai-blog-author-title-{{ ai_gen_id }}">About the Author</h3>
+          <div class="ai-blog-author-title-{{ ai_gen_id }}">About the Author</div>
           <div class="ai-blog-author-bio-{{ ai_gen_id }}">{{ block.settings.author_bio }}</div>
         </div>
       {% endif %}
 
       <div class="ai-blog-social-share-{{ ai_gen_id }}">
-        <h3 class="ai-blog-social-title-{{ ai_gen_id }}">Share this post</h3>
+        <div class="ai-blog-social-title-{{ ai_gen_id }}">Share this post</div>
         <div class="ai-blog-social-buttons-{{ ai_gen_id }}">
           <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}" target="_blank" class="ai-blog-social-button-{{ ai_gen_id }} ai-blog-social-facebook-{{ ai_gen_id }}" aria-label="Share on Facebook">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
