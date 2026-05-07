@@ -149,16 +149,8 @@
                 {%- endif -%}
               {%- endfor -%}
             {%- endif -%}
-
-            {%- if section.settings.feature_first_article and forloop.first -%}
-              {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.feature_article_background -%}
-              {%- assign text_color = article.metafields.banner.text_color.value | default: section.settings.feature_article_text_color -%}
-              {%- capture sizes -%}(max-width: 999px) 100vw, calc(min(100vw, {{ settings.page_width }}px) * 0.65){%- endcapture -%}
-              {%- render 'blog-post-card', article: article, featured: section.settings.feature_first_article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes, position: forloop.index -%}
-            {%- else -%}
               {%- capture sizes -%}(max-width: 699px) 100vw, (max-width: 1149px) calc(100vw / 2 - 40px), (max-width: 1399px) calc(min(100vw, {{ settings.page_width }}px) / 3 - 40px) , calc(min(100vw, {{ settings.page_width }}px) / 3 - 80px) {%- endcapture -%}
               {%- render 'blog-post-card', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes, position: forloop.index -%}
-            {%- endif -%}
           {%- endfor -%}
         </div>
         {%- render 'pagination', paginate: paginate -%}
@@ -296,22 +288,6 @@
       "default": 6
     },
     {
-      "type": "checkbox",
-      "id": "feature_first_article",
-      "label": "Feature first blog post",
-      "default": true
-    },
-    {
-      "type": "color",
-      "id": "feature_article_background",
-      "label": "Featured article background"
-    },
-    {
-      "type": "color",
-      "id": "feature_article_text_color",
-      "label": "Featured article text"
-    },
-    {
       "type": "header",
       "content": "Blog post card"
     },
@@ -329,22 +305,48 @@
     },
     {
       "type": "checkbox",
-      "id": "show_author",
-      "label": "Show author",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "show_comments_count",
-      "label": "Show comments count",
-      "default": false
-    },
-    {
-      "type": "checkbox",
       "id": "show_category",
       "label": "Show category",
       "info": "The first post's tag will be shown as category.",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Blog tag"
+    },
+    {
+      "type": "color",
+      "id": "blog_tag_color",
+      "label": "Tag color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "blog_tag_bg_color",
+      "label": "Tag background color",
+      "default": "#c42624"
+    },
+    {
+      "type": "header",
+      "content": "Read more button"
+    },
+    {
+      "type": "text",
+      "id": "blog_button_text",
+      "label": "Button text",
+      "default": "Read More"
+    },
+    {
+      "type": "color",
+      "id": "blog_button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "blog_button_bg_color",
+      "label": "Button background color",
+      "default": "#c42624"
     }
   ]
 }

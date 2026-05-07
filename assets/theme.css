@@ -481,6 +481,7 @@ height-observer, visibility-progress, scroll-area, video-media, model-media, med
   display: block;
   position: relative;
   overflow: hidden;
+  aspect-ratio: 16 / 9;
 }
 
 .blog-post-card__figure > .badge {
@@ -542,28 +543,11 @@ height-observer, visibility-progress, scroll-area, video-media, model-media, med
 }
 
 .blog-posts {
-  --blog-posts-gap: var(--spacing-8) var(--grid-gutter);
+  --blog-posts-gap: 30px;
   grid: var(--blog-posts-grid);
   gap: var(--blog-posts-gap);
+  align-items: flex-start;
   display: grid;
-}
-
-@media screen and (min-width: 700px) {
-  .blog-posts {
-    --blog-posts-gap: var(--spacing-12) var(--grid-gutter);
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  .blog-posts {
-    --blog-posts-gap: var(--spacing-12);
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .blog-posts {
-    --blog-posts-gap: min(var(--section-inner-spacing-inline), var(--spacing-20));
-  }
 }
 
 .button, .btn {
@@ -4905,13 +4889,6 @@ product-rerender {
   .blog-filter-list {
     --filter-list-item-padding: var(--spacing-4) var(--spacing-6);
   }
-}
-
-.blog-posts {
-  --blog-articles-gap: var(--spacing-8);
-  align-items: flex-start;
-  gap: var(--blog-articles-gap);
-  display: grid;
 }
 
 .blog-posts-newsletter {

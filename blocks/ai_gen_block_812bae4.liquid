@@ -685,7 +685,46 @@
     }
   }
 {% endstyle %}
-
+<style>
+    .blog-product-card {
+        padding: 0.5rem 2rem;
+        background: #F8F8F8;
+        border-radius: 8px;
+    }
+    .blog-product-card .image-wrap {
+        background: none !important;
+        width: 38.5%;
+    }
+    .blog-product-card .image-wrap img {
+        box-shadow: none;
+    }
+    .blog-product-card .btn-group {
+        padding-top: 2rem;
+    }
+    .blog-product-card .btn-group .button {
+        text-decoration: none;
+    }
+    @media screen and (max-width: 769px) {
+        .blog-product-card {
+            padding: 1.5rem;
+        }
+        .product-card--box {
+            flex-direction: column;
+        }
+        .blog-product-card .image-wrap {
+            width: 100%;
+        }
+        .blog-product-card .btn-group {
+            padding-top: 1rem;
+        }
+        .blog-product-card .btn-group .button {
+            flex: 1;
+        }
+        .ai-blog-sidebar-{{ ai_gen_id }} {
+            display: none;
+        }
+    }
+</style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const tocLinks = document.querySelectorAll('.ai-blog-toc-{{ ai_gen_id }} a');
@@ -807,7 +846,7 @@ customElements.define('blog-product-card', class extends HTMLElement {
     }
 
     get handle() {
-        return this.getAttribute('handle');
+        return this.getAttribute('handle')?.replace(/<[^>]+>/g, "");
     }
 
     get cart() {
@@ -1031,11 +1070,9 @@ customElements.define('blog-product-card', class extends HTMLElement {
 
               assign article_content = article_content | replace: '\\u0026', '&'
               assign article_content = article_content | replace: '&lt;blog-product-card', '<blog-product-card' | replace: '&gt;&lt;/blog-product-card&gt;', '></blog-product-card>'
-
           -%}
           {{ article_content }}
       </div>
-
       {% if article.tags.size > 0 %}
         <div class="ai-blog-tags-{{ ai_gen_id }}">
           <div class="ai-blog-tags-title-{{ ai_gen_id }}">Tags</div>

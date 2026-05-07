@@ -1,0 +1,47 @@
+{%- layout none -%}
+<div class="blog-product-card w-full">
+    <div class="product-card--box w-full flex-between overflow-hidden gap-4">
+        <a class="image-wrap w-full block" href="{{ product.url }}">
+            {{- product.featured_image | image_url: width: 500 | image_tag: alt: product.title, style: 'margin: 0', class: 'w-full h-full tw-object-contain', loading: 'lazy', is: 'lazy-image' -}}
+        </a>
+        <div class="w-full" style="flex: 1">
+            <div class="text-2xl fw-700">{{ product.title }}</div>
+            <div class="intro lh-4">
+                {%- liquid
+                    if product.metafields.my_fields.short_description.value != blank
+                        echo product.metafields.my_fields.short_description.value
+                    else
+                        echo product.description | truncate: 150, '...'
+                    endif
+                    assign variant = product.selected_or_first_available_variant.id
+                -%}
+                <div class="flex-left btn-group flex-wrap gap-5">
+                    <button
+                        data-proxy="cart"
+                        data-variant="{{ variant }}"
+                        class="button"
+                        @cart
+                        type="button"
+                        is="custom-button">
+                        <span class="btn-text">#cart#</span>
+                    </button>
+                    <button
+                        data-proxy="checkout"
+                        data-variant="{{ variant }}"
+                        style="--color-button-background: 0 0 0;--color-button-text: 255 255 255;@checkout"
+                        class="button"
+                        type="button"
+                        is="hover-button">
+                        <span class="btn-text">#checkout#</span>
+                    </button>
+                    <a href="{{ product.url }}"
+                       @more
+                       class="button flex-center"
+                       style="border: 1px solid #E63946; background: none;">
+                        #more#
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
