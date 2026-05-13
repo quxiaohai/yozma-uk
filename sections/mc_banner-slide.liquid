@@ -66,7 +66,7 @@
     }
 
     .{{ cid }} .backdrop-img {
-        aspect-ratio: var(--desktop-aspect-ratio);
+        aspect-ratio: var(--aspect-ratio);
     }
 
     .{{ cid }} .tns-inner .slide-content {
@@ -172,7 +172,7 @@
 
     @media screen and (max-width: 1023px) {
         .{{ cid }} .backdrop-img {
-            aspect-ratio: var(--mobile-aspect-ratio);
+            aspect-ratio: var(--mb-aspect-ratio);
         }
 
         .{{ cid }} .slide-content .media-info {
@@ -339,8 +339,11 @@
 <script>
     $heybike.on('DOMContentLoaded', () => {
         const node = document.getElementById('{{ section.id }}-slide');
+        const across = $heybike.across();
         $heybike.proxy(node, 'link', ({elem}) => {
-            location.href = elem.dataset.link;
+            if ($heybike.isMobile || !across.is()) {
+                location.assign(elem.dataset.link);
+            }
         });
         {%- if size > 1 -%}
         const nodeList = $heybike.getNodeList(node);

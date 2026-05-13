@@ -37,7 +37,7 @@ class HeybikeCommon {
             elems.forEach(elem => elem.getAttribute('data-lazy-import').split(',').forEach(url => this.import(url.trim())));
             this.off('DOMContentLoaded', domCb);
         }
-        this.on("DOMContentLoaded", domCb);
+        this.ready(domCb);
         this.on('resize');
     }
 
@@ -47,6 +47,14 @@ class HeybikeCommon {
         this.isMobile = /android|iphone|ipad|ipod|micromessenger/gi.test(navigator.userAgent.toLocaleLowerCase()) || this.screenWidth <= 1023;
         this.mobile.value = this.isMobile;
         this.width.value = this.screenWidth;
+    }
+
+    catch(fn, arg) {
+        try {
+            fn && fn(arg)
+        } catch (e) {
+            console.error('listener => ', e);
+        }
     }
 
     on(event, fn, node) {
@@ -63,16 +71,13 @@ class HeybikeCommon {
         }
 
         info.fns.push(fn);
-
         if (info.fns.length === 1) {
             if (event === "resize") {
                 if (node === window) {
                     info.listener = ev => {
                         this.debounce(() => {
                             this._winSize();
-                            info.fns.forEach(fn => {
-                                fn && fn(ev);
-                            });
+                            info.fns.forEach(fn => this.catch(fn, ev));
                         }, 100, info.key);
                     }
                     node.addEventListener("resize", info.listener);
@@ -98,20 +103,16 @@ class HeybikeCommon {
                     const isDoc = info.node === document;
                     const left = isDoc ? (window.scrollX || document.documentElement.scrollLeft) : info.node.scrollLeft;
                     const top = isDoc ? (window.scrollY || document.documentElement.scrollTop) : info.node.scrollTop;
-                    info.fns.forEach(fn => {
-                        fn && fn({
-                            left,
-                            top,
-                            event
-                        });
-                    });
+                    info.fns.forEach(fn => this.catch(fn, {
+                        left,
+                        top,
+                        event
+                    }));
                 }
                 node.addEventListener("scroll", info.listener);
             } else {
                 info.listener = ev => {
-                    ev && info.fns.forEach(fn => {
-                        fn && fn(ev);
-                    });
+                    info.fns.forEach(fn => this.catch(fn, ev));
                 }
                 switch (event) {
                     case "resize:mobile":
@@ -128,7 +129,8 @@ class HeybikeCommon {
         }
 
         if ((this._domLoaded && event === "DOMContentLoaded") || (this._loaded && event === "load")) {
-            fn && fn();
+            this.catch(fn);
+            this.off(event, fn);
         }
     }
 
@@ -315,11 +317,12 @@ class HeybikeCommon {
     }
 
     debounce(fn, wait, key = '_timer') {
-        clearTimeout(this._events.get(key));
+        const off = () => clearTimeout(this._events.get(key));
+        off();
         this._events.set(key, setTimeout(() => {
             fn && fn();
         }, wait || 100));
-        return () => clearTimeout(this._events.get(key));
+        return off;
     }
 
     load({type}, fn) {
@@ -349,19 +352,43 @@ class HeybikeCommon {
         }
     }
 
+    across() {
+        let now = 0;
+        let offsetX = 0;
+        let startX = null;
+        const mousedown = ev => {
+            now = Date.now();
+            startX = ev.pageX;
+            offsetX = 0;
+        }
+        const mousemove = ev => {
+            offsetX = ev.pageX - startX;
+        }
+        this.on('mousedown', mousedown);
+        this.on('mousemove', mousemove);
+        return {
+            off: () => {
+                this.off('mousedown', mousedown);
+                this.off('mousemove', mousemove);
+            },
+            is: () => Date.now() - now > 300 || Math.abs(offsetX) > 20
+        }
+    }
+
     proxy(node, type, fn, nl = false) {
         const nodeList = nl ? this.getNodeList(node) : null;
         const types = [].concat(type);
         this.on('click', ev => {
-            const target = ev.target;
-            const key = target.dataset.proxy;
+            let elem = ev.target;
+            let key = elem.dataset.proxy;
+            const args = () => ({event: ev, elem, type: key, nodeList });
             if (types.includes(key)) {
-                fn && fn({event: ev, elem: target, type: key, nodeList});
+                fn && fn(args());
             } else {
-                const node = target.closest('[data-proxy]');
-                const key = node?.dataset.proxy;
-                if (node && types.includes(key)) {
-                    fn && fn({event: ev, elem: node, type: key, nodeList});
+                elem = elem.closest('[data-proxy]');
+                const key = elem?.dataset.proxy;
+                if (elem && types.includes(key)) {
+                    fn && fn(args());
                 }
             }
         }, node);
@@ -374,7 +401,7 @@ class HeybikeCommon {
     inView(node, fn, {root, margin, amount = "any"} = {}) {
         if ("undefined" === typeof IntersectionObserver) {
             let offset = null;
-            this.on("DOMContentLoaded", () => (offset = this.getOffset(node)));
+            this.ready(() => (offset = this.getOffset(node)));
             const mt = parseInt(margin?.split(' ')?.[0] || 100);
             const onScroll = ({top, event}) => {
                 if (offset && top + mt >= offset.top - this.screenHeight) {
@@ -468,18 +495,6 @@ class HeybikeCommon {
             return dollarsAmount + centsAmount;
         }
         return '{{ shop.money_format }}'.replace(/\{\{\s*(\w+)\s*\}\}/, formatWithDelimiters(amount, 2));
-    }
-
-    position(index) {
-        const main = document.getElementById('main');
-        let childList = [...main.childNodes].filter(item => item.nodeType === 1);
-        if (childList[0] && !childList[0].id.includes('shopify-section-template')) {
-            childList = [...childList[0].childNodes].filter(item => item.nodeType === 1);
-        }
-        let targetNode = childList[index - 1];
-        if (targetNode) {
-            window.scrollTo(0, this.getOffset(targetNode).top - 80);
-        }
     }
 
     async clearCart(e) {
