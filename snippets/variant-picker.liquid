@@ -62,8 +62,8 @@ Supported variables
       <fieldset class="variant-picker__option">
         <div class="variant-picker__option-info">
           <div class="h-stack gap-2">
-            <legend class="text-subdued">{{ option.name }}:</legend>
-            <span>{{ option.selected_value }}</span>
+            <legend class="text-subdued fw-700">{{ option.name }}:</legend>
+            <span class="fw-700">{{ option.selected_value }}</span>
           </div>
 
           {%- if hide_size_chart != true and block.settings.size_chart_page != blank and size_label_list contains option_downcase -%}

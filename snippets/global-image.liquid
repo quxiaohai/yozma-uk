@@ -42,7 +42,7 @@
             assign mb_alt = mobile_img.src | replace: 'files/', '' | replace: '.jpg', '' | replace: '.png', '' | escape_once
         endif
         assign mobile_size = mobile_size | replace: 'x', '' | times: 1
-        assign mobile_cls = '_mp mobile-done image ' | append: mobile_class
+        assign mobile_cls = 'mobile-done image ' | append: mobile_class
     endif
     assign pc_style = style
     if desktop_img != blank
@@ -50,18 +50,19 @@
             assign desktop_size = desktop_img.width
         endif
         if show_size
-            assign pc_style = '--width: ' | append: desktop_img.width | append: 'px; --height: ' | append: desktop_img.height | append: 'px; --aspect-ratio: ' | append: desktop_img.aspect_ratio | append: ';' | append: style
+            assign aspect_ratio = desktop_img.aspect_ratio
+            assign pc_style = '--width: ' | append: desktop_img.width | append: 'px; --height: ' | append: desktop_img.height | append: 'px; --aspect-ratio: ' | append: aspect_ratio | append: '; --mb-aspect-ratio: ' | append: aspect_ratio | append: ';' | append: style
         endif
         assign pc_alt = desktop_img.alt | escape_once
         if pc_alt == blank
             assign pc_alt = desktop_img.src | replace: 'files/', '' | replace: '.jpg', '' | replace: '.png', '' | escape_once
         endif
         assign desktop_size = desktop_size | replace: 'x', '' | times: 1
-        assign desktop_pic_cls = '_dp image ' | append: desktop_class
+        assign desktop_pic_cls = 'image ' | append: desktop_class
         if mobile_img != blank
-            assign desktop_cls = '_dp desktop-done image ' | append: desktop_class
+            assign desktop_cls = 'desktop-done image ' | append: desktop_class
         else
-            assign desktop_cls = '_dp image ' | append: desktop_class
+            assign desktop_cls = 'image ' | append: desktop_class
         endif
     endif
 -%}
@@ -124,10 +125,9 @@
     {%- if adaptive == 'fill' -%}
         {%- if mobile_img != blank -%}
             <picture
-                {% if show_size or style %}style="{% if show_size %}--desktop-width: {{ desktop_img.width }}px; --desktop-height: {{ desktop_img.height }}px; --desktop-aspect-ratio: {{ desktop_img.aspect_ratio }}; --mobile-width: {{ mobile_img.width }}px; --mobile-height: {{ mobile_img.height }}px; --mobile-aspect-ratio: {{ mobile_img.aspect_ratio }};{% endif %}{{ style }}"{% endif %}
-                class="_ap media {{ desktop_class }} {{ mobile_class }} image overflow-hidden{% if animate %} block{% endif %}"{% if animate %} data-animate="zoom-out" is="animate-picture"{% endif %}>
+                {% if show_size or style %}style="{% if show_size %}--width: {{ desktop_img.width }}px; --height: {{ desktop_img.height }}px;--aspect-ratio: {{ aspect_ratio }};--mb-width: {{ mobile_img.width }}px; --mb-height: {{ mobile_img.height }}px;--mb-aspect-ratio: {{ mobile_img.aspect_ratio }};{% endif %}{{ style }}"{% endif %}
+                class="media image overflow-hidden{% if desktop_class != blank %} {{ desktop_class | strip }}{% endif %}{% if desktop_class != mobile_class %} {{ mobile_class | strip }}{% endif %}{% if animate %} block{% endif %}"{% if animate %} data-animate="zoom-out" is="animate-picture"{% endif %}>
                 <source media="(max-width: 1023px)"
-                        class="image {{ mobile_class }}"
                         srcset="{{ m_srcsets }}"
                         width="{{ mobile_img.width }}"
                         height="{{ mobile_img.height }}">
@@ -135,7 +135,7 @@
                     {%- if fetchpriority -%}
                         {{- desktop_img | image_url: width: desktop_size | image_tag: alt: pc_alt, class: desktop_pic_cls, loading: loading, widths: widths, sizes: sizes, fetchpriority: 'high', is: 'lazy-image' -}}
                     {%- else -%}
-                        {{- desktop_img | image_url: width: desktop_size | image_tag: alt: pc_alt, class: desktop_pic_cls, loading: loading, widths: widths, sizes: sizes, is: 'lazy-image' -}}
+                        {{- desktop_img | image_url: width: desktop_size | image_tag: alt: pc_alt, loading: loading, widths: widths, sizes: sizes, is: 'lazy-image' -}}
                     {%- endif -%}
                 {%- endif -%}
             </picture>

@@ -1,30 +1,64 @@
-{% assign ss = section.settings %}
+{%- liquid
+    assign cid = section.id | split: '__' | last
+    assign ss = section.settings
+    assign emit = cid | append: ':variant:change'
+-%}
 <style>
     .easter-product-card {
         background: #ffffff;
         padding: 80px 0;
     }
+
+    .easter-product-card .variant-picker__option {
+        display: flex;
+        align-items: center;
+    }
+
+    .easter-product-card .variant-picker__option-info {
+        margin: 0 12px 0 0;
+    }
+
+    .easter-product-card .choose-variant-dropdown {
+        padding-top: 6px;
+    }
+
+    @media screen and (max-width: 1560px){
+        .easter-product-card .choose-variant-dropdown {
+            display: block;
+        }
+
+        .easter-product-card .choose-variant-dropdown .variant-picker__option-info {
+            margin: 0 0 0.5rem 0;
+        }
+    }
+
     .easter-product-card .easter-content .image-box {
         width: 100%;
         height: 732px;
         border-radius: 20px;
     }
+
     .easter-product-card .easter-content .product--card {
         background-color: #f7f7f7;
         padding: 0;
         border-radius: 20px;
         margin: -60px 40px 0;
     }
+
     .easter-product-card .easter-content .product--card.first {
         margin-top: 0;
     }
+
     .easter-product-card .easter-content .product--card .product-cover .cover {
         width: 568px;
         height: 568px;
+        border-radius: 20px 0 0 20px;
     }
+
     .easter-product-card .easter-content .product--card .product-cover .cover:hover .hover-image {
         opacity: 1;
     }
+
     .easter-product-card .easter-content .product--card .product-cover .hover-image {
         position: absolute;
         top: 0;
@@ -33,15 +67,18 @@
         opacity: 0;
         transition: opacity 0.5s;
     }
+
     .easter-product-card .easter-content .product--card .product-cover .tag-wrap {
         position: absolute;
         top: 10px;
         right: 10px;
         z-index: 3;
     }
+
     .easter-product-card .easter-content .product--card .product-cover .tag-wrap .tag-content {
         position: relative;
     }
+
     .easter-product-card .easter-content .product--card .product-cover .tag-wrap .image {
         width: 100%;
         height: 100%;
@@ -50,6 +87,7 @@
         left: 0;
         top: 0;
     }
+
     .easter-product-card .easter-content .product--card .product-cover .tag-wrap .tag-info {
         min-width: 70px;
         height: 70px;
@@ -62,24 +100,29 @@
         padding: 6px 12px 0;
         box-sizing: border-box;
     }
+
     .easter-product-card .easter-content .product--card .product-cover .tag-wrap .tag-info div {
         font-size: 18px;
         font-weight: 700;
         line-height: 1.2;
         color: #FFFFFF;
     }
+
     .easter-product-card .easter-content .product--card .product--info {
         flex: 1;
         box-sizing: border-box;
         padding: 0 80px;
     }
+
     .easter-product-card .easter-content .product--card .product--info .product-title {
         font-size: 32px;
         margin-bottom: 20px;
     }
+
     .easter-product-card .easter-content .product--card .product--info .product-intro {
         font-size: 16px;
     }
+
     .easter-product-card .easter-content .product--card .product--info .product-description {
         border-bottom: 1px solid rgb(221, 221, 221);
         border-top: 1px solid rgb(221, 221, 221);
@@ -87,20 +130,24 @@
         padding: 20px 0;
         margin: 30px 0;
     }
+
     .easter-product-card .easter-content .product--card .product--info .product-description ul {
         list-style: none;
     }
+
     .easter-product-card .easter-content .product--card .product--info .product-description li {
         position: relative;
         padding-left: 15px;
         line-height: 1.8;
         color: #333333;
     }
+
     .easter-product-card .easter-content .product--card .product--info .product-description li strong,
     .easter-product-card .easter-content .product--card .product--info .product-description li b {
         font-weight: 700;
         color: #000000;
     }
+
     .easter-product-card .easter-content .product--card .product--info .product-description li:before {
         content: "";
         left: 0;
@@ -112,100 +159,127 @@
         border-radius: 50%;
         background: #000000;
     }
+
     .easter-product-card .easter-content .product--card .product--info .price-box {
         line-height: 1.1;
     }
+
     .easter-product-card .easter-content .product--card .product--info .price-box .price {
         color: rgb(248, 58, 58);
         font-size: 30px;
     }
+
     .easter-product-card .easter-content .product--card .product--info .price-box .original-price {
         padding-left: 10px;
         color: rgba(26, 26, 26, 0.7);
         text-decoration: line-through;
         font-size: 16px;
     }
+
     .easter-product-card .easter-content .product--card .product--info .button-group {
         gap: 10px;
     }
+
     .easter-product-card .quantity {
         height: 42px;
     }
+
     .easter-product-card .easter-content .product--card .product--info .button-group .button {
         transition: all 0.3s;
         color: #ffffff;
         height: 42px;
     }
+
     .easter-product-card .easter-content .product--card .product--info .button-group .button.button1 {
         background: #ff0000;
     }
+
     .easter-product-card .easter-content .product--card .product--info .button-group .button.button2 {
         background: #5433eb;
     }
+
     .easter-product-card .easter-content .product--card .product--info .button-group .button:hover {
         background: #000000 !important;
     }
+
     @media screen and (max-width: 1696px) {
         .easter-product-card .easter-content .image-box {
             height: 43.1603773585vw;
         }
     }
+
     @media screen and (max-width: 1440px) {
         .easter-product-card {
             padding: 68px 0;
         }
+
         .easter-product-card .easter-content .image-box {
             border-radius: 17px;
         }
+
         .easter-product-card .easter-content .product--card {
             border-radius: 17px;
         }
+
         .easter-product-card .easter-content .product--card .product-cover .cover {
             width: 33.4722222222vw;
             height: 33.4722222222vw;
+            border-radius: 17px 0 0 17px;
         }
+
         .easter-product-card .easter-content .product--card .product-cover .tag-wrap {
             top: 8.5px;
             right: 8.5px;
         }
+
         .easter-product-card .easter-content .product--card .product-cover .tag-wrap .tag-info {
             min-width: 59.5px;
             height: 59.5px;
             padding: 5.1px 10.2px 0;
         }
+
         .easter-product-card .easter-content .product--card .product-cover .tag-wrap .tag-info div {
             font-size: 15.3px;
         }
+
         .easter-product-card .easter-content .product--card .product--info {
             padding: 20px 4.1666666667vw;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-title {
             font-size: 27.2px;
             margin-bottom: 17px;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-intro {
             font-size: 13.6px;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-description {
             font-size: 13.6px;
             padding: 17px 0;
             margin: 25.5px 0;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-description li {
             padding-left: 12.75px;
         }
+
         .easter-product-card .easter-content .product--card .product--info .price-box .price {
             font-size: 25.5px;
         }
+
         .easter-product-card .easter-content .product--card .product--info .price-box .original-price {
             padding-left: 8.5px;
             font-size: 13.6px;
         }
+
         .easter-product-card .quantity,
         .easter-product-card .easter-content .product--card .product--info .button-group .button {
             height: 36px;
         }
     }
+
     @media screen and (max-width: 1100px) {
         .easter-product-card .easter-content .product--card .product--info .product-footer {
             flex-direction: column;
@@ -213,92 +287,116 @@
             gap: 16px 0;
         }
     }
+
     @media screen and (max-width: 1023px) {
         .easter-product-card {
             padding: 2.5rem 0;
         }
+
         .easter-product-card .easter-content {
             padding: 0;
         }
+
         .easter-product-card .easter-content .image-box {
             height: 113.3333333333vw;
             border-radius: 0;
         }
+
         .easter-product-card .easter-content .product--card {
             border-radius: 1.25rem;
             margin: -2.5rem 1.25rem 0;
             flex-direction: column;
         }
+
         .easter-product-card .easter-content .product--card.first {
             margin-top: 0;
         }
+
         .easter-product-card .easter-content .product--card .product-cover .cover {
             width: 100%;
             height: 89.7435897436vw;
+            border-radius: 1.25rem 1.25rem 0 0;
         }
+
         .easter-product-card .easter-content .product--card .product-cover .tag-wrap {
             top: 0.625rem;
             right: 0.625rem;
         }
+
         .easter-product-card .easter-content .product--card .product-cover .tag-wrap .tag-info {
             min-width: 3.75rem;
             height: 3.75rem;
             padding: 0.25rem 0.5rem 0;
         }
+
         .easter-product-card .easter-content .product--card .product-cover .tag-wrap .tag-info div {
             font-size: 0.875rem;
         }
+
         .easter-product-card .easter-content .product--card .product--info {
             padding: 1rem 0.9375rem 1.5rem;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-title {
             font-size: 1.375rem;
             margin-bottom: 0.5rem;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-intro {
             font-size: 0.8125rem;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-description {
             font-size: 1rem;
             padding: 0.625rem 0;
             margin: 0.9375rem 0;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-description ul {
             list-style: none;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-description li {
             padding-left: 0.875rem;
             line-height: 1.6;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-description li:before {
             width: 6px;
             height: 6px;
         }
+
         .easter-product-card .easter-content .product--card .product--info .product-footer {
             gap: 10px 0;
         }
+
         .easter-product-card .easter-content .product--card .product--info .price-box .price {
             font-size: 1.5rem;
         }
+
         .easter-product-card .easter-content .product--card .product--info .price-box .original-price {
             padding-left: 0.3125rem;
             font-size: 0.8125rem;
         }
+
         .easter-product-card .easter-content .product--card .product--info .button-group {
             gap: 10px;
             width: 100%;
         }
+
         .easter-product-card .button2 {
             flex: 1;
         }
+
         .easter-product-card .quantity,
         .easter-product-card .easter-content .product--card .product--info .button-group .button {
             height: 2.25rem;
         }
     }
+
     {% render 'page-wrap-style' %}
 </style>
-<div class="easter-product-card section--page">
+<div class="easter-product-card section--page" id="{{ section.id }}-card">
     {% render 'easter-title', info: ss %}
     {%- assign productInfo = section.blocks | where: 'type', 'product_item' | first -%}
     {%- if productInfo != blank -%}
@@ -307,34 +405,36 @@
             {%- if bs.show_banner_image -%}
                 <div class="image-box tw-overflow-hidden flex-center">
                     {% render 'global-image',
-                            desktop_img: bs.pc_banner_image,
-                            desktop_size: 1600,
-                            mobile_img: bs.mb_banner_image,
-                            mobile_size: 750
+                        desktop_img: bs.pc_banner_image,
+                        desktop_size: 1600,
+                        mobile_img: bs.mb_banner_image,
+                        mobile_size: 750
                     %}
                 </div>
             {%- endif -%}
             {%- assign variant = bs.product.selected_or_first_available_variant -%}
-            <div class="product--card {% if bs.show_banner_image == false %}first{% endif %} tw-relative tw-overflow-hidden flex-between">
+            <div
+                class="product--card {% if bs.show_banner_image == false %}first{% endif %} tw-relative flex-between">
                 <div class="product-cover tw-relative">
-                    <a class="cover flex-center tw-relative" href="{{ bs.product.url }}">
+                    <a class="cover overflow-hidden flex-center tw-relative" href="{{ bs.product.url }}">
                         {%- if bs.pc_product_image != blank -%}
                             {% render 'global-image',
-                                    desktop_img: bs.pc_product_image,
-                                    desktop_size: 650,
-                                    mobile_img: bs.mb_product_image,
-                                    mobile_size: 650
+                                desktop_img: bs.pc_product_image,
+                                desktop_size: 650,
+                                mobile_img: bs.mb_product_image,
+                                mobile_size: 650,
+                                desktop_class: 'cover-image'
                             %}
                         {%- else -%}
-                            {% render 'global-image', desktop_img: variant.featured_image, desktop_size: 650 %}
+                            {% render 'global-image', desktop_img: variant.featured_image, desktop_size: 650, desktop_class: 'cover-image' %}
                         {%- endif -%}
                         {% render 'global-image',
-                                desktop_img: bs.pc_product_hover_image,
-                                desktop_size: 650,
-                                desktop_class: 'hover-image',
-                                mobile_img: bs.mb_product_hover_image,
-                                mobile_size: 650,
-                                mobile_class: 'hover-image'
+                            desktop_img: bs.pc_product_hover_image,
+                            desktop_size: 650,
+                            desktop_class: 'hover-image',
+                            mobile_img: bs.mb_product_hover_image,
+                            mobile_size: 650,
+                            mobile_class: 'hover-image'
                         %}
                     </a>
                     {%- if bs.show_sale -%}
@@ -367,44 +467,66 @@
                     <div class="product-description">
                         {{ bs.product_intro }}
                     </div>
+                    {%- capture product_form_id -%}product-form-{{ bs.product.id }}-{{ section.id }}{%- endcapture -%}
                     <div class="product-footer flex-between-top">
-                        <div class="price-box flex-left">
-                            <div style="color: {{ bs.product_price_color }};" class="price tw-font-semibold">
-                                {%- if bs.product_price != blank -%}
-                                    {{ bs.product_price }}
-                                {%- else -%}
-                                    {{ variant.price | money }}
-                                {%- endif -%}
+                        <div class="flex-column">
+                            <div class="price-box flex-left">
+                                <div style="color: {{ bs.product_price_color }};" class="price tw-font-semibold"
+                                     node-name="price">
+                                    {%- if bs.product_price != blank -%}
+                                        {{ bs.product_price }}
+                                    {%- else -%}
+                                        {{ variant.price | money }}
+                                    {%- endif -%}
+                                </div>
+                                <div class="original-price" node-name="originalPrice">
+                                    {%- if bs.product_original_price != blank -%}
+                                        {{ bs.product_original_price }}
+                                    {%- else -%}
+                                        {{ variant.compare_at_price | money }}
+                                    {%- endif -%}
+                                </div>
                             </div>
-                            <div class="original-price">
-                                {%- if bs.product_original_price != blank -%}
-                                    {{ bs.product_original_price }}
-                                {%- else -%}
-                                    {{ variant.compare_at_price | money }}
-                                {%- endif -%}
+                            <div class="product-info__variant-picker">
+                                {%- render 'choose-variant',
+                                    product: bs.product,
+                                    emit: emit
+                                -%}
                             </div>
                         </div>
                         <div class="button-group flex-column">
                             <div class="flex-between w-full gap-4">
                                 <quantity-selector class="quantity fw-600 h-full tw-inline-flex">
-                                    <button type="button" name="minus" class="quantity__button tw-px-4" aria-label="Translation missing: en.products.quantity.decrease"><svg role="presentation" focusable="false" width="7" height="10" class="transform icon icon-chevron-left" viewBox="0 0 7 10">
-                                            <path d="M6 1 2 5l4 4" fill="none" stroke="currentColor" stroke-width="2"></path>
-                                        </svg></button>
-                                    <input id="{{ section.id }}-quantity" type="number" is="quantity-input" inputmode="numeric" class="quantity__input quantity-selector__input" name="quantity" autocomplete="off" data-min="1" min="1" step="1" value="1">
-                                    <button type="button" name="plus" class="quantity__button tw-px-4" aria-label="Translation missing: en.products.quantity.increase"><svg role="presentation" focusable="false" width="7" height="10" class="transform icon icon-chevron-right" viewBox="0 0 7 10">
-                                            <path d="m1 9 4-4-4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
-                                        </svg></button>
+                                    <button type="button" name="minus" class="quantity__button tw-px-4"
+                                            aria-label="Translation missing: en.products.quantity.decrease">
+                                        <svg role="presentation" focusable="false" width="7" height="10"
+                                             class="transform icon icon-chevron-left" viewBox="0 0 7 10">
+                                            <path d="M6 1 2 5l4 4" fill="none" stroke="currentColor"
+                                                  stroke-width="2"></path>
+                                        </svg>
+                                    </button>
+                                    <input node-name="quantity" type="number" is="quantity-input" inputmode="numeric"
+                                           class="quantity__input quantity-selector__input" name="quantity"
+                                           autocomplete="off" data-min="1" min="1" step="1" value="{{ bs.product_quantity }}">
+                                    <button type="button" name="plus" class="quantity__button tw-px-4"
+                                            aria-label="Translation missing: en.products.quantity.increase">
+                                        <svg role="presentation" focusable="false" width="7" height="10"
+                                             class="transform icon icon-chevron-right" viewBox="0 0 7 10">
+                                            <path d="m1 9 4-4-4-4" fill="none" stroke="currentColor"
+                                                  stroke-width="2"></path>
+                                        </svg>
+                                    </button>
                                 </quantity-selector>
                                 <button
-                                    onclick="$heybike.addToCart({items: [{ quantity: (() => document.getElementById('{{ section.id }}-quantity').value)(), id: '{{ variant.id }}'}],  button: event.target.closest('.button')}, true)"
+                                    data-proxy="buy"
                                     class="button flex-center button2"
-                                   style="color: {{ bs.button2_text_color }}; background: {{ bs.button2_bg_color }};">
+                                    style="color: {{ bs.button2_text_color }}; background: {{ bs.button2_bg_color }};">
                                     {{ bs.button2 }}
                                 </button>
                             </div>
                             {%- if bs.show_button1 -%}
                                 <button class="button flex-center w-full button1"
-                                        onclick="$heybike.addToCart({items: [{ quantity: (() => document.getElementById('{{ section.id }}-quantity').value)(), id: '{{ variant.id }}'}],  button: event.target.closest('.button')})"
+                                        data-proxy="cart"
                                         style="color: {{ bs.button1_text_color }}; background: {{ bs.button1_bg_color }};"
                                         is="custom-button">
                                     {{ bs.button1 }}
@@ -417,6 +539,38 @@
         </div>
     {%- endif -%}
 </div>
+<script>
+    $heybike.ready(() => {
+        const node = document.getElementById('{{ section.id }}-card');
+        const nodeList = $heybike.getNodeList(node);
+        let variantId = {{ variant.id }};
+        $heybike.proxy(node, ['buy', 'cart'], ({elem, type}) => {
+            $heybike.addToCart({
+                items: [{
+                    quantity: nodeList.quantity.value,
+                    id: variantId
+                }],
+                button: elem
+            }, type === 'buy')
+        });
+        $heybike.bind('{{ emit }}', option => {
+            if (!nodeList.cover) {
+                const image = document.createElement("img");
+                image.classList.add("image");
+                image.style.objectFit = "contain";
+                node.querySelector('.cover-image').replaceWith(image);
+                nodeList.cover = image;
+            }
+            nodeList.cover.src = option.image;
+            nodeList.price.textContent = option.price;
+            nodeList.originalPrice.textContent = option.originalPrice;
+            variantId = option.id;
+            [].concat(nodeList[option.vm.name]).forEach(elem => {
+              elem.textContent = option.name;
+            });
+        });
+    });
+</script>
 {% schema %}
 {
   "name": "Easter Product Card",
@@ -536,6 +690,12 @@
           "type": "product",
           "id": "product",
           "label": "Product"
+        },
+        {
+          "type": "number",
+          "id": "product_quantity",
+          "label": "Product init quantity",
+          "default": 5
         },
         {
           "label": "Show banner image",

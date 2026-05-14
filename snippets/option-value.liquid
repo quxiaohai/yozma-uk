@@ -135,9 +135,9 @@ Color swatch specific parameters:
     {%- endif -%}
   {%- endcapture -%}
 
-  <input class="sr-only" type="{% if allow_multiple %}checkbox{% else %}radio{% endif %}" name="{{ param_name }}" id="{{ id | escape }}" value="{{ value | escape }}" {% if form %}form="{{ form }}"{% endif %} {% if selected %}checked="checked"{% endif %} {% if hide_if_disabled and disabled and selected == false %}disabled{% endif %} {% if option_value and option_value.product_url %}data-product-url="{{ option_value.product_url | escape }}"{% endif %} {% if option_position %}data-option-position="{{ option_position }}"{% endif %} {{ variant_attributes }}>
+  <input{% if emit %} onchange="$heybike.emit('{{ emit }}', {vm: this, id: {{ variant.id }}, price: '{{ variant.price | money }}', originalPrice: '{{ variant.compare_at_price | money }}', name: '{{ label | default: value }}', image: '{{ variant.featured_image | image_url: width: 1200 }}'})"{% endif %} class="sr-only" type="{% if allow_multiple %}checkbox{% else %}radio{% endif %}" name="{{ param_name }}" id="{{ id | escape }}" value="{{ value | escape }}" {% if form %}form="{{ form }}"{% endif %} {% if selected %}checked="checked"{% endif %} {% if hide_if_disabled and disabled and selected == false %}disabled{% endif %} {% if option_value and option_value.product_url %}data-product-url="{{ option_value.product_url | escape }}"{% endif %} {% if option_position %}data-option-position="{{ option_position }}"{% endif %} {{ variant_attributes }}>
 {%- elsif option_value and option_value.selected -%}
-  <input class="sr-only" type="radio" name="{{ param_name }}" id="{{ id | escape }}" value="{{ value | escape }}" data-option-position="{{ option_position }}" {% if form %}form="{{ form }}"{% endif %} checked="checked">
+  <input{% if emit %} onchange="$heybike.emit('{{ emit }}', {vm: this, id: {{ variant.id }}, price: '{{ variant.price | money }}', originalPrice: '{{ variant.compare_at_price | money }}', name: '{{ label | default: value }}', image: '{{ variant.featured_image | image_url: width: 1200 }}'})"{% endif %} class="sr-only" type="radio" name="{{ param_name }}" id="{{ id | escape }}" value="{{ value | escape }}" data-option-position="{{ option_position }}" {% if form %}form="{{ form }}"{% endif %} checked="checked">
 {%- endif -%}
 
 {%- case type -%}
