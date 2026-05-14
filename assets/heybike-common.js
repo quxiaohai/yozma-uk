@@ -386,7 +386,7 @@ class HeybikeCommon {
                 fn && fn(args());
             } else {
                 elem = elem.closest('[data-proxy]');
-                const key = elem?.dataset.proxy;
+                key = elem?.dataset.proxy;
                 if (elem && types.includes(key)) {
                     fn && fn(args());
                 }
