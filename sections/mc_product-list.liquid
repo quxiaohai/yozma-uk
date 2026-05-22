@@ -1,11 +1,14 @@
-{%- assign ss = section.settings -%}
+{%- liquid
+    assign ss = section.settings
+    assign size = section.blocks.size
+-%}
 <style>
     .mc_product-list {
         padding: 80px 0;
         background-color: #ffffff;
     }
 
-    .mc_product-list .page-width {
+    .mc_product-list ._product-items {
         gap: 0 20px;
     }
 
@@ -23,6 +26,12 @@
         transition: color 0.5s;
     }
 
+    {%- if size > 3 -%}
+    .mc_product-list .product-wrapper > ._product-items > ._product-card:nth-child(3) ~ ._product-card {
+        display: none;
+    }
+
+    {%- endif -%}
     .mc_product-list ._product-card {
         flex: 1;
         max-width: 550px;
@@ -97,22 +106,13 @@
         gap: 0 14px;
     }
 
-    .mc_product-list .btn-group .image-button {
+    .mc_product-list ._product-card .btn-group .image-button {
         flex: 1;
         --button-color: #ffffff;
         --button-width: 100%;
         --button-height: auto;
         --button-size: 26px;
         aspect-ratio: 3.6;
-    }
-
-    .mc_product-list .image-button .text {
-        gap: 4px;
-    }
-    .mc_product-list .image-button .text .svg-icon {
-        width: calc(var(--button-size) * 1.5);
-        height: calc(var(--button-size) * 1.5);
-        transform: translateY(-4%);
     }
 
     .mc_product-list .active {
@@ -123,12 +123,45 @@
         display: block;
     }
 
+    {%- if size > 3 -%}
+    .mc_product-list .control-box {
+        padding-top: 16px;
+        gap: 0 20px;
+    }
+
+    .mc_product-list .slider-button {
+        width: 48px;
+        height: 48px;
+    }
+
+    .mc_product-list .slider-button .image {
+        object-fit: fill;
+        transition: transform 0.3s;
+    }
+
+    .mc_product-list .slider-button:hover .image {
+        transform: scale(1.05);
+    }
+
+    .mc_product-list .slider-button[disabled] {
+        opacity: 0.9;
+    }
+
+    .mc_product-list .slider-button[disabled] .image {
+        filter: grayscale(1);
+    }
+
+    .mc_product-list .prev-button {
+        transform: rotateY(180deg);
+    }
+
+    {%- endif -%}
     @media screen and (max-width: 1600px) {
         .mc_product-list {
             padding: 64px 0;
         }
 
-        .mc_product-list .page-width {
+        .mc_product-list ._product-items {
             gap: 0 16px;
         }
 
@@ -182,7 +215,7 @@
             gap: 0 0.7291666667vw;
         }
 
-        .mc_product-list .btn-group .image-button {
+        .mc_product-list ._product-card .btn-group .image-button {
             --button-size: 1.4vw;
         }
     }
@@ -192,19 +225,37 @@
             padding: 2.5rem 0;
         }
 
-        .mc_product-list .page-width {
+        .mc_product-list ._product-items {
             overflow-x: auto;
             gap: 0 0.625rem;
             white-space: nowrap;
         }
 
+        .mc_product-list .product-wrapper {
+            padding-right: 0;
+        }
+
+    {%- if size <= 3 -%}
+        .mc_product-list ._product-card:last-of-type {
+            margin-right: 18px;
+        }
+    {% endif %}
         .mc_product-list ._product-card {
+        {%- if size <= 3 -%}
             flex: none;
             width: 18.90625rem;
+        {%- endif -%}
             max-width: none;
             padding: 0 1.6875rem;
         }
-
+    {%- if size > 3 -%}
+        .mc_product-list .product-wrapper > ._product-items > ._product-card {
+            width: 18.90625rem;
+        }
+        .mc_product-list .product-wrapper > ._product-items > ._product-card:nth-child(1) ~ ._product-card {
+            display: none;
+        }
+    {%- endif -%}
         .mc_product-list ._product-card:before {
             height: 0.375rem;
         }
@@ -251,24 +302,31 @@
             gap: 0 0.53125rem;
         }
 
-        .mc_product-list .btn-group .image-button {
+        .mc_product-list ._product-card .btn-group .image-button {
             --button-size: 0.8125rem;
         }
 
-        .mc_product-list .image-button .text .svg-icon {
-            transform: translateY(-10%);
+        .mc_product-list .control-box {
+            padding-top: 0.625rem;
+            gap: 0;
+        }
+
+        .mc_product-list .slider-button {
+            display: none;
         }
 
         .mc_product-list .progress {
             height: 2px;
             background: #D9D9D9;
-            margin-top: 0.625rem;
         }
 
         .mc_product-list .progress .bar {
             transform: translateX(-100%);
             border-radius: 4px;
             background: #A90000;
+        {%- if size > 3 -%}
+            transition: transform 0.3s;
+        {%- endif -%}
         }
     }
 
@@ -276,111 +334,107 @@
 </style>
 <div class="mc_product-list section--page" id="{{ section.id }}-list">
     {%- render 'section-title', info: ss -%}
-    <div class="page-width hide-scroll-bar w-full flex-top" node-name="scroll">
-        {%- for block in section.blocks -%}
-            {%- liquid
-                assign bs = block.settings
-                assign product = bs.product
-                assign variant = bs.product.selected_or_first_available_variant
-                assign image = bs.product_image | default: product.featured_image
-            -%}
-            {%- if product != blank -%}
-                <div
-                    class="_product-card relative overflow-hidden"{%- if bs.video != blank -%} node-name="card"{% endif %}>
-                    {%- render 'global-image',
-                        desktop_img: ss.card_bg_image,
-                        desktop_size: 500,
-                        desktop_class: 'absolute'
-                    -%}
-                    {%- if bs.video != blank -%}
-                        <div class="hover-media-wrap w-full h-full z-2 absolute">
-                            <template>
-                                {%- render 'global-video',
-                                    desktop_video: bs.video,
-                                    desktop_class: 'w-full h-full',
-                                    loop: true
-                                -%}
-                            </template>
+    <div class="page-width product-wrapper">
+        <div class="w-full hide-scroll-bar _product-items flex-top" node-name="scroll">
+            {%- for block in section.blocks -%}
+                {%- liquid
+                    assign bs = block.settings
+                    assign product = bs.product
+                    assign variant = bs.product.selected_or_first_available_variant
+                    assign image = bs.product_image | default: product.featured_image
+                -%}
+                {%- if product != blank -%}
+                    <div
+                        class="_product-card relative overflow-hidden"{%- if bs.video != blank -%} node-name="card"{% endif %}>
+                        {%- render 'global-image',
+                            desktop_img: ss.card_bg_image,
+                            desktop_size: 500,
+                            desktop_class: 'absolute'
+                        -%}
+                        {%- if bs.video != blank -%}
+                            <div class="hover-media-wrap w-full h-full z-2 absolute">
+                                <template>
+                                    {%- render 'global-video',
+                                        desktop_video: bs.video,
+                                        desktop_class: 'w-full h-full',
+                                        loop: true
+                                    -%}
+                                </template>
+                            </div>
+                        {%- endif -%}
+                        <div class="head-info relative z-2 text-center">
+                            <a
+                                href="{{ product.url }}"
+                                class="name block truncate-text ani-color italic lh-2 fw-900">{{ bs.product_title | default: product.title }}</a>
+                            <a
+                                href="{{ product.url }}"
+                                class="intro block truncate-text ani-color lh-2">{{ bs.product_description | default: product.description | truncate: 50 }}</a>
                         </div>
-                    {%- endif -%}
-                    <div class="head-info relative z-2 text-center">
-                        <a
-                            href="{{ product.url }}"
-                            class="name block truncate-text ani-color italic lh-2 fw-900">{{ bs.product_title | default: product.title }}</a>
-                        <a
-                            href="{{ product.url }}"
-                            class="intro block truncate-text ani-color lh-2">{{ bs.product_description | default: product.description | truncate: 50 }}</a>
+                        <a href="{{ product.url }}" class="cover block relative z-1">
+                            {% render 'global-image', image: image, image_size: 650 %}
+                        </a>
+                        <div class="btn-group relative z-2 flex-between">
+                            <button
+                                is="custom-button"
+                                data-proxy="buy"
+                                hover
+                                style="--button-color: {{ ss.button1_color }}; --button-hover-color: {{ ss.button1_hover_color }};"
+                                data-variant="{{ variant.id }}"
+                                class="image-button relative flex-center">
+                                {% render 'global-image', image: ss.button1_bg_image, image_size: 300 %}
+                                <span class="text z-1 relative">{{ ss.button1_text }}</span>
+                            </button>
+                            <button
+                                is="custom-button"
+                                data-proxy="cart"
+                                hover
+                                style="--button-color: {{ ss.button2_color }}; --button-hover-color: {{ ss.button2_hover_color }};"
+                                data-variant="{{ variant.id }}"
+                                class="image-button relative flex-center">
+                                {% render 'global-image', image: ss.button2_bg_image, image_size: 300 %}
+                                <span class="text z-1 relative">{{ ss.button2_text }}</span>
+                            </button>
+                        </div>
+                        <ul class="text-items relative z-2 w-full flex-between-top">
+                            {%- for v in (1..3) -%}
+                                {%- liquid
+                                    assign icon = 'icon' | append: v
+                                    assign title = 'title' | append: v
+                                    assign text = 'content' | append: v
+                                -%}
+                                {%- if bs[icon] != blank -%}
+                                    <li class="text-item flex-center-col">
+                                        {% render 'global-image', image: bs[icon], image_size: 120 %}
+                                        <div class="info text-center">
+                                            <div class="num ani-color  lh-2 italic fw-600">{{ bs[title] }}</div>
+                                            <div class="text ani-color lh-2">{{ bs[text] }}</div>
+                                        </div>
+                                    </li>
+                                {%- endif -%}
+                            {%- endfor -%}
+                        </ul>
                     </div>
-                    <a href="{{ product.url }}" class="cover block relative z-1">
-                        {% render 'global-image', image: image, image_size: 650 %}
-                    </a>
-                    <div class="btn-group relative z-2 flex-between">
-                        <button
-                            is="custom-button"
-                            data-proxy="buy"
-                            hover
-                            style="--button-color: {{ ss.button1_color }}; --button-hover-color: {{ ss.button1_hover_color }};"
-                            data-variant="{{ variant.id }}"
-                            class="image-button relative flex-center">
-                            {% render 'global-image', image: ss.button1_bg_image, image_size: 300 %}
-                            <span class="text z-1 relative">{{ ss.button1_text }}</span>
-                        </button>
-                        <button
-                            is="custom-button"
-                            data-proxy="cart"
-                            hover
-                            style="--button-color: {{ ss.button2_color }}; --button-hover-color: {{ ss.button2_hover_color }};"
-                            data-variant="{{ variant.id }}"
-                            class="image-button relative flex-center">
-                            {% render 'global-image', image: ss.button2_bg_image, image_size: 300 %}
-                            <span class="text z-1 flex-center relative">
-                                <svg class="svg-icon"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     width="36"
-                                     height="36"
-                                     viewBox="0 0 26 26">
-                                    <path
-                                        d="M6.48623 6.72536C6.10744 5.46635 4.94813 4.60449 3.63338 4.60449H2.96262C2.51389 4.60449 2.15012 4.96826 2.15012 5.41699C2.15012 5.86572 2.51389 6.22949 2.96262 6.22949H3.63338C4.23099 6.22949 4.75795 6.62124 4.93012 7.19352L7.42424 15.4836C7.80304 16.7426 8.9624 17.6045 10.2772 17.6044L18.3809 17.6042C19.6137 17.6041 20.7192 16.8447 21.1615 15.694L22.918 11.1251C23.6681 9.17382 22.2277 7.07694 20.1372 7.07694H10.3794C9.93065 7.07694 9.56688 7.44071 9.56688 7.88944C9.56688 8.33817 9.93065 8.70194 10.3794 8.70194H20.1372C21.0874 8.70194 21.7421 9.65507 21.4012 10.542L19.6448 15.1109C19.4437 15.634 18.9412 15.9791 18.3808 15.9792L10.2771 15.9794C9.67951 15.9795 9.15252 15.5877 8.98034 15.0154L6.48623 6.72536Z"
-                                        fill="currentColor"/>
-                                    <path
-                                        d="M18.6872 18.9583C19.435 18.9583 20.0413 19.5646 20.0413 20.3125C20.0413 21.0603 19.435 21.6666 18.6872 21.6666C17.9393 21.6666 17.333 21.0603 17.333 20.3125C17.333 19.5646 17.9393 18.9583 18.6872 18.9583Z"
-                                        fill="currentColor"/>
-                                    <path
-                                        d="M10.0205 18.9583C10.7684 18.9583 11.3747 19.5646 11.3747 20.3125C11.3747 21.0603 10.7684 21.6666 10.0205 21.6666C9.2726 21.6666 8.66632 21.0603 8.66632 20.3125C8.66632 19.5646 9.2726 18.9583 10.0205 18.9583Z"
-                                        fill="currentColor"/>
-                                    <path
-                                        d="M14.6245 9.47906C14.1758 9.47906 13.812 9.84283 13.812 10.2916V11.3749H12.7287C12.28 11.3749 11.9162 11.7387 11.9162 12.1874C11.9162 12.6361 12.28 12.9999 12.7287 12.9999H13.812V14.0832C13.812 14.532 14.1758 14.8957 14.6245 14.8957C15.0733 14.8957 15.437 14.532 15.437 14.0832V12.9999H16.5204C16.9691 12.9999 17.3329 12.6361 17.3329 12.1874C17.3329 11.7387 16.9691 11.3749 16.5204 11.3749H15.437V10.2916C15.437 9.84283 15.0733 9.47906 14.6245 9.47906Z"
-                                        fill="currentColor"/>
-                                </svg>
-                                {{ ss.button2_text }}
-                            </span>
-                        </button>
-                    </div>
-                    <ul class="text-items relative z-2 w-full flex-between-top">
-                        {%- for v in (1..3) -%}
-                            {%- liquid
-                                assign icon = 'icon' | append: v
-                                assign title = 'title' | append: v
-                                assign text = 'content' | append: v
-                            -%}
-                            {%- if bs[icon] != blank -%}
-                                <li class="text-item flex-center-col">
-                                    {% render 'global-image', image: bs[icon], image_size: 120 %}
-                                    <div class="info text-center">
-                                        <div class="num ani-color  lh-2 italic fw-600">{{ bs[title] }}</div>
-                                        <div class="text ani-color lh-2">{{ bs[text] }}</div>
-                                    </div>
-                                </li>
-                            {%- endif -%}
-                        {%- endfor -%}
-                    </ul>
-                </div>
-            {%- endif -%}
-        {%- endfor -%}
+                {%- endif -%}
+            {%- endfor -%}
+        </div>
     </div>
-    <div class="page-width mobile-done">
-        <div class="progress overflow-hidden w-full" node-name="progress">
-            <div class="bar w-full h-full" node-name="bar">&nbsp;</div>
+    <div class="page-width">
+        <div node-name="control" class="control-box flex-right w-full">
+            {%- if size > 3 -%}
+                <button class="prev-button slider-button flex-center">
+                    <img loading="lazy" alt="Slide Prev Button"
+                         src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-icon.png?v=1769744963&width=70"
+                         class="image"/>
+                </button>
+                <button class="next-button slider-button flex-center">
+                    <img loading="lazy" alt="Slide Next Button"
+                         src="https://cdn.shopify.com/s/files/1/0682/5646/5034/files/slide-button-icon.png?v=1769744963&width=70"
+                         class="image"/>
+                </button>
+            {%- endif -%}
+            <div class="progress overflow-hidden w-full mobile-done" node-name="progress">
+                <div node-name="bar" class="bar w-full h-full">&nbsp;</div>
+            </div>
         </div>
     </div>
 </div>
@@ -388,43 +442,80 @@
     $heybike.on('DOMContentLoaded', () => {
         const node = document.getElementById('{{ section.id }}-list');
         const nodeList = $heybike.getNodeList(node);
-        let undebounce = null;
-        [].concat(nodeList.card).forEach((elem, index) => {
-            elem.addEventListener('mouseenter', () => {
-                if ($heybike.isMobile) {
-                    return false;
-                }
-                undebounce = $heybike.debounce(() => {
-                    if (!nodeList[`video${index}`]) {
-                        const templateElement = elem.querySelector("template");
-                        if (templateElement) {
-                            templateElement.replaceWith(templateElement.content.firstElementChild.cloneNode(true));
-                        }
-                        nodeList[`video${index}`] = elem.querySelector("video");
+        let undebounce = null, isInit = false;
+        const onInitMouse = () => {
+            if (isInit) {
+                return false;
+            }
+            isInit = true;
+            [].concat(nodeList.card).forEach((elem, index) => {
+                elem.addEventListener('mouseenter', () => {
+                    if ($heybike.isMobile) {
+                        return false;
                     }
-                    elem.classList.add('active');
-                    nodeList[`video${index}`].play();
-                }, 80, '{{ section.id }}');
+                    undebounce = $heybike.debounce(() => {
+                        if (!nodeList[`video${index}`]) {
+                            const templateElement = elem.querySelector("template");
+                            if (templateElement) {
+                                templateElement.replaceWith(templateElement.content.firstElementChild.cloneNode(true));
+                            }
+                            nodeList[`video${index}`] = elem.querySelector("video");
+                        }
+                        elem.classList.add('active');
+                        nodeList[`video${index}`].play();
+                    }, 80, '{{ section.id }}');
+                });
+                elem.addEventListener('mouseleave', () => {
+                    if ($heybike.isMobile) {
+                        return false;
+                    }
+                    undebounce && undebounce();
+                    undebounce = null;
+                    nodeList[`video${index}`].pause();
+                    elem.classList.remove('active');
+                });
             });
-
-            elem.addEventListener('mouseleave', () => {
-                if ($heybike.isMobile) {
-                    return false;
+        };
+        $heybike.on('resize:width', onInitMouse);
+        {%- if size > 3 -%}
+        $heybike.inView(node, () => {
+            $heybike.load({type: 'TNS'}, () => {
+                const onChange = (obj) => {
+                    if ($heybike.isMobile) {
+                        const progress = (1 - (obj.index + 1) / obj.slideCount) * 100;
+                        nodeList.bar.style.transform = `translateX(-${progress}%)`;
+                    }
                 }
-                undebounce && undebounce();
-                undebounce = null;
-                nodeList[`video${index}`].pause();
-                elem.classList.remove('active');
+                const slider = tns({
+                    container: nodeList.scroll,
+                    loop: false,
+                    items: 1.19,
+                    nav: false,
+                    preventScrollOnTouch: true,
+                    mouseDrag: true,
+                    controls: true,
+                    controlsContainer: nodeList.control,
+                    responsive: {
+                        900: {
+                            items: 3
+                        }
+                    },
+                    onInit() {
+                        setTimeout(() => {
+                            const info = slider.getInfo();
+                            nodeList.card = Array.from(info.slideItems);
+                            onChange(info);
+                            onInitMouse();
+                        }, 80);
+                    }
+                });
+
+                slider.events.on('transitionEnd', () => {
+                    onChange(slider.getInfo());
+                });
             });
         });
-
-        $heybike.proxy(node, ['buy', 'cart'], ({elem, type}) => {
-            $heybike.addToCart({
-                items: [{id: elem.dataset.variant, quantity: 1}],
-                button: elem
-            }, type === 'buy');
-        });
-
+        {%- else -%}
         const initBoxScroll = () => {
             const elem = nodeList.scroll;
             const sw = elem.scrollWidth;
@@ -441,7 +532,14 @@
             elem.setAttribute('scroll', 'true');
         };
         $heybike.on('resize:mobile', initBoxScroll);
+        {%- endif -%}
 
+        $heybike.proxy(node, ['buy', 'cart'], ({elem, type}) => {
+            $heybike.addToCart({
+                items: [{id: elem.dataset.variant, quantity: 1}],
+                button: elem
+            }, type === 'buy');
+        });
     });
 </script>
 {% schema %}
