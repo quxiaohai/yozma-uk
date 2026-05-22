@@ -15,8 +15,8 @@
         "media_Yi7pih": {
           "type": "media",
           "settings": {
-            "pc_image_url": "shopify://shop_images/UK_PC_3840_x_1599_bf3df31f-fed8-4b4e-b303-eca2fa67400c.jpg",
-            "mb_image_url": "shopify://shop_images/UK_1500_x_2180_f7c6ae1b-b572-4d4b-b071-2ba0eede7c67.jpg",
+            "pc_image_url": "shopify://shop_images/3840.1599.jpg",
+            "mb_image_url": "shopify://shop_images/1500.2180.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "",
             "show_subtitle": true,
@@ -619,7 +619,7 @@
           "settings": {
             "image_icon": "shopify://shop_images/dispatching-icon.png",
             "title": "Free Shipping",
-            "text": "7-14 bussiness days"
+            "text": "2-5 bussiness days"
           }
         },
         "card2": {
