@@ -365,13 +365,13 @@
                         {%- endif -%}
                         <div class="head-info relative z-2 text-center">
                             <a
-                                href="{{ product.url }}"
+                                href="{{ product.url }}?variant={{ variant.id }}"
                                 class="name block truncate-text ani-color italic lh-2 fw-900">{{ bs.product_title | default: product.title }}</a>
                             <a
-                                href="{{ product.url }}"
+                                href="{{ product.url }}?variant={{ variant.id }}"
                                 class="intro block truncate-text ani-color lh-2">{{ bs.product_description | default: product.description | truncate: 50 }}</a>
                         </div>
-                        <a href="{{ product.url }}" class="cover block relative z-1">
+                        <a href="{{ product.url }}?variant={{ variant.id }}" class="cover block relative z-1">
                             {% render 'global-image', image: image, image_size: 650 %}
                         </a>
                         <div class="btn-group relative z-2 flex-between">
