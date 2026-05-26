@@ -340,8 +340,9 @@
                 {%- liquid
                     assign bs = block.settings
                     assign product = bs.product
-                    assign variant = bs.product.selected_or_first_available_variant
-                    assign image = bs.product_image | default: product.featured_image
+                    assign variant_index = bs.variant | minus: 1
+                    assign variant = product.variants[variant_index] | default: product.selected_or_first_available_variant
+                    assign image = bs.product_image | default: variant.featured_image | default: product.featured_image
                 -%}
                 {%- if product != blank -%}
                     <div
@@ -439,7 +440,7 @@
     </div>
 </div>
 <script>
-    $heybike.on('DOMContentLoaded', () => {
+    $heybike.ready(() => {
         const node = document.getElementById('{{ section.id }}-list');
         const nodeList = $heybike.getNodeList(node);
         let undebounce = null, isInit = false;
@@ -763,6 +764,16 @@
           "type": "product",
           "id": "product",
           "label": "Product"
+        },
+        {
+          "type": "range",
+          "id": "variant",
+          "label": "Variant index",
+          "min": 1,
+          "max": 9,
+          "step": 1,
+          "unit": "v",
+          "default": 1
         },
         {
           "type": "text",
