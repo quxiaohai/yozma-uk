@@ -4,6 +4,12 @@
         background: #ffffff;
         padding: 60px 0;
     }
+    @media screen and (min-width: 1480px) {
+        .mc_media-slide .page-width.small {
+            padding-left: calc(50% - 700px);
+            padding-right: calc(50% - 700px);
+        }
+    }
     .mc_media-slide .media-box {
         align-items: stretch;
         height: 100%;
@@ -209,7 +215,7 @@
 </style>
 <div class="mc_media-slide overflow-hidden section--page" id="{{ section.id }}-slide">
     {%- render 'section-title', info: ss -%}
-    <div class="slide-content w-full page-width">
+    <div class="slide-content w-full page-width {{ ss.theme_size }}">
         <div class="media-box relative w-full flex-between-top" node-name="mediaBox">
             {%- if ss.top_image != blank -%}
                 {%- render 'global-image', image: ss.top_image, image_size: 300, class: 'absolute back-decorate' -%}
@@ -514,6 +520,22 @@
       "type": "image_picker",
       "id": "play_button_icon",
       "label": "Play button icon"
+    },
+    {
+      "type": "select",
+      "id": "theme_size",
+      "label": "Theme size",
+      "options": [
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        }
+      ],
+      "default": "large"
     }
   ],
   "blocks": [

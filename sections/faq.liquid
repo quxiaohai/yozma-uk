@@ -1,5 +1,5 @@
 {%- render 'section-spacing-collapsing' -%}
-
+{%- assign ss = section.settings -%}
 {%- assign text_position = section.settings.text_position -%}
 
 <style>
@@ -15,6 +15,13 @@
     gap: 0;
   }
 
+  @media screen and (min-width: 1480px) {
+      #shopify-section-{{ section.id }} .section.small {
+          padding-left: calc(50% - 700px);
+          padding-right: calc(50% - 700px);
+      }
+  }
+
   .section-stack__main .circle-chevron {
     background: none;
   }
@@ -26,7 +33,7 @@
   }
 </style>
 
-<div {% render 'section-properties' %}>
+<div {% render 'section-properties', class: ss.theme_size %}>
   <a id="{{ section.id }}-faq" style="height: 0; overflow: hidden;display: block;">&nbsp;</a>
   <div class="section-stack {% if text_position != 'center' %}section-stack--horizontal{% else %}section-stack--center{% endif %} {% if text_position == 'end' %}section-stack--reverse{% endif %}">
     {%- capture content -%}
@@ -296,6 +303,22 @@
       "type": "color",
       "id": "accordion_text_color",
       "label": "Accordion text"
+    },
+    {
+      "type": "select",
+      "id": "theme_size",
+      "label": "Theme size",
+      "options": [
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        }
+      ],
+      "default": "large"
     }
   ],
   "presets": [

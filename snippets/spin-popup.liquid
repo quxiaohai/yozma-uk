@@ -1,0 +1,434 @@
+<style>
+    .mc_easter-gift-hunt .easter-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100dvh;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        z-index: 10000000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Roboto, sans-serif;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    .mc_easter-gift-hunt .easter-modal {
+        position: relative;
+        background: var(--background);
+        background-size: cover;
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        /*border-radius: 20px;*/
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        max-width: 420px;
+        width: 100%;
+        padding: 28px 24px 22px;
+        box-sizing: border-box;
+        text-align: center;
+        color: #fff;
+        overflow: visible;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35), 0 0 0 0.5px rgba(255, 255, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .mc_easter-gift-hunt .easter-close {
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 20px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 12;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .mc_easter-gift-hunt .easter-close:hover {
+        color: #000;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .mc_easter-gift-hunt .easter-header {
+        margin-bottom: 6px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .mc_easter-gift-hunt .easter-big-egg {
+        margin-bottom: 6px;
+    }
+
+    .mc_easter-gift-hunt .easter-big-egg .image {
+        width: 120px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .mc_easter-gift-hunt .easter-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0 0 4px;
+        color: {{ ds.model_title_color }};
+        text-shadow: 0 2px 8px rgba({{ ds.model_title_color.rgb | split: ' ' | join: ',' }}, 0.3), 0 1px 2px rgba(0, 0, 0, 0.3);
+        letter-spacing: 0.5px;
+    }
+
+    .mc_easter-gift-hunt .easter-subtitle {
+        font-size: 13px;
+        font-weight: 400;
+        margin: 0 0 10px;
+        color: {{ ds.model_subtitle_color }};
+        letter-spacing: 0.3px;
+    }
+
+    .mc_easter-gift-hunt .easter-prize-display {
+        position: relative;
+        z-index: 2;
+        margin: 2px 0 14px;
+    }
+
+    .mc_easter-gift-hunt .easter-prize-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: {{ ds.model_prize_name_color }};
+        text-shadow: 0 1px 4px rgba(255, 215, 0, 0.25);
+        line-height: 1.3;
+    }
+
+    .mc_easter-gift-hunt .easter-code-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .mc_easter-gift-hunt .easter-code {
+        display: inline-block;
+        padding: 10px 20px;
+        border: 1.5px solid {% if ds.model_code_border_color != blank %}{{ ds.model_code_border_color }}{% else %}rgba({{ ds.model_code_color.rgb | split: ' ' | join: ',' }}, 0.5){% endif %};
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 700;
+        color: {{ ds.model_code_color }};
+        letter-spacing: 2px;
+        background: {% if ds.model_code_bg_color != blank %}{{ ds.model_code_bg_color }}{% else %}rgba({{ ds.model_code_color.rgb | split: ' ' | join: ',' }}, 0.08){% endif %};
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .mc_easter-gift-hunt .easter-copy-btn {
+        padding: 10px 14px;
+        background: {% if ds.model_copy_bg_color != blank %}{{ ds.model_copy_bg_color }}{% else %}rgba({{ ds.model_copy_color.rgb | split: ' ' | join: ',' }}, 0.12){% endif %};
+        color: {{ ds.model_copy_color }};
+        border: 1px solid {% if ds.model_copy_border_color != blank %}{{ ds.model_copy_border_color }}{% else %}rgba({{ ds.model_copy_color.rgb | split: ' ' | join: ',' }}, 0.2){% endif %};
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.2s;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+
+    .mc_easter-gift-hunt .easter-copy-btn .svg-icon,
+    .mc_easter-gift-hunt .easter-copy-btn .svg-icon-ok {
+        width: 20px;
+        height: 20px;
+    }
+
+    .mc_easter-gift-hunt .easter-copy-btn .svg-icon-ok {
+        display: none;
+    }
+
+    .mc_easter-gift-hunt .easter-copy-btn.active .svg-icon {
+        display: none;
+    }
+
+    .mc_easter-gift-hunt .easter-copy-btn.active .svg-icon-ok {
+        display: block;
+    }
+
+    .mc_easter-gift-hunt .easter-copy-btn:hover {
+        background: {% if ds.model_copy_bg_color != blank %}{{ ds.model_copy_bg_color }}{% else %}rgba({{ ds.model_copy_color.rgb | split: ' ' | join: ',' }}, 0.22){% endif %};
+        border-color: {% if ds.model_copy_border_color != blank %}{{ ds.model_copy_border_color }}{% else %}rgba({{ ds.model_copy_color.rgb | split: ' ' | join: ',' }}, 0.35){% endif %};
+    }
+
+    .mc_easter-gift-hunt .easter-shop-btn {
+        display: inline-block;
+        padding: 0 32px;
+        height: 48px;
+        line-height: 48px;
+        background: linear-gradient(135deg, {{ ds.model_button_bg_color }}, rgba({{ ds.model_button_bg_color.rgb | split: ' ' | join: ',' }}, 0.7));
+        color: {{ ds.model_button_color }};
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        font-family: Roboto, sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 16px rgba({{ ds.model_button_bg_color.rgb | split: ' ' | join: ',' }}, 0.3);
+        position: relative;
+        z-index: 2;
+    }
+
+    .mc_easter-gift-hunt .easter-shop-btn:hover {
+        background: linear-gradient(135deg, {{ ds.model_button_bg_hover_color }}, {{ ds.model_button_bg_color }});
+        box-shadow: 0 6px 20px rgba({{ ds.model_button_bg_color.rgb | split: ' ' | join: ',' }}, 0.4);
+        transform: translateY(-1px);
+    }
+
+    .mc_easter-gift-hunt .easter-fine-print {
+        font-size: 11px;
+        color: {{ ds.model_desc_color }};
+        margin-top: 10px;
+        line-height: 1.4;
+        position: relative;
+        z-index: 2;
+    }
+
+    .mc_easter-gift-hunt .easter-confetti {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
+    .mc_easter-gift-hunt .easter-confetti-piece {
+        position: absolute;
+        top: -20px;
+        opacity: 0;
+        animation: easter-fall 2.5s ease-out forwards;
+    }
+
+    @keyframes easter-fall {
+        0% {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg) scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(500px) rotate(720deg) scale(0.5);
+        }
+    }
+
+    .easter-gift-anchor {
+        position: relative !important;
+    }
+
+    @media (max-width: 480px) {
+        .mc_easter-gift-hunt .easter-modal {
+            padding: 24px 18px 18px;
+            max-width: 95vw;
+            border-radius: 18px;
+        }
+
+        .mc_easter-gift-hunt .easter-title {
+            font-size: 24px;
+        }
+
+        .mc_easter-gift-hunt .easter-prize-name {
+            font-size: 17px;
+        }
+
+        .mc_easter-gift-hunt .easter-code {
+            font-size: 15px;
+            padding: 8px 14px;
+        }
+
+        .mc_easter-gift-hunt .easter-big-egg .image {
+            width: 100px;
+        }
+    }
+
+    {%- if ds.show_countdown != blank -%}
+    .mc_easter-gift-hunt .countdown-wrapper {
+        padding: {{ ds.padding }};
+    }
+
+    {%- assign width = 36 | times: ds.countdown_num_width -%}
+    .mc_easter-gift-hunt .countdown-wrapper .countdown-item {
+        flex-direction: column;
+        position: relative;
+        width: {{ width | plus: 16 }}px;
+    }
+
+    .mc_easter-gift-hunt .countdown-wrapper .countdown-item .num {
+        width: {{ 36 | times: ds.countdown_num_width }}px;
+        height: {{ 28 | times: ds.countdown_num_height }}px;
+        background-color: {{ ds.countdown_fill_color }};
+        border-radius: 5px;
+        color: {{ ds.countdown_num_color }};
+        opacity: 1;
+        font-size: {{ 17 | times: ds.countdown_num_size }}px;
+        font-weight: 600;
+        text-align: center;
+        box-sizing: border-box;
+        line-height: 1.2;
+        border: 0 none;
+    }
+
+    .mc_easter-gift-hunt .countdown-wrapper .countdown-item .num:disabled {
+        opacity: 1;
+    }
+
+    .mc_easter-gift-hunt .countdown-wrapper .countdown-item .name {
+        font-size: {{ 12 | times: ds.countdown_name_size }}px;
+        line-height: 1;
+        font-weight: 700;
+        color: {{ ds.countdown_text_color }};
+        text-align: center;
+        padding-top: 4px;
+        transform-origin: top center;
+        transform: scale(0.7);
+    }
+
+    .mc_easter-gift-hunt .countdown-wrapper .countdown-item:last-of-type:before {
+        display: none;
+    }
+
+    .mc_easter-gift-hunt .countdown-wrapper .countdown-item:before {
+        content: ":";
+        font-size: 16px;
+        font-weight: 700;
+        color: {{ ds.countdown_dot_color }};
+        position: absolute;
+        right: -2px;
+        top: 28%;
+        transform: translateY(-50%);
+    }
+
+    @media screen and (max-width: 639px) {
+    {%- assign width = 29 | times: ds.mb_countdown_num_width -%}
+        .mc_easter-gift-hunt .countdown-wrapper {
+            padding: {{ ds.mb_padding }};
+        }
+
+        .mc_easter-gift-hunt .countdown-wrapper .countdown-item {
+            width: {{ width | plus: 12 }}px;
+        }
+
+        .mc_easter-gift-hunt .countdown-wrapper .countdown-item .num {
+            width: {{ 29 | times: ds.mb_countdown_num_width }}px;
+            height: {{ 24 | times: ds.mb_countdown_num_height }}px;
+            font-size: {{ 14 | times: ds.mb_countdown_num_size }}px;
+            border-radius: 4px;
+        }
+
+        .mc_easter-gift-hunt .countdown-wrapper .countdown-item .name {
+            font-size: {{ 7 | times: ds.mb_countdown_name_size }}px;
+            transform: scale(1);
+            padding-top: 0.25rem;
+        }
+
+        .mc_easter-gift-hunt .countdown-wrapper .countdown-item:before {
+            font-size: 0.875rem;
+            top: 30%;
+        }
+    }
+
+    {%- endif -%}
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_easter-gift-hunt section--page">
+    <div node-name="overlay" class="easter-overlay" style="display:none;">
+        <div class="easter-modal" node-name="modal" style="--background: {% if ds.model_gradient != blank %}{{ ds.model_gradient }}{% else %}linear-gradient(160deg, rgba(147, 112, 219, 0.82) 0%, rgba(186, 135, 211, 0.76) 50%, rgba(155, 135, 220, 0.72) 100%){% endif %};">
+            <button class="easter-close" node-name="close" aria-label="Close">&times;</button>
+            <div class="easter-header">
+                <div class="easter-big-egg flex-center" node-name="cover">
+                </div>
+                <div class="easter-title">{{ ds.model_title }}</div>
+                <p class="easter-subtitle" node-name="subtitle">
+                    {%- if request.design_mode -%}
+                        {{ ds.model_design_mode_subtitle }}
+                    {%- else -%}
+                        {{ ds.model_subtitle }}
+                    {%- endif -%}
+                </p>
+            </div>
+            {%- if ds.show_countdown -%}
+                <countdown-timer
+                    cycle-duration="{{ ds.duration }}"
+                    data-store="{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}"
+                    data-date="{{ ds.countdown_time }}"
+                    class="countdown-wrapper flex-center">
+                    <label class="countdown-item flex-center">
+                        <input node-name="day" disabled type="text" class="num" value="00"/>
+                        <span class="name">{{ ds.day }}</span>
+                    </label>
+                    <label class="countdown-item flex-center">
+                        <input node-name="hour" disabled type="text" class="num" value="00"/>
+                        <span class="name">{{ ds.hour }}</span>
+                    </label>
+                    <label class="countdown-item flex-center">
+                        <input node-name="minute" disabled type="text" class="num" value="00"/>
+                        <span class="name">{{ ds.minute }}</span>
+                    </label>
+                    <label class="countdown-item flex-center">
+                        <input node-name="second" disabled type="text" class="num" value="00"/>
+                        <span class="name">{{ ds.second }}</span>
+                    </label>
+                </countdown-timer>
+            {%- endif -%}
+            <div class="easter-prize-display">
+                <div class="easter-prize-name" node-name="prizeName"></div>
+            </div>
+            <div class="easter-code-box">
+                <span class="easter-code" node-name="code"></span>
+                <button class="easter-copy-btn flex-center" node-name="copy">
+                    <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <rect stroke="currentColor" fill="none" stroke-width="32px" x="128" y="128" width="336"
+                              height="336" rx="57" ry="57" stroke-linejoin="round"></rect>
+                        <path
+                            stroke="currentColor"
+                            stroke-width="32px"
+                            fill="none"
+                            d="M383.5 128l.5-24a56.16 56.16 0 00-56-56H112a64.19 64.19 0 00-64 64v216a56.16 56.16 0 0056 56h24"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <svg
+                        class="svg-icon-ok"
+                        viewBox="0 0 1024 1024"
+                        xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+                        <path
+                            d="M512 0C229.216 0 0 229.248 0 512c0 282.784 229.216 512 512 512 282.752 0 512-229.216 512-512 0-282.752-229.248-512-512-512z m292.608 357.024l-320 384c-12.128 14.56-30.08 23.008-49.024 23.072h-0.128a63.936 63.936 0 0 1-48.992-22.88l-167.52-199.488a64 64 0 1 1 97.952-82.368l118.336 140.96 271.04-325.248a64.032 64.032 0 0 1 98.336 81.952z"
+                            fill="currentColor"></path>
+                    </svg>
+                </button>
+            </div>
+            <a class="easter-shop-btn" node-name="btn" href="#">{{ ds.model_button }}</a>
+            <p class="easter-fine-print">
+                {{ ds.model_desc }}
+            </p>
+            <div class="easter-confetti" node-name="confetti"></div>
+        </div>
+    </div>
+</div>

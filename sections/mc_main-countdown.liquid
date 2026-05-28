@@ -1,0 +1,320 @@
+{% assign ss = section.settings %}
+<style>
+    .mc_main-countdown {
+        padding: 70px 0;
+        --title-size: {{ 26 | divided_by: 19.2 }}vw;
+        --content-gap: {{  120 | divided_by: 19.2 }}vw;
+        --countdown-gap: {{ 48 | divided_by: 19.2 }}vw;
+        --before-height: {{ 110 | divided_by: 19.2 }}vw;
+        --before-left: -{{ 60 | divided_by: 19.2 }}vw;
+        --item-before-right: -{{ 28 | divided_by: 19.2 }}vw;
+        --item-before-top: {{ 38 | divided_by: 19.2 }}vw;
+        --item-size: {{ 80 | divided_by: 19.2 }}vw;
+        --font-size: {{ 16 | divided_by: 19.2 }}vw;
+        --paddint-top: {{ 12 | divided_by: 19.2 }}vw;
+    }
+
+    @media screen and (min-width: 1921px){
+        .mc_main-countdown {
+            --title-size: 26px;
+            --content-gap: 120px;
+            --countdown-gap: 48px;
+            --before-left: -60px;
+            --item-before-right: -28px;
+            --item-before-top: 38px;
+            --item-size: 80px;
+            --font-size: 16px;
+            --paddint-top: 12px;
+        }
+        .mc_main-countdown .content {
+            padding: 0 48px;
+        }
+    }
+
+    .mc_main-countdown .title {
+        color: {{ ss.heading_color }};
+        font-size: var(--title-size);
+    }
+
+    .mc_main-countdown .title strong {
+        color: {{ ss.heading_bold_color }};
+    }
+
+    .title-wrap {
+        flex: 1;
+    }
+
+    .mc_main-countdown .content {
+        gap: var(--content-gap);
+        max-width: 1480px;
+    }
+
+    .mc_main-countdown .countdown {
+        gap: var(--countdown-gap);
+        flex: 1;
+        justify-content: flex-start;
+    }
+
+    .mc_main-countdown .countdown:before {
+        content: '';
+        width: 1px;
+        height: var(--before-height);
+        background-color: {{ ss.countdown_fill_color }};
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+        left: var(--before-left);
+    }
+
+    .mc_main-countdown .countdown .countdown-item {
+        width: var(--item-size);
+    }
+
+    .mc_main-countdown .countdown .countdown-item:last-of-type:before {
+        display: none;
+    }
+
+    .mc_main-countdown .countdown .countdown-item:before {
+        content: ":";
+        font-size: 28px;
+        font-weight: 900;
+        color: {{ ss.countdown_dot_color }};
+        position: absolute;
+        right: var(--item-before-right);
+        top: var(--item-before-top);
+        transform: translateY(-50%);
+    }
+
+    .mc_main-countdown .countdown .num {
+        width: 100%;
+        height: var(--item-size);
+        background-color: {{ ss.countdown_fill_color }};
+    {%- if ss.countdown_fill_gradient != blank -%}
+        background: {{ ss.countdown_fill_gradient }};
+    {%- endif -%}
+        color: {{ ss.countdown_num_color }};
+        font-size: 36px;
+        text-align: center;
+        border: 0 none;
+    }
+
+    .mc_main-countdown .countdown .num:disabled {
+        background-color: {{ ss.countdown_fill_color }} !important;
+        color: {{ ss.countdown_num_color }} !important;
+        opacity: 1 !important;
+    }
+
+    .mc_main-countdown .countdown .name {
+        font-size: var(--font-size);
+        color: {{ ss.countdown_text_color }};
+        text-align: center;
+        padding-top: var(--paddint-top);
+    }
+
+    @media screen and (max-width: 1023px) {
+        .mc_main-countdown {
+            padding: 1.8rem 0;
+        }
+
+        .mc_main-countdown .content {
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .mc_main-countdown .title {
+            font-size: 12px;
+        }
+
+        .mc_main-countdown .countdown {
+            gap: 2rem;
+            &:before {
+                display: none;
+            }
+        }
+
+        .mc_main-countdown .countdown .countdown-item {
+            width: 50px;
+        }
+
+        .mc_main-countdown .countdown .countdown-item:before {
+            font-size: 18px;
+            right: -19px;
+            top: 24px;
+        }
+
+        .mc_main-countdown .countdown .num {
+            height: 50px;
+            font-size: 18px;
+        }
+
+        .mc_main-countdown .countdown .name {
+            font-size: 10px;
+            padding-top: 8px;
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_main-countdown flex-center section--page w-full">
+    <div class="content w-full flex-center page-width">
+        {%- if ss.show_heading -%}
+            <div class="title-wrap flex-right">
+                <div class="title fw-600 lh-4">{{ ss.heading }}</div>
+            </div>
+        {%- endif -%}
+        <countdown-timer
+            cycle-duration="{{ ss.duration }}"
+            data-store="{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}"
+            data-date="{{ ss.countdown_start_date }}"
+            class="countdown relative flex-center">
+            <label class="countdown-item tw-relative flex-center-col">
+                <input node-name="day" disabled type="text" class="num fw-600" value="00">
+                <span class="name lh-2">{{ ss.day }}</span>
+            </label>
+            <label class="countdown-item tw-relative flex-center-col">
+                <input node-name="hour" disabled type="text" class="num fw-600" value="00">
+                <span class="name lh-2">{{ ss.hour }}</span>
+            </label>
+            <label class="countdown-item tw-relative flex-center-col">
+                <input node-name="minute" disabled type="text" class="num fw-600" value="00">
+                <span class="name lh-2">{{ ss.minute }}</span>
+            </label>
+            <label class="countdown-item tw-relative flex-center-col">
+                <input node-name="second" disabled type="text" class="num fw-600" value="00">
+                <span class="name lh-2">{{ ss.second }}</span>
+            </label>
+        </countdown-timer>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "MC Main Countdown",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Main Countdown"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Title",
+      "default": "<p>Anniversary Celebration, World Cup,<br/> and Parent-Child Activities: Event Schedule</p>"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "heading_bold_color",
+      "label": "Title bold color",
+      "default": "#ff271a"
+    },
+    {
+      "type": "header",
+      "content": "Countdown Content"
+    },
+    {
+      "type": "text",
+      "id": "countdown_start_date",
+      "label": "Select start date for countdown",
+      "default": "2024-12-02T00:00:00",
+      "info": "2024-12-02T00:00:00"
+    },
+    {
+      "type": "range",
+      "id": "duration",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "unit": "Day",
+      "label": "Duration days",
+      "default": 7
+    },
+    {
+      "type": "text",
+      "id": "day",
+      "label": "Day",
+      "default": "Days"
+    },
+    {
+      "type": "text",
+      "id": "hour",
+      "label": "Hour",
+      "default": "Hours"
+    },
+    {
+      "type": "text",
+      "id": "minute",
+      "label": "Minute",
+      "default": "Mins"
+    },
+    {
+      "type": "text",
+      "id": "second",
+      "label": "Second",
+      "default": "Secs"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "label": "Countdown fill color",
+      "type": "color",
+      "id": "countdown_fill_color",
+      "default": "#000000"
+    },
+    {
+      "label": "Countdown fill gradient",
+      "type": "color_background",
+      "id": "countdown_fill_gradient"
+    },
+    {
+      "label": "countdown num color",
+      "type": "color",
+      "id": "countdown_num_color",
+      "default": "#ffffff"
+    },
+    {
+      "label": "Countdown dot color",
+      "type": "color",
+      "id": "countdown_dot_color",
+      "default": "#000000"
+    },
+    {
+      "label": "Countdown text color",
+      "type": "color",
+      "id": "countdown_text_color",
+      "default": "#000000"
+    }
+  ]
+}
+{% endschema %}

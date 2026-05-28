@@ -31,10 +31,16 @@
     .mc_review-slide .more:hover {
         --button-color: #d30000;
     }
-
     .mc_review-slide .review-wrapper {
         padding-top: 58px;
         min-height: 200px;
+    }
+
+    @media screen and (min-width: 1480px) {
+        .mc_review-slide .page-width.small {
+            padding-left: calc(50% - 700px);
+            padding-right: calc(50% - 700px);
+        }
     }
 
     @media screen and (min-width: 1024px) and (max-width: 2600px) {
@@ -63,7 +69,6 @@
     }
 
     .mc_review-slide .review-item {
-        border-radius: 8px;
         aspect-ratio: 0.737;
     }
 
@@ -185,10 +190,6 @@
 
         .mc_review-slide .review-wrapper {
             padding-top: 46px;
-        }
-
-        .mc_review-slide .review-item {
-            border-radius: 6px;
         }
 
         .mc_review-slide .review-item .info-wrap {
@@ -341,7 +342,7 @@
     {% render 'page-wrap-style' %}
 </style>
 <div class="mc_review-slide overflow-hidden section--page" id="{{ section.id }}-slide">
-    <div class="page-width">
+    <div class="page-width {{ ss.theme_size }}">
         <div class="head-box flex-between">
             <div class="title relative">
                 <div class="relative z-1{% if ss.title_gradient_color != blank %} text-gradient{% endif %}"
@@ -364,7 +365,7 @@
             {%- endif -%}
         </div>
     </div>
-    <div class="page-width relative review-wrapper __loading__" node-name="box">
+    <div class="page-width {{ ss.theme_size }} relative review-wrapper __loading__" node-name="box">
         <div node-name="slider" class="review-items w-full flex-left">
             {%- for block in section.blocks -%}
                 {%- assign bs = block.settings -%}
@@ -390,7 +391,7 @@
             {%- endfor -%}
         </div>
     </div>
-    <div class="page-width">
+    <div class="page-width {{ ss.theme_size }}">
         <div node-name="control" class="control-box flex-right w-full">
             <button class="prev-button slider-button flex-center">
                 <img loading="lazy" alt="Slide Prev Button"
@@ -706,6 +707,22 @@
       "id": "slide_item",
       "label": "Desktop slide item",
       "default": "3.4"
+    },
+    {
+      "type": "select",
+      "id": "theme_size",
+      "label": "Theme size",
+      "options": [
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        }
+      ],
+      "default": "large"
     }
   ],
   "blocks": [

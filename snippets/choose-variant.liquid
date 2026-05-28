@@ -2,13 +2,16 @@
     assign cid = section.id | split: '__' | last
     assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ','
     assign size_label_list = 'general.label.size' | t | replace: ', ', ',' | downcase | split: ','
+    if variant_limit == blank
+        assign variant_limit = 999
+    endif
 -%}
 {%- unless product.has_only_default_variant -%}
     <div class="choose-variant">
         {%- for option in product.options_with_values -%}
             {% liquid
                 assign option_downcase = option.name | downcase
-                assign resolved_option_selector_style = 'dropdown'
+                assign resolved_option_selector_style = selector_style | default: 'dropdown'
 
                 assign swatch_count = option.values | map: 'swatch' | compact | size
 
@@ -43,14 +46,14 @@
                                close-on-listbox-select anchor-horizontal="start" anchor-vertical="end">
                         <p class="h5" slot="title">{{ option.name }}</p>
                         <div data-option-selector class="popover-listbox">
-                            {%- for option_value in option.values -%}
+                            {%- for option_value in option.values limit: variant_limit -%}
                                 {%- if hide_sold_out_variants == false or option_value.available or option_value.selected -%}
                                     <label
                                         class="popover-listbox__option {% unless option_value.available %}is-disabled{% endunless %}"
                                         for="{{ name }}-{{ option_value.id }}">
                                         <input class="sr-only"
                                                type="radio"
-                                               onchange="$heybike.emit('{{ emit }}', {vm: this, id: {{ option_value.variant.id }}, price: '{{ option_value.variant.price | money }}', originalPrice: '{{ option_value.variant.compare_at_price | money }}', name: '{{ option_value.name }}', image: '{{ option_value.variant.featured_image | image_url: width: 1200 }}'})"
+                                               onchange="$heybike.emit('{{ emit }}', {vm: this, id: {{ option_value.variant.id }}, index: '{{ index }}', price: '{{ option_value.variant.price | money }}', originalPrice: '{{ option_value.variant.compare_at_price | money }}', name: '{{ option_value.name }}', image: '{{ option_value.variant.featured_image | image_url: width: 1200 }}'})"
                                                id="{{ name }}-{{ option_value.id }}"
                                                name="{{ name }}"
                                                {% if option_value.product_url != blank %}data-product-url="{{ option_value.product_url | escape }}"{% endif %}
@@ -68,16 +71,16 @@
                 <div
                     class="variant-picker__option-values {% if block.settings.stack_blocks %}wrap{% else %}scroll-area bleed sm:unbleed{% endif %} {% if resolved_option_selector_style == 'swatch' and settings.color_swatch_style == 'rectangle' %}variant-picker__option-values--color gap-4{% else %}gap-2{% endif %}">
                     {% liquid
-                        for option_value in option.values
+                        for option_value in option.values limit: variant_limit
                             case resolved_option_selector_style
                                 when 'variant_image'
-                                    render 'option-value', type: 'thumbnail', emit: emit, option_value: option_value, param_name: name, option_position: option.position, id_prefix: forloop.index, bordered: true
+                                    render 'option-value', type: 'thumbnail', emit: emit, index: index, option_value: option_value, param_name: name, option_position: option.position, id_prefix: forloop.index, bordered: true
                                 when 'swatch'
-                                    render 'option-value', type: 'swatch', emit: emit, option_value: option_value, param_name: name, option_position: option.position, id_prefix: forloop.index
+                                    render 'option-value', type: 'swatch', emit: emit, index: index, option_value: option_value, param_name: name, option_position: option.position, id_prefix: forloop.index
                                 when 'block'
-                                    render 'option-value', type: 'block', emit: emit, option_value: option_value, param_name: name, option_position: option.position, id_prefix: forloop.index
+                                    render 'option-value', type: 'block', emit: emit, index: index, option_value: option_value, param_name: name, option_position: option.position, id_prefix: forloop.index
                                 when 'block_swatch'
-                                    render 'option-value', type: 'block', emit: emit, option_value: option_value, param_name: name, option_position: option.position, show_swatch: true, id_prefix: forloop.index
+                                    render 'option-value', type: 'block', emit: emit, index: index, option_value: option_value, param_name: name, option_position: option.position, show_swatch: true, id_prefix: forloop.index
                             endcase
                         endfor
                     %}

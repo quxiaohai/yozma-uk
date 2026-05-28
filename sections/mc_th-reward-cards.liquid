@@ -1,0 +1,301 @@
+{%- assign ss = section.settings -%}
+<style>
+    .mc_th-reward-cards {
+        padding: 60px 0;
+        background-color: #000000;
+    }
+    .mc_th-reward-cards .card-items {
+        gap: 10px;
+    }
+    .mc_th-reward-cards .card-item {
+        max-width: 460px;
+        aspect-ratio: 1.12469;
+    }
+    .mc_th-reward-cards .image-backup {
+        position: absolute;
+        object-fit: fill;
+        left: 0;
+        top: 0;
+    }
+    .mc_th-reward-cards .card-content {
+        padding: 4px 0 28px 32px;
+        gap: 10px;
+    }
+    .mc_th-reward-cards .card-content .name {
+        color: {{ ss.card_title_color }};
+        font-size: 40px;
+        white-space: nowrap;
+    }
+    .mc_th-reward-cards .card-content .desc {
+        color: {{ ss.card_desc_color }};
+        font-size: 14px;
+    }
+    @media screen and (max-width: 1480px) {
+        .mc_th-reward-cards {
+            padding: 51px 0;
+        }
+        .mc_th-reward-cards .card-content {
+            padding: 0.2702702703vw 0 1.8918918919vw 2.1621621622vw;
+            gap: 0.6756756757vw;
+        }
+        .mc_th-reward-cards .card-content .name {
+            font-size: 2.7027027027vw;
+        }
+        .mc_th-reward-cards .card-content .desc {
+            font-size: 0.9459459459vw;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .mc_th-reward-cards {
+            padding: 0.9375rem 0;
+        }
+        .mc_th-reward-cards .card-items {
+            gap: 0.3125rem;
+            flex-direction: column;
+        }
+        .mc_th-reward-cards .card-item {
+            max-width: 100%;
+            width: 100%;
+        }
+        .mc_th-reward-cards .card-content {
+            padding: 0.125rem 0 0.875rem 0.9375rem;
+            gap: 0.3125rem;
+        }
+        .mc_th-reward-cards .card-content .name {
+            font-size: 1.75rem;
+        }
+        .mc_th-reward-cards .card-content .desc {
+            font-size: 0.75rem;
+        }
+    }
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_th-reward-cards section--page">
+    {%- render 'section-title', info: ss, class: 'flex-center-col' -%}
+    <div class="card-items flex-center">
+        {%- for block in section.blocks -%}
+            {%- assign bs = block.settings -%}
+            <div class="card-item overflow-hidden flex-bottom relative w-full">
+                {%- if bs.card_bg_image != blank -%}
+                    {%- render 'global-image',
+                        desktop_img: bs.card_bg_image,
+                        desktop_size: 400,
+                        desktop_class: 'image-backup',
+                        mobile_img: bs.mb_card_bg_image,
+                        mobile_size: 400,
+                        preload: ss.image_preload
+                    -%}
+                {%- endif -%}
+                <div class="card-content w-full flex-left relative z-2">
+                    <div class="name lh-1 fw-800">{{ bs.title }}</div>
+                    <div class="desc lh-4">{{ bs.text }}</div>
+                </div>
+            </div>
+        {%- endfor -%}
+    </div>
+</div>
+{% schema %}
+{
+  "name": "MC Th Reward Cards",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Th Reward Cards"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>WHY BUY NOW?</p>"
+    },
+    {
+      "type": "text",
+      "id": "font_name",
+      "label": "Font name"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Card"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_desc_color",
+      "label": "Card desc color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_preload",
+      "label": "Image preload",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_bg_image",
+          "label": "Desktop card background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mb_card_bg_image",
+          "label": "Mobile card background image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Card desc"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1510 @@
+{%- assign ss = section.settings -%}
+<style>
+    .mc_th-spin {
+        background: #000000;
+        padding: 60px 0;
+    }
+
+    .mc_th-spin .spin-content {
+        max-width: 1400px;
+        background: radial-gradient(250.29% 226.14% at 103.04% 210%, rgba(193, 193, 193, 0.2) 22.05%, rgba(0, 0, 0, 0.2) 87.37%), #131313;
+        align-items: stretch;
+    }
+
+    .mc_th-spin .spin-wrap {
+        width: 851px;
+        height: 575px;
+        padding: 6px 10px 6px 7px;
+    }
+
+    .mc_th-spin .spin-wrap .image {
+        object-fit: fill;
+    }
+
+    .mc_th-spin .spin-wrap .pointer-image {
+        width: 54px;
+        height: auto;
+        top: 76px;
+        left: 396px;
+        aspect-ratio: 0.83;
+    }
+
+    .mc_th-spin .spin-wrap .spin-image {
+        left: 238px;
+        top: 119px;
+        width: 372px;
+        height: auto;
+        aspect-ratio: 1;
+        transition: transform 80ms linear;
+    }
+
+    .mc_th-spin .form-wrap {
+        flex: 1;
+        justify-content: center;
+        padding: 0 51px 0 53px;
+    }
+
+    .mc_th-spin .form-wrap:before {
+        content: "";
+        width: 10px;
+        height: 100%;
+        background-color: #D30000;
+        left: 0;
+        top: 0;
+        position: absolute;
+    }
+
+    .mc_th-spin .form-wrap > .image {
+        width: auto;
+        height: 260px;
+        object-fit: contain;
+        top: 26px;
+        right: 19px;
+    }
+
+    .mc_th-spin .form-wrap .title {
+        font-size: 32px;
+        color: {{ ss.form_title_color }};
+    }
+
+    .mc_th-spin .form-wrap .intro {
+        padding-top: 20px;
+        font-size: 18px;
+        color: {{ ss.form_desc_color }};
+    }
+
+    .mc_th-spin .form-wrap .intro ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .mc_th-spin .form-wrap .intro ul strong {
+        font-weight: 600;
+    }
+
+    .mc_th-spin .form-wrap .form-success {
+        color: #FFFFFF;
+        font-size: 24px;
+        padding: 8px 0;
+        gap: 12px;
+    }
+
+    .mc_th-spin .form-wrap .form-success .icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .mc_th-spin .form-wrap .form-info {
+        padding-top: 75px;
+    }
+
+    .mc_th-spin .form-wrap .field {
+        border: 1px solid #d30000;
+        background: #121212;
+        height: 55px;
+    }
+
+    .mc_th-spin .form-wrap .field input {
+        flex: 1;
+        background: none;
+        line-height: 48px;
+        font-size: 16px;
+        color: #ffffff;
+        border: 0 none;
+        box-sizing: border-box;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .mc_th-spin .form-wrap .field .button {
+        height: 100%;
+        max-height: none;
+        padding: 0 24px;
+        font-size: 24px;
+        color: #ffffff;
+        border-radius: 0;
+        background: #d30000;
+        transform: none !important;
+        transition: opacity 0.3s;
+    }
+
+    .mc_th-spin .form-wrap .field .button:disabled {
+        opacity: 0.5 !important;
+        cursor: not-allowed;
+    }
+
+    .mc_th-spin .form-wrap .field .button:hover {
+        opacity: 0.9;
+    }
+
+    .mc_th-spin .privacy-info {
+        padding-top: 8px;
+        line-height: 1.2;
+        cursor: pointer;
+    }
+
+    .mc_th-spin .privacy-info.checked .checkbox {
+        background-color: {{ ss.privacy_active_color }};
+        border-color: {{ ss.privacy_active_color }};
+    }
+
+    .mc_th-spin .privacy-info.checked .checkbox .svg-icon {
+        opacity: 1;
+    }
+
+    .mc_th-spin .privacy-info .checkbox {
+        width: 16px;
+        min-width: 16px;
+        height: 16px;
+        position: static;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: 1.5px solid{{ ss.privacy_color }};
+        transition: all 0.5s;
+    }
+
+    .mc_th-spin .privacy-info .checkbox .svg-icon {
+        width: 10px;
+        opacity: 0;
+    }
+
+    .mc_th-spin .privacy-info .text {
+        line-height: 1.3;
+        padding-left: 7px;
+        font-size: 14px;
+        color: {{ ss.privacy_color }};
+        word-break: break-all;
+        text-align: left;
+    }
+
+    .mc_th-spin .privacy-info .text a {
+        color: {{ ss.privacy_link_color }};
+        font-weight: 500;
+    }
+
+    .mc_th-spin .privacy-info .text a:hover {
+        text-decoration: underline;
+        color: {{ ss.color }};
+    }
+
+    @media screen and (max-width: 1480px) {
+        .mc_th-spin {
+            padding: 51px 0;
+        }
+
+        .mc_th-spin .spin-wrap {
+            width: 57.5vw;
+            height: 38.8513513514vw;
+        }
+
+        .mc_th-spin .spin-wrap .pointer-image {
+            width: 3.6486486486vw;
+            top: 5.1351351351vw;
+            left: 26.7567567568vw;
+        }
+
+        .mc_th-spin .spin-wrap .spin-image {
+            left: 16.0810810811vw;
+            top: 8.0405405405vw;
+            width: 25.1351351351vw;
+        }
+
+        .mc_th-spin .form-wrap {
+            padding: 0 3.4459459459vw 0 3.5810810811vw;
+        }
+
+        .mc_th-spin .form-wrap .title {
+            font-size: 2.1621621622vw;
+        }
+
+        .mc_th-spin .form-wrap > .image {
+            height: 17.5675675676vw;
+            top: 1.7567567568vw;
+            right: 1.2837837838vw;
+        }
+
+        .mc_th-spin .form-wrap .intro {
+            padding-top: 1.3513513514vw;
+            font-size: 1.2162162162vw;
+        }
+
+        .mc_th-spin .form-wrap .intro ul {
+            gap: 0.8108108108vw;
+        }
+
+        .mc_th-spin .form-wrap .form-info {
+            padding-top: 5.0675675676vw;
+        }
+
+        .mc_th-spin .form-wrap .field {
+            height: 3.7162162162vw;
+        }
+
+        .mc_th-spin .form-wrap .field input {
+            line-height: 3.2432432432vw;
+            font-size: 1.0810810811vw;
+            padding: 0 1.3513513514vw;
+        }
+
+        .mc_th-spin .form-wrap .field .button {
+            padding: 0 1.6216216216vw;
+            font-size: 1.6216216216vw;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .mc_th-spin {
+            padding: 0.9375rem 0;
+        }
+
+        .mc_th-spin .spin-content {
+            flex-direction: column;
+        }
+
+        .mc_th-spin .spin-wrap {
+            width: 100%;
+            aspect-ratio: 1.48164;
+            height: auto;
+            padding: 0.15625rem;
+        }
+
+        .mc_th-spin .spin-wrap .pointer-image {
+            width: 6.345%;
+            height: auto;
+            top: 13.5%;
+            left: 47%;
+            aspect-ratio: 0.83;
+        }
+
+        .mc_th-spin .spin-wrap .spin-image {
+            left: 28.2%;
+            top: 21%;
+            width: 43.71%;
+        }
+
+        .mc_th-spin .form-wrap {
+            flex: 1;
+            justify-content: center;
+            padding: 1.3125rem 1rem 1.625rem;
+        }
+
+        .mc_th-spin .form-wrap:before {
+            width: 100%;
+            height: 0.25rem;
+        }
+
+        .mc_th-spin .form-wrap > .image {
+            height: 6.5625rem;
+            top: 1.5625rem;
+            right: 0.3125rem;
+        }
+
+        .mc_th-spin .form-wrap .title {
+            font-size: 1rem;
+        }
+
+        .mc_th-spin .form-wrap .intro {
+            padding-top: 1.125rem;
+            font-size: 0.75rem;
+        }
+
+        .mc_th-spin .form-wrap .intro ul {
+            gap: 0.625rem;
+            position: relative;
+        }
+
+        .mc_th-spin .form-wrap .form-info {
+            padding-top: 2.25rem;
+        }
+
+        .mc_th-spin .form-wrap .field {
+            height: 1.875rem;
+        }
+
+        .mc_th-spin .form-wrap .field input {
+            line-height: 1.5rem;
+            font-size: 0.625rem;
+            padding: 0 0.40625rem;
+        }
+
+        .mc_th-spin .form-wrap .field .button {
+            padding: 0 0.75rem;
+            font-size: 0.75rem;
+        }
+
+        .mc_th-spin .privacy-info {
+            padding-top: 12px;
+            line-height: 1.2;
+        }
+
+        .mc_th-spin .privacy-info .text {
+            padding-left: 0.375rem;
+            font-size: 12px;
+        }
+    }
+
+    {% render 'page-wrap-style' %}
+</style>
+<div class="mc_th-spin section--page" id="{{ section.id }}-spin">
+    {%- render 'section-title', info: ss -%}
+    <div class="page-width flex-center">
+        <div class="spin-content flex-left">
+            <div class="spin-wrap relative">
+                {%- render 'global-image', image: ss.spin_background_image, image_size: 800, class: 'backdrop-image' -%}
+                {%- render 'global-image', image: ss.spin_turntable_image, image_size: 600, class: 'spin-image absolute z-1' -%}
+                {%- render 'global-image', image: ss.spin_pointer_image, image_size: 100, class: 'pointer-image absolute z-2' -%}
+            </div>
+            {%- assign form_id = 'form-' | append: section.id -%}
+            {%- form 'customer', id: form_id, class: 'form-wrap flex-column relative' -%}
+                <input type="hidden" name="contact[tags]" value="{{ ss.tag }}"/>
+                <input type="hidden" name="contact[context]" value="{{ ss.content }}"/>
+                {%- if ss.form_background_image != blank -%}
+                    {%- render 'global-image', image: ss.form_background_image, image_size: 600, class: 'absolute' -%}
+                {%- endif -%}
+                <div class="title fw-600 relative z-1 lh-2">
+                    {{ ss.form_title }}
+                </div>
+                <div class="intro relative z-1 lh-2">
+                    {{ ss.form_desc }}
+                </div>
+                <div class="form-info" node-name="formInfo">
+                    <label class="field relative z-1 flex-center">
+                        <input node-name="email" type="email" name="contact[email]" value="" autocorrect="off"
+                               autocapitalize="off"
+                               autocomplete="email" placeholder="{{ ss.placeholder }}" required=""/>
+                        <button type="submit"
+                                node-name="submit"
+                                class="button button--primary flex-center"
+                                is="custom-button"
+                                aria-label="{{ ss.button }}">
+                            <span class="btn-text">{{ ss.button }}</span>
+                        </button>
+                    </label>
+                    {%- if ss.show_privacy -%}
+                        <div node-name="privacy"
+                             class="privacy-info{% if ss.privacy_checked %} checked{% endif %} flex-top">
+                            <div class="checkbox flex-center">
+                                <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="10.707" height="7.511"
+                                     viewBox="0 0 10.707 7.511">
+                                    <path d="M-11467.566,874.83l3.55,3.55,6.45-6.451"
+                                          transform="translate(11467.92 -871.575)" fill="none" stroke="#fff"
+                                          stroke-width="1"></path>
+                                </svg>
+                            </div>
+                            <div class="text flex-bottom">
+                                {{ ss.privacy_text }}
+                            </div>
+                        </div>
+                    {%- endif -%}
+                </div>
+            {%- endform -%}
+        </div>
+    </div>
+    {%- liquid
+        assign discount = section.blocks | first
+        assign ds = discount.settings
+        render 'spin-popup', ds: ds
+    -%}
+</div>
+{%- if discount != blank -%}
+    <script>
+        $heybike.ready(() => {
+            const node = document.getElementById('{{ section.id }}-spin');
+            const nodeList = $heybike.getNodeList(node);
+            const form = document.getElementById('{{ form_id }}');
+            const spinElem = node.querySelector('.spin-image');
+            let currentRotation = 0.0;
+            let animating = false;
+            let animStartTime = 0;
+            let startRotation = 0;
+            let targetRotation = 0;
+            let animationId = null;
+            let currentPrize = null;
+            let isOpen = false;
+            let scrollPos = 0;
+
+            const prizes = [
+                {%- liquid
+                    assign angle = 0
+                -%}
+                {%- for v in (1..9) -%}
+                {%- liquid
+                    assign icon = 'gift_icon' | append: v
+                    assign code = 'discount_code' | append: v
+                    assign name = 'prize_name' | append: v
+                    assign weight = 'prize_weight' | append: v
+                -%}
+                {
+                    icon: '{{ ds[icon] | image_url: width: 300 }}',
+                    code: '{{ ds[code] }}',
+                    angle: {{ angle }},
+                    title: `{{ ds[name] }}`,
+                    weight: {{ ds[weight] }}}{% if forloop.last == false %},{% endif %}
+                {%- liquid
+                    assign angle = angle | plus: 40
+                -%}
+                {%- endfor -%}
+            ];
+
+            const getSelectPrize = () => {
+                const list = prizes.filter(item => item.weight > 0);
+                const len = list.length;
+                const totalWeight = list.reduce((prev, cur) => cur.weight + prev, 0);
+                const r = Math.random() * totalWeight;
+                let cumulative = 0;
+                for (let k = 0; k < len; k++) {
+                    cumulative += list[k].weight;
+                    if (r <= cumulative) return list[k];
+                }
+                return list[len - 1];
+            };
+
+            function startWheel(rotateRad) {
+                spinElem.style.transform = `rotate(${rotateRad}deg)`;
+            }
+
+            function easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            function animateSpin(now) {
+                const elapsed = now - animStartTime;
+                let progress = Math.min(1, elapsed / 1800);
+                const easeProgress = easeOutCubic(progress);
+                currentRotation = startRotation + (targetRotation - startRotation) * easeProgress;
+                startWheel(currentRotation);
+                if (progress < 1) {
+                    animationId = requestAnimationFrame(animateSpin);
+                } else {
+                    if (animationId) cancelAnimationFrame(animationId);
+                    animationId = null;
+                    openModal();
+                }
+            }
+
+            function startSpin() {
+                if (animating) return;
+                const minRounds = 6;
+                const maxRounds = 14;
+                const rounds = Math.round(minRounds + Math.random() * (maxRounds - minRounds));
+                currentPrize = getSelectPrize();
+                const extraRad = currentPrize.angle;
+                const deltaRad = rounds * 360 + extraRad;
+                startRotation = currentRotation;
+                targetRotation = startRotation + deltaRad;
+                animating = true;
+                animStartTime = performance.now();
+                if (animationId) cancelAnimationFrame(animationId);
+                animationId = requestAnimationFrame(animateSpin);
+            }
+
+            const successText = () => {
+                nodeList.formInfo.innerHTML = `<div class="form-success flex-left">
+                    <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+                        <path
+                            d="M512 1024A512 512 0 1 1 512 0a512 512 0 0 1 0 1024z m-49.590857-377.197714L315.977143 498.614857 219.428571 590.848c70.217143 37.814857 168.594286 106.788571 252.854858 213.723429C531.821714 692.662857 715.337143 463.725714 804.571429 443.245714c-14.409143-57.709714-22.528-166.034286 0-223.817143-183.003429 120.685714-342.162286 427.373714-342.162286 427.373715z"
+                            fill="#1afa29"></path>
+                    </svg>
+                    <span>{{ ss.success }}</span>
+                </div>`;
+            }
+
+            const klaviyoSubscribe = async (email) => {
+                const createSubscriptionResponse = await fetch(`https://a.klaviyo.com/client/subscriptions/?company_id={{ ss.klaviyo_api_key }}`, {
+                    method: "POST",
+                    headers: {
+                        accept: "application/json",
+                        revision: "2026-04-15",
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        data: {
+                            type: "subscription",
+                            relationships: {
+                                list: {
+                                    data: {
+                                        type: "list",
+                                        id: '{{ ss.klaviyo_list_id }}'
+                                    }
+                                }
+                            },
+                            attributes: {
+                                profile: {
+                                    data: {
+                                        type: "profile",
+                                        attributes: {
+                                            email: email
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                });
+                if (!createSubscriptionResponse.ok) {
+                    return alert(` HTTP ${createSubscriptionResponse.status}`);
+                }
+                successText();
+                startSpin();
+            };
+
+            const omnisendSubscribe = async (email) => {
+                const createSubscriptionResponse = await fetch(`https://api.omnisend.com/api/contacts`, {
+                    method: "POST",
+                    headers: {
+                        Authorization: "Omnisend-API-Key 69de08bd3ff781a3a5fe5f9a-Ooeog9UU5A5v6oyim1QlAyD0OH4SoakwsxIAsZIMQdhaKY7sqH",
+                        "Omnisend-Version": "2026-03-15",
+                        accept: 'application/json',
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        address: '1234 Main St',
+                        birthdate: '1990-01-01',
+                        city: 'Los Angeles',
+                        country: 'United States',
+                        countryCode: 'US',
+                        createdAt: '2024-01-01T00:00:00Z',
+                        firstName: 'John',
+                        gender: 'm',
+                        identifiers: [
+                            {
+                                channels: {
+                                    additionalProp: {status: 'subscribed', statusChangedAt: '2024-01-01T00:00:00Z'},
+                                    email: email
+                                },
+                                consent: {
+                                    createdAt: '2026-01-01T00:00:00Z',
+                                    ip: '192.168.1.1',
+                                    source: 'omnisend-form',
+                                    userAgent: 'Mozilla/5.0'
+                                },
+                                id: email,
+                                sendWelcomeMessage: true,
+                                source: 'api',
+                                type: 'email'
+                            }
+                        ],
+                        lastName: 'Doe',
+                        postalCode: '90001',
+                        state: 'New York',
+                        tags: ['tag1', 'tag2']
+                    })
+                });
+                if (!createSubscriptionResponse.ok) {
+                    return alert(` HTTP ${createSubscriptionResponse.status}`);
+                }
+                successText();
+                startSpin();
+            };
+
+            form.addEventListener('submit', ev => {
+                klaviyoSubscribe(nodeList.email.value);
+                ev.preventDefault();
+                ev.stopPropagation();
+            });
+
+            nodeList.privacy?.addEventListener('click', (ev) => {
+                if (ev.target.tagName.toLocaleLowerCase() === 'a') {
+                    return false;
+                }
+                ev.preventDefault();
+                ev.stopPropagation();
+                nodeList.privacy.classList.toggle('checked');
+                if (nodeList.privacy.classList.contains('checked')) {
+                    nodeList.submit.removeAttribute('disabled');
+                } else {
+                    nodeList.submit.setAttribute('disabled', true);
+                }
+            });
+
+            function openModal() {
+                if (isOpen) return;
+                isOpen = true;
+                nodeList.prizeName.textContent = currentPrize.title;
+                nodeList.code.textContent = currentPrize.code;
+                nodeList.cover.innerHTML = `<img src="${currentPrize.icon}" class="image" alt="${currentPrize.code}"/>`
+                nodeList.btn.href = '/discount/' + currentPrize.code + '?redirect=' + encodeURIComponent('{{ ss.model_button_url }}');
+                nodeList.modal.style.setProperty('--background', `url("{{ ds.model_bg_image | image_url: width: 500 }}")`);
+                scrollPos = window.scrollY;
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.top = '-' + scrollPos + 'px';
+                document.body.style.width = '100%';
+                nodeList.overlay.style.display = 'flex';
+                history.pushState({easter: true}, '');
+                spawnConfetti();
+            }
+
+            function closeModal() {
+                if (!isOpen) return;
+                isOpen = false;
+                nodeList.overlay.style.display = 'none';
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                window.scrollTo(0, scrollPos);
+                if (eggElement && eggElement.parentNode) {
+                    eggElement.parentNode.removeChild(eggElement);
+                    eggElement = null;
+                }
+            }
+
+            nodeList.close.addEventListener('click', closeModal);
+            nodeList.overlay.addEventListener('click', function (e) {
+                if (e.target === nodeList.overlay) closeModal();
+            });
+
+            window.addEventListener('popstate', function () {
+                if (isOpen) closeModal();
+            });
+
+            function spawnConfetti() {
+                // Clear existing confetti
+                while (nodeList.confetti.firstChild) {
+                    nodeList.confetti.removeChild(nodeList.confetti.firstChild);
+                }
+                const emojis = ['\uD83E\uDD5A', '\uD83D\uDC23', '\uD83D\uDC30', '\uD83C\uDF38', '\uD83C\uDF37', '\u2728'];
+                const pieces = 24;
+                for (let i = 0; i < pieces; i++) {
+                    let el = document.createElement('div');
+                    el.className = 'easter-confetti-piece';
+                    el.textContent = emojis[i % emojis.length];
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.fontSize = (14 + Math.random() * 14) + 'px';
+                    el.style.animationDelay = (Math.random() * 0.8) + 's';
+                    el.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+                    nodeList.confetti.appendChild(el);
+                }
+            }
+
+            nodeList.copy.addEventListener('click', function () {
+                const code = nodeList.code.textContent;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(code).then(function () {
+                        nodeList.copy.classList.add('active');
+                        setTimeout(function () {
+                            nodeList.copy.classList.remove('active');
+                        }, 2000);
+                    });
+                } else {
+                    const ta = document.createElement('textarea');
+                    ta.value = code;
+                    ta.style.position = 'fixed';
+                    ta.style.left = '-9999px';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    nodeList.copy.classList.add('active');
+                    setTimeout(function () {
+                        nodeList.copy.classList.remove('active');
+                    }, 2000);
+                }
+            });
+
+            function init() {
+                {%- if request.design_mode -%}
+                currentPrize = prizes[0];
+                openModal();
+                {%- endif -%}
+            }
+
+            init();
+        });
+    </script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "MC Th Spin",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Th Spin"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Spin"
+    },
+    {
+      "type": "image_picker",
+      "id": "spin_background_image",
+      "label": "Spin background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "spin_turntable_image",
+      "label": "Spin turntable image"
+    },
+    {
+      "type": "image_picker",
+      "id": "spin_pointer_image",
+      "label": "Spin pointer image"
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_api_key",
+      "label": "Klaviyo API Key",
+      "default": "VVDwxN"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_list_id",
+      "label": "Klaviyo List ID",
+      "default": "XRH5tH"
+    },
+    {
+      "type": "image_picker",
+      "id": "form_background_image",
+      "label": "Form background image"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form title",
+      "default": "Spin the Wheel Rules"
+    },
+    {
+      "type": "color",
+      "id": "form_title_color",
+      "label": "Form title color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "richtext",
+      "id": "form_desc",
+      "label": "Form desc",
+      "default": "<ul><li>1.<strong>How to Participate:</strong><br/>Subscribe to our newsletter to<br/>receive one spin of the wheel.</li><li>2.<strong>Prizes Include:</strong><br/>$100 Off Coupon,$50 Off Coupon,Free Bike,<br/>Free Order Opportunity,Battery (IN10),Keychain,Helmet</li><li>3.<strong>Winning Details:</strong><br/>Each subscriber is allowed one spin only.<br/>Prizes are subject to availability; first come, first served.</li></ul>"
+    },
+    {
+      "type": "color",
+      "id": "form_desc_color",
+      "label": "Form title color",
+      "default": "#666"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button Text",
+      "default": "Try Your Luck"
+    },
+    {
+      "type": "text",
+      "id": "success",
+      "label": "Form success text",
+      "default": "Submit successfully"
+    },
+    {
+      "type": "textarea",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "default": "Your email"
+    },
+    {
+      "type": "color",
+      "id": "input_bg_color",
+      "label": "Input background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_privacy",
+      "label": "Show privacy",
+      "default": true
+    },
+    {
+      "label": "Privacy text",
+      "type": "richtext",
+      "id": "privacy_text",
+      "default": "<p>By submitting this form, I accept the <a href=\"/pages/terms-of-service-1\">Terms of Sale</a>  and <a href=\"/pages/privacy-policy\">Privacy Policy</a></p>"
+    },
+    {
+      "label": "Is subscription automatically checked?",
+      "type": "checkbox",
+      "id": "privacy_checked",
+      "default": true
+    },
+    {
+      "label": "Privacy text color",
+      "type": "color",
+      "id": "privacy_color",
+      "default": "#666666"
+    },
+    {
+      "label": "Privacy text link color",
+      "type": "color",
+      "id": "privacy_link_color",
+      "default": "#ffffff"
+    },
+    {
+      "label": "Privacy text hover color",
+      "type": "color",
+      "id": "privacy_link_hover_color",
+      "default": "#D30000"
+    },
+    {
+      "label": "Privacy text active color",
+      "type": "color",
+      "id": "privacy_active_color",
+      "default": "#D30000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "discount_popup",
+      "name": "Discount popup",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Gift discount code"
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_icon1",
+          "label": "Gift icon #1"
+        },
+        {
+          "type": "text",
+          "id": "discount_code1",
+          "label": "Discount code #1",
+          "default": "EASTER-001"
+        },
+        {
+          "type": "text",
+          "id": "prize_name1",
+          "label": "Prize name #1",
+          "default": "Free Screen Protector Installation"
+        },
+        {
+          "type": "number",
+          "id": "prize_weight1",
+          "label": "Prize weight #1",
+          "default": 35
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_icon2",
+          "label": "Gift icon #2"
+        },
+        {
+          "type": "text",
+          "id": "discount_code2",
+          "label": "Discount code #2",
+          "default": "EASTER-002"
+        },
+        {
+          "type": "text",
+          "id": "prize_name2",
+          "label": "Prize name #2",
+          "default": "50% Off Extended Warranty"
+        },
+        {
+          "type": "number",
+          "id": "prize_weight2",
+          "label": "Prize weight #2",
+          "default": 25
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_icon3",
+          "label": "Gift icon #3"
+        },
+        {
+          "type": "text",
+          "id": "discount_code3",
+          "label": "Discount code #3",
+          "default": "EASTER-003"
+        },
+        {
+          "type": "text",
+          "id": "prize_name3",
+          "label": "Prize name #3",
+          "default": "50% Off New Battery Installation"
+        },
+        {
+          "type": "number",
+          "id": "prize_weight3",
+          "label": "Prize weight #3",
+          "default": 20
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_icon4",
+          "label": "Gift icon #4"
+        },
+        {
+          "type": "text",
+          "id": "discount_code4",
+          "label": "Discount code #4",
+          "default": "EASTER-004"
+        },
+        {
+          "type": "text",
+          "id": "prize_name4",
+          "label": "Prize name #4",
+          "default": "Free Extended Warranty"
+        },
+        {
+          "type": "number",
+          "id": "prize_weight4",
+          "label": "Prize weight #4",
+          "default": 12
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_icon5",
+          "label": "Gift icon #5"
+        },
+        {
+          "type": "text",
+          "id": "discount_code5",
+          "label": "Discount code #5",
+          "default": "EASTER-005"
+        },
+        {
+          "type": "text",
+          "id": "prize_name5",
+          "label": "Prize name #5",
+          "default": "Free New Battery Installation"
+        },
+        {
+          "type": "number",
+          "id": "prize_weight5",
+          "label": "Prize weight #5",
+          "default": 8
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_icon6",
+          "label": "Gift icon #6"
+        },
+        {
+          "type": "text",
+          "id": "discount_code6",
+          "label": "Discount code #6",
+          "default": "EASTER-005"
+        },
+        {
+          "type": "text",
+          "id": "prize_name6",
+          "label": "Prize name #6",
+          "default": "Free New Battery Installation"
+        },
+        {
+          "type": "number",
+          "id": "prize_weight6",
+          "label": "Prize weight #6",
+          "default": 8
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_icon7",
+          "label": "Gift icon #7"
+        },
+        {
+          "type": "text",
+          "id": "discount_code7",
+          "label": "Discount code #7",
+          "default": "EASTER-005"
+        },
+        {
+          "type": "text",
+          "id": "prize_name7",
+          "label": "Prize name #7",
+          "default": "Free New Battery Installation"
+        },
+        {
+          "type": "number",
+          "id": "prize_weight7",
+          "label": "Prize weight #7",
+          "default": 8
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_icon8",
+          "label": "Gift icon #8"
+        },
+        {
+          "type": "text",
+          "id": "discount_code8",
+          "label": "Discount code #8",
+          "default": "EASTER-005"
+        },
+        {
+          "type": "text",
+          "id": "prize_name8",
+          "label": "Prize name #8",
+          "default": "Free New Battery Installation"
+        },
+        {
+          "type": "number",
+          "id": "prize_weight8",
+          "label": "Prize weight #8",
+          "default": 8
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_icon9",
+          "label": "Gift icon #9"
+        },
+        {
+          "type": "text",
+          "id": "discount_code9",
+          "label": "Discount code #9",
+          "default": "EASTER-009"
+        },
+        {
+          "type": "text",
+          "id": "prize_name9",
+          "label": "Prize name #9",
+          "default": "Free New Battery Installation"
+        },
+        {
+          "type": "number",
+          "id": "prize_weight9",
+          "label": "Prize weight #9",
+          "default": 8
+        },
+        {
+          "type": "header",
+          "content": "Gift model"
+        },
+        {
+          "type": "color_background",
+          "id": "model_gradient",
+          "label": "Model background color"
+        },
+        {
+          "type": "image_picker",
+          "id": "model_bg_image",
+          "label": "Model background image"
+        },
+        {
+          "type": "text",
+          "id": "model_title",
+          "label": "Model title",
+          "default": "You Found It!"
+        },
+        {
+          "type": "color",
+          "id": "model_title_color",
+          "label": "Model title color",
+          "default": "#ffd700"
+        },
+        {
+          "type": "text",
+          "id": "model_subtitle",
+          "label": "Model subtitle",
+          "default": "Nice find! Here's your reward:"
+        },
+        {
+          "type": "text",
+          "id": "model_design_mode_subtitle",
+          "label": "Model design mode subtitle",
+          "default": "Welcome back! Here's your reward:"
+        },
+        {
+          "type": "color",
+          "id": "model_subtitle_color",
+          "label": "Model subtitle color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "model_prize_name_color",
+          "label": "Model prize name color",
+          "default": "#ffd700"
+        },
+        {
+          "type": "color",
+          "id": "model_code_color",
+          "label": "Model code color",
+          "default": "#ffd700"
+        },
+        {
+          "type": "color",
+          "id": "model_code_border_color",
+          "label": "Model code border color"
+        },
+        {
+          "type": "color",
+          "id": "model_code_bg_color",
+          "label": "Model code background color"
+        },
+        {
+          "type": "color",
+          "id": "model_copy_color",
+          "label": "Model copy color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "model_copy_border_color",
+          "label": "Model copy border color"
+        },
+        {
+          "type": "color",
+          "id": "model_copy_bg_color",
+          "label": "Model copy background color"
+        },
+        {
+          "type": "textarea",
+          "id": "model_desc",
+          "label": "Model desc",
+          "default": "Valid until 6 April 2026 • One use per customer. Must be used with a device purchase. • Cannot be combined with other offers."
+        },
+        {
+          "type": "color",
+          "id": "model_desc_color",
+          "label": "Model desc color",
+          "default": "#c1b4d3"
+        },
+        {
+          "type": "text",
+          "id": "model_button",
+          "label": "Model button",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "model_button_url",
+          "label": "Model button url"
+        },
+        {
+          "type": "color",
+          "id": "model_button_color",
+          "label": "Model button color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "model_button_bg_color",
+          "label": "Model button background color",
+          "default": "#77cd28"
+        },
+        {
+          "type": "color",
+          "id": "model_button_bg_hover_color",
+          "label": "Model button background hover color",
+          "default": "#85d838"
+        },
+        {
+          "type": "header",
+          "content": "Countdown"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_countdown",
+          "default": false,
+          "label": "Show countdown"
+        },
+        {
+          "type": "text",
+          "id": "padding",
+          "default": "0px 0px 0px 0px",
+          "label": "Desktop padding"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "default": "0px 0px 0px 0px",
+          "label": "Mobile padding"
+        },
+        {
+          "type": "range",
+          "id": "countdown_num_width",
+          "label": "Desktop countdown num width scale",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "m",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "countdown_num_height",
+          "label": "Desktop countdown num height scale",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "m",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "countdown_num_size",
+          "label": "Desktop countdown num size scale",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "m",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "countdown_name_size",
+          "label": "Desktop countdown name size scale",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "m",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "mb_countdown_num_width",
+          "label": "Mobile countdown num width scale",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "m",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "mb_countdown_num_height",
+          "label": "Mobile countdown num height scale",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "m",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "mb_countdown_num_size",
+          "label": "Mobile countdown num size scale",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "m",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "mb_countdown_name_size",
+          "label": "Mobile countdown name size scale",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "m",
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "countdown_time",
+          "label": "Countdown date",
+          "default": "2026-04-28 12:01:01",
+          "info": "Format: yyyy-MM-dd HH:mm:ss"
+        },
+        {
+          "type": "range",
+          "id": "duration",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "unit": "Day",
+          "label": "Duration days",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "day",
+          "label": "Day",
+          "default": "DAYS"
+        },
+        {
+          "type": "text",
+          "id": "hour",
+          "label": "Hour",
+          "default": "HOURS"
+        },
+        {
+          "type": "text",
+          "id": "minute",
+          "label": "Minute",
+          "default": "MINS"
+        },
+        {
+          "type": "text",
+          "id": "second",
+          "label": "Second",
+          "default": "SECS"
+        },
+        {
+          "type": "header",
+          "content": "Countdown Color"
+        },
+        {
+          "label": "Countdown fill color",
+          "type": "color",
+          "id": "countdown_fill_color",
+          "default": "#ffd700"
+        },
+        {
+          "label": "countdown num color",
+          "type": "color",
+          "id": "countdown_num_color",
+          "default": "#2f2900"
+        },
+        {
+          "label": "Countdown text color",
+          "type": "color",
+          "id": "countdown_text_color",
+          "default": "#ffffff"
+        },
+        {
+          "label": "Countdown dot color",
+          "type": "color",
+          "id": "countdown_dot_color",
+          "default": "#ffd700"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

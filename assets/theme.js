@@ -3397,7 +3397,6 @@ var ProductGallery = class extends HTMLElement {
         if (!event.detail.variant) {
             return;
         }
-        console.log('--------event-----------', event.detail.variant.options[0]);
         let newMediaPosition;
         if (event.detail.previousVariant === null) {
             newMediaPosition = event.detail.variant["featured_media"]["position"];
@@ -6372,7 +6371,7 @@ class Animation {
 
     async load() {
         if (this.type === 'none' || this.paused) return;
-
+        this.container.classList.add('animating');
         switch (this.type) {
             case 'fade-in':
                 await animate(this.container, {opacity: 1}, {
@@ -6412,7 +6411,7 @@ class Animation {
 
     async reset(duration) {
         if (this.type === 'none') return;
-
+        this.container.classList.remove('animating');
         switch (this.type) {
             case 'fade-in':
                 await animate(this.container, {opacity: 0}, {
@@ -6452,7 +6451,6 @@ class Animation {
                 }).finished;
                 break;
         }
-
         this.container.classList.remove('animated');
     }
 }
@@ -6530,6 +6528,28 @@ customElements.define("checkout-button", class extends HTMLElement {
         }
         allFormData.items.push(json);
         $heybike.addToCart(allFormData, true);
+    }
+});
+
+customElements.define('tab-panel', class extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        $heybike.tabSwitch({
+            root: this,
+            type: this.type,
+            panel: this.panel
+        })
+    }
+
+    get type() {
+        return this.getAttribute('data-tab') || 'tab';
+    }
+
+    get panel() {
+        return this.getAttribute('data-panel') || 'panel';
     }
 });
 
