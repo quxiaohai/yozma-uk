@@ -62,18 +62,18 @@ the underlying logic of the menu.
   }
 
   .header-menu-title .image-icon {
-    width: 24px;
+    width: 34px;
     height: 24px;
     object-fit: contain;
     position: absolute;
-    left: 0;
+    left: -5px;
     top: 45%;
     transform: translateY(-50%);
   }
 
   @media screen and (min-width: 1150px) {
      .header-menu-title .image-icon {
-      background: url("https://cdn.shopify.com/s/files/1/0682/5646/5034/files/tiktok-challenge-icon.svg?v=1765426531") no-repeat;
+      background: url("https://cdn.shopify.com/s/files/1/0682/5646/5034/files/header-icon.svg?v=1779960541") no-repeat;
       background-size: 100% 100%;
      }
   }
@@ -85,14 +85,11 @@ the underlying logic of the menu.
       font-style: normal;
      }
      .header-menu-title .image-icon {
-      background: url("https://cdn.shopify.com/s/files/1/0682/5646/5034/files/tiktok-challenge-dark-icon.svg?v=1765427343") no-repeat;
+      background: url("https://cdn.shopify.com/s/files/1/0682/5646/5034/files/header-dark-icon.svg?v=1779960541") no-repeat;
       background-size: 100% 100%;
       position: static;
       transform: translateY(0);
-      margin-right: 8px;
-     }
-     .header__main-nav {
-      justify-content: flex-start;
+      margin-right: 4px;
      }
   }
 
@@ -116,7 +113,7 @@ the underlying logic of the menu.
       {%- endif -%}
 
       #shopify-section-{{ section.id }} {
-        --header-grid-template: "logo main-nav secondary-nav" / {% if section.settings.layout == 'logo_left_navigation_inline' %}auto minmax(0, 1fr) minmax(0, max-content){% else %}minmax(0, max-content) minmax(0, 1fr) auto{% endif %};
+        --header-grid-template: "logo main-nav secondary-nav" / {% if section.settings.layout == 'logo_left_navigation_inline' %}auto minmax(0, 1fr) minmax(0, max-content){% else %}minmax(0, 1fr) fit-content({{ max_percent }}) minmax(0, 1fr){% endif %};
       }
     }
   {%- endif -%}
@@ -131,7 +128,7 @@ the underlying logic of the menu.
       --------------------------------------------------------------------------------------------------------------------
       {%- endcomment -%}
 
-      <div class="header__main-nav flex-center">
+      <div class="header__main-nav">
         <div class="header__icon-list">
           <button type="button" class="tap-area {% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}" aria-controls="header-sidebar-menu">
             <span class="sr-only">{{ 'header.general.menu' | t }}</span>
@@ -150,15 +147,14 @@ the underlying logic of the menu.
                   {% liquid
                     assign link_title_downcase = link.title | strip | downcase
                     assign mega_menu_block = ''
-
-                    for block in section.blocks
+                    assign mega_menu_list = section.blocks | where: 'type', 'mega_menu'
+                    for block in mega_menu_list
                       assign menu_item_downcase = block.settings.menu_item | strip | downcase
 
                       if menu_item_downcase == link_title_downcase
                         assign mega_menu_block = block
                         break
                       endif
-
                     endfor
                   %}
 
@@ -289,12 +285,6 @@ the underlying logic of the menu.
         {%- endif -%}
 
         <ul class="header__icon-list">
-          {%- assign country_list = section.blocks | where: 'type', 'country_select'  -%}
-          {%- if country_list.size > 0 -%}
-            <li>
-                {%- render 'country-selector', list: country_list -%}
-            </li>
-          {%- endif -%}
           {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
             <li class="hidden md:block shrink-0">
               {%- render 'localization-selector', type: 'country', show_country_name: section.settings.show_country_name, show_country_flag: section.settings.show_country_flag, popover_vertical_position: 'end' -%}
@@ -306,12 +296,19 @@ the underlying logic of the menu.
               {%- render 'localization-selector', type: 'locale', popover_vertical_position: 'end' -%}
             </li>
           {%- endif -%}
+        {%- assign country_list = section.blocks | where: 'type', 'country_select'  -%}
+        {%- if country_list.size > 0 -%}
+          <li>
+              {%- render 'country-selector', list: country_list -%}
+          </li>
+        {%- endif -%}
           <li class="hidden sm:block">
             <a href="{{ routes.search_url }}" class="tap-area" aria-controls="search-drawer">
               <span class="sr-only">{{ 'header.general.search' | t }}</span>
               {%- render 'icon' with 'header_search' -%}
             </a>
           </li>
+          
           {%- if shop.customer_accounts_enabled -%}
             <li class="hidden sm:block">
               <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="tap-area">
@@ -320,6 +317,7 @@ the underlying logic of the menu.
               </a>
             </li>
           {%- endif -%}
+
           <li>
             <a href="{{ routes.cart_url }}" data-no-instant class="relative block tap-area" {% if settings.cart_type != 'page' and request.page_type != 'cart' %}aria-controls="cart-drawer"{% endif %}>
               <span class="sr-only">{{ 'header.general.cart' | t }}</span>
@@ -797,29 +795,29 @@ the underlying logic of the menu.
         }
       ]
     },
-   {
-    "type": "country_select",
-    "name": "Country selector",
-    "settings": [
-      {
-        "type": "text",
-        "id": "country_name",
-        "label": "Country name",
-        "default": "United States"
-      },
-      {
-        "type": "text",
-        "id": "country_code",
-        "label": "Country code",
-        "default": "US"
-      },
-      {
-        "type": "text",
-        "id": "country_url",
-        "label": "Country url"
-      }
-    ]
-   }
+     {
+      "type": "country_select",
+      "name": "Country selector",
+      "settings": [
+        {
+          "type": "text",
+          "id": "country_name",
+          "label": "Country name",
+          "default": "United States"
+        },
+        {
+          "type": "text",
+          "id": "country_code",
+          "label": "Country code",
+          "default": "US"
+        },
+        {
+          "type": "text",
+          "id": "country_url",
+          "label": "Country url"
+        }
+      ]
+     }
   ]
 }
 {% endschema %}
