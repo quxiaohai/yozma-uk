@@ -1106,6 +1106,7 @@
     },
     "mc_review_slide": {
       "type": "mc_review-slide",
+      "disabled": true,
       "name": "MC Review Slide",
       "settings": {
         "page_color": "#000000",
@@ -1206,6 +1207,7 @@
         "item_YTYbjJ",
         "item_8Rp9qE"
       ],
+      "disabled": true,
       "name": "FAQ",
       "settings": {
         "full_width": true,
@@ -1228,6 +1230,111 @@
         "accordion_background": "#000000",
         "accordion_text_color": "",
         "theme_size": "large"
+      }
+    },
+    "faq_HJBbQb": {
+      "type": "faq",
+      "blocks": {
+        "item_36Prha": {
+          "type": "item",
+          "settings": {
+            "title": "1. When does the campaign take place?",
+            "content": "<p>The campaign is divided into three phases:</p><ul><li>Anniversary Rush: June 5 – June 10<br/></li><li>Belgium Team Collaboration: June 16 – June 18<br/></li><li>Family Ride Event: June 19 – June 30<br/></li></ul>"
+          }
+        },
+        "item_4Bt3b4": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "title": "2. How do I join the Lucky Wheel, and what can I win?",
+            "content": "<p>Enter the campaign page and submit your email to participate.<br/><br/>After registration, you will be automatically subscribed to our updates and receive 1 spin.</p><p><strong>Lucky Wheel rewards include:</strong></p><ul><li>$200 / $100 / $50 / $20 discount coupons<br/></li><li>Free bike (IN 10 Red)<br/></li><li>Free order (refund opportunity)<br/></li><li>IN 10 battery<br/></li><li>Helmet, keychain, and riding accessories<br/></li></ul><p>All rewards are non-cashable and can only be used in-store.</p>"
+          }
+        },
+        "item_JJytNd": {
+          "type": "item",
+          "settings": {
+            "title": "2. Are there any additional gifts or bonuses?",
+            "content": "<p>(Applicable to: June 5 – June 10 / June 16 – June 18)</p><p>Eligible orders during the campaign will receive limited-time perks:</p><ul><li>Anniversary Gift Box (limited, while supplies last)<br/></li><li>1-Year Extended Warranty<br/></li></ul><p><strong>Additional offers by period:</strong></p><ul><li>June 19 – June 30: Extra <em>£</em>150 OFF when purchasing 2 bikes (auto-applied discount)<br/></li></ul><p>Gift box includes branded items such as T-shirt, cap, stickers, wristband, and keychain, and may ship separately from the bike, with no after-sales service for gifts.<br/><br/></p>"
+          }
+        },
+        "item_jFV4pJ": {
+          "type": "item",
+          "settings": {
+            "title": "3. Are there any special reward events?",
+            "content": "<p>Different phases include special surprises:</p><ul><li>June 5 – June 8: Daily first full-bike order  receive a free order reward</li><li>June 9 – June 10: Daily first full-bike order may receive an Insta360 camera 📷</li><li>June 16 – June 18: Limited signed jersey giveaway (only 1 available), awarded to the customer with the highest order value, or in the case of a tie, the earliest payment wins.<br/></li><li>June 19 – June 30: Get an additional $150 off when you purchase two units.</li></ul>"
+          }
+        },
+        "item_4cL4pp": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "title": "5. How does the “Top Order” reward work?",
+            "content": "<p>(Applicable to: June 5 – June 8)</p><p>Orders are ranked by payment time:</p><ul><li>1st place: Free bike (full refund)<br/></li><li>2nd–10th: Riding gear set (helmet + gloves + bike bag)<br/></li><li>11th–20th: Goggles</li></ul>"
+          }
+        },
+        "item_NgTyPq": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "title": "6. What discounts are available in the Belgium Team Collaboration campaign?",
+            "content": "<p>(Applicable to: June 16 – June 18)</p><ul><li>$1499 → $100 OFF<br/></li><li>$2199 → $200 OFF<br/></li><li>$2999 → $300 OFF<br/></li></ul>"
+          }
+        },
+        "item_LA7Ugw": {
+          "type": "item",
+          "settings": {
+            "title": "4. How will winners be notified?",
+            "content": "<p>All winners will be notified via email after each campaign period ends.</p>"
+          }
+        },
+        "item_9CUDdw": {
+          "type": "item",
+          "settings": {
+            "title": "5. Can rewards be transferred or exchanged for cash?",
+            "content": "<p>No. All rewards are non-transferable and cannot be exchanged for cash. They are valid only for the original order.</p>"
+          }
+        },
+        "item_DfE3TT": {
+          "type": "item",
+          "settings": {
+            "title": "6. What happens if I return my order?",
+            "content": "<p>If an order is returned or refunded, all related rewards and gifts will be invalid and may need to be returned if already received.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_36Prha",
+        "item_4Bt3b4",
+        "item_JJytNd",
+        "item_jFV4pJ",
+        "item_4cL4pp",
+        "item_NgTyPq",
+        "item_LA7Ugw",
+        "item_9CUDdw",
+        "item_DfE3TT"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "Anniversary Campaign FAQ",
+        "content": "",
+        "team_avatar_width": 160,
+        "support_hours": "",
+        "answer_time": "*All rights to interpret the terms and conditions of this campaign are reserved by Yozma.",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "#000000",
+        "background_gradient": "",
+        "text_color": "#ffffff",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "#000000",
+        "accordion_text_color": "",
+        "theme_size": "small"
       }
     },
     "mc_shop_service": {
@@ -1295,6 +1402,7 @@
     "mc_main_ces",
     "mc_review_slide",
     "faq_HNmJpq",
+    "faq_HJBbQb",
     "mc_shop_service"
   ]
 }
