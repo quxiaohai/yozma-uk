@@ -306,7 +306,7 @@
           "type": "nav_tab",
           "settings": {
             "title": "Support",
-            "position": 11
+            "position": 12
           }
         }
       },
@@ -542,7 +542,7 @@
         "description_pc_margin_bottom": 0,
         "description_mb_margin_bottom": 0,
         "spin_background_image": "shopify://shop_images/th-spin-bg.jpg",
-        "spin_turntable_image": "shopify://shop_images/th-spin.png",
+        "spin_turntable_image": "shopify://shop_images/uk.png",
         "spin_pointer_image": "shopify://shop_images/th-spin-pointer.png",
         "klaviyo_api_key": "VppjeE",
         "klaviyo_list_id": "ULesGr",
