@@ -174,7 +174,6 @@
         },
         "media_Pcfwxw": {
           "type": "media",
-          "disabled": true,
           "settings": {
             "pc_image_url": "shopify://shop_images/PC_1be9eda1-a4ff-4aaf-9578-047ae57dfe57.jpg",
             "mb_image_url": "shopify://shop_images/5e3ab86769cab080a7d8ec44668d79cd.jpg",
@@ -260,18 +259,18 @@
     "main_navigation_fY4Bfn": {
       "type": "main-navigation",
       "blocks": {
-        "nav_tab_gdw6UY": {
-          "type": "nav_tab",
-          "settings": {
-            "title": "Spin to win",
-            "position": 5
-          }
-        },
         "nav_tab_VFMXXH": {
           "type": "nav_tab",
           "settings": {
             "title": "Get a prize",
             "position": 6
+          }
+        },
+        "nav_tab_gdw6UY": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Spin to win",
+            "position": 5
           }
         },
         "nav_tab_8dCgM4": {
@@ -283,6 +282,7 @@
         },
         "nav_tab_im9xnM": {
           "type": "nav_tab",
+          "disabled": true,
           "settings": {
             "title": "IN 10 Pro",
             "position": 9
@@ -311,8 +311,8 @@
         }
       },
       "block_order": [
-        "nav_tab_gdw6UY",
         "nav_tab_VFMXXH",
+        "nav_tab_gdw6UY",
         "nav_tab_8dCgM4",
         "nav_tab_im9xnM",
         "nav_tab_GQpTRp",
@@ -352,8 +352,8 @@
         "heading": "<p><strong>The Anniversary Sale starts in</strong></p><p>More surprises and gifts await you</p>",
         "heading_color": "#fff",
         "heading_bold_color": "#ff271a",
-        "countdown_start_date": "2024-12-02T00:00:00",
-        "duration": 7,
+        "countdown_start_date": "2026-05-29 00:00:00",
+        "duration": 8,
         "day": "Days",
         "hour": "Hours",
         "minute": "Mins",
@@ -544,8 +544,8 @@
         "spin_background_image": "shopify://shop_images/th-spin-bg.jpg",
         "spin_turntable_image": "shopify://shop_images/th-spin.png",
         "spin_pointer_image": "shopify://shop_images/th-spin-pointer.png",
-        "klaviyo_api_key": "VVDwxN",
-        "klaviyo_list_id": "XRH5tH",
+        "klaviyo_api_key": "VppjeE",
+        "klaviyo_list_id": "ULesGr",
         "form_background_image": "shopify://shop_images/th-turntable-vector.png",
         "form_title": "Spin the Wheel Rules",
         "form_title_color": "#ffffff",
