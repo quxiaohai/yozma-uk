@@ -14,6 +14,7 @@
       "blocks": {
         "media_Yi7pih": {
           "type": "media",
+          "disabled": true,
           "settings": {
             "pc_image_url": "shopify://shop_images/3840.1599.jpg",
             "mb_image_url": "shopify://shop_images/1500.2180.jpg",
@@ -35,7 +36,6 @@
         },
         "media2": {
           "type": "media",
-          "disabled": true,
           "settings": {
             "pc_image_url": "shopify://shop_images/1_3ad8e324-2b3b-4d1f-8424-006db116908f.jpg",
             "mb_image_url": "shopify://shop_images/eaea6e721ec743400762f7b529a78c31.jpg",
