@@ -31,10 +31,8 @@
           "disabled": true,
           "settings": {
             "title": "Banner Text",
-            "font_name": "",
             "text_show_type": "all",
             "pc_text": "<p>BFCM - The Biggest Sale Of the Year</p>",
-            "pc_fade_up": false,
             "pc_align": "right",
             "pc_color": "#ffffff",
             "pc_emphasize_color": "#181623",
@@ -46,7 +44,6 @@
             "pc_bottom": 0,
             "pc_left": 0,
             "mb_text": "<p>BFCM - The Biggest Sale </p><p>Of the Year</p>",
-            "mb_fade_up": false,
             "mb_align": "center",
             "mb_color": "#ffffff",
             "mb_emphasize_color": "#181623",
@@ -98,8 +95,6 @@
             "mb_top": 0,
             "mb_bottom": 0,
             "pc_align": "flex-right",
-            "form_tag": "main sub",
-            "form_content": "main sub",
             "show_privacy": false,
             "privacy_text": "",
             "pc_privacy_size": 16,
@@ -135,6 +130,7 @@
         "countdown_zwWe3D",
         "subscribe_CCH6KP"
       ],
+      "disabled": true,
       "name": "main-banner",
       "settings": {
         "page_color": "",
@@ -147,11 +143,118 @@
         "mb_content_pos": "mb_top",
         "video_play_show": false,
         "backdrop_link": "",
-        "width_follow_the_theme": true,
-        "pc_left": 145,
+        "pc_content_width": 1440,
         "overlay_show": false,
         "overlay_color": "#000000",
         "overlay_opacity": 20
+      }
+    },
+    "mc_banner_slide_AJnpWb": {
+      "type": "mc_banner-slide",
+      "blocks": {
+        "media_LgXDCw": {
+          "type": "media",
+          "settings": {
+            "pc_image_url": "shopify://shop_images/1_3ad8e324-2b3b-4d1f-8424-006db116908f.jpg",
+            "mb_image_url": "shopify://shop_images/eaea6e721ec743400762f7b529a78c31.jpg",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "Yozma IN 10",
+            "show_subtitle": true,
+            "subtitle": "",
+            "subtitle_color": "#ffffff",
+            "show_title": true,
+            "title": "",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_text": "",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "shopify://products/in-10"
+          }
+        },
+        "media_Pcfwxw": {
+          "type": "media",
+          "disabled": true,
+          "settings": {
+            "pc_image_url": "shopify://shop_images/PC_1be9eda1-a4ff-4aaf-9578-047ae57dfe57.jpg",
+            "mb_image_url": "shopify://shop_images/5e3ab86769cab080a7d8ec44668d79cd.jpg",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "",
+            "show_subtitle": true,
+            "subtitle": "",
+            "subtitle_color": "#ffffff",
+            "show_title": true,
+            "title": "",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_text": "",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        },
+        "media_ePeUwR": {
+          "type": "media",
+          "disabled": true,
+          "settings": {
+            "pc_image_url": "shopify://shop_images/3840_1599333.jpg",
+            "mb_image_url": "shopify://shop_images/1500_x_2180111.jpg",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "",
+            "show_subtitle": false,
+            "subtitle": "<p>Limited 3-Day Offer</p>",
+            "subtitle_color": "#ffffff",
+            "show_title": false,
+            "title": "<p>Redefine Urban Commutes with Ease</p>",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        },
+        "media_hPRhP6": {
+          "type": "media",
+          "disabled": true,
+          "settings": {
+            "pc_image_url": "shopify://shop_images/2800.1166_81af56d5-cff0-4a3e-ba54-e55bb311d45a.jpg",
+            "mb_image_url": "shopify://shop_images/2026.1.13_1200_1600px_1.png",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "Yozma IN 10",
+            "show_subtitle": false,
+            "subtitle": "<p>Limited 3-Day Offer</p>",
+            "subtitle_color": "#ffffff",
+            "show_title": false,
+            "title": "<p>Redefine Urban Commutes with Ease</p>",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_LgXDCw",
+        "media_Pcfwxw",
+        "media_ePeUwR",
+        "media_hPRhP6"
+      ],
+      "name": "MC Banner Slide",
+      "settings": {
+        "page_color": "",
+        "overlay_show": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "show_slide": true,
+        "auto_slide": true,
+        "duration": 4,
+        "slide_tab_color": "#999999",
+        "slide_tab_active_color": "#ffffff"
       }
     },
     "main_navigation_fY4Bfn": {
@@ -225,7 +328,7 @@
         "tab_bg_color": "rgba(0,0,0,0)",
         "tab_active_color": "#d30000",
         "tab_bg_active_color": "rgba(0,0,0,0)",
-        "show_tab_active_underline": true,
+        "show_tab_active_underline": false,
         "tab_radius": 6,
         "show_tab_border": false,
         "tab_border_color": "#000000",
@@ -356,7 +459,6 @@
             "discount_code5": "FREEKEYCHAIN",
             "prize_name5": "Free Keychain",
             "prize_weight5": 20,
-            "gift_icon6": "shopify://shop_images/888b9fceb0fd84bd42bb44fecdba5bf4.png",
             "discount_code6": "RIDESAFE",
             "prize_name6": "Free Riding Helmet",
             "prize_weight6": 10,
@@ -798,7 +900,7 @@
         "bottom_image": "shopify://shop_images/video-decorate.png",
         "auto_play": false,
         "play_button_icon": "shopify://shop_images/video-play-button.png",
-        "theme_size": "small"
+        "theme_size": "large"
       }
     },
     "mc_main_ces": {
@@ -911,7 +1013,7 @@
         "button_color": "#ffffff",
         "button_hover_color": "#d30000",
         "button_url": "https://yozmasport.com/blogs/ebike",
-        "theme_size": "small"
+        "theme_size": "large"
       }
     },
     "mc_review_slide": {
@@ -935,7 +1037,7 @@
         "auto_slide": true,
         "duration": 3,
         "slide_item": "3.4",
-        "theme_size": "small"
+        "theme_size": "large"
       }
     },
     "faq_HNmJpq": {
@@ -1037,7 +1139,7 @@
         "button_text_color": "",
         "accordion_background": "#000000",
         "accordion_text_color": "",
-        "theme_size": "small"
+        "theme_size": "large"
       }
     },
     "mc_shop_service": {
@@ -1092,6 +1194,7 @@
   },
   "order": [
     "main_banner_rENQHG",
+    "mc_banner_slide_AJnpWb",
     "main_navigation_fY4Bfn",
     "mc_main_countdown_6GFNm9",
     "mc_th_gift_cards_KBwg39",
