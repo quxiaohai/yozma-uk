@@ -597,6 +597,7 @@
         "card_GyFjPw",
         "card_4GGrGP"
       ],
+      "disabled": true,
       "name": "MC Th Reward Cards",
       "settings": {
         "page_color": "",
@@ -640,7 +641,7 @@
             "head_color": "#ffffff",
             "show_button": true,
             "button_text": "Learn more >",
-            "button_url": "",
+            "button_url": "https://uk.yozmasport.com/products/in-10",
             "button_color": "#ffffff",
             "button_bg_color": "#d30000",
             "slide_desc": "<p>Q1: How does the Free Order event work?<br/>A1: From June 5 – June 8, the first customer each day to successfully place an eligible order will win a Free Order reward. After the event ends, winners will be contacted via email.<br/><br/>Q2: How is the “first order of the day” determined?<br/>A2: The winner will be determined based on the official order timestamp recorded by our system. Orders must be successfully placed and paid during the event period.<br/><br/>Q3: When and how will winners be notified?<br/>A3: All winners will be notified via email after the event ends. Please make sure the email address used at checkout is valid and check your inbox (including spam/junk folders).<br/><br/>Q4: How will I receive my refund if I win?<br/>A4: If selected as a winner, your order amount will be fully refunded to your original payment method after your order is completed and verified. Refund processing time may vary depending on your payment provider.<br/><br/>Q5: Are there any restrictions or conditions?<br/>A5: Only completed and eligible orders qualify. Cancelled orders, refunded orders, duplicate entries, or suspicious activity may be disqualified. Yozma reserves the right to verify eligibility and make the final decision regarding the event.</p>"
@@ -661,7 +662,7 @@
             "head_color": "#ffffff",
             "show_button": true,
             "button_text": "Learn more >",
-            "button_url": "",
+            "button_url": "https://uk.yozmasport.com/products/in-10",
             "button_color": "#ffffff",
             "button_bg_color": "#d30000",
             "slide_desc": "<p>Q1: How does the Free Insta360 event work?<br/>A1: The event runs from June 9 – June 10. The first successfully paid order each day that includes a complete bike purchase will win a free Insta360 camera. A total of 2 winners will be selected.<br/><br/>Q2: Which Insta360 model will I receive? Can I choose the model?<br/>A2: The free gift model is Insta360 GO 3S. The model, version, and color cannot be selected or changed.<br/><br/>Q3: How and when will winners be announced?<br/>A3: Winners will be contacted via email after the event ends. Please make sure the email used at checkout is valid and check your spam/junk folder if needed.<br/><br/>Q4: When will the free Insta360 be shipped?<br/>A4: The free Insta360 gift will be arranged after the order has been completed and verified. Shipping timing may vary depending on processing status.<br/><br/>Q5: Does the free Insta360 include warranty or after-sales service?<br/>A5: The free gift does not include after-sales service or warranty support. Yozma reserves the right of final verification and interpretation of the event rules.</p>"
@@ -680,12 +681,9 @@
             "subhead_color": "#ffffff",
             "head": "<p>Limited Signed Jersey</p>",
             "head_color": "#ffffff",
-            "icon1": "shopify://shop_images/th-discount-100.png",
-            "icon2": "shopify://shop_images/th-discount-200.png",
-            "icon3": "shopify://shop_images/th-discount-300.png",
             "show_button": true,
             "button_text": "Learn more >",
-            "button_url": "",
+            "button_url": "https://uk.yozmasport.com/products/in-10",
             "button_color": "#ffffff",
             "button_bg_color": "#d30000",
             "slide_desc": "<p>Q1: What is the “Signed Belgium Player Merch” and is the signature authentic?<br/>A1: The Signed Belgium Player Merch is a limited-edition promotional reward signed by a Belgium national team player. All signatures are authentic and provided as part of the official campaign collaboration.\"<br/><br/>Q2: How do I get  the Signed Belgium Player Merch?<br/>A2: During the campaign( 6.16 – 6.18), the customer with the highest order value will win the signed merch. If multiple orders have the same value, the earliest completed order will be selected.\"<br/><br/>Q3: When will I receive the signed item?<br/>A3: The signed item is available in very limited quantities and be shipped separately after the main order has been successfully delivered and completed (no return or refund).\"<br/><br/>Q4: Can I choose which player’s signature I receive or exchange, return, or redeem the signed merch?<br/>A4: No. All signed items are randomly assigned, and specific players cannot be selected. Signed merch is a limited promotional reward and is non-exchangeable, non-returnable, and not redeemable for cash or other products.\"<br/><br/>Q5: Will I still keep the Signed Belgium Player Merch reward if I cancel or return my order?<br/>A5: No. If the order is canceled, refunded, or returned, the reward eligibility will be removed. The signed merch will only be awarded after the original order has been successfully delivered and completed.\"</p>"
@@ -706,10 +704,10 @@
             "head_color": "#ffffff",
             "show_button": true,
             "button_text": "Learn more >",
-            "button_url": "",
+            "button_url": "https://uk.yozmasport.com/products/in-10",
             "button_color": "#ffffff",
             "button_bg_color": "#d30000",
-            "slide_desc": "<p>Q1: When does the Family Riding Event start and end?<br/>A2: The Family Riding Event runs from June 19 to June 30. All event rewards and offers are only available during this limited-time period.\"<br/><br/>Q2: How does the extra $150 OFF promotion work?<br/>A2: Customers who purchase two bikes in a single order will automatically receive an extra $150 OFF at checkout. No code is needed.\"<br/><br/>Q3: Will I receive a free riding bag with my order?<br/>A4: Yes. Customers who place an eligible order during the event will receive a free riding bag while supplies last.\"<br/><br/>Q4: Can I combine the Family Riding Event promotions with other offers?<br/>A5: Some promotions may be combined, while certain rewards or limited-time offers may have separate terms and conditions. Please check the official event page for full details before ordering.<br/><br/>Q5: What prizes are included in the lucky wheel event?<br/>A5: Participants may have a chance to win rewards such as $200 OFF, $100 OFF, $50 OFF, a free bike opportunity, a free-order opportunity, an IN 10 battery, keychains, and other surprise prizes.\"</p>"
+            "slide_desc": "<p>Q1: When does the Family Riding Event start and end?<br/>A2: The Family Riding Event runs from June 19 to June 30. All event rewards and offers are only available during this limited-time period.\"<br/><br/>Q2: How does the extra <em>£</em>150 OFF promotion work?<br/>A2: Customers who purchase two bikes in a single order will automatically receive an extra <em>£</em>150 OFF at checkout. No code is needed.\"<br/><br/>Q3: Will I receive a free riding bag with my order?<br/>A4: Yes. Customers who place an eligible order during the event will receive a free riding bag while supplies last.\"<br/><br/>Q4: Can I combine the Family Riding Event promotions with other offers?<br/>A5: Some promotions may be combined, while certain rewards or limited-time offers may have separate terms and conditions. Please check the official event page for full details before ordering.<br/><br/>Q5: What prizes are included in the lucky wheel event?<br/>A5: Participants may have a chance to win rewards such as <em>£</em>200 OFF, <em>£</em>100 OFF, <em>£</em>50 OFF, <em>£</em>20 OFF a free bike opportunity, a free-order opportunity, an IN 10 battery, keychains, and other surprise prizes.\"</p>"
           }
         }
       },
