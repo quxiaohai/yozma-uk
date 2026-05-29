@@ -549,7 +549,7 @@
         "form_background_image": "shopify://shop_images/th-turntable-vector.png",
         "form_title": "Spin the Wheel Rules",
         "form_title_color": "#ffffff",
-        "form_desc": "<ul><li>1.<strong>How to Participate:</strong><br/>Subscribe to our newsletter to<br/>receive one spin of the wheel.</li><li>2.<strong>Prizes Include:</strong><br/>$100 Off Coupon, $50 Off Coupon, Free Bike, Free Order Opportunity, Battery (IN 10), Keychain, Helmet</li><li>3.<strong>Winning Details:</strong><br/>Each subscriber is allowed one spin only.<br/>Prizes are subject to availability; first come, first served.</li></ul>",
+        "form_desc": "<ul><li>1.<strong>How to Participate:</strong><br/>Subscribe to our newsletter to<br/>receive one spin of the wheel.</li><li>2.<strong>Prizes Include:</strong><br/><em>£</em>200 Off Coupon, <em>£</em>100 Off Coupon, <em>£</em>50 Off Coupon，<em>£</em>20 Off Coupon， Free Bike, Free Order Opportunity, Battery (IN 10), Keychain, Helmet</li><li>3.<strong>Winning Details:</strong><br/>Each subscriber is allowed one spin only.<br/>Prizes are subject to availability; first come, first served.</li></ul>",
         "form_desc_color": "#666",
         "button": "Try Your Luck",
         "success": "Submit successfully",
