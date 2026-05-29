@@ -31,10 +31,8 @@
           "disabled": true,
           "settings": {
             "title": "Banner Text",
-            "font_name": "",
             "text_show_type": "all",
             "pc_text": "<p>BFCM - The Biggest Sale Of the Year</p>",
-            "pc_fade_up": false,
             "pc_align": "right",
             "pc_color": "#ffffff",
             "pc_emphasize_color": "#181623",
@@ -46,7 +44,6 @@
             "pc_bottom": 0,
             "pc_left": 0,
             "mb_text": "<p>BFCM - The Biggest Sale </p><p>Of the Year</p>",
-            "mb_fade_up": false,
             "mb_align": "center",
             "mb_color": "#ffffff",
             "mb_emphasize_color": "#181623",
@@ -98,8 +95,6 @@
             "mb_top": 0,
             "mb_bottom": 0,
             "pc_align": "flex-right",
-            "form_tag": "main sub",
-            "form_content": "main sub",
             "show_privacy": false,
             "privacy_text": "",
             "pc_privacy_size": 16,
@@ -135,6 +130,7 @@
         "countdown_zwWe3D",
         "subscribe_CCH6KP"
       ],
+      "disabled": true,
       "name": "main-banner",
       "settings": {
         "page_color": "",
@@ -147,16 +143,129 @@
         "mb_content_pos": "mb_top",
         "video_play_show": false,
         "backdrop_link": "",
-        "width_follow_the_theme": true,
-        "pc_left": 145,
+        "pc_content_width": 1440,
         "overlay_show": false,
         "overlay_color": "#000000",
         "overlay_opacity": 20
       }
     },
+    "mc_banner_slide_AJnpWb": {
+      "type": "mc_banner-slide",
+      "blocks": {
+        "media_LgXDCw": {
+          "type": "media",
+          "settings": {
+            "pc_image_url": "shopify://shop_images/1_3ad8e324-2b3b-4d1f-8424-006db116908f.jpg",
+            "mb_image_url": "shopify://shop_images/eaea6e721ec743400762f7b529a78c31.jpg",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "Yozma IN 10",
+            "show_subtitle": false,
+            "subtitle": "",
+            "subtitle_color": "#ffffff",
+            "show_title": false,
+            "title": "",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_text": "",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "shopify://products/in-10"
+          }
+        },
+        "media_Pcfwxw": {
+          "type": "media",
+          "settings": {
+            "pc_image_url": "shopify://shop_images/PC_1be9eda1-a4ff-4aaf-9578-047ae57dfe57.jpg",
+            "mb_image_url": "shopify://shop_images/5e3ab86769cab080a7d8ec44668d79cd.jpg",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "",
+            "show_subtitle": false,
+            "subtitle": "",
+            "subtitle_color": "#ffffff",
+            "show_title": false,
+            "title": "",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_text": "",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        },
+        "media_ePeUwR": {
+          "type": "media",
+          "disabled": true,
+          "settings": {
+            "pc_image_url": "shopify://shop_images/3840_1599333.jpg",
+            "mb_image_url": "shopify://shop_images/1500_x_2180111.jpg",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "",
+            "show_subtitle": false,
+            "subtitle": "<p>Limited 3-Day Offer</p>",
+            "subtitle_color": "#ffffff",
+            "show_title": false,
+            "title": "<p>Redefine Urban Commutes with Ease</p>",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        },
+        "media_hPRhP6": {
+          "type": "media",
+          "disabled": true,
+          "settings": {
+            "pc_image_url": "shopify://shop_images/2800.1166_81af56d5-cff0-4a3e-ba54-e55bb311d45a.jpg",
+            "mb_image_url": "shopify://shop_images/2026.1.13_1200_1600px_1.png",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "Yozma IN 10",
+            "show_subtitle": false,
+            "subtitle": "<p>Limited 3-Day Offer</p>",
+            "subtitle_color": "#ffffff",
+            "show_title": false,
+            "title": "<p>Redefine Urban Commutes with Ease</p>",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
+            "button_text": "Learn More",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_LgXDCw",
+        "media_Pcfwxw",
+        "media_ePeUwR",
+        "media_hPRhP6"
+      ],
+      "name": "MC Banner Slide",
+      "settings": {
+        "page_color": "",
+        "overlay_show": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "show_slide": true,
+        "auto_slide": true,
+        "duration": 4,
+        "slide_tab_color": "#999999",
+        "slide_tab_active_color": "#ffffff"
+      }
+    },
     "main_navigation_fY4Bfn": {
       "type": "main-navigation",
       "blocks": {
+        "nav_tab_VFMXXH": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Get a prize",
+            "position": 4
+          }
+        },
         "nav_tab_gdw6UY": {
           "type": "nav_tab",
           "settings": {
@@ -164,22 +273,16 @@
             "position": 5
           }
         },
-        "nav_tab_VFMXXH": {
-          "type": "nav_tab",
-          "settings": {
-            "title": "Get a prize",
-            "position": 6
-          }
-        },
         "nav_tab_8dCgM4": {
           "type": "nav_tab",
           "settings": {
             "title": "IN 10",
-            "position": 8
+            "position": 7
           }
         },
         "nav_tab_im9xnM": {
           "type": "nav_tab",
+          "disabled": true,
           "settings": {
             "title": "IN 10 Pro",
             "position": 9
@@ -188,7 +291,14 @@
         "nav_tab_GQpTRp": {
           "type": "nav_tab",
           "settings": {
-            "title": "Review",
+            "title": "News",
+            "position": 6
+          }
+        },
+        "nav_tab_x6p6NC": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "FAQ",
             "position": 10
           }
         },
@@ -198,23 +308,16 @@
             "title": "Support",
             "position": 11
           }
-        },
-        "nav_tab_x6p6NC": {
-          "type": "nav_tab",
-          "settings": {
-            "title": "FAQ",
-            "position": 12
-          }
         }
       },
       "block_order": [
-        "nav_tab_gdw6UY",
         "nav_tab_VFMXXH",
+        "nav_tab_gdw6UY",
         "nav_tab_8dCgM4",
         "nav_tab_im9xnM",
         "nav_tab_GQpTRp",
-        "nav_tab_gWdziX",
-        "nav_tab_x6p6NC"
+        "nav_tab_x6p6NC",
+        "nav_tab_gWdziX"
       ],
       "custom_css": [],
       "name": "main-navigation",
@@ -225,7 +328,7 @@
         "tab_bg_color": "rgba(0,0,0,0)",
         "tab_active_color": "#d30000",
         "tab_bg_active_color": "rgba(0,0,0,0)",
-        "show_tab_active_underline": true,
+        "show_tab_active_underline": false,
         "tab_radius": 6,
         "show_tab_border": false,
         "tab_border_color": "#000000",
@@ -249,8 +352,8 @@
         "heading": "<p><strong>The Anniversary Sale starts in</strong></p><p>More surprises and gifts await you</p>",
         "heading_color": "#fff",
         "heading_bold_color": "#ff271a",
-        "countdown_start_date": "2024-12-02T00:00:00",
-        "duration": 7,
+        "countdown_start_date": "2026-05-29 00:00:00",
+        "duration": 8,
         "day": "Days",
         "hour": "Hours",
         "minute": "Mins",
@@ -342,36 +445,36 @@
             "prize_weight1": 0,
             "gift_icon2": "shopify://shop_images/spin-th-icon6.png",
             "discount_code2": "RIDE100",
-            "prize_name2": "Coupon $100 OFF",
+            "prize_name2": "Coupon £100 OFF",
             "prize_weight2": 10,
-            "gift_icon3": "shopify://shop_images/spin-th-icon6.png",
-            "discount_code3": "ANNI50",
-            "prize_name3": "Coupon $50 OFF",
-            "prize_weight3": 40,
-            "gift_icon4": "shopify://shop_images/spin-th-icon2.png",
-            "discount_code4": "POWERPACK",
-            "prize_name4": "Free IN 10 Battery",
-            "prize_weight4": 5,
+            "gift_icon3": "shopify://shop_images/spin-th-icon4.png",
+            "discount_code3": "RIDESAFE",
+            "prize_name3": "Free Riding Helmet",
+            "prize_weight3": 0,
+            "gift_icon4": "shopify://shop_images/spin-th-icon6.png",
+            "discount_code4": "SPIN20",
+            "prize_name4": "Coupon £20 OFF",
+            "prize_weight4": 60,
             "gift_icon5": "shopify://shop_images/spin-th-icon5.png",
             "discount_code5": "FREEKEYCHAIN",
             "prize_name5": "Free Keychain",
-            "prize_weight5": 20,
-            "gift_icon6": "shopify://shop_images/888b9fceb0fd84bd42bb44fecdba5bf4.png",
-            "discount_code6": "RIDESAFE",
-            "prize_name6": "Free Riding Helmet",
-            "prize_weight6": 10,
-            "gift_icon7": "shopify://shop_images/spin-th-icon6.png",
-            "discount_code7": "POWERUP200",
-            "prize_name7": "Coupon $200 OFF",
+            "prize_weight5": 0,
+            "gift_icon6": "shopify://shop_images/spin-th-icon6.png",
+            "discount_code6": "POWERUP200",
+            "prize_name6": "Coupon £200 OFF",
+            "prize_weight6": 0,
+            "gift_icon7": "shopify://shop_images/spin-th-icon3.png",
+            "discount_code7": "GOLDENRIDE",
+            "prize_name7": "Free Order Chance",
             "prize_weight7": 0,
-            "gift_icon8": "shopify://shop_images/spin-th-icon6.png",
-            "discount_code8": "SPIN20",
-            "prize_name8": "Coupon $20 OFF",
-            "prize_weight8": 50,
-            "gift_icon9": "shopify://shop_images/spin-th-icon3.png",
-            "discount_code9": "GOLDENRIDE",
-            "prize_name9": "Free Order Chance",
-            "prize_weight9": 0,
+            "gift_icon8": "shopify://shop_images/spin-th-icon2.png",
+            "discount_code8": "POWERPACK",
+            "prize_name8": "Free IN 10 Battery",
+            "prize_weight8": 0,
+            "gift_icon9": "shopify://shop_images/spin-th-icon6.png",
+            "discount_code9": "ANNI50",
+            "prize_name9": "Coupon £50 OFF",
+            "prize_weight9": 44,
             "model_gradient": "linear-gradient(180deg, rgba(224, 245, 205, 1), rgba(224, 245, 205, 1) 100%)",
             "model_bg_image": "shopify://shop_images/th-product-bg.jpg",
             "model_title": "Celebrate & Win",
@@ -404,8 +507,8 @@
             "mb_countdown_num_height": 1,
             "mb_countdown_num_size": 1,
             "mb_countdown_name_size": 1,
-            "countdown_time": "2026-04-13 00:00:00",
-            "duration": 1,
+            "countdown_time": "2026-05-29 00:00:00",
+            "duration": 2,
             "day": "DAYS",
             "hour": "HOURS",
             "minute": "MINS",
@@ -440,14 +543,14 @@
         "description_pc_margin_bottom": 0,
         "description_mb_margin_bottom": 0,
         "spin_background_image": "shopify://shop_images/th-spin-bg.jpg",
-        "spin_turntable_image": "shopify://shop_images/th-spin.png",
+        "spin_turntable_image": "shopify://shop_images/uk.png",
         "spin_pointer_image": "shopify://shop_images/th-spin-pointer.png",
-        "klaviyo_api_key": "VVDwxN",
-        "klaviyo_list_id": "XRH5tH",
+        "klaviyo_api_key": "VppjeE",
+        "klaviyo_list_id": "ULesGr",
         "form_background_image": "shopify://shop_images/th-turntable-vector.png",
         "form_title": "Spin the Wheel Rules",
         "form_title_color": "#ffffff",
-        "form_desc": "<ul><li>1.<strong>How to Participate:</strong><br/>Subscribe to our newsletter to<br/>receive one spin of the wheel.</li><li>2.<strong>Prizes Include:</strong><br/>$100 Off Coupon, $50 Off Coupon, Free Bike, Free Order Opportunity, Battery (IN 10), Keychain, Helmet</li><li>3.<strong>Winning Details:</strong><br/>Each subscriber is allowed one spin only.<br/>Prizes are subject to availability; first come, first served.</li></ul>",
+        "form_desc": "<ul><li>1.<strong>How to Participate:</strong><br/>Subscribe to our newsletter to<br/>receive one spin of the wheel.</li><li>2.<strong>Prizes Include:</strong><br/><em>£</em>200 Off Coupon, <em>£</em>100 Off Coupon, <em>£</em>50 Off Coupon，<em>£</em>20 Off Coupon， Free Bike, Free Order Opportunity, Battery (IN 10), Keychain, Helmet</li><li>3.<strong>Winning Details:</strong><br/>Each subscriber is allowed one spin only.<br/>Prizes are subject to availability; first come, first served.</li></ul>",
         "form_desc_color": "#666",
         "button": "Try Your Luck",
         "success": "Submit successfully",
@@ -495,6 +598,7 @@
         "card_GyFjPw",
         "card_4GGrGP"
       ],
+      "disabled": true,
       "name": "MC Th Reward Cards",
       "settings": {
         "page_color": "",
@@ -538,7 +642,7 @@
             "head_color": "#ffffff",
             "show_button": true,
             "button_text": "Learn more >",
-            "button_url": "",
+            "button_url": "https://uk.yozmasport.com/products/in-10",
             "button_color": "#ffffff",
             "button_bg_color": "#d30000",
             "slide_desc": "<p>Q1: How does the Free Order event work?<br/>A1: From June 5 – June 8, the first customer each day to successfully place an eligible order will win a Free Order reward. After the event ends, winners will be contacted via email.<br/><br/>Q2: How is the “first order of the day” determined?<br/>A2: The winner will be determined based on the official order timestamp recorded by our system. Orders must be successfully placed and paid during the event period.<br/><br/>Q3: When and how will winners be notified?<br/>A3: All winners will be notified via email after the event ends. Please make sure the email address used at checkout is valid and check your inbox (including spam/junk folders).<br/><br/>Q4: How will I receive my refund if I win?<br/>A4: If selected as a winner, your order amount will be fully refunded to your original payment method after your order is completed and verified. Refund processing time may vary depending on your payment provider.<br/><br/>Q5: Are there any restrictions or conditions?<br/>A5: Only completed and eligible orders qualify. Cancelled orders, refunded orders, duplicate entries, or suspicious activity may be disqualified. Yozma reserves the right to verify eligibility and make the final decision regarding the event.</p>"
@@ -559,7 +663,7 @@
             "head_color": "#ffffff",
             "show_button": true,
             "button_text": "Learn more >",
-            "button_url": "",
+            "button_url": "https://uk.yozmasport.com/products/in-10",
             "button_color": "#ffffff",
             "button_bg_color": "#d30000",
             "slide_desc": "<p>Q1: How does the Free Insta360 event work?<br/>A1: The event runs from June 9 – June 10. The first successfully paid order each day that includes a complete bike purchase will win a free Insta360 camera. A total of 2 winners will be selected.<br/><br/>Q2: Which Insta360 model will I receive? Can I choose the model?<br/>A2: The free gift model is Insta360 GO 3S. The model, version, and color cannot be selected or changed.<br/><br/>Q3: How and when will winners be announced?<br/>A3: Winners will be contacted via email after the event ends. Please make sure the email used at checkout is valid and check your spam/junk folder if needed.<br/><br/>Q4: When will the free Insta360 be shipped?<br/>A4: The free Insta360 gift will be arranged after the order has been completed and verified. Shipping timing may vary depending on processing status.<br/><br/>Q5: Does the free Insta360 include warranty or after-sales service?<br/>A5: The free gift does not include after-sales service or warranty support. Yozma reserves the right of final verification and interpretation of the event rules.</p>"
@@ -578,12 +682,9 @@
             "subhead_color": "#ffffff",
             "head": "<p>Limited Signed Jersey</p>",
             "head_color": "#ffffff",
-            "icon1": "shopify://shop_images/th-discount-100.png",
-            "icon2": "shopify://shop_images/th-discount-200.png",
-            "icon3": "shopify://shop_images/th-discount-300.png",
             "show_button": true,
             "button_text": "Learn more >",
-            "button_url": "",
+            "button_url": "https://uk.yozmasport.com/products/in-10",
             "button_color": "#ffffff",
             "button_bg_color": "#d30000",
             "slide_desc": "<p>Q1: What is the “Signed Belgium Player Merch” and is the signature authentic?<br/>A1: The Signed Belgium Player Merch is a limited-edition promotional reward signed by a Belgium national team player. All signatures are authentic and provided as part of the official campaign collaboration.\"<br/><br/>Q2: How do I get  the Signed Belgium Player Merch?<br/>A2: During the campaign( 6.16 – 6.18), the customer with the highest order value will win the signed merch. If multiple orders have the same value, the earliest completed order will be selected.\"<br/><br/>Q3: When will I receive the signed item?<br/>A3: The signed item is available in very limited quantities and be shipped separately after the main order has been successfully delivered and completed (no return or refund).\"<br/><br/>Q4: Can I choose which player’s signature I receive or exchange, return, or redeem the signed merch?<br/>A4: No. All signed items are randomly assigned, and specific players cannot be selected. Signed merch is a limited promotional reward and is non-exchangeable, non-returnable, and not redeemable for cash or other products.\"<br/><br/>Q5: Will I still keep the Signed Belgium Player Merch reward if I cancel or return my order?<br/>A5: No. If the order is canceled, refunded, or returned, the reward eligibility will be removed. The signed merch will only be awarded after the original order has been successfully delivered and completed.\"</p>"
@@ -604,10 +705,10 @@
             "head_color": "#ffffff",
             "show_button": true,
             "button_text": "Learn more >",
-            "button_url": "",
+            "button_url": "https://uk.yozmasport.com/products/in-10",
             "button_color": "#ffffff",
             "button_bg_color": "#d30000",
-            "slide_desc": "<p>Q1: When does the Family Riding Event start and end?<br/>A2: The Family Riding Event runs from June 19 to June 30. All event rewards and offers are only available during this limited-time period.\"<br/><br/>Q2: How does the extra $150 OFF promotion work?<br/>A2: Customers who purchase two bikes in a single order will automatically receive an extra $150 OFF at checkout. No code is needed.\"<br/><br/>Q3: Will I receive a free riding bag with my order?<br/>A4: Yes. Customers who place an eligible order during the event will receive a free riding bag while supplies last.\"<br/><br/>Q4: Can I combine the Family Riding Event promotions with other offers?<br/>A5: Some promotions may be combined, while certain rewards or limited-time offers may have separate terms and conditions. Please check the official event page for full details before ordering.<br/><br/>Q5: What prizes are included in the lucky wheel event?<br/>A5: Participants may have a chance to win rewards such as $200 OFF, $100 OFF, $50 OFF, a free bike opportunity, a free-order opportunity, an IN 10 battery, keychains, and other surprise prizes.\"</p>"
+            "slide_desc": "<p>Q1: When does the Family Riding Event start and end?<br/>A2: The Family Riding Event runs from June 19 to June 30. All event rewards and offers are only available during this limited-time period.\"<br/><br/>Q2: How does the extra <em>£</em>150 OFF promotion work?<br/>A2: Customers who purchase two bikes in a single order will automatically receive an extra <em>£</em>150 OFF at checkout. No code is needed.\"<br/><br/>Q3: Will I receive a free riding bag with my order?<br/>A4: Yes. Customers who place an eligible order during the event will receive a free riding bag while supplies last.\"<br/><br/>Q4: Can I combine the Family Riding Event promotions with other offers?<br/>A5: Some promotions may be combined, while certain rewards or limited-time offers may have separate terms and conditions. Please check the official event page for full details before ordering.<br/><br/>Q5: What prizes are included in the lucky wheel event?<br/>A5: Participants may have a chance to win rewards such as <em>£</em>200 OFF, <em>£</em>100 OFF, <em>£</em>50 OFF, <em>£</em>20 OFF a free bike opportunity, a free-order opportunity, an IN 10 battery, keychains, and other surprise prizes.\"</p>"
           }
         }
       },
@@ -663,6 +764,7 @@
         },
         "product_item_iGqp86": {
           "type": "product_item",
+          "disabled": true,
           "settings": {
             "product": "in-10-pro",
             "object_fit": "contain",
@@ -717,9 +819,9 @@
           "settings": {
             "desktop_image": "shopify://shop_images/DSC_3323_1.png",
             "muted": true,
-            "video_desktop": "shopify://files/videos/YOZMA IN 10 PRO V1-修改滤镜.mp4",
-            "title": "Upgraded Power for Exploration",
-            "text": "<p>The upgraded IN 10 PRO delivers a fresh riding experience. Navigate hills and rocky terrain with ease, and make every off-road ride feel completely new.</p>"
+            "video_desktop": "shopify://files/videos/Yozma一周年预热 3840x2160 15s.mp4",
+            "title": "Same beast. Different attitude",
+            "text": "<p>Blacked out and dialed in. From sharp turns to sudden drops, every response feels tighter, faster, more controlled—built for riders who push harder off-road.</p>"
           }
         },
         "media_8aKAeL": {
@@ -798,12 +900,111 @@
         "bottom_image": "shopify://shop_images/video-decorate.png",
         "auto_play": false,
         "play_button_icon": "shopify://shop_images/video-play-button.png",
+        "theme_size": "large"
+      }
+    },
+    "mc_media_slide_aEqYG4": {
+      "type": "mc_media-slide",
+      "blocks": {
+        "media_kJfwPa": {
+          "type": "media",
+          "settings": {
+            "desktop_image": "shopify://shop_images/yozma.jpg",
+            "muted": true,
+            "video_desktop": "shopify://files/videos/Yozma一周年预热 3840x2160 15s.mp4",
+            "title": "Same beast. Different attitude",
+            "text": "<p>Blacked out and dialed in. From sharp turns to sudden drops, every response feels tighter, faster, more controlled—built for riders who push harder off-road.</p>"
+          }
+        },
+        "media_kNeCp8": {
+          "type": "media",
+          "settings": {
+            "desktop_image": "shopify://shop_images/MVI_7211_1.png",
+            "muted": true,
+            "video_desktop": "shopify://files/videos/黑2片尾.mp4",
+            "title": "Same beast. Different attitude",
+            "text": "<p>Blacked out and dialed in. From sharp turns to sudden drops, every response feels tighter, faster, more controlled—built for riders who push harder off-road.</p>"
+          }
+        },
+        "media_TtYEMk": {
+          "type": "media",
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/DSC_3323_1.png",
+            "muted": true,
+            "video_desktop": "shopify://files/videos/in10-A FHD.mp4",
+            "title": "Yozma – Ride Beyond Limits",
+            "text": "<p>Powerful, reliable, and adventure-ready—Yozma e-bikes deliver thrilling performance, smooth handling, and intuitive control. Join the Yozma community and ride with freedom and confidence.</p>"
+          }
+        },
+        "media_r8J7aP": {
+          "type": "media",
+          "settings": {
+            "desktop_image": "shopify://shop_images/DSC_3781_1.png",
+            "muted": true,
+            "video_desktop": "shopify://files/videos/yozma-横屏.mp4",
+            "title": "Ride Together, Share Every Moment",
+            "text": "<p>Air time is yours. From ramps to unexpected drops, your ride reacts with precision, letting you experience the thrill of off-road action without limits.</p>"
+          }
+        },
+        "media_X8tFNL": {
+          "type": "media",
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/DSC_3705_1.png",
+            "muted": true,
+            "video_desktop": "shopify://files/videos/YOZMA-IN10-b(1)-0828-15秒.mp4",
+            "title": "Embrace Adventure, Ride Without Limits",
+            "text": "<p>Seek the joy of adventure and ride boldly. Explore every path, push your limits, and embrace every twist, turn, and hill, making each journey thrilling and unforgettable.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "media_kJfwPa",
+        "media_kNeCp8",
+        "media_TtYEMk",
+        "media_r8J7aP",
+        "media_X8tFNL"
+      ],
+      "disabled": true,
+      "name": "MC Media Slide",
+      "settings": {
+        "page_color": "#0d0d0c",
+        "page_top": 0,
+        "page_bottom": 240,
+        "mb_page_bottom": 40,
+        "show_title": true,
+        "title": "<p><strong>Adventure Lives Where You Dare Ride</strong></p>",
+        "title_style": "italic",
+        "title_pc_size": 48,
+        "title_mb_size": 24,
+        "title_margin_bottom": 16,
+        "title_color": "#ffffff",
+        "title_bold_color": "rgba(0,0,0,0)",
+        "title_gradient_color": "linear-gradient(180deg, rgba(255, 228, 49, 1), rgba(249, 32, 32, 1) 100%)",
+        "show_description": true,
+        "description": "<p>Every hill, puddle, and ramp becomes part of your own off-road story.</p>",
+        "description_color": "#ffffff",
+        "description_pc_size": 18,
+        "description_mb_size": 14,
+        "description_pc_margin_bottom": 40,
+        "description_mb_margin_bottom": 30,
+        "auto_play": false,
         "theme_size": "small"
       }
     },
     "mc_main_ces": {
       "type": "mc_main-ces",
       "blocks": {
+        "card_UHajXi": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/blog_banner.jpg",
+            "title": "Yozma June Events Are Coming: Big Rewards, Team Spirit & Family Rides",
+            "text": "",
+            "url": "shopify://blogs/ebike/yozma-june-electric-dirt-bike-events"
+          }
+        },
         "card_ExdDLg": {
           "type": "card",
           "settings": {
@@ -887,6 +1088,7 @@
         }
       },
       "block_order": [
+        "card_UHajXi",
         "card_ExdDLg",
         "card_QBffqa",
         "media3",
@@ -911,11 +1113,12 @@
         "button_color": "#ffffff",
         "button_hover_color": "#d30000",
         "button_url": "https://yozmasport.com/blogs/ebike",
-        "theme_size": "small"
+        "theme_size": "large"
       }
     },
     "mc_review_slide": {
       "type": "mc_review-slide",
+      "disabled": true,
       "name": "MC Review Slide",
       "settings": {
         "page_color": "#000000",
@@ -935,7 +1138,7 @@
         "auto_slide": true,
         "duration": 3,
         "slide_item": "3.4",
-        "theme_size": "small"
+        "theme_size": "large"
       }
     },
     "faq_HNmJpq": {
@@ -1016,6 +1219,112 @@
         "item_YTYbjJ",
         "item_8Rp9qE"
       ],
+      "disabled": true,
+      "name": "FAQ",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "Anniversary Campaign FAQ",
+        "content": "",
+        "team_avatar_width": 160,
+        "support_hours": "",
+        "answer_time": "*All rights to interpret the terms and conditions of this campaign are reserved by Yozma.",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "#000000",
+        "background_gradient": "",
+        "text_color": "#ffffff",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "#000000",
+        "accordion_text_color": "",
+        "theme_size": "large"
+      }
+    },
+    "faq_HJBbQb": {
+      "type": "faq",
+      "blocks": {
+        "item_36Prha": {
+          "type": "item",
+          "settings": {
+            "title": "1. When does the campaign take place?",
+            "content": "<p>The campaign is divided into three phases:</p><ul><li>Anniversary Rush: June 5 – June 10<br/></li><li>Belgium Team Collaboration: June 16 – June 18<br/></li><li>Family Ride Event: June 19 – June 30<br/></li></ul>"
+          }
+        },
+        "item_4Bt3b4": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "title": "2. How do I join the Lucky Wheel, and what can I win?",
+            "content": "<p>Enter the campaign page and submit your email to participate.<br/><br/>After registration, you will be automatically subscribed to our updates and receive 1 spin.</p><p><strong>Lucky Wheel rewards include:</strong></p><ul><li>$200 / $100 / $50 / $20 discount coupons<br/></li><li>Free bike (IN 10 Red)<br/></li><li>Free order (refund opportunity)<br/></li><li>IN 10 battery<br/></li><li>Helmet, keychain, and riding accessories<br/></li></ul><p>All rewards are non-cashable and can only be used in-store.</p>"
+          }
+        },
+        "item_JJytNd": {
+          "type": "item",
+          "settings": {
+            "title": "2. Are there any additional gifts or bonuses?",
+            "content": "<p>(Applicable to: June 5 – June 10 / June 16 – June 18)</p><p>Eligible orders during the campaign will receive limited-time perks:</p><ul><li>Anniversary Gift Box (limited, while supplies last)<br/></li><li>1-Year Extended Warranty<br/></li></ul><p><strong>Additional offers by period:</strong></p><ul><li>June 19 – June 30: Extra <em>£</em>150 OFF when purchasing 2 bikes (auto-applied discount)<br/></li></ul><p>Gift box includes branded items such as T-shirt, cap, stickers, wristband, and keychain, and may ship separately from the bike, with no after-sales service for gifts.<br/><br/></p>"
+          }
+        },
+        "item_jFV4pJ": {
+          "type": "item",
+          "settings": {
+            "title": "3. Are there any special reward events?",
+            "content": "<p>Different phases include special surprises:</p><ul><li>June 5 – June 8: Daily first full-bike order  receive a free order reward</li><li>June 9 – June 10: Daily first full-bike order may receive an Insta360 camera 📷</li><li>June 16 – June 18: Limited signed jersey giveaway (only 1 available), awarded to the customer with the highest order value, or in the case of a tie, the earliest payment wins.<br/></li><li>June 19 – June 30: Get an additional $150 off when you purchase two units.</li></ul>"
+          }
+        },
+        "item_4cL4pp": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "title": "5. How does the “Top Order” reward work?",
+            "content": "<p>(Applicable to: June 5 – June 8)</p><p>Orders are ranked by payment time:</p><ul><li>1st place: Free bike (full refund)<br/></li><li>2nd–10th: Riding gear set (helmet + gloves + bike bag)<br/></li><li>11th–20th: Goggles</li></ul>"
+          }
+        },
+        "item_NgTyPq": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "title": "6. What discounts are available in the Belgium Team Collaboration campaign?",
+            "content": "<p>(Applicable to: June 16 – June 18)</p><ul><li>$1499 → $100 OFF<br/></li><li>$2199 → $200 OFF<br/></li><li>$2999 → $300 OFF<br/></li></ul>"
+          }
+        },
+        "item_LA7Ugw": {
+          "type": "item",
+          "settings": {
+            "title": "4. How will winners be notified?",
+            "content": "<p>All winners will be notified via email after each campaign period ends.</p>"
+          }
+        },
+        "item_9CUDdw": {
+          "type": "item",
+          "settings": {
+            "title": "5. Can rewards be transferred or exchanged for cash?",
+            "content": "<p>No. All rewards are non-transferable and cannot be exchanged for cash. They are valid only for the original order.</p>"
+          }
+        },
+        "item_DfE3TT": {
+          "type": "item",
+          "settings": {
+            "title": "6. What happens if I return my order?",
+            "content": "<p>If an order is returned or refunded, all related rewards and gifts will be invalid and may need to be returned if already received.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_36Prha",
+        "item_4Bt3b4",
+        "item_JJytNd",
+        "item_jFV4pJ",
+        "item_4cL4pp",
+        "item_NgTyPq",
+        "item_LA7Ugw",
+        "item_9CUDdw",
+        "item_DfE3TT"
+      ],
       "name": "FAQ",
       "settings": {
         "full_width": true,
@@ -1048,7 +1357,7 @@
           "settings": {
             "image_icon": "shopify://shop_images/th-white-delivery.png",
             "title": "Free Shipping",
-            "text": "7-14 bussiness days"
+            "text": "2-5 bussiness days"
           }
         },
         "card2": {
@@ -1092,6 +1401,7 @@
   },
   "order": [
     "main_banner_rENQHG",
+    "mc_banner_slide_AJnpWb",
     "main_navigation_fY4Bfn",
     "mc_main_countdown_6GFNm9",
     "mc_th_gift_cards_KBwg39",
@@ -1100,9 +1410,11 @@
     "mc_th_text_slide_7Eziwp",
     "mc_th_product_card_N8t7NT",
     "mc_media_slide_nV9BiG",
+    "mc_media_slide_aEqYG4",
     "mc_main_ces",
     "mc_review_slide",
     "faq_HNmJpq",
+    "faq_HJBbQb",
     "mc_shop_service"
   ]
 }

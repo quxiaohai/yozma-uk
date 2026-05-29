@@ -14,6 +14,7 @@
       "blocks": {
         "media_Yi7pih": {
           "type": "media",
+          "disabled": true,
           "settings": {
             "pc_image_url": "shopify://shop_images/3840.1599.jpg",
             "mb_image_url": "shopify://shop_images/1500.2180.jpg",
@@ -35,10 +36,9 @@
         },
         "media2": {
           "type": "media",
-          "disabled": true,
           "settings": {
-            "pc_image_url": "shopify://shop_images/3840_1599333.jpg",
-            "mb_image_url": "shopify://shop_images/1500_x_2180111.jpg",
+            "pc_image_url": "shopify://shop_images/1_3ad8e324-2b3b-4d1f-8424-006db116908f.jpg",
+            "mb_image_url": "shopify://shop_images/eaea6e721ec743400762f7b529a78c31.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "",
             "show_subtitle": false,
@@ -171,6 +171,7 @@
           "disabled": true,
           "settings": {
             "product": "in-10-pro",
+            "variant": 1,
             "product_title": "IN 10 Pro",
             "product_description": "High-Performance Electric Mini Dirt Bike",
             "product_image": "shopify://shop_images/IN_10_PRO-_-_118.png",
@@ -190,6 +191,7 @@
           "type": "product",
           "settings": {
             "product": "in-10",
+            "variant": 1,
             "product_title": "IN 10",
             "product_description": "Electric Mini Dirt Bike For Teens & Adults",
             "product_image": "shopify://shop_images/118_5e507202-c482-4530-bba7-a265dbdc9bfc.png",
@@ -209,6 +211,7 @@
           "type": "product",
           "settings": {
             "product": "yozma-in-10-combo",
+            "variant": 1,
             "product_title": "IN 10 Combo",
             "product_description": "Combo Pack – Best Value Dual Set",
             "product_image": "shopify://shop_images/combo.png",
@@ -372,7 +375,8 @@
         "top_image": "shopify://shop_images/video-decorate-back.png",
         "bottom_image": "shopify://shop_images/video-decorate.png",
         "auto_play": true,
-        "play_button_icon": "shopify://shop_images/video-play-button.png"
+        "play_button_icon": "shopify://shop_images/video-play-button.png",
+        "theme_size": "large"
       }
     },
     "mc_text_slide": {
@@ -584,7 +588,8 @@
         "button_text": "Read All",
         "button_color": "#ffffff",
         "button_hover_color": "#d30000",
-        "button_url": "shopify://blogs/ebike"
+        "button_url": "shopify://blogs/ebike",
+        "theme_size": "large"
       }
     },
     "mc_review_slide": {
@@ -608,7 +613,8 @@
         "button_url": "shopify://products/yozma-in-10-electric-mini-dirt-bike-for-teens-adults-copy",
         "auto_slide": true,
         "duration": 3,
-        "slide_item": "3.4"
+        "slide_item": "3.4",
+        "theme_size": "large"
       }
     },
     "mc_shop_service": {
