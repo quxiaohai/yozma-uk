@@ -263,7 +263,7 @@
           "type": "nav_tab",
           "settings": {
             "title": "Get a prize",
-            "position": 6
+            "position": 4
           }
         },
         "nav_tab_gdw6UY": {
@@ -277,7 +277,7 @@
           "type": "nav_tab",
           "settings": {
             "title": "IN 10",
-            "position": 8
+            "position": 7
           }
         },
         "nav_tab_im9xnM": {
@@ -291,8 +291,15 @@
         "nav_tab_GQpTRp": {
           "type": "nav_tab",
           "settings": {
-            "title": "Review",
-            "position": 10
+            "title": "News",
+            "position": 9
+          }
+        },
+        "nav_tab_x6p6NC": {
+          "type": "nav_tab",
+          "settings": {
+            "title": "FAQ",
+            "position": 11
           }
         },
         "nav_tab_gWdziX": {
@@ -300,13 +307,6 @@
           "settings": {
             "title": "Support",
             "position": 11
-          }
-        },
-        "nav_tab_x6p6NC": {
-          "type": "nav_tab",
-          "settings": {
-            "title": "FAQ",
-            "position": 12
           }
         }
       },
@@ -316,8 +316,8 @@
         "nav_tab_8dCgM4",
         "nav_tab_im9xnM",
         "nav_tab_GQpTRp",
-        "nav_tab_gWdziX",
-        "nav_tab_x6p6NC"
+        "nav_tab_x6p6NC",
+        "nav_tab_gWdziX"
       ],
       "custom_css": [],
       "name": "main-navigation",
