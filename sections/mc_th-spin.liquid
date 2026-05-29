@@ -438,7 +438,7 @@
                 {
                     icon: '{{ ds[icon] | image_url: width: 300 }}',
                     code: '{{ ds[code] }}',
-                    angle: {{ angle }},
+                    angle: {{ 360 | minus: angle }},
                     title: `{{ ds[name] }}`,
                     weight: {{ ds[weight] }}}{% if forloop.last == false %},{% endif %}
                 {%- liquid
@@ -711,7 +711,7 @@
                 {%- endif -%}
             }
 
-            init();
+            // init();
         });
     </script>
 {%- endif -%}
