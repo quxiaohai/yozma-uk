@@ -152,26 +152,6 @@
     "mc_banner_slide_AJnpWb": {
       "type": "mc_banner-slide",
       "blocks": {
-        "media_LgXDCw": {
-          "type": "media",
-          "settings": {
-            "pc_image_url": "shopify://shop_images/1_3ad8e324-2b3b-4d1f-8424-006db116908f.jpg",
-            "mb_image_url": "shopify://shop_images/eaea6e721ec743400762f7b529a78c31.jpg",
-            "image_link": "shopify://products/in-10",
-            "slide_tab": "Yozma IN 10",
-            "show_subtitle": false,
-            "subtitle": "",
-            "subtitle_color": "#ffffff",
-            "show_title": false,
-            "title": "",
-            "title_color": "#ffffff",
-            "show_button": false,
-            "button_text": "",
-            "button_color": "#000000",
-            "button_hover_color": "#ffffff",
-            "button_url": "shopify://products/in-10"
-          }
-        },
         "media_Pcfwxw": {
           "type": "media",
           "settings": {
@@ -190,6 +170,26 @@
             "button_color": "#000000",
             "button_hover_color": "#ffffff",
             "button_url": ""
+          }
+        },
+        "media_LgXDCw": {
+          "type": "media",
+          "settings": {
+            "pc_image_url": "shopify://shop_images/1_3ad8e324-2b3b-4d1f-8424-006db116908f.jpg",
+            "mb_image_url": "shopify://shop_images/eaea6e721ec743400762f7b529a78c31.jpg",
+            "image_link": "shopify://products/in-10",
+            "slide_tab": "Yozma IN 10",
+            "show_subtitle": false,
+            "subtitle": "",
+            "subtitle_color": "#ffffff",
+            "show_title": false,
+            "title": "",
+            "title_color": "#ffffff",
+            "show_button": false,
+            "button_text": "",
+            "button_color": "#000000",
+            "button_hover_color": "#ffffff",
+            "button_url": "shopify://products/in-10"
           }
         },
         "media_ePeUwR": {
@@ -238,8 +238,8 @@
         }
       },
       "block_order": [
-        "media_LgXDCw",
         "media_Pcfwxw",
+        "media_LgXDCw",
         "media_ePeUwR",
         "media_hPRhP6"
       ],
