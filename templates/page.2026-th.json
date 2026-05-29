@@ -996,6 +996,15 @@
     "mc_main_ces": {
       "type": "mc_main-ces",
       "blocks": {
+        "card_UHajXi": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/blog_banner.jpg",
+            "title": "Yozma June Events Are Coming: Big Rewards, Team Spirit & Family Rides",
+            "text": "",
+            "url": "shopify://blogs/ebike/yozma-june-electric-dirt-bike-events"
+          }
+        },
         "card_ExdDLg": {
           "type": "card",
           "settings": {
@@ -1079,6 +1088,7 @@
         }
       },
       "block_order": [
+        "card_UHajXi",
         "card_ExdDLg",
         "card_QBffqa",
         "media3",
