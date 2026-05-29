@@ -965,6 +965,7 @@
         "media_r8J7aP",
         "media_X8tFNL"
       ],
+      "disabled": true,
       "name": "MC Media Slide",
       "settings": {
         "page_color": "#0d0d0c",
