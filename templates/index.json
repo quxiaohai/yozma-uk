@@ -37,8 +37,8 @@
         "media3": {
           "type": "media",
           "settings": {
-            "pc_image_url": "shopify://shop_images/PC_1be9eda1-a4ff-4aaf-9578-047ae57dfe57.jpg",
-            "mb_image_url": "shopify://shop_images/5e3ab86769cab080a7d8ec44668d79cd.jpg",
+            "pc_image_url": "shopify://shop_images/6.2.jpg",
+            "mb_image_url": "shopify://shop_images/6.2_90e42b97-d91d-4e1d-9635-387da7501d7e.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "Yozma IN 10",
             "show_subtitle": false,
