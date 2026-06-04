@@ -196,7 +196,9 @@
             "mb_padding": "12px 0px 4px 0px",
             "heading": "Accessories",
             "free_list": [
-              "yozma-in-10-cycling-bag"
+              "yozma-in-10-cycling-bag",
+              "yozma-anniversary-exclusive-free-1-year-extended-warranty",
+              "yozma-gift-box"
             ],
             "product_list": [
               "yozma-electric-dirt-bike-street-tire-set-front-rear",
@@ -1359,7 +1361,8 @@
         "button_background": "",
         "button_text_color": "",
         "accordion_background": "#171717",
-        "accordion_text_color": ""
+        "accordion_text_color": "",
+        "theme_size": "large"
       }
     },
     "mc_section_text_jFmHmk": {
@@ -1501,7 +1504,8 @@
         "button_background": "",
         "button_text_color": "",
         "accordion_background": "#171717",
-        "accordion_text_color": ""
+        "accordion_text_color": "",
+        "theme_size": "large"
       }
     },
     "1759995049e645d62a": {
