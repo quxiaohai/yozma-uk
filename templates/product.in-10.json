@@ -1023,11 +1023,12 @@
         "youtube_VQgGtR": {
           "type": "youtube",
           "settings": {
-            "video_url": "https://youtu.be/UIFm5cPpgBs",
-            "cover_image": "shopify://shop_images/UIFm5cPpgBs-HD.jpg",
-            "video_url_mobile": "",
-            "date": "2025/09/10",
-            "content": "This electric dirt bike cost less than a IPhone! Yozma IN10",
+            "video_url": "https://youtu.be/bpFzeDK5IbE",
+            "cover_image": "shopify://shop_images/1_6.2_d404f35d-1bd3-4a89-8b59-f7eae9a5f6a3.jpg",
+            "video_url_mobile": "https://www.youtube.com/watch?v=bpFzeDK5IbE",
+            "cover_image_mobile": "shopify://shop_images/1_6.2_d404f35d-1bd3-4a89-8b59-f7eae9a5f6a3.jpg",
+            "date": "2026/06/05",
+            "content": "🎉 YOZMA 1st Anniversary Celebration is HERE! 🎉",
             "avatar": "shopify://shop_images/channels4_profile_6.jpg",
             "author": "ENDOPRYSM"
           }
