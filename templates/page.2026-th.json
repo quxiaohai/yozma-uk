@@ -1008,6 +1008,7 @@
         },
         "card_ExdDLg": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/Yozma-IN-10-Pro-Feature-Forums.jpg",
             "title": "Twist and Go: Yozma IN 10 Pro Packs 5500W and 60 Miles of Range",
@@ -1017,6 +1018,7 @@
         },
         "card_QBffqa": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/Yozma-IN-10_YT_03022026.jpg",
             "title": "Yozma IN 10 Pro First Look: A Real Mini Moto for Under $2,000?",
