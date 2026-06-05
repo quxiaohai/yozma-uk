@@ -345,6 +345,7 @@
     },
     "mc_main_countdown_6GFNm9": {
       "type": "mc_main-countdown",
+      "disabled": true,
       "name": "MC Main Countdown",
       "settings": {
         "page_color": "#141414",
