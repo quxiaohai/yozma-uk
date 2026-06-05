@@ -57,16 +57,44 @@ Supported variables
               {%- endif -%}
 
             {%- endunless -%}
-
+              {%- liquid
+                  capture badge_text
+                      assign badge_list = section.blocks | where: 'type', 'menu_badge'
+                      for badge in badge_list
+                          assign bs = badge.settings
+                          if bs.title == link.title
+                              if bs.type == 'text'
+                                  assign style = '--color: ' | append: bs.badge_text_color | append: '; --background-color: ' | append: bs.badge_bg_color
+                                  echo '<span class="menu-badge relative fw-700 lh-1 flex-center ' | append: bs.location | append: '" style="' | append: style | append : '">' | append: bs.badge_text | append: '</span>'
+                              else
+                                  assign style = '--scale: ' | append: bs.icon_size
+                                  assign class_text = 'menu-badge-icon ' | append: bs.location
+                                  echo bs.mb_badge_icon | default: bs.badge_icon | image_url: width: 50 | image_tag: loading: 'lazy', class: class_text, style: style
+                              endif
+                              break
+                          endif
+                      endfor
+                  endcapture
+                  capture badge_before
+                      if badge_text != blank and badge_text contains 'before'
+                          echo badge_text
+                      endif
+                  endcapture
+                  capture badge_after
+                      if badge_text != blank and badge_text contains 'after'
+                          echo badge_text
+                      endif
+                  endcapture
+              -%}
             <li class="h3 sm:h4">
               {%- if link.links.size > 0 or mega_menu_block != '' and is_mega_menu == false -%}
                 <button class="text-with-icon w-full group justify-between" aria-expanded="false" data-panel="1-{% increment level_1 %}">
-                  <span>{{ link.title }}</span>
+                  <span class="flex-left gap-2">{{ badge_before }}{{ link.title }}{{ badge_after }}</span>
                   <span class="circle-chevron group-hover:colors group-expanded:colors">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</span>
                 </button>
               {%- else -%}
                 <a href="{{ link.url }}" class="group block w-full">
-                  <span><span class="reversed-link">{{ link.title }}</span></span>
+                    <span class="flex-left gap-2">{{ badge_before }}<span class="reversed-link">{{ link.title }}</span>{{ badge_after }}</span>
                 </a>
               {%- endif -%}
             </li>

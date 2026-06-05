@@ -55,44 +55,6 @@ the underlying logic of the menu.
     font-weight: 900;
   }
 
-  .header-menu-title {
-    font-style: italic;
-    position: relative;
-    padding-left: 32px;
-  }
-
-  .header-menu-title .image-icon {
-    width: 34px;
-    height: 24px;
-    object-fit: contain;
-    position: absolute;
-    left: -5px;
-    top: 45%;
-    transform: translateY(-50%);
-  }
-
-  @media screen and (min-width: 1150px) {
-     .header-menu-title .image-icon {
-      background: url("https://cdn.shopify.com/s/files/1/0682/5646/5034/files/header-icon.svg?v=1779960541") no-repeat;
-      background-size: 100% 100%;
-     }
-  }
-
-  @media screen and (max-width: 1149px) {
-     .header-menu-title {
-      justify-content: flex-start;
-      padding-left: 0;
-      font-style: normal;
-     }
-     .header-menu-title .image-icon {
-      background: url("https://cdn.shopify.com/s/files/1/0682/5646/5034/files/header-dark-icon.svg?v=1779960541") no-repeat;
-      background-size: 100% 100%;
-      position: static;
-      transform: translateY(0);
-      margin-right: 4px;
-     }
-  }
-
   @media screen and (min-width: 700px) {
     #shopify-section-{{ section.id }} {
       {%- if section.settings.logo != blank -%}
@@ -117,6 +79,47 @@ the underlying logic of the menu.
       }
     }
   {%- endif -%}
+  .menu-badge {
+        background-color: var(--background-color);
+        color: var(--color);
+        font-size: 14px;
+        padding: 1px 4px;
+        border-radius: 2px;
+        margin-left: 2px;
+    }
+
+    .menu-badge.before {
+        margin-left: 0;
+        margin-right: 2px;
+    }
+
+    .menu-badge:before {
+        content: "";
+        border: 5px solid transparent;
+        border-right-color: var(--background-color);
+        position: absolute;
+        top: 3px;
+        left: -9px;
+    }
+    .menu-badge.before:before {
+        left: auto;
+        right: -9px;
+        border-right-color: transparent;
+        border-left-color: var(--background-color);
+    }
+    .menu-badge-icon {
+        width: auto;
+        max-width: 30px;
+        height: auto;
+        max-height: 35px;
+        object-fit: contain;
+        margin-left: -3px;
+        transform: translateY(-1px) scale(var(--scale));
+    }
+    .menu-badge-icon.before {
+        margin-left: 0;
+        margin-right: -3px;
+    }
 </style>
 
 <height-observer variable="header" id="main-header">
@@ -156,11 +159,39 @@ the underlying logic of the menu.
                         break
                       endif
                     endfor
+
+                    capture badge_text
+                      assign badge_list = section.blocks | where: 'type', 'menu_badge'
+                      for badge in badge_list
+                          assign bs = badge.settings
+                          if bs.title == link.title
+                              if bs.type == 'text'
+                                  assign style = '--color: ' | append: bs.badge_text_color | append: '; --background-color: ' | append: bs.badge_bg_color
+                                  echo '<span class="menu-badge relative fw-700 lh-1 flex-center ' | append: bs.location | append: '" style="' | append: style | append : '">' | append: bs.badge_text | append: '</span>'
+                              else
+                                  assign style = '--scale: ' | append: bs.icon_size
+                                  assign class_text = 'menu-badge-icon ' | append: bs.location
+                                  echo bs.badge_icon | image_url: width: 50 | image_tag: loading: 'lazy', class: class_text, style: style
+                              endif
+                              break
+                          endif
+                      endfor
+                    endcapture
+                    capture badge_before
+                        if badge_text != blank and badge_text contains 'before'
+                          echo badge_text
+                        endif
+                    endcapture
+                    capture badge_after
+                        if badge_text != blank and badge_text contains 'after'
+                          echo badge_text
+                        endif
+                    endcapture
                   %}
 
                   <li>
                     {%- if link.levels == 0 and mega_menu_block == '' -%}
-                      <a href="{{ link.url }}" class="bold link-faded-reverse" {% if link.current %}aria-current="page"{% endif %}>{{- link.title -}}</a>
+                      <a href="{{ link.url }}" class="bold flex-left gap-2.5 link-faded-reverse" {% if link.current %}aria-current="page"{% endif %}>{{ badge_before }}{{- link.title -}}{{ badge_after }}</a>
                     {%- else -%}
                       {%- if mega_menu_block != '' -%}
                         {%- comment -%}
@@ -172,14 +203,14 @@ the underlying logic of the menu.
                         {%- unless mega_menu_block.settings.layout == 'drawer' -%}
                           <details is="mega-menu-disclosure" trigger="{{ section.settings.menu_open_trigger | escape }}" {{ mega_menu_block.shopify_attributes }}>
                             <summary class="text-with-icon gap-2.5 bold link-faded-reverse" {% if link.url != '#' %}data-url="{{ link.url | escape }}"{% endif %}>
-                              {{- link.title -}} {%- render 'icon' with 'chevron-bottom' -%}
+                              {{ badge_before }}{{- link.title -}}{{ badge_after }} {%- render 'icon' with 'chevron-bottom' -%}
                             </summary>
 
                            {%- render 'mega-menu-horizontal', link: link, mega_menu_block: mega_menu_block -%}
                           </details>
                         {%- else -%}
                           <button aria-controls="navigation-drawer-{{ forloop.index }}" aria-expanded="false" class="text-with-icon gap-2.5 bold link-faded-reverse">
-                            {{- link.title -}} {%- render 'icon' with 'chevron-bottom' -%}
+                            {{ badge_before }}{{- link.title -}}{{ badge_after }} {%- render 'icon' with 'chevron-bottom' -%}
                           </button>
 
                           <navigation-drawer class="navigation-drawer drawer lg-max:hidden" id="navigation-drawer-{{ forloop.index }}" open-from="left" mega-menu>
@@ -189,7 +220,7 @@ the underlying logic of the menu.
                       {%- else -%}
                         <details class="relative" is="dropdown-disclosure" trigger="{{ section.settings.menu_open_trigger | escape }}">
                           <summary class="text-with-icon gap-2.5 bold link-faded-reverse" {% if link.url != '#' %}data-url="{{ link.url | escape }}"{% endif %}>
-                            {{- link.title -}} {%- render 'icon' with 'chevron-bottom' -%}
+                            {{ badge_before }}{{- link.title -}}{{ badge_after }} {%- render 'icon' with 'chevron-bottom' -%}
                           </summary>
 
                           <div class="dropdown-menu {% if link.levels <= 1 %}dropdown-menu--restrictable{% endif %}">
@@ -817,7 +848,95 @@ the underlying logic of the menu.
           "label": "Country url"
         }
       ]
-     }
+     },
+      {
+      "type": "menu_badge",
+      "name": "Menu badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Show menu name",
+          "default": "Electric Dirt Bike"
+        },
+        {
+          "type": "select",
+          "id": "type",
+          "options": [
+            {
+              "value": "text",
+              "label": "Text"
+            },
+            {
+              "value": "icon",
+              "label": "Icon"
+            }
+          ],
+          "default": "text",
+          "label": "Badge type"
+        },
+        {
+          "type": "select",
+          "id": "location",
+          "options": [
+            {
+              "value": "before",
+              "label": "Before"
+            },
+            {
+              "value": "after",
+              "label": "After"
+            }
+          ],
+          "default": "after",
+          "label": "Display position"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text",
+          "default": "Hot",
+          "visible_if": "{{ block.settings.type == 'text' }}"
+        },
+        {
+          "type": "color",
+          "id": "badge_text_color",
+          "label": "Badge text color",
+          "default": "#FFFFFF",
+          "visible_if": "{{ block.settings.type == 'text' }}"
+        },
+        {
+          "type": "color",
+          "id": "badge_bg_color",
+          "label": "Badge background color",
+          "default": "#FF0000",
+          "visible_if": "{{ block.settings.type == 'text' }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "badge_icon",
+          "label": "Desktop badge icon",
+          "visible_if": "{{ block.settings.type == 'icon' }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "mb_badge_icon",
+          "label": "Mobile badge icon",
+          "visible_if": "{{ block.settings.type == 'icon' }}"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "m",
+          "label": "Icon size",
+          "default": 1,
+          "visible_if": "{{ block.settings.type == 'icon' }}"
+        },
+      ]
+    }
   ]
 }
 {% endschema %}
