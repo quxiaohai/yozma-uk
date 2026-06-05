@@ -69,7 +69,7 @@
           "type": "message",
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
-            "text": "<p>🏆 YOZMA 1st Anniversary Sale Is Live – Up to €200 Off + Spin & Win! 🎁</p>",
+            "text": "<p>🏆 YOZMA 1st Anniversary Sale Is Live – Up to <em><strong>£</strong></em>200 Off + Spin & Win! 🎁</p>",
             "url": "shopify://products/in-10"
           }
         },
