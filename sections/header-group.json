@@ -69,8 +69,8 @@
           "type": "message",
           "settings": {
             "icon": "shopify://shop_images/yozma-bar-icon.png",
-            "text": "<p>Over £<em><strong>49 </strong></em>Free Shipping on All Dirt Bikes!</p>",
-            "url": "https://www.yozmasport.com/products/in-10?_pos=1&_psq=IN+10&_ss=e&_v=1.0"
+            "text": "<p>🏆 YOZMA 1st Anniversary Sale Is Live – Up to <em><strong>£</strong></em>200 Off + Spin & Win! 🎁</p>",
+            "url": "shopify://products/in-10"
           }
         },
         "message_Hm9xjY": {

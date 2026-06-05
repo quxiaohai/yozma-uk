@@ -1359,7 +1359,8 @@
         "button_background": "",
         "button_text_color": "",
         "accordion_background": "#171717",
-        "accordion_text_color": ""
+        "accordion_text_color": "",
+        "theme_size": "large"
       }
     },
     "mc_section_text_jFmHmk": {
@@ -1501,7 +1502,8 @@
         "button_background": "",
         "button_text_color": "",
         "accordion_background": "#171717",
-        "accordion_text_color": ""
+        "accordion_text_color": "",
+        "theme_size": "large"
       }
     },
     "1759995049e645d62a": {
