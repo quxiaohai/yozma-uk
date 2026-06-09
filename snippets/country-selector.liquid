@@ -15,7 +15,7 @@
         <p class="h5" slot="title">{{ 'general.localization.country' | t }}</p>
 
         <x-listbox class="popover-listbox popover-listbox--sm" role="listbox">
-            {%- for block in section.blocks -%}
+            {%- for block in list -%}
                 {%- assign bs = block.settings -%}
                 <a
                     {% if bs.country_code == 'GB' %}aria-selected="true"{% endif %}
