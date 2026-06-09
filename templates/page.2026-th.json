@@ -263,21 +263,21 @@
           "type": "nav_tab",
           "settings": {
             "title": "Get a prize",
-            "position": 4
+            "position": 3
           }
         },
         "nav_tab_gdw6UY": {
           "type": "nav_tab",
           "settings": {
             "title": "Spin to win",
-            "position": 5
+            "position": 4
           }
         },
         "nav_tab_8dCgM4": {
           "type": "nav_tab",
           "settings": {
             "title": "IN 10",
-            "position": 7
+            "position": 6
           }
         },
         "nav_tab_im9xnM": {
@@ -292,21 +292,21 @@
           "type": "nav_tab",
           "settings": {
             "title": "News",
-            "position": 6
+            "position": 5
           }
         },
         "nav_tab_x6p6NC": {
           "type": "nav_tab",
           "settings": {
             "title": "FAQ",
-            "position": 10
+            "position": 9
           }
         },
         "nav_tab_gWdziX": {
           "type": "nav_tab",
           "settings": {
             "title": "Support",
-            "position": 11
+            "position": 10
           }
         }
       },
@@ -743,8 +743,8 @@
         "slide_text_color": "#ffffff",
         "slide_desc_color": "#ffffff",
         "slide_desc_background_image": "shopify://shop_images/th-turntable-vector.png",
-        "mode_type": "click",
-        "display_position": 1
+        "mode_type": "setting",
+        "display_position": 2
       }
     },
     "mc_th_product_card_N8t7NT": {
@@ -1008,6 +1008,7 @@
         },
         "card_ExdDLg": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/Yozma-IN-10-Pro-Feature-Forums.jpg",
             "title": "Twist and Go: Yozma IN 10 Pro Packs 5500W and 60 Miles of Range",
@@ -1017,6 +1018,7 @@
         },
         "card_QBffqa": {
           "type": "card",
+          "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/Yozma-IN-10_YT_03022026.jpg",
             "title": "Yozma IN 10 Pro First Look: A Real Mini Moto for Under $2,000?",
@@ -1028,24 +1030,24 @@
           "type": "card",
           "settings": {
             "desktop_image": "shopify://shop_images/product-mb-yozma-bike.jpg",
-            "title": "The Comprehensive Guide to Electric Bicycle Maintenance and Care",
+            "title": "Where Can You Ride an Electric Dirt Bike in the UK? Complete 2026 Guide",
             "text": "",
-            "url": "shopify://blogs/ebike/electric-bicycle-maintenance-and-care-guide"
+            "url": "shopify://blogs/ebike/where-can-you-ride-electric-dirt-bike-uk"
           }
         },
         "media1": {
           "type": "card",
           "settings": {
             "desktop_image": "shopify://shop_images/photo-34.webp",
-            "title": "Power Meets Play: Exploring The Yozma IN 10 Electric Dirt Bike",
+            "title": "Electric Dirt Bike vs Petrol Dirt Bike: Which Is Better for UK Riders?",
             "text": "",
-            "url": "shopify://blogs/news/power-meets-play-exploring-the-yozma-in-10-electric-dirt-bike"
+            "url": "shopify://blogs/ebike/electric-dirt-bike-vs-petrol-dirt-bike-uk"
           }
         },
         "card_whmxzD": {
           "type": "card",
           "settings": {
-            "desktop_image": "shopify://shop_images/DSC01380.webp",
+            "desktop_image": "shopify://shop_images/DSC_3705_1_95e34250-ee3c-4bc8-ac2d-bf33b412cfe5.png",
             "title": "e-MTB Brakes: A Simple Guide to Safer, Faster Stops(2026)",
             "text": "",
             "url": "shopify://blogs/ebike/emtb-brake-pads-setup-and-bed-in-guide"

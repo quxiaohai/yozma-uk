@@ -499,31 +499,31 @@
     "mc_main_ces": {
       "type": "mc_main-ces",
       "blocks": {
+        "media1": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/blog_banner.jpg",
+            "title": "Yozma June Events Are Coming: Big Rewards, Team Spirit & Family Rides",
+            "text": "",
+            "url": "shopify://blogs/ebike/yozma-june-electric-dirt-bike-events"
+          }
+        },
         "media3": {
           "type": "card",
           "settings": {
             "desktop_image": "shopify://shop_images/product-mb-yozma-bike.jpg",
-            "title": "The Comprehensive Guide to Electric Bicycle Maintenance and Care",
+            "title": "Where Can You Ride an Electric Dirt Bike in the UK? Complete 2026 Guide",
             "text": "",
-            "url": "shopify://blogs/ebike/electric-bicycle-maintenance-and-care-guide"
-          }
-        },
-        "media1": {
-          "type": "card",
-          "settings": {
-            "desktop_image": "shopify://shop_images/photo-34.webp",
-            "title": "Power Meets Play: Exploring The Yozma IN 10 Electric Dirt Bike",
-            "text": "",
-            "url": "shopify://blogs/news/power-meets-play-exploring-the-yozma-in-10-electric-dirt-bike"
+            "url": "shopify://blogs/ebike/where-can-you-ride-electric-dirt-bike-uk"
           }
         },
         "card_whmxzD": {
           "type": "card",
           "settings": {
             "desktop_image": "shopify://shop_images/DSC01380.webp",
-            "title": "e-MTB Brakes: A Simple Guide to Safer, Faster Stops(2026)",
+            "title": "Electric Dirt Bike vs Petrol Dirt Bike: Which Is Better for UK Riders?",
             "text": "",
-            "url": "shopify://blogs/ebike/emtb-brake-pads-setup-and-bed-in-guide"
+            "url": "shopify://blogs/ebike/electric-dirt-bike-vs-petrol-dirt-bike-uk"
           }
         },
         "card_Rgk6tT": {
@@ -564,8 +564,8 @@
         }
       },
       "block_order": [
-        "media3",
         "media1",
+        "media3",
         "card_whmxzD",
         "card_Rgk6tT",
         "media4",
