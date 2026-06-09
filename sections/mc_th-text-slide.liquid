@@ -336,8 +336,18 @@
         <div class="slide-desc relative w-full lh-2">
             {%- render 'global-image', image: ss.slide_desc_background_image, image_size: 600, class: 'absolute' -%}
             {%- for block in section.blocks -%}
-                {%- assign bs = block.settings -%}
-                <div node-name="desc" class="desc relative{% if forloop.first %} active{% endif %} z-1 w-full">
+                {%- liquid
+                    assign bs = block.settings
+                    assign is_active = false
+                    if ss.mode_type == 'click'
+                      assign is_active = forloop.first
+                    else
+                      if forloop.index == ss.display_position
+                        assign is_active = true
+                      endif
+                    endif
+                -%}
+                <div node-name="desc" class="desc relative{% if is_active %} active{% endif %} z-1 w-full">
                     {{ bs.slide_desc }}
                 </div>
             {%- endfor -%}
