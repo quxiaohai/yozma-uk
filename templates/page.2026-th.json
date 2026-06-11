@@ -155,8 +155,8 @@
         "media_Pcfwxw": {
           "type": "media",
           "settings": {
-            "pc_image_url": "shopify://shop_images/6.2_2c1010dc-0ea1-40ca-9f51-b902c125bcf3.jpg",
-            "mb_image_url": "shopify://shop_images/6.2_e14ac91b-6d6a-4c43-8071-d28b26a1a2d0.jpg",
+            "pc_image_url": "shopify://shop_images/uk6.11.jpg",
+            "mb_image_url": "shopify://shop_images/uk_6.11.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "",
             "show_subtitle": false,
