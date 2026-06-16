@@ -84,18 +84,18 @@
             "mb_image_url": "shopify://shop_images/6.11.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "Yozma IN 10",
-            "show_subtitle": true,
+            "show_subtitle": false,
             "subtitle": "<p>IN 10 </p>",
             "subtitle_color": "#ffffff",
             "show_title": false,
             "title": "",
             "title_color": "#ffffff",
-            "show_button": true,
+            "show_button": false,
             "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
             "button_text": "Learn More",
             "button_color": "#000000",
             "button_hover_color": "#ffffff",
-            "button_url": ""
+            "button_url": "shopify://products/in-10"
           }
         }
       },
