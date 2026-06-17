@@ -658,6 +658,30 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "show_in_stock_badge",
+        "label": "Show in stock badge",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "in_stock_badge_text",
+        "label": "In stock badge text",
+        "default": "In Stock"
+      },
+      {
+        "type": "color",
+        "id": "in_stock_badge_color",
+        "label": "In stock badge color",
+        "default": "#00a342"
+      },
+      {
+        "type": "color",
+        "id": "in_stock_badge_bg_color",
+        "label": "In stock badge background color",
+        "default": "#f7fee7"
+      },
+      {
         "type": "select",
         "id": "discount_mode",
         "label": "Show discount as...",

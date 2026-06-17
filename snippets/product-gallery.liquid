@@ -249,6 +249,21 @@ only way to do it on Shopify right now.
                     {%- endif -%}
                 {%- endfor -%}
             </media-carousel>
+            {%- liquid
+                assign variant = product.selected_or_first_available_variant
+                if settings.discount_mode == 'percentage'
+                    assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%'
+                else
+                    capture savings
+                        echo variant.compare_at_price | minus: variant.price | money
+                    endcapture
+                endif
+            -%}
+            {%- if savings != blank -%}
+                <div class="product-media-badge flex-left absolute">
+                    <span class="z-2 fw-600 lh-2 relative">{{  'product.general.discount_badge_html' | t: savings: savings }}</span>
+                </div>
+            {%- endif -%}
             {%- if section.settings.enable_image_zoom -%}
                 <div
                     class="product-gallery__zoom {% if layout contains 'grid' %}md:hidden{% endif %}">

@@ -133,7 +133,6 @@ Supported variables
                     {%- endif -%}
                 {%- when 'badges' -%}
                     {%- render 'product-badges', product: product, context: 'product', types: 'custom', class: 'product-info__badge-list' -%}
-
                 {%- when 'sku' -%}
                     {% if product.selected_or_first_available_variant.sku != blank %}
                         <variant-sku class="product-info__sku text-xs text-subdued">
@@ -344,6 +343,29 @@ Supported variables
                             block: block
                         -%}
                     </div>
+                {%- when 'service_card' -%}
+                <div class="product-info__service-card flex-left">
+                    {%- for v in (1..4) -%}
+                        {%- liquid
+                            assign icon = 'image_icon' | append: v
+                            assign title = 'title' | append: v
+                            assign text = 'text' | append: v
+                        -%}
+                        {%- if bs[icon] != blank and bs[title] != blank -%}
+                            <div class="card">
+                                {% render 'global-image', media_type: 'icon', desktop_img: bs[icon], desktop_size: 200 %}
+                                <div class="info text-center">
+                                    <div class="name fw-700 lh-4">{{ bs[title] }}</div>
+                                    {%- if bs[text] != blank -%}
+                                        <div class="desc lh-2">
+                                            {{ bs[text] }}
+                                        </div>
+                                    {%- endif -%}
+                                </div>
+                            </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </div>
                 {%- when 'image_card' -%}
                     {%- assign bs = block.settings -%}
                     <div class="product-info__image-card flex-center">
@@ -666,7 +688,13 @@ Supported variables
                             -%}
                         </div>
                     {%- endif -%}
-
+                {%- when 'payment_methods' -%}
+                    <ul class="footer__payment-icons h-stack wrap gap-2">
+                        {%- for type in shop.enabled_payment_types -%}
+                            <li class="contents">{{ type | payment_type_svg_tag }}</li>
+                        {%- endfor -%}
+                        <li class="contents">{{ 'klarna' | payment_type_svg_tag }}</li>
+                    </ul>
                 {%- when 'pickup_availability' -%}
                     <div class="product-info__pickup-availability">
                         {%- render 'pickup-availability', product_variant: product.selected_or_first_available_variant -%}

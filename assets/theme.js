@@ -3286,6 +3286,7 @@ var ProductGallery = class extends HTMLElement {
         this._pageDots = Array.from(this.querySelectorAll("page-dots"));
         this._viewInSpaceButton = this.querySelector("[data-shopify-xr]");
         this._customCursor = this.querySelector(".product-gallery__cursor");
+        this._mediaTag = this.querySelector(".product-gallery-media-badge");
         this.addEventListener("carousel:change", this._onCarouselChanged);
         if (this._viewInSpaceButton) {
             this.addEventListener("carousel:settle", this._updateViewInSpaceButton);
@@ -3396,6 +3397,12 @@ var ProductGallery = class extends HTMLElement {
     _onVariantChanged(event) {
         if (!event.detail.variant) {
             return;
+        }
+        if (this._mediaTag) {
+            this._mediaTag.hidden = !event.detail.mediaTag;
+            if (event.detail.mediaTag) {
+                this._mediaTag.innerHTML = event.detail.mediaTag;
+            }
         }
         let newMediaPosition;
         if (event.detail.previousVariant === null) {
@@ -3783,9 +3790,11 @@ var _VariantPicker = class _VariantPicker extends HTMLElement {
     async selectCombination({optionValues, productChange}) {
         const previousVariant = this.selectedVariant;
         const newContent = document.createRange().createContextualFragment(await __privateMethod(this, _VariantPicker_instances, renderForCombination_fn).call(this, optionValues));
+        let newMediaTag = null;
         if (!productChange) {
             const newVariantPicker = deepQuerySelector(newContent, `${this.tagName}[form-id="${this.getAttribute("form-id")}"]`);
             const newVariant = JSON.parse(newVariantPicker.querySelector("script[data-variant]")?.textContent || "{}");
+            newMediaTag = deepQuerySelector(newContent,  '.product-gallery-media-badge');
             __privateSet(this, _selectedVariant, newVariant);
             __privateGet(this, _form).id.value = __privateGet(this, _selectedVariant)?.id;
             __privateGet(this, _form).id.dispatchEvent(new Event("change", {bubbles: true}));
@@ -3807,6 +3816,7 @@ var _VariantPicker = class _VariantPicker extends HTMLElement {
                 detail: {
                     formId: __privateGet(this, _form).id,
                     variant: __privateGet(this, _selectedVariant),
+                    mediaTag: newMediaTag?.innerHTML,
                     previousVariant
                 }
             }));
@@ -6371,7 +6381,7 @@ class Animation {
 
     async load() {
         if (this.type === 'none' || this.paused) return;
-        this.container.classList.add('animating');
+
         switch (this.type) {
             case 'fade-in':
                 await animate(this.container, {opacity: 1}, {
@@ -6411,7 +6421,7 @@ class Animation {
 
     async reset(duration) {
         if (this.type === 'none') return;
-        this.container.classList.remove('animating');
+
         switch (this.type) {
             case 'fade-in':
                 await animate(this.container, {opacity: 0}, {
@@ -6451,6 +6461,7 @@ class Animation {
                 }).finished;
                 break;
         }
+
         this.container.classList.remove('animated');
     }
 }
@@ -6528,28 +6539,6 @@ customElements.define("checkout-button", class extends HTMLElement {
         }
         allFormData.items.push(json);
         $heybike.addToCart(allFormData, true);
-    }
-});
-
-customElements.define('tab-panel', class extends HTMLElement {
-    constructor() {
-        super();
-    }
-
-    connectedCallback() {
-        $heybike.tabSwitch({
-            root: this,
-            type: this.type,
-            panel: this.panel
-        })
-    }
-
-    get type() {
-        return this.getAttribute('data-tab') || 'tab';
-    }
-
-    get panel() {
-        return this.getAttribute('data-panel') || 'panel';
     }
 });
 

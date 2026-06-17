@@ -14,7 +14,7 @@ Supported variables
 {%- endcomment -%}
 
 {%- if variant != blank -%}
-  <variant-inventory>
+  <variant-inventory class="variant-inventory">
     {%- if variant.available -%}
       {%- if variant.inventory_management and variant.inventory_policy == 'deny' and variant.inventory_quantity <= low_threshold and low_threshold > 0 -%}
         <span class="text-with-icon text-error">{%- render 'icon' with 'warning' -%} {{- 'product.inventory.low_stock_with_quantity_count' | t: count: variant.inventory_quantity -}}</span>

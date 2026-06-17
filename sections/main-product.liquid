@@ -175,7 +175,7 @@
         position: absolute;
         top: 50%;
         margin-top: -13px;
-        z-index: 1;
+        z-index: 2;
         cursor: pointer;
         opacity: 0;
         transition: opacity 0.3s;
@@ -274,6 +274,22 @@
         font-size: 12px;
     }
 
+    @keyframes ani-slide-shake {
+        from, 50%, to {
+            transform: translate3d(0,0,0)
+        }
+        5%, 15%, 25%, 35%, 45% {
+            transform: translate3d(-10px,0,0)
+        }
+        10%,20%,30%,40% {
+            transform: translate3d(10px,0,0)
+        }
+    }
+
+    .product-info__inventory .variant-inventory,
+    .product-quick-add .button[type="submit"] {
+        animation: ani-slide-shake 2s ease-in-out infinite;
+    }
 
     @media screen and (max-width: 999px) {
         .product-info__title {
@@ -740,8 +756,44 @@
         padding: 0;
     }
 
+    .checkout-button .button {
+        position: relative;
+        overflow: hidden;
+        --before-background: #000000;
+        transition: color 0.3s, box-shadow 0.3s;
+    }
+
+    .checkout-button .button:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: var(--before-background);
+        transform: translate3d(-100%, 0, 0);
+        transition: transform 0.3s;
+    }
+
+    .checkout-button .button > div {
+        position: relative;
+        z-index: 2;
+    }
+
+    .checkout-button .button:hover:before {
+        transform: translate3d(0, 0, 0);
+    }
+
     .product-info__buy-box .button[type="submit"] {
         width: calc(100% - 185px);
+    }
+
+    .checkout-button .button[type="button"] {
+        --before-background: #FFFFFF;
+    }
+    .checkout-button .button[type="button"]:hover {
+        box-shadow: 0 0 0 1px #000;
+        color: #000000;
     }
 
     .product-info__buy-box .quantity-selector {
@@ -938,6 +990,72 @@
           margin-right: 3px;
         }
     }
+    {%- assign service_cards = section.blocks |where: 'type', 'service_card' -%}
+    {%- if service_cards != blank -%}
+.product-info__service-card {
+    align-items: stretch;
+  }
+  .product-info__service-card .card {
+    flex: 1;
+  }
+  .product-info__service-card .card .image {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+  .product-info__service-card .card .info {
+    padding-top: 4px;
+  }
+  .product-info__service-card .card .name {
+    color: #000000;
+    font-size: 16px;
+  }
+  .product-info__service-card .card .desc {
+    color: #999999;
+    font-size: 12px;
+  }
+  @media screen and (max-width: 1023px) {
+    .product-info__service-card {
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .product-info__service-card .card {
+      width: 7.78125rem;
+    }
+    .product-info__service-card .card .image {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    .product-info__service-card .card .info {
+      padding-top: 0.2rem;
+    }
+    .product-info__service-card .card .name {
+      font-size: 0.75rem;
+    }
+    .product-info__service-card .card .desc {
+      font-size: 0.5rem;
+    }
+  }
+    {%- endif -%}
+{%- if ss.show_media_saved_tag -%}
+  .product-media-badge {
+    display: {% if ss.media_saved_tag_type == 'first' %}none{% else %}flex{% endif %};
+  }
+
+  .product-gallery__media-list {
+    gap: 0;
+  }
+
+  .product-gallery__media-list.is-first + .product-media-badge {
+    display: flex;
+  }
+
+  .product-gallery__media-list-wrapper .product-gallery__media {
+    background-color: #f9f9f8;
+    z-index: 1;
+  }
+   {%- endif -%}
 </style>
 
 {%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
@@ -990,6 +1108,7 @@
                         {%- render 'buy-buttons',
                             product: product,
                             form_id: product_form_id,
+                            show_fixed_cart_button: ss.show_fixed_cart_button,
                             show_payment_button: buy_buttons_block.settings.show_payment_button,
                             show_gift_card_recipient: buy_buttons_block.settings.show_gift_card_recipient,
                             atc_button_background: buy_buttons_block.settings.atc_button_background,
@@ -3923,6 +4042,107 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "default": "1,642 Reviews"
         },
       ]
+    },
+    {
+      "type": "service_card",
+      "name": "Service card",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon1",
+          "label": "Icon #1"
+        },
+        {
+          "type": "text",
+          "id": "title1",
+          "label": "Name #1"
+        },
+        {
+          "type": "text",
+          "id": "text1",
+          "label": "Text #1"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_icon2",
+          "label": "Icon #2"
+        },
+        {
+          "type": "text",
+          "id": "title2",
+          "label": "Name #2"
+        },
+        {
+          "type": "text",
+          "id": "text2",
+          "label": "Text #2"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_icon3",
+          "label": "Icon #3"
+        },
+        {
+          "type": "text",
+          "id": "title3",
+          "label": "Name #3"
+        },
+        {
+          "type": "text",
+          "id": "text3",
+          "label": "Text #3"
+        },
+         {
+          "type": "image_picker",
+          "id": "image_icon4",
+          "label": "Icon #4"
+        },
+        {
+          "type": "text",
+          "id": "title4",
+          "label": "Name #4"
+        },
+        {
+          "type": "text",
+          "id": "text4",
+          "label": "Text #4"
+        },
+      ]
+    },
+    {
+      "type": "payment_methods",
+      "name": "Payment methods",
+      "settings": [
+        {
+          "type": "text",
+          "id": "padding",
+          "label": "Desktop padding",
+          "default": "12px 0px 12px 0px",
+          "info": "Top, Right, Bottom, Left -> (8px 0px 8px 0px)"
+        },
+        {
+          "type": "text",
+          "id": "mb_padding",
+          "label": "Mobile padding",
+          "default": "4px 0px 4px 0px",
+          "info": "Top, Right, Bottom, Left -> (4px 0px 4px 0px)"
+        }
+      ]
     }
   ],
   "settings": [
@@ -3959,6 +4179,34 @@ quick buy information in a template, that will be extracted in JS, but ensure it
       "id": "show_fixed_add_to_cart",
       "label": "Show add to cart on scroll",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_fixed_cart_button",
+      "label": "Show fixed add to cart button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_media_saved_tag",
+      "label": "Show media saved tag",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "media_saved_tag_type",
+      "label": "Media saved tag type",
+      "options": [
+        {
+        "value": "first",
+        "label": "First show"
+        },
+        {
+        "value": "all",
+        "label": "All show"
+        }
+      ],
+      "default": "first"
     },
     {
       "type": "checkbox",
