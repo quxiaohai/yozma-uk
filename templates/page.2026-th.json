@@ -997,6 +997,16 @@
     "mc_main_ces": {
       "type": "mc_main-ces",
       "blocks": {
+        "card_nz9x7C": {
+          "type": "card",
+          "settings": {
+            "desktop_image": "shopify://shop_images/1_6.2_d404f35d-1bd3-4a89-8b59-f7eae9a5f6a3.jpg",
+            "mobile_image": "shopify://shop_images/6.2_33a79280-b0e4-4bb6-8709-625940603070.jpg",
+            "title": "Celebrate Yozma 1st Anniversary: Spin, Win, and Ride",
+            "text": "",
+            "url": "shopify://blogs/ebike/yozma-1st-anniversary"
+          }
+        },
         "card_UHajXi": {
           "type": "card",
           "settings": {
@@ -1091,6 +1101,7 @@
         }
       },
       "block_order": [
+        "card_nz9x7C",
         "card_UHajXi",
         "card_ExdDLg",
         "card_QBffqa",
