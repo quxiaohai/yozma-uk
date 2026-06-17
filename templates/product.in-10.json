@@ -196,7 +196,6 @@
             "heading": "Accessories",
             "free_list": [
               "yozma-in-10-cycling-bag",
-              "yozma-anniversary-exclusive-free-1-year-extended-warranty",
               "yozma-gift-box"
             ],
             "product_list": [
@@ -1032,6 +1031,19 @@
             "author": "ENDOPRYSM"
           }
         },
+        "youtube_dA8L6f": {
+          "type": "youtube",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=qUTZ86b3mOY",
+            "cover_image": "shopify://shop_images/uk_6.5_5c4f4cbd-a030-4200-b3ec-23ea8175dae9.jpg",
+            "video_url_mobile": "https://www.youtube.com/watch?v=qUTZ86b3mOY",
+            "cover_image_mobile": "shopify://shop_images/uk_6.5_5c4f4cbd-a030-4200-b3ec-23ea8175dae9.jpg",
+            "date": "2026/06/11",
+            "content": "YOZMA × Belgian Red Devils",
+            "avatar": "shopify://shop_images/channels4_profile_6.jpg",
+            "author": "ENDOPRYSM"
+          }
+        },
         "youtube_TLCWVG": {
           "type": "youtube",
           "settings": {
@@ -1114,6 +1126,7 @@
         "video_pAyz4R",
         "video_aHP8PY",
         "youtube_VQgGtR",
+        "youtube_dA8L6f",
         "youtube_TLCWVG",
         "youtube_kmY6wG",
         "youtube_a6a6DE",

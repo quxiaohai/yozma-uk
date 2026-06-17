@@ -155,8 +155,8 @@
         "media_Pcfwxw": {
           "type": "media",
           "settings": {
-            "pc_image_url": "shopify://shop_images/6.2_2c1010dc-0ea1-40ca-9f51-b902c125bcf3.jpg",
-            "mb_image_url": "shopify://shop_images/6.2_e14ac91b-6d6a-4c43-8071-d28b26a1a2d0.jpg",
+            "pc_image_url": "shopify://shop_images/uk6.11.jpg",
+            "mb_image_url": "shopify://shop_images/uk_6.11.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "",
             "show_subtitle": false,
@@ -196,8 +196,8 @@
           "type": "media",
           "disabled": true,
           "settings": {
-            "pc_image_url": "shopify://shop_images/3840_1599333.jpg",
-            "mb_image_url": "shopify://shop_images/1500_x_2180111.jpg",
+            "pc_image_url": "shopify://shop_images/6.16.jpg",
+            "mb_image_url": "shopify://shop_images/6.11.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "",
             "show_subtitle": false,
@@ -447,7 +447,7 @@
             "gift_icon2": "shopify://shop_images/spin-th-icon6.png",
             "discount_code2": "RIDE100",
             "prize_name2": "Coupon £100 OFF",
-            "prize_weight2": 10,
+            "prize_weight2": 1,
             "gift_icon3": "shopify://shop_images/spin-th-icon4.png",
             "discount_code3": "RIDESAFE",
             "prize_name3": "Free Riding Helmet",
@@ -744,7 +744,7 @@
         "slide_desc_color": "#ffffff",
         "slide_desc_background_image": "shopify://shop_images/th-turntable-vector.png",
         "mode_type": "setting",
-        "display_position": 2
+        "display_position": 3
       }
     },
     "mc_th_product_card_N8t7NT": {
