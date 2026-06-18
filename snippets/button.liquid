@@ -85,6 +85,7 @@ Supported variables
   {% if href %}href="{{ href }}"{% endif %}
   {% if external and href != blank %}target="_blank"{% endif %}
   {% if href == blank %}is="{{ is | default: 'custom-button' }}"{% endif %}
+  {% if custom_attr != blank %}{{ custom_attr }}{% endif %}
 {%- endcapture -%}
 
 {%- capture button_content -%}

@@ -76,26 +76,25 @@ Supported variables
                 </div>
             </gift-card-recipient>
         {%- endif -%}
+        {%- liquid
+            if show_fixed_cart_button == false
+                assign custom_attr = 'data-ani'
+                assign payment_button_background = atc_button_background
+                assign payment_button_text_color = atc_button_text_color
+            else
+                assign show_fixed_cart_button = true
+                assign custom_attr = ''
+            endif
+        -%}
         <checkout-button class="checkout-button" form-id="{{ form_id }}">
-            {%- liquid
-
-                if show_fixed_cart_button == false
-                    assign checkout_type = 'submit'
-                    assign payment_button_background = atc_button_background
-                    assign payment_button_text_color = atc_button_text_color
-                else
-                    assign show_fixed_cart_button = true
-                    assign checkout_type = 'button'
-                endif
-            -%}
             <buy-buttons
                 class="buy-buttons {% if show_payment_button %}buy-buttons--multiple{% endif %}"
                 template="{{ product.template_suffix | escape }}" form="{{ form_id }}">
                 {%- if show_fixed_cart_button -%}
-                    {%- render 'button', content: button_content, type: 'submit', size: button_size, disabled: button_disabled, secondary: show_payment_button, subdued: button_disabled, background: atc_button_background, text_color: atc_button_text_color -%}
+                    {%- render 'button', custom_attr: 'data-ani', content: button_content, type: 'submit', size: button_size, disabled: button_disabled, secondary: show_payment_button, subdued: button_disabled, background: atc_button_background, text_color: atc_button_text_color -%}
                 {%- endif -%}
                 {%- if show_payment_button and product.selected_or_first_available_variant.available -%}
-                    {%- render 'button', content: payment_button_text, type: checkout_type, size: button_size, background: payment_button_background, text_color: payment_button_text_color -%}
+                    {%- render 'button', custom_attr: custom_attr, content: payment_button_text, type: 'button', size: button_size, background: payment_button_background, text_color: payment_button_text_color -%}
                 {%- endif -%}
             </buy-buttons>
         </checkout-button>
