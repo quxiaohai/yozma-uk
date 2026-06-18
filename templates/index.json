@@ -78,7 +78,6 @@
         },
         "media1": {
           "type": "media",
-          "disabled": true,
           "settings": {
             "pc_image_url": "shopify://shop_images/6.16.jpg",
             "mb_image_url": "shopify://shop_images/6.11.jpg",
