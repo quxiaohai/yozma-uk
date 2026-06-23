@@ -194,17 +194,16 @@
         },
         "media_ePeUwR": {
           "type": "media",
-          "disabled": true,
           "settings": {
             "pc_image_url": "shopify://shop_images/6.16.jpg",
             "mb_image_url": "shopify://shop_images/6.11.jpg",
             "image_link": "shopify://products/in-10",
             "slide_tab": "",
             "show_subtitle": false,
-            "subtitle": "<p>Limited 3-Day Offer</p>",
+            "subtitle": "",
             "subtitle_color": "#ffffff",
             "show_title": false,
-            "title": "<p>Redefine Urban Commutes with Ease</p>",
+            "title": "",
             "title_color": "#ffffff",
             "show_button": false,
             "button_bg_image": "shopify://shop_images/banner-btn-bg.png",
@@ -744,7 +743,7 @@
         "slide_desc_color": "#ffffff",
         "slide_desc_background_image": "shopify://shop_images/th-turntable-vector.png",
         "mode_type": "setting",
-        "display_position": 3
+        "display_position": 4
       }
     },
     "mc_th_product_card_N8t7NT": {

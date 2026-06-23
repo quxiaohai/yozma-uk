@@ -78,12 +78,11 @@
         },
         "media1": {
           "type": "media",
-          "disabled": true,
           "settings": {
             "pc_image_url": "shopify://shop_images/6.16.jpg",
             "mb_image_url": "shopify://shop_images/6.11.jpg",
             "image_link": "shopify://products/in-10",
-            "slide_tab": "Yozma IN 10",
+            "slide_tab": "",
             "show_subtitle": false,
             "subtitle": "<p>IN 10 </p>",
             "subtitle_color": "#ffffff",
