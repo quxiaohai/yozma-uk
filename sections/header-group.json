@@ -183,7 +183,7 @@
           "settings": {
             "title": "Prime Day Sale",
             "type": "text",
-            "location": "before",
+            "location": "after",
             "badge_text": "Hot",
             "badge_text_color": "#ffffff",
             "badge_bg_color": "#ff0000",
