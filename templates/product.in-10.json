@@ -188,6 +188,33 @@
             "size_chart_page": ""
           }
         },
+        "discount_BfmfRH": {
+          "type": "discount",
+          "settings": {
+            "padding": "12px 0px 12px 0px",
+            "mb_padding": "4px 0px 4px 0px",
+            "top": 0,
+            "bottom": 0,
+            "bg_color": "",
+            "bg_image": "shopify://shop_images/1_258abbb1-acbb-4618-9cb1-163ca89920a6.png",
+            "padding_left": 150,
+            "padding_right": 80,
+            "mb_padding_left": 45,
+            "mb_padding_right": 62,
+            "discount_text": "Extra 100 OFF",
+            "discount_text_color": "#ffffff",
+            "discount_code": "IN 100 OFF",
+            "discount_code_color": "#C20404",
+            "copy_text": "Copy code",
+            "copy_text_color": "#ffffff",
+            "copy_success": "Copied",
+            "copy_success_color": "#C20404",
+            "show_countdown": false,
+            "countdown_text": "Ends in Today",
+            "countdown_start_date": "2026-06-24T00:00:00",
+            "duration": 2
+          }
+        },
         "bundled_sale_NbiiyC": {
           "type": "bundled_sale",
           "settings": {
@@ -385,6 +412,7 @@
         "image_d7M4Fx",
         "payment_terms",
         "variant_picker",
+        "discount_BfmfRH",
         "bundled_sale_NbiiyC",
         "quantity_selector",
         "buy_buttons",
