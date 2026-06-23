@@ -1062,6 +1062,13 @@ customElements.define('blog-product-card', class extends HTMLElement {
                       assign o_text = '<blockquote data-type="application/ld+json">' | append: json | append: '</blockquote>'
                       assign n_text = '<script type="application/ld+json">' | append: json | append: '</script>'
                       assign article_content = article_content | replace: o_text, n_text
+                  elsif forloop.first == false and match contains '"@tag"' and match contains 'ld+json'
+                      assign json = match | split: '</blockquote>' | first | split: '>' | last
+                      assign text = json | split: 'ld+json",' | last
+                      assign text = '{' | append: text
+                      assign o_text = '<blockquote>' | append: json | append: '</blockquote>'
+                      assign n_text = '<script type="application/ld+json">' | append: text | append: '</script>'
+                      assign article_content = article_content | replace: o_text, n_text
                   endif
               endfor
               if article_content contains 'data-type="application/ld+json"'
