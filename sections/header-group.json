@@ -181,9 +181,9 @@
         "menu_badge_fKAQ6i": {
           "type": "menu_badge",
           "settings": {
-            "title": "Anniversary Sale",
-            "location": "before",
-            "type": "icon",
+            "title": "Prime Day Sale",
+            "type": "text",
+            "location": "after",
             "badge_text": "Hot",
             "badge_text_color": "#ffffff",
             "badge_bg_color": "#ff0000",
