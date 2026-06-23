@@ -6095,6 +6095,7 @@ customElements.define("countdown-timer", class extends HTMLElement {
     initTimer() {
         const storeNow = new Date(this.storeDate).getTime(); // 初始店铺时间
         const startNow = new Date(this.endDate).getTime();// 目标时间
+        this._type = this.getAttribute('data-type') || 'block';
         if (this.cycleDuration > 0) {
             const timeOffset = storeNow - Date.now();
             this.startCycleTimer(startNow, timeOffset, this.cycleDuration);
@@ -6119,10 +6120,14 @@ customElements.define("countdown-timer", class extends HTMLElement {
         const hours = Math.max(0, Math.floor((count % this.MILLISECONDS_DAY) / this.MILLISECONDS_HOUR));
         const minutes = Math.max(0, Math.floor((count % this.MILLISECONDS_HOUR) / this.MILLISECONDS_MINUTE));
         const seconds = Math.max(0, Math.floor((count % this.MILLISECONDS_MINUTE) / this.MILLISECONDS_SECOND));
-        this.nodeList.day.value = this.getDoubleDigit(days);
-        this.nodeList.hour.value = this.getDoubleDigit(hours);
-        this.nodeList.minute.value = this.getDoubleDigit(minutes);
-        this.nodeList.second.value = this.getDoubleDigit(seconds);
+        if (this._type === 'block') {
+            this.nodeList.day.value = this.getDoubleDigit(days);
+            this.nodeList.hour.value = this.getDoubleDigit(hours);
+            this.nodeList.minute.value = this.getDoubleDigit(minutes);
+            this.nodeList.second.value = this.getDoubleDigit(seconds);
+        } else {
+            this.nodeList.text.innerText = `${days > 0 ? this.getDoubleDigit(days) + ':' : '' }${this.getDoubleDigit(hours)}:${this.getDoubleDigit(minutes)}:${this.getDoubleDigit(seconds)}`;
+        }
     }
 
     startTimer(count) {

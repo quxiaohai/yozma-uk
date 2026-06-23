@@ -285,9 +285,28 @@
             transform: translate3d(10px,0,0)
         }
     }
+    {%- assign inventory_tag = section.blocks | where: 'type', 'inventory' | first -%}
+    {%- if inventory_tag != blank -%}
+        .product-info__inventory .text-with-icon {
+            border-radius: 100px;
+            padding-block: 0.7rem;
+            padding-inline: 1.125rem 1.5rem;
+        }
 
+        .product-info__inventory .text-with-icon.text-success {
+            background-color: #f7fee7;
+        }
+
+        .product-info__inventory .text-with-icon.text-error {
+            background-color: #be123c;
+        }
+
+        .product-info__inventory {
+            margin-left: 24px;
+        }
+    {%- endif -%}
     .product-info__inventory .variant-inventory,
-    .button[data-ani] {
+    .product-quick-add .button[data-ani] {
         animation: ani-slide-shake 2s ease-in-out infinite;
     }
 
@@ -3983,6 +4002,39 @@ quick buy information in a template, that will be extracted in JS, but ensure it
             "id": "copy_success_color",
             "label": "Copy success color",
             "default": "#ffe0e9"
+        },
+        {
+          "type": "header",
+          "content": "Countdown"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_countdown",
+          "label": "Show countdown",
+          "default": false
+        },
+         {
+          "type": "text",
+          "id": "countdown_text",
+          "label": "Countdown text",
+          "default": "Ends in Today"
+        },
+        {
+          "type": "text",
+          "id": "countdown_start_date",
+          "label": "Select start date for countdown",
+          "default": "2024-12-02T00:00:00",
+          "info": "2024-12-02T00:00:00"
+        },
+        {
+          "type": "range",
+          "id": "duration",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "unit": "Day",
+          "label": "Duration days",
+          "default": 7
         }
       ]
     },
