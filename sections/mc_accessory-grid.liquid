@@ -1,0 +1,491 @@
+{% assign ss = section.settings %}
+<style>
+    .mc_accessory-grid {
+        background: #f6f7f9;
+        padding: 80px 0;
+    }
+
+    .mc_accessory-grid .accessory-items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 16px;
+    }
+
+    .mc_accessory-grid .accessory-items .item {
+        height: 217px;
+        background: #ffffff;
+        padding: 16px;
+    }
+
+    .mc_accessory-grid .accessory-items .item.active .checkbox-wrapper {
+        background: #d30000;
+        border-color: #d30000;
+    }
+
+    .mc_accessory-grid .accessory-items .checkbox-wrapper {
+        top: 16px;
+        right: 16px;
+        width: 18px;
+        height: 18px;
+        border: 1px solid #e6e6e6;
+    }
+
+    .mc_accessory-grid .accessory-items .checkbox-wrapper .icon {
+        width: 80%;
+        height: 80%;
+    }
+
+    .mc_accessory-grid .accessory-items .media-wrap {
+        height: 120px;
+    }
+
+    .mc_accessory-grid .accessory-items .media-wrap .image {
+        object-fit: contain;
+    }
+
+    .mc_accessory-grid .accessory-items .title {
+        padding: 6px 0 8px;
+        border-bottom: 1px solid #e6e6e6;
+        color: #000;
+        font-size: 16px;
+    }
+
+    .mc_accessory-grid .accessory-items .price-wrap {
+        padding-top: 8px;
+        gap: 8px;
+    }
+
+    .mc_accessory-grid .accessory-items .price-sale {
+        font-size: 16px;
+        color: #000000;
+    }
+
+    .mc_accessory-grid .accessory-items .price-origin {
+        font-size: 16px;
+        color: #89898b;
+        text-decoration: line-through;
+    }
+
+    .mc_accessory-grid .accessory-account {
+        padding-top: 32px;
+    }
+
+    .mc_accessory-grid .accessory-account .account-info {
+        gap: 16px;
+    }
+
+    .mc_accessory-grid .accessory-account .subtotal-text {
+        font-size: 18px;
+        transform: translateY(8px);
+        letter-spacing: -0.36px;
+    }
+
+    .mc_accessory-grid .accessory-account .subtotal-price {
+        font-size: 40px;
+    }
+
+    .mc_accessory-grid .accessory-account .subtotal-save {
+        height: 36px;
+        padding: 0 16px;
+        color: #FFFFFF;
+        background: #d30000;
+        font-size: 18px;
+        display: none;
+    }
+
+    .mc_accessory-grid .accessory-account .subtotal-save.active {
+        display: flex;
+    }
+
+    .mc_accessory-grid .accessory-account .btn-group {
+        gap: 8px;
+    }
+
+    .mc_accessory-grid .accessory-account .button {
+        border-radius: 0;
+        background: #d30000;
+    }
+
+    .mc_accessory-grid .accessory-account .button.more {
+        background: #000000;
+    }
+
+    .mc_accessory-grid .accessory-account .button:hover {
+        opacity: 0.8;
+    }
+
+    .mc_accessory-grid .accessory-account .remark {
+        font-size: 12px;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .mc_accessory-grid {
+            padding: 2.5rem 0;
+        }
+
+        .mc_accessory-grid .accessory-items {
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .mc_accessory-grid .accessory-items .item {
+            height: 9.375rem;
+            padding: 0.875rem 0.75rem;
+        }
+
+        .mc_accessory-grid .accessory-items .checkbox-wrapper {
+            top: 0.75rem;
+            right: 0.75rem;
+        }
+
+        .mc_accessory-grid .accessory-items .media-wrap {
+            height: 4.1875rem;
+        }
+
+        .mc_accessory-grid .accessory-items .title {
+            padding: 0.25rem 0 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .mc_accessory-grid .accessory-items .price-wrap {
+            gap: 0.375rem;
+        }
+
+        .mc_accessory-grid .accessory-items .price-sale {
+            font-size: 0.875rem;
+        }
+
+        .mc_accessory-grid .accessory-items .price-origin {
+            font-size: 0.875rem;
+        }
+
+        .mc_accessory-grid .accessory-account {
+            padding-top: 1.5rem;
+        }
+
+        .mc_accessory-grid .accessory-account .account-info {
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .mc_accessory-grid .accessory-account .account-content {
+            gap: 1.5rem;
+            flex-direction: column;
+        }
+
+        .mc_accessory-grid .accessory-account .subtotal-text {
+            font-size: 0.875rem;
+            transform: translateY(0.25rem);
+        }
+
+        .mc_accessory-grid .accessory-account .subtotal-price {
+            font-size: 1.75rem;
+            flex: 1;
+        }
+
+        .mc_accessory-grid .accessory-account .subtotal-save {
+            font-size: 0.875rem;
+        }
+
+        .mc_accessory-grid .accessory-account .btn-group {
+            width: 100%;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .mc_accessory-grid .accessory-account .btn-group .button {
+            width: 100%;
+        }
+
+        .mc_accessory-grid .accessory-account .remark {
+            padding-top: 0.5rem;
+            font-size: 0.75rem;
+        }
+    }
+</style>
+{% render 'page-wrap-style', load_style: true %}
+<section class="mc_accessory-grid section--page w-full" id="{{ section.id }}-grid">
+    <div class="page-width">
+        <div class="accessory-items">
+            {%- if ss.product_list != blank -%}
+                {%- for product in ss.product_list -%}
+                    {%- assign variant = product.selected_or_first_available_variant -%}
+                    <div
+                        class="item cursor-pointer relative"
+                        data-price="{{ variant.price }}"
+                        data-original="{{ variant.compare_at_price | default: variant.price }}"
+                        data-variant="{{ variant.id }}"
+                        node-name="item"
+                        data-proxy="item">
+                        <div class="checkbox-wrapper absolute flex-center">
+                            <svg class="icon" viewBox="0 0 1040 1024" xmlns="http://www.w3.org/2000/svg"
+                                 width="32" height="32">
+                                <path
+                                    fill="#FFFFFF"
+                                    d="M1007.517607 195.498556c-21.887496-21.892613-57.401338-21.892613-79.30316 0L412.859026 710.859094 95.709829 393.722176c-21.884426-21.903869-57.398268-21.903869-79.285764 0-21.898753 21.887496-21.898753 57.387012 0 79.280648l356.784916 356.787986c21.901823 21.903869 57.401338 21.903869 79.30316 0l555.005466-555.00035C1029.418406 252.896824 1029.418406 217.397309 1007.517607 195.498556z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div class="media-wrap w-full flex-center">
+                            {%- render 'global-image', image: product.featured_image, image_size: 300 -%}
+                        </div>
+                        <div class="title fw-700 lh-2">{{ product.title }}</div>
+                        <div class="price-wrap flex-left">
+                            <span class="price-sale lh-2 fw-700">{{ variant.price | money }}</span>
+                            {%- if variant.compare_at_price > variant.price -%}
+                                <span class="price-origin lh-2">{{ variant.compare_at_price | money }}</span>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                {%- endfor -%}
+            {%- endif -%}
+        </div>
+        <div class="accessory-account">
+            <div class="flex-between account-content">
+                <div class="account-info flex-left">
+                    <span class="subtotal-text lh-2 fw-700">{{ ss.total_text }}</span>
+                    <span class="subtotal-price lh-1 fw-900" node-name="price">$0.00</span>
+                    <span class="subtotal-save fw-700 lh-2 flex-center" node-name="save">Save $00.80</span>
+                </div>
+                <div class="btn-group flex-left">
+                    <button is="custom-button" data-proxy="cart" class="button">{{ ss.cart_text }}</button>
+                    <a href="{{ ss.more_url }}" class="button more">{{ ss.more_text }}</a>
+                </div>
+            </div>
+            <small class="remark lh-2">{{ ss.total_remark }}</small>
+        </div>
+    </div>
+</section>
+<script>
+    $heybike.ready(() => {
+        const node = document.getElementById('{{ section.id }}-grid');
+        const nodeList = $heybike.getNodeList(node);
+        let variantList = [];
+        $heybike.proxy(node, ['item', 'cart'], ({elem, type}) => {
+            if (type === 'item') {
+                elem.classList.toggle('active');
+                setTotal();
+            } else {
+                $heybike.addToCart({
+                    items: variantList.map(id => ({id, quantity: 1})),
+                    button: elem
+                }, false);
+            }
+        });
+
+        const setTotal = () => {
+            let price = 0, origin = 0;
+            variantList = [];
+            [].concat(nodeList.item).forEach(elem => {
+                if (elem.classList.contains('active')) {
+                    price += Number(elem.dataset.price);
+                    origin += Number(elem.dataset.original);
+                    variantList.push(elem.dataset.variant);
+                }
+            });
+            nodeList.price.innerText = $heybike.money(price);
+            const isSave = origin - price > 0;
+            if (origin - price > 0) {
+                nodeList.save.innerText = `Save ${$heybike.money(origin - price)}`;
+            }
+            nodeList.save.classList.toggle('active', isSave);
+        }
+
+    });
+</script>
+{% schema %}
+{
+  "name": "MC Accessory Grid",
+  "class": "mc--main",
+  "tag": "section",
+  "presets": [
+    {
+      "name": "MC Accessory Grid"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "page_color",
+      "label": "Background Color",
+      "default": "#f9f7f6"
+    },
+    {
+      "type": "number",
+      "id": "page_top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "page_bottom",
+      "label": "padding Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "font_name",
+      "label": "Font name"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title font style",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "italic",
+          "value": "italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_pc_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "title_mb_size",
+      "label": "Mobile title size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_bold_color",
+      "label": "Title Bold color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "title_gradient_color",
+      "label": "Title gradient color"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_pc_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_mb_size",
+      "label": "Mobile description size",
+      "min": 6,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "number",
+      "id": "description_pc_margin_bottom",
+      "label": "Desktop description margin bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "description_mb_margin_bottom",
+      "label": "Mobile description margin bottom",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Accessory"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Accessory list"
+    },
+    {
+      "type": "header",
+      "content": "Total content"
+    },
+    {
+      "type": "text",
+      "id": "total_text",
+      "label": "Total text",
+      "default": "Accessories Total"
+    },
+    {
+      "type": "textarea",
+      "id": "total_remark",
+      "label": "Total remark",
+      "default": "*Check accessory compatibility with your specific Ebike model"
+    },
+    {
+      "type": "text",
+      "id": "cart_text",
+      "label": "Add to cart",
+      "default": "Add to cart"
+    },
+    {
+      "type": "text",
+      "id": "more_text",
+      "label": "More text",
+      "default": "Shop More Accessories"
+    },
+    {
+      "type": "url",
+      "id": "more_url",
+      "label": "More URL"
+    }
+  ]
+}
+{% endschema %}

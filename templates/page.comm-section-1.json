@@ -1,0 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "mc_page_color": {
+      "type": "mc_page-color",
+      "settings": {
+        "background_color": "#790002"
+      }
+    },
+    "mc_accessory_grid": {
+      "type": "mc_accessory-grid",
+      "settings": {
+        "product_list": [
+          "yozma-safety-bundle-set",
+          "yozma-in-10-back-hydraulic-suspension",
+          "yozma-riding-gloves",
+          "yozma-gift-box",
+          "yozma-baseball-cap",
+          "yozma-t-shirt"
+        ]
+      }
+    }
+  },
+  "order": [
+    "mc_page_color",
+    "mc_accessory_grid"
+  ]
+}
