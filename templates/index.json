@@ -9,6 +9,40 @@
  */
 {
   "sections": {
+    "video_6gBbfG": {
+      "type": "video",
+      "blocks": {
+        "play_R6WthU": {
+          "type": "play",
+          "disabled": true,
+          "settings": {}
+        },
+        "heading_GKtxaW": {
+          "type": "heading",
+          "settings": {
+            "text": "",
+            "heading_tag": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "play_R6WthU",
+        "heading_GKtxaW"
+      ],
+      "name": "Video",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "autoplay": false,
+        "video_size": "auto",
+        "video": "shopify://files/videos/UK横版.mp4",
+        "mobile_video": "shopify://files/videos/UK横版.mp4",
+        "external_video_url": "",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
     "mc_banner_slide": {
       "type": "mc_banner-slide",
       "blocks": {
@@ -104,6 +138,7 @@
         "media2",
         "media1"
       ],
+      "disabled": true,
       "name": "MC Banner Slide",
       "settings": {
         "page_color": "",
@@ -668,6 +703,7 @@
     }
   },
   "order": [
+    "video_6gBbfG",
     "mc_banner_slide",
     "mc_flip_countdown_eXKM4G",
     "mc_product_list",
