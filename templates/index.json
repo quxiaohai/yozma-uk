@@ -269,7 +269,8 @@
       "name": "MC Product List",
       "settings": {
         "page_color": "#ffffff",
-        "page_bottom": 50,
+        "page_top": 30,
+        "page_bottom": 30,
         "show_title": true,
         "title": "",
         "title_style": "normal",
