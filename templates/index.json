@@ -14,13 +14,14 @@
       "blocks": {
         "play_R6WthU": {
           "type": "play",
+          "disabled": true,
           "settings": {}
         },
         "heading_GKtxaW": {
           "type": "heading",
           "settings": {
-            "text": "Video",
-            "heading_tag": "h1"
+            "text": "",
+            "heading_tag": "h2"
           }
         }
       },
@@ -137,6 +138,7 @@
         "media2",
         "media1"
       ],
+      "disabled": true,
       "name": "MC Banner Slide",
       "settings": {
         "page_color": "",
