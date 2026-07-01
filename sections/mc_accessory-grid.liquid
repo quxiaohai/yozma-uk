@@ -12,9 +12,9 @@
     }
 
     .mc_accessory-grid .accessory-items .item {
-        height: 217px;
+        height: auto;
         background: #ffffff;
-        padding: 16px;
+        padding: 16px 16px 43px;
     }
 
     .mc_accessory-grid .accessory-items .item.active .checkbox-wrapper {
@@ -45,7 +45,6 @@
 
     .mc_accessory-grid .accessory-items .title {
         padding: 6px 0 8px;
-        border-bottom: 1px solid #e6e6e6;
         color: #000;
         font-size: 16px;
     }
@@ -53,6 +52,9 @@
     .mc_accessory-grid .accessory-items .price-wrap {
         padding-top: 8px;
         gap: 8px;
+        bottom: 16px;
+        border-top: 1px solid #e6e6e6;
+        width: calc(100% - 32px);
     }
 
     .mc_accessory-grid .accessory-items .price-sale {
@@ -129,8 +131,7 @@
         }
 
         .mc_accessory-grid .accessory-items .item {
-            height: 9.375rem;
-            padding: 0.875rem 0.75rem;
+            padding: 0.875rem 0.75rem 2.425rem;
         }
 
         .mc_accessory-grid .accessory-items .checkbox-wrapper {
@@ -149,6 +150,7 @@
 
         .mc_accessory-grid .accessory-items .price-wrap {
             gap: 0.375rem;
+            width: calc(100% - 24px);
         }
 
         .mc_accessory-grid .accessory-items .price-sale {
@@ -205,6 +207,7 @@
 </style>
 {% render 'page-wrap-style', load_style: true %}
 <section class="mc_accessory-grid section--page w-full" id="{{ section.id }}-grid">
+    {% render 'section-title', info: ss %}
     <div class="page-width">
         <div class="accessory-items">
             {%- if ss.product_list != blank -%}
@@ -230,7 +233,7 @@
                             {%- render 'global-image', image: product.featured_image, image_size: 300 -%}
                         </div>
                         <div class="title fw-700 lh-2">{{ product.title }}</div>
-                        <div class="price-wrap flex-left">
+                        <div class="price-wrap absolute flex-left">
                             <span class="price-sale lh-2 fw-700">{{ variant.price | money }}</span>
                             {%- if variant.compare_at_price > variant.price -%}
                                 <span class="price-origin lh-2">{{ variant.compare_at_price | money }}</span>
