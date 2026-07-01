@@ -9,6 +9,39 @@
  */
 {
   "sections": {
+    "video_6gBbfG": {
+      "type": "video",
+      "blocks": {
+        "play_R6WthU": {
+          "type": "play",
+          "settings": {}
+        },
+        "heading_GKtxaW": {
+          "type": "heading",
+          "settings": {
+            "text": "Video",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "play_R6WthU",
+        "heading_GKtxaW"
+      ],
+      "name": "Video",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "autoplay": false,
+        "video_size": "auto",
+        "video": "shopify://files/videos/Yozma一周年预热 3840x2160 15s.mp4",
+        "mobile_video": "shopify://files/videos/Yozma一周年预热 3840x2160 15s.mp4",
+        "external_video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
     "mc_banner_slide": {
       "type": "mc_banner-slide",
       "blocks": {
@@ -668,6 +701,7 @@
     }
   },
   "order": [
+    "video_6gBbfG",
     "mc_banner_slide",
     "mc_flip_countdown_eXKM4G",
     "mc_product_list",
