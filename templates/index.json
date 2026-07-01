@@ -33,7 +33,7 @@
       "settings": {
         "full_width": true,
         "allow_transparent_header": false,
-        "autoplay": false,
+        "autoplay": true,
         "video_size": "auto",
         "video": "shopify://files/videos/UK横版.mp4",
         "mobile_video": "shopify://files/videos/UK横版.mp4",
