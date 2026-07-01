@@ -181,6 +181,7 @@
         },
         "menu_badge_fKAQ6i": {
           "type": "menu_badge",
+          "disabled": true,
           "settings": {
             "title": "Prime Day Sale",
             "type": "text",
