@@ -108,7 +108,7 @@ the underlying logic of the menu.
         border-left-color: var(--background-color);
     }
     .menu-badge-icon {
-        width: auto;
+        /*width: auto;*/
         max-width: 30px;
         height: auto;
         max-height: 35px;
@@ -177,6 +177,15 @@ the underlying logic of the menu.
                           endif
                       endfor
                     endcapture
+                    capture badge_style
+                      for badge in badge_list
+                          assign bs = badge.settings
+                          if bs.title == link.title
+                              echo 'font-style: ' | append: bs.style | append: '; font-weight: ' | append: bs.weight | append: ';'
+                              break
+                          endif
+                      endfor
+                    endcapture
                     capture badge_before
                         if badge_text != blank and badge_text contains 'before'
                           echo badge_text
@@ -191,7 +200,7 @@ the underlying logic of the menu.
 
                   <li>
                     {%- if link.levels == 0 and mega_menu_block == '' -%}
-                      <a href="{{ link.url }}" class="bold flex-left gap-2.5 link-faded-reverse" {% if link.current %}aria-current="page"{% endif %}>{{ badge_before }}{{- link.title -}}{{ badge_after }}</a>
+                      <a href="{{ link.url }}" style="{{ badge_style }}" class="bold flex-left gap-2.5 link-faded-reverse" {% if link.current %}aria-current="page"{% endif %}>{{ badge_before }}{{- link.title -}}{{ badge_after }}</a>
                     {%- else -%}
                       {%- if mega_menu_block != '' -%}
                         {%- comment -%}
@@ -202,14 +211,14 @@ the underlying logic of the menu.
                         {%- endcomment -%}
                         {%- unless mega_menu_block.settings.layout == 'drawer' -%}
                           <details is="mega-menu-disclosure" trigger="{{ section.settings.menu_open_trigger | escape }}" {{ mega_menu_block.shopify_attributes }}>
-                            <summary class="text-with-icon gap-2.5 bold link-faded-reverse" {% if link.url != '#' %}data-url="{{ link.url | escape }}"{% endif %}>
+                            <summary style="{{ badge_style }}" class="text-with-icon gap-2.5 bold link-faded-reverse" {% if link.url != '#' %}data-url="{{ link.url | escape }}"{% endif %}>
                               {{ badge_before }}{{- link.title -}}{{ badge_after }} {%- render 'icon' with 'chevron-bottom' -%}
                             </summary>
 
                            {%- render 'mega-menu-horizontal', link: link, mega_menu_block: mega_menu_block -%}
                           </details>
                         {%- else -%}
-                          <button aria-controls="navigation-drawer-{{ forloop.index }}" aria-expanded="false" class="text-with-icon gap-2.5 bold link-faded-reverse">
+                          <button style="{{ badge_style }}" aria-controls="navigation-drawer-{{ forloop.index }}" aria-expanded="false" class="text-with-icon gap-2.5 bold link-faded-reverse">
                             {{ badge_before }}{{- link.title -}}{{ badge_after }} {%- render 'icon' with 'chevron-bottom' -%}
                           </button>
 
@@ -219,7 +228,7 @@ the underlying logic of the menu.
                         {%- endunless -%}
                       {%- else -%}
                         <details class="relative" is="dropdown-disclosure" trigger="{{ section.settings.menu_open_trigger | escape }}">
-                          <summary class="text-with-icon gap-2.5 bold link-faded-reverse" {% if link.url != '#' %}data-url="{{ link.url | escape }}"{% endif %}>
+                          <summary style="{{ badge_style }}" class="text-with-icon gap-2.5 bold link-faded-reverse" {% if link.url != '#' %}data-url="{{ link.url | escape }}"{% endif %}>
                             {{ badge_before }}{{- link.title -}}{{ badge_after }} {%- render 'icon' with 'chevron-bottom' -%}
                           </summary>
 
@@ -849,7 +858,7 @@ the underlying logic of the menu.
         }
       ]
      },
-      {
+       {
       "type": "menu_badge",
       "name": "Menu badge",
       "settings": [
@@ -858,6 +867,58 @@ the underlying logic of the menu.
           "id": "title",
           "label": "Show menu name",
           "default": "Electric Dirt Bike"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "options": [
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "normal",
+              "label": "Normal"
+            }
+          ],
+          "default": "italic",
+          "label": "Desktop font style"
+        },
+        {
+          "type": "range",
+          "id": "weight",
+          "min": 200,
+          "max": 900,
+          "step": 100,
+          "unit": "w",
+          "label": "Desktop font weight",
+          "default": 700
+        },
+        {
+          "type": "select",
+          "id": "mb_style",
+          "options": [
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "normal",
+              "label": "Normal"
+            }
+          ],
+          "default": "normal",
+          "label": "Mobile font style"
+        },
+        {
+          "type": "range",
+          "id": "mb_weight",
+          "min": 200,
+          "max": 900,
+          "step": 100,
+          "unit": "w",
+          "label": "Mobile font weight",
+          "default": 700
         },
         {
           "type": "select",
@@ -934,7 +995,7 @@ the underlying logic of the menu.
           "label": "Icon size",
           "default": 1,
           "visible_if": "{{ block.settings.type == 'icon' }}"
-        },
+        }
       ]
     }
   ]

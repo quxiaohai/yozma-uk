@@ -75,6 +75,15 @@ Supported variables
                           endif
                       endfor
                   endcapture
+                  capture badge_style
+                      for badge in badge_list
+                          assign bs = badge.settings
+                          if bs.title == link.title
+                              echo 'font-style: ' | append: bs.mb_style | append: '; font-weight: ' | append: bs.mb_weight | append: ';'
+                              break
+                          endif
+                      endfor
+                  endcapture
                   capture badge_before
                       if badge_text != blank and badge_text contains 'before'
                           echo badge_text
@@ -89,12 +98,12 @@ Supported variables
             <li class="h3 sm:h4">
               {%- if link.links.size > 0 or mega_menu_block != '' and is_mega_menu == false -%}
                 <button class="text-with-icon w-full group justify-between" aria-expanded="false" data-panel="1-{% increment level_1 %}">
-                  <span class="flex-left gap-2">{{ badge_before }}{{ link.title }}{{ badge_after }}</span>
+                  <span style="{{ badge_style }}" class="flex-left gap-2">{{ badge_before }}{{ link.title }}{{ badge_after }}</span>
                   <span class="circle-chevron group-hover:colors group-expanded:colors">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</span>
                 </button>
               {%- else -%}
                 <a href="{{ link.url }}" class="group block w-full">
-                    <span class="flex-left gap-2">{{ badge_before }}<span class="reversed-link">{{ link.title }}</span>{{ badge_after }}</span>
+                    <span style="{{ badge_style }}" class="flex-left gap-2">{{ badge_before }}<span class="reversed-link">{{ link.title }}</span>{{ badge_after }}</span>
                 </a>
               {%- endif -%}
             </li>
