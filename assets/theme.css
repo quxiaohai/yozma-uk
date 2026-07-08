@@ -5117,6 +5117,73 @@ product-rerender {
   }
 }
 
+.cart-drawer .quantity {
+    border-radius: 0;
+}
+
+.cart-drawer .subtotal-wrap .totals__subtotal {
+    font-size: 14px;
+}
+
+.cart-drawer .subtotal-wrap .totals__discount {
+    color: #ff0000;
+}
+
+.cart-drawer .subtotal-wrap .totals__discount.black {
+    color: #000000;
+}
+
+.cart-drawer .subtotal-wrap .totals__subtotal-value {
+    font-size: 20px;
+}
+
+.cart-drawer .subtotal-wrap .tax-note {
+    color: #9F9F9F;
+    padding-top: 5px;
+}
+
+.cart-drawer .buy-buttons .button {
+    border-radius: 0;
+}
+
+.cart-drawer .buy-buttons .button--secondary {
+    background: red;
+}
+
+.solid-translate {
+    --before-background: #000000;
+}
+
+.hollow-translate {
+    --before-background: #FFFFFF;
+    transition: color 0.3s, box-shadow 0.3s;
+}
+
+.button-translate>div {
+    position: relative;
+}
+
+.button-translate:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--before-background);
+    transform: translate3d(-100%, 0, 0);
+    transition: transform 0.3s;
+}
+
+.button-translate:hover:before {
+    transform: translate3d(0, 0, 0);
+}
+
+.hollow-translate:hover {
+    box-shadow: 0 0 0 1px #000;
+    color: #000000;
+}
+
 .collection {
   --collection-sidebar-width: 250px;
   gap: var(--spacing-8);
@@ -10628,5 +10695,123 @@ shopify-accelerated-checkout, shopify-accelerated-checkout-cart {
     .product-media-badge:after {
         left: -2px;
         bottom: -18px;
+    }
+}
+
+.badge.badge--onsale {
+    background: #ff0000;
+    color: #FFF;
+}
+
+.badge.badge--highlight {
+    background: rgb(255,0,0,0.1);
+    color: #ff0000;
+}
+@keyframes spin {
+    100% {
+        rotate: -360deg;
+    }
+}
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+.cart-discount {
+    gap: 1rem;
+}
+.cart-discount .active-facets {
+    margin-block: 0;
+}
+.cart-discount .field {
+    gap: 16px;
+}
+.cart-discount .form-control {
+    flex: 1;
+}
+
+.cart-discount .form-control input {
+    border-radius: 0;
+}
+
+.cart-discount .button {
+    height: 60px;
+    border-radius: 0;
+}
+
+@media screen and (max-width: 699px) {
+    .cart-discount {
+        gap: 0.7rem;
+    }
+    .cart-discount .field {
+        gap: 8px;
+    }
+    .cart-discount .button {
+        height: 52px;
+    }
+}
+
+.cart-discount .removable-facet {
+    padding: 0.375rem 0.625rem;
+    line-height: 1.2;
+}
+
+.removable-facet>a::before,
+.removable-facet>button::before {
+    content: '';
+    position: absolute;
+    inset: -0.625rem;
+}
+
+.removable-facet .icon {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.removable-facet>button .icon:first-child {
+    transition: opacity .3s cubic-bezier(.7, 0, .3, 1);
+}
+
+.removable-facet>button {
+    transition: transform .3s cubic-bezier(.7, 0, .3, 1);
+}
+
+.removable-facet>button:hover {
+    transform: scale(1.1);
+}
+
+.removable-facet>button .icon+.icon {
+    width: 0.75rem;
+    height: 0.75rem;
+    transition: .3s cubic-bezier(.7, 0, .3, 1);
+    transition-property: opacity, visibility;
+    top: -2px;
+}
+
+.removable-facet>button[loading] .icon {
+    opacity: 0;
+}
+
+.removable-facet>button[loading] .icon+.icon {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.1s;
+}
+.alert .icon {
+    width: 18px;
+    height: 18px;
+}
+.alert--error {
+    color: #ff0000;
+}
+
+@media screen and (min-width: 1024px) {
+    .removable-facet .icon {
+        width: 0.625rem;
+        height: 0.625rem;
+    }
+
+    .removable-facet>button .icon+.icon {
+        width: 1rem;
+        height: 1rem;
     }
 }

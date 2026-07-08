@@ -668,4 +668,19 @@
     <svg width="{{ width | default: 27 }}" height="{{ height | default: 24 }}" class="{{ class | strip }}" viewBox="0 0 27 24" fill="none">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4142 0.585693L26.8284 11.9999L15.4142 23.4141L12.5858 20.5857L19.1716 13.9999H0V9.99991H19.1716L12.5858 3.41412L15.4142 0.585693Z" fill="currentColor"/>
     </svg>
+
+  {%- when 'remove' -%}
+    <svg class="{{ class }}" viewBox="0 0 10 10" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m1 9 8-8M1 1l8 8"></path>
+    </svg>
+
+  {%- when 'loader' -%}
+    <svg class="{{ class }}" viewBox="0 0 18 18" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M0.7,9.9C0.5,5.2,4.1,1.2,8.5,1c4.7-0.3,8.9,3.8,8.8,8.8"></path>
+    </svg>
+
+  {%- when 'alert-circle-filled' -%}
+    <svg class="{{ class }}" viewBox="0 0 24 24" stroke="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12.75 7C12.75 6.58579 12.4142 6.25 12 6.25C11.5858 6.25 11.25 6.58579 11.25 7V13C11.25 13.4142 11.5858 13.75 12 13.75C12.4142 13.75 12.75 13.4142 12.75 13V7ZM12 15.25C11.3096 15.25 10.75 15.8096 10.75 16.5C10.75 17.1904 11.3096 17.75 12 17.75C12.6904 17.75 13.25 17.1904 13.25 16.5C13.25 15.8096 12.6904 15.25 12 15.25Z"></path>
+    </svg>
 {%- endcase -%}

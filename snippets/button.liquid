@@ -54,6 +54,10 @@ Supported variables
     if stretch
       echo ' w-full'
     endif
+
+    if custom_class != blank
+      echo ' ' | append: custom_class
+    endif
   endcapture
 %}
 

@@ -3413,7 +3413,7 @@ var ProductGallery = class extends HTMLElement {
 
         if (newMediaPosition !== void 0) {
             this._carousels.forEach((carousel) => {
-                if  (carousel.dataset.type === 'image') {
+                if (carousel.dataset.type === 'image') {
                     const elem = carousel.querySelector(`.product-gallery__media[data-media-position="${newMediaPosition}"]`);
                     if (elem) {
                         if (elem.hasAttribute('data-variant-type')) {
@@ -3794,7 +3794,7 @@ var _VariantPicker = class _VariantPicker extends HTMLElement {
         if (!productChange) {
             const newVariantPicker = deepQuerySelector(newContent, `${this.tagName}[form-id="${this.getAttribute("form-id")}"]`);
             const newVariant = JSON.parse(newVariantPicker.querySelector("script[data-variant]")?.textContent || "{}");
-            newMediaTag = deepQuerySelector(newContent,  '.product-gallery-media-badge');
+            newMediaTag = deepQuerySelector(newContent, '.product-gallery-media-badge');
             __privateSet(this, _selectedVariant, newVariant);
             __privateGet(this, _form).id.value = __privateGet(this, _selectedVariant)?.id;
             __privateGet(this, _form).id.dispatchEvent(new Event("change", {bubbles: true}));
@@ -6126,7 +6126,7 @@ customElements.define("countdown-timer", class extends HTMLElement {
             this.nodeList.minute.value = this.getDoubleDigit(minutes);
             this.nodeList.second.value = this.getDoubleDigit(seconds);
         } else {
-            this.nodeList.text.innerText = `${days > 0 ? this.getDoubleDigit(days) + ':' : '' }${this.getDoubleDigit(hours)}:${this.getDoubleDigit(minutes)}:${this.getDoubleDigit(seconds)}`;
+            this.nodeList.text.innerText = `${days > 0 ? this.getDoubleDigit(days) + ':' : ''}${this.getDoubleDigit(hours)}:${this.getDoubleDigit(minutes)}:${this.getDoubleDigit(seconds)}`;
         }
     }
 
@@ -6166,7 +6166,7 @@ customElements.define('scroll-area', class extends HTMLElement {
         this.classList.add('scroll-area-view');
         setTimeout(() => {
             this._node = this.querySelector(this.selector);
-            if (this._node){
+            if (this._node) {
                 $heybike.on('resize', this.onInit.bind(this), this._node);
                 this.onInit();
             }
@@ -6270,6 +6270,7 @@ class LazyImage extends HTMLImageElement {
         super();
         this.selecter = '__loading__';
     }
+
     connectedCallback() {
         if (this.hasAttribute('data-srcset') || null !== this.media) {
             if (!window._h_) {
@@ -6287,16 +6288,18 @@ class LazyImage extends HTMLImageElement {
                             }
                         });
                     },
-                    { root: null, threshold: 0 }
+                    {root: null, threshold: 0}
                 );
             }
             window._h_.observe(this);
         }
     }
+
     get media() {
         this._media = this._media || this.parentNode;
         return this._media;
     }
+
     mediaLazy() {
         this.complete ||
         this.classList.contains('loaded') ||
@@ -6307,15 +6310,16 @@ class LazyImage extends HTMLImageElement {
                     const a = () => {
                         this.classList.add('loaded'), this.media.classList.remove(this.selecter);
                     };
-                    window.requestIdleCallback ? window.requestIdleCallback(a, { timeout: 150 }) : setTimeout(a);
+                    window.requestIdleCallback ? window.requestIdleCallback(a, {timeout: 150}) : setTimeout(a);
                 },
                 !1
             ));
     }
+
     handleLazy(elem) {
         if (!elem.classList.contains('loaded')) {
             const srcsetList = elem.getAttribute('data-srcset').split(',');
-            const current = { width: 0, src: '' };
+            const current = {width: 0, src: ''};
             const width = elem.parentNode.offsetWidth;
             const len = srcsetList.length;
             for (let i = 0; i < len; i++) {
@@ -6340,7 +6344,8 @@ class LazyImage extends HTMLImageElement {
         }
     }
 }
-customElements.define('lazy-image', LazyImage, { extends: 'img' });
+
+customElements.define('lazy-image', LazyImage, {extends: 'img'});
 
 class Animation {
     constructor(container) {
@@ -6546,6 +6551,208 @@ customElements.define("checkout-button", class extends HTMLElement {
         $heybike.addToCart(allFormData, true);
     }
 });
+
+customElements.define(
+    'cart-discount',
+    class CartDiscount extends HTMLFormElement {
+        constructor() {
+            super();
+
+            this.onApplyDiscount = this.applyDiscount.bind(this);
+        }
+
+        get sectionId() {
+            return this.getAttribute('data-section-id');
+        }
+
+        get errorText() {
+            return this.getAttribute('data-error');
+        }
+
+        connectedCallback() {
+            this.submitButton = this.querySelector('[type="submit"]');
+            this.resultsElement = this.lastElementChild;
+
+            this.submitButton.addEventListener('click', this.onApplyDiscount);
+        }
+
+        disconnectedCallback() {
+            this.abortController?.abort();
+            this.submitButton.removeEventListener('click', this.onApplyDiscount);
+        }
+
+        applyDiscount(event) {
+            event.preventDefault();
+
+            const discountCode = this.querySelector('[name="discount"]');
+            if (!(discountCode instanceof HTMLInputElement) || typeof this.getAttribute('data-section-id') !== 'string') return;
+
+            this.abortController?.abort();
+            this.abortController = new AbortController();
+
+            const discountCodeValue = discountCode.value.trim();
+            if (discountCodeValue === '') return;
+
+            const existingDiscounts = this.existingDiscounts();
+            if (existingDiscounts.includes(discountCodeValue)) return;
+
+            this.setDiscountError('');
+            this.submitButton.setAttribute('aria-busy', 'true');
+
+            const body = JSON.stringify({
+                discount: [...existingDiscounts, discountCodeValue].join(','),
+                sections: [this.sectionId]
+            });
+
+            fetch('/cart/update', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'Accept': `application/json`},
+                ...{body},
+                signal: this.abortController.signal
+            })
+                .then((response) => response.json())
+                .then((parsedState) => {
+                    if (
+                        parsedState.discount_codes.find((discount) => {
+                            return discount.code === discountCodeValue && discount.applicable === false;
+                        })
+                    ) {
+                        discountCode.value = '';
+                        this.setDiscountError(this.errorText);
+                        return;
+                    }
+
+                    const newHtml = parsedState.sections[this.sectionId];
+                    const parsedHtml = new DOMParser().parseFromString(newHtml, 'text/html');
+                    const section = parsedHtml.getElementById(`shopify-section-${this.sectionId}`);
+                    if (section) {
+                        const discountCodes = section?.querySelectorAll('button[is="discount-remove"]') || [];
+                        const codes = Array.from(discountCodes)
+                            .map((element) => (element instanceof HTMLButtonElement ? element.getAttribute('data-discount') : null))
+                            .filter(Boolean);
+
+                        if (
+                            codes.length === existingDiscounts.length &&
+                            codes.every((code) => existingDiscounts.includes(code)) &&
+                            parsedState.discount_codes.find((discount) => {
+                                return discount.code === discountCodeValue && discount.applicable === true;
+                            })
+                        ) {
+                            discountCode.value = '';
+                            this.setDiscountError('Shipping discounts are shown at checkout after adding an address');
+                            return;
+                        }
+                    }
+
+                    document.documentElement.dispatchEvent(new CustomEvent("cart:change", {
+                        bubbles: true,
+                        detail: {
+                            baseEvent: "cart-discount",
+                            cart: parsedState
+                        }
+                    }));
+                })
+                .catch((error) => {
+                    if (error.name === 'AbortError') {
+                        console.log('Fetch aborted by user');
+                    } else {
+                        console.error(error);
+                    }
+                })
+                .finally(() => {
+                    this.submitButton.removeAttribute('aria-busy');
+                });
+        }
+
+        removeDiscount(event) {
+            if ((event instanceof KeyboardEvent && event.key !== 'Enter') || !(event instanceof MouseEvent)) {
+                return;
+            }
+
+            const discountCode = event.target.getAttribute('data-discount');
+            if (!discountCode) return;
+
+            const existingDiscounts = this.existingDiscounts();
+            const index = existingDiscounts.indexOf(discountCode);
+            if (index === -1) return;
+
+            existingDiscounts.splice(index, 1);
+
+            this.abortController?.abort();
+            this.abortController = new AbortController();
+
+            this.setDiscountError('');
+            event.target.setAttribute('loading', '');
+
+            const body = JSON.stringify({
+                discount: existingDiscounts.join(','),
+                sections: [this.sectionId]
+            });
+
+            fetch('/cart/update', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'Accept': `application/json`},
+                ...{body},
+                signal: this.abortController.signal
+            })
+                .then((response) => response.json())
+                .then((parsedState) => {
+                    document.documentElement.dispatchEvent(new CustomEvent("cart:change", {
+                        bubbles: true,
+                        detail: {
+                            baseEvent: "cart-discount",
+                            cart: parsedState
+                        }
+                    }));
+                })
+                .catch((error) => {
+                    if (error.name === 'AbortError') {
+                        console.log('Fetch aborted by user');
+                    } else {
+                        console.error(error);
+                    }
+                })
+                .finally(() => {
+                    event.target.removeAttribute('loading');
+                });
+        }
+
+        existingDiscounts() {
+            const discountCodes = [];
+            const discountPills = this.querySelectorAll('button[is="discount-remove"]');
+            for (const pill of discountPills) {
+                if (pill.hasAttribute('data-discount')) {
+                    discountCodes.push(pill.getAttribute('data-discount'));
+                }
+            }
+            return discountCodes;
+        }
+
+        setDiscountError(error) {
+            this.resultsElement.lastElementChild.textContent = error;
+            this.resultsElement.hidden = error.length === 0;
+        }
+    }, {extends: 'form'}
+);
+
+customElements.define(
+    'discount-remove',
+    class DiscountRemove extends CustomButton {
+        constructor() {
+            super();
+
+            this.addEventListener('click', this.onClick);
+        }
+
+        onClick(event) {
+            const form = this.closest('form[is="cart-discount"]') || document.querySelector('form[is="cart-discount"]');
+            if (form) {
+                event.preventDefault();
+                form.removeDiscount(event);
+            }
+        }
+    }, {extends: 'button'}
+);
 
 export {
     AccordionDisclosure,

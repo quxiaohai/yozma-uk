@@ -330,9 +330,21 @@
         "one": "{{ count }} item",
         "other": "{{ count }} items"
       },
+      "discount": {
+        "title": "Discount",
+        "caption": "Discount",
+        "placeholder": "Discount code",
+        "button": "Apply",
+        "error": "Discount code cannot be applied to your cart",
+        "shipping_error": "Shipping discounts are shown at checkout after adding an address",
+        "applied": "Applied discount code: {{ code }}",
+        "remove": "Remove discount {{ code }}"
+      },
       "continue_shopping": "Continue shopping",
       "weight": "Weight",
       "subtotal": "Subtotal",
+      "subtotal_discount": "Coupon Discount",
+      "subtotal_saved": "Product Discount",
       "total": "Total",
       "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\" class=\"link\">shipping</a> calculated at checkout",
       "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",

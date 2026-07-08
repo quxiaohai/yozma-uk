@@ -1,180 +1,336 @@
-<cart-drawer {% if request.design_mode %}handle-section-events{% endif %} class="cart-drawer drawer drawer--lg" id="cart-drawer">
-  {%- if cart.item_count == 0 -%}
-    <button is="close-button" aria-label="{{ 'general.accessibility.close' | t | escape }}">
-      {%- render 'icon' with 'close' -%}
-    </button>
-
-    <div class="empty-state align-self-center">
-      <div class="empty-state__icon-wrapper">
-        {%- render 'icon' with 'cart', width: 32, height: 32, stroke_width: 1 -%}
-        <span class="count-bubble count-bubble--lg">0</span>
-      </div>
-
-      <div class="prose">
-        <p class="h5">{{ 'cart.general.empty' | t }}</p>
-
-        {%- assign button_content = 'cart.general.continue_shopping' | t -%}
-        {%- render 'button', href: settings.cart_empty_button_link, size: 'xl', content: button_content -%}
-      </div>
-    </div>
-  {%- else -%}
-    <div class="cart-drawer__inner">
-      <div class="cart-drawer__top">
-        <div class="h-stack items-center justify-between">
-          <div class="h-stack grow gap-2 sm:gap-2.5">
-            <p class="h5">{{- 'cart.general.title' | t -}}</p>
-            <cart-count class="count-bubble count-bubble--md">{{ cart.item_count }}</cart-count>
-          </div>
-
-          <button type="button" is="close-button" class="drawer__close-icon">
-            <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
+{%- liquid
+    assign ss = section.settings
+    assign rendered_recommendations = 0
+    if ss.products.count > 0
+        for recommended_product in ss.products
+            assign item_count_in_cart = cart | line_items_for: recommended_product
+            if item_count_in_cart.size == 0
+                assign rendered_recommendations = rendered_recommendations | plus: 1
+            endif
+        endfor
+    endif
+-%}
+{%- if rendered_recommendations > 0 -%}
+   <style>
+       @media screen and (min-width: 700px) {
+           #cart-drawer.not-empty {
+               width: 903px;
+           }
+           #cart-drawer.not-empty::part(content) {
+               padding-left: 223px;
+               max-width: none;
+           }
+       }
+       .not-empty .desktop-add-accessories {
+           display: block;
+       }
+   </style>
+{%- endif -%}
+<cart-drawer {% if request.design_mode %}handle-section-events{% endif %} class="cart-drawer{% if cart.item_count > 0 %} not-empty{% endif %} drawer drawer--lg"
+             id="cart-drawer">
+    {%- if cart.item_count == 0 -%}
+        <button is="close-button" aria-label="{{ 'general.accessibility.close' | t | escape }}">
             {%- render 'icon' with 'close' -%}
-          </button>
+        </button>
+
+        <div class="empty-state align-self-center">
+            <div class="empty-state__icon-wrapper">
+                {%- render 'icon' with 'cart', width: 32, height: 32, stroke_width: 1 -%}
+                <span class="count-bubble count-bubble--lg">0</span>
+            </div>
+
+            <div class="prose">
+                <p class="h5">{{ 'cart.general.empty' | t }}</p>
+
+                {%- assign button_content = 'cart.general.continue_shopping' | t -%}
+                {%- render 'button', href: settings.cart_empty_button_link, size: 'xl', content: button_content -%}
+            </div>
         </div>
-
-        {%- if settings.cart_show_free_shipping_threshold -%}
-          {%- render 'free-shipping-bar' -%}
-        {%- endif -%}
-      </div>
-
-      <div class="v-stack gap-6 sm:gap-8">
-        <div class="cart-drawer__line-items">
-          {%- for line_item in cart.items -%}
-            {%- render 'line-item', line_item: line_item, show_desktop_quantity: true -%}
-          {%- endfor -%}
-        </div>
-
-        {%- if section.settings.products.count > 0 -%}
-          <div class="cart-drawer__recommendations">
-            <div class="v-stack gap-2.5 sm:gap-4">
-              {%- capture carousel_id -%}cart-drawer-recommendations{%- endcapture -%}
-
-              {%- liquid
-                assign horizontal_products_blends = true
-                assign product_card_background = section.settings.product_card_background | default: product.settings.product_card_background
-
-                if product_card_background != 'rgba(0,0,0,0)' and product_card_background != blank and product_card_background != settings.dialog_background
-                  assign horizontal_products_blends = false
-                endif
-
-                assign rendered_recommendations = 0
-
-                capture recommendations
-                  for recommended_product in section.settings.products
-                    assign item_count_in_cart = cart | line_items_for: recommended_product
-
-                    if item_count_in_cart.size == 0
-                      render 'horizontal-product', product: recommended_product, show_add_to_cart: true, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color
-                      assign rendered_recommendations = rendered_recommendations | plus: 1
-                    endif
-                  endfor
-                endcapture
-              -%}
-
-              {%- if rendered_recommendations > 0 -%}
-                <div class="h-stack justify-between gap-4">
-                  {%- if section.settings.recommendations_title != blank -%}
-                    <p>{{ section.settings.recommendations_title | escape }}</p>
-                  {%- endif -%}
-
-                  {%- if rendered_recommendations > 1 -%}
-                    <div class="h-stack gap-2 hidden sm:flex">
-                      <button is="prev-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.previous' | t | escape }}" disabled>{%- render 'icon' with 'chevron-left-small', direction_aware: true -%}</button>
-                      <button is="next-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.next' | t | escape }}">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</button>
+    {%- else -%}
+        <div class="cart-drawer__inner">
+            <div class="cart-drawer__top">
+                <div class="h-stack items-center justify-between">
+                    <div class="h-stack grow gap-2 sm:gap-2.5">
+                        <p class="h5">{{- 'cart.general.title' | t -}}</p>
+                        <cart-count class="count-bubble count-bubble--md">{{ cart.item_count }}</cart-count>
                     </div>
-                  {%- endif -%}
+
+                    <button type="button" is="close-button" class="drawer__close-icon">
+                        <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
+                        {%- render 'icon' with 'close' -%}
+                    </button>
                 </div>
-              {%- endif -%}
 
-              {%- if recommendations != blank -%}
-                <scroll-carousel selector=".horizontal-product" id="{{ carousel_id }}" class="horizontal-product-list-carousel {% unless horizontal_products_blends %}separate{% endunless %} scroll-area bleed">
-                  <div class="horizontal-product-list {% if horizontal_products_blends %}divide-x{% else %}separate{% endif %}">
-                    {{- recommendations -}}
-                  </div>
-                </scroll-carousel>
-              {%- endif -%}
-            </div>
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-
-    <div class="v-stack gap-4 sm:gap-6" slot="footer">
-      <div class="v-stack gap-1">
-        {% for discount_application in cart.cart_level_discount_applications %}
-          <div class="h-stack gap-4 justify-between">
-            <div class="badge">
-              {%- render 'icon' with 'discount' -%} {{- discount_application.title -}}
+                {%- if settings.cart_show_free_shipping_threshold -%}
+                    {%- render 'free-shipping-bar' -%}
+                {%- endif -%}
             </div>
 
-            <span class="text-subdued">-{{ discount_application.total_allocated_amount | money }}</span>
-          </div>
-        {% endfor %}
+            <div class="v-stack gap-6 sm:gap-8">
+                <div class="cart-drawer__line-items">
+                    {%- liquid
+                        assign subtotal_saved = 0
+                        assign product_total = 0
+                    -%}
+                    {%- for line_item in cart.items -%}
+                        {%- liquid
+                            if line_item.original_line_price > line_item.final_line_price
+                                assign saved_price = line_item.original_line_price | minus: line_item.final_line_price
+                                assign total_saved = total_saved | plus: saved_price
+                                assign product_total = product_total | plus: line_item.original_line_price
+                            elsif line_item.variant.compare_at_price > line_item.variant.price
+                                assign compare_at_price = line_item.variant.compare_at_price | times: line_item.quantity
+                                assign current_price = line_item.variant.price | times: line_item.quantity
+                                assign saved_price = compare_at_price | minus: current_price
+                                assign total_saved = total_saved | plus: saved_price
+                                assign product_total = product_total | plus: compare_at_price
+                            endif
+                        -%}
+                        {%- render 'line-item', line_item: line_item, show_desktop_quantity: true -%}
+                    {%- endfor -%}
+                </div>
 
-        <div class="h-stack gap-4 justify-between">
-          <span class="h5">{{ 'cart.general.total' | t }}</span>
-          <span class="h5">{{- cart.total_price | money_with_currency -}}</span>
+                {%- if section.settings.products.count > 0 -%}
+                    <div class="cart-drawer__recommendations hidden">
+                        <div class="v-stack gap-2.5 sm:gap-4">
+                            {%- capture carousel_id -%}cart-drawer-recommendations{%- endcapture -%}
+
+                            {%- liquid
+                                assign horizontal_products_blends = true
+                                assign product_card_background = section.settings.product_card_background | default: product.settings.product_card_background
+
+                                if product_card_background != 'rgba(0,0,0,0)' and product_card_background != blank and product_card_background != settings.dialog_background
+                                    assign horizontal_products_blends = false
+                                endif
+
+                                assign rendered_recommendations = 0
+
+                                capture recommendations
+                                    for recommended_product in section.settings.products
+                                        assign item_count_in_cart = cart | line_items_for: recommended_product
+
+                                        if item_count_in_cart.size == 0
+                                            render 'horizontal-product', product: recommended_product, show_add_to_cart: true, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color
+                                            assign rendered_recommendations = rendered_recommendations | plus: 1
+                                        endif
+                                    endfor
+                                endcapture
+                            -%}
+
+                            {%- if rendered_recommendations > 0 -%}
+                                <div class="h-stack justify-between gap-4">
+                                    {%- if section.settings.recommendations_title != blank -%}
+                                        <p>{{ section.settings.recommendations_title | escape }}</p>
+                                    {%- endif -%}
+
+                                    {%- if rendered_recommendations > 1 -%}
+                                        <div class="h-stack gap-2 hidden sm:flex">
+                                            <button is="prev-button" class="circle-chevron hover:colors"
+                                                    aria-controls="{{ carousel_id }}"
+                                                    aria-label="{{ 'general.accessibility.previous' | t | escape }}"
+                                                    disabled>{%- render 'icon' with 'chevron-left-small', direction_aware: true -%}</button>
+                                            <button is="next-button" class="circle-chevron hover:colors"
+                                                    aria-controls="{{ carousel_id }}"
+                                                    aria-label="{{ 'general.accessibility.next' | t | escape }}">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</button>
+                                        </div>
+                                    {%- endif -%}
+                                </div>
+                            {%- endif -%}
+
+                            {%- if recommendations != blank -%}
+                                <scroll-carousel selector=".horizontal-product" id="{{ carousel_id }}"
+                                                 class="horizontal-product-list-carousel {% unless horizontal_products_blends %}separate{% endunless %} scroll-area bleed">
+                                    <div
+                                        class="horizontal-product-list {% if horizontal_products_blends %}divide-x{% else %}separate{% endif %}">
+                                        {{- recommendations -}}
+                                    </div>
+                                </scroll-carousel>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                {%- endif -%}
+
+                {%- if rendered_recommendations > 0 -%}
+                    {%- render 'desktop-add-accessories', items: ss.products, title: ss.recommendations_title -%}
+                {%- endif -%}
+            </div>
         </div>
 
-        {%- if section.settings.show_shipping_text -%}
-          {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-            <p class="text-subdued text-sm">{{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}</p>
-          {%- elsif cart.taxes_included -%}
-            <p class="text-subdued text-sm">{{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}</p>
-          {%- elsif shop.shipping_policy.body != blank -%}
-            <p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}</p>
-          {%- else -%}
-            <p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>
-          {%- endif -%}
-        {%- endif -%}
+        <div class="v-stack gap-4 sm:gap-6" slot="footer">
+            <form
+                class="details__content cart-discount flex-column"
+                action="{{ routes.cart_url }}"
+                method="POST"
+                novalidate
+                is="cart-discount"
+                data-error="{{ 'cart.general.discount.error' | t }}"
+                data-section-id="{{ section.id }}">
+                {%- liquid
+                    assign discount_codes = cart.cart_level_discount_applications | where: 'type', 'discount_code' | map: 'title'
+                    for item in cart.items
+                        for allocation in item.line_level_discount_allocations
+                            if allocation.discount_application.type == 'discount_code'
+                                assign discount_codes = item.line_level_discount_allocations | slice: forloop.index0 | map: 'discount_application' | map: 'title' | concat: discount_codes
+                            endif
+                        endfor
+                    endfor
 
-        {%- if section.settings.show_cart_note -%}
-          <button type="button" class="justify-self-start" aria-controls="cart-drawer-note">
-            <span class="link text-sm text-subdued">
-              {%- if cart.note == blank -%}
-                {{- 'cart.general.add_order_note' | t -}}
-              {%- else -%}
-                {{- 'cart.general.edit_order_note' | t -}}
-              {%- endif -%}
-            </span>
-          </button>
+                    assign discount_codes = discount_codes | uniq
+                -%}
+                {%- if discount_codes.size > 0 -%}
+                    <ul class="active-facets flex flex-wrap items-center gap-2" role="list" aria-label="{{ 'customer.order.discounts' | t | escape }}">
+                        {%- for discount_code in discount_codes -%}
+                            <li
+                                class="removable-facet badge badge--highlight flex items-center justify-between gap-2 text-xs lg:text-sm leading-none"
+                                aria-label="{{ 'cart.general.discount.applied' | t: code: discount_code | escape }}"
+                            >
+                                <p class="facet-title lh-2">{{ discount_code }}</p>
+                                <button type="button" class="block relative" aria-label="{{ 'cart.general.discount.remove' | t: code: discount_code | escape }}" is="discount-remove" data-magnet="3" data-discount="{{ discount_code }}">
+                              <span class="btn-text">
+                                {%- liquid
+                                    render 'icon', icon: 'remove', class: 'xs'
+                                    render 'icon', icon: 'loader', class: 'sm absolute opacity-0 invisible animate-spin'
+                                -%}
+                              </span>
+                                </button>
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                {%- endif -%}
+                <div class="field flex-left">
+                    {%- capture label -%}{{ 'cart.general.discount.placeholder' | t }}{%- endcapture -%}
+                    {%- render 'input', type: 'text', name: 'discount', label: label, required: true -%}
+                    <button class="button overflow-hidden button-translate hollow-translate" type="submit" is="custom-button">
+                        <span class="btn-text relative">{{ 'cart.general.discount.button' | t }}</span>
+                    </button>
+                </div>
+                <div class="alert alert--error flex gap-2.5" hidden>
+                    {%- render 'icon', icon: 'alert-circle-filled', class: 'shrink-0' -%}
+                    <div class="gap-2 flex-left text-sm lh-2"></div>
+                </div>
+            </form>
+            <div class="v-stack gap-1">
+                {% for discount_application in cart.cart_level_discount_applications %}
+                    <div class="h-stack gap-4 justify-between">
+                        <div class="badge">
+                            {%- render 'icon' with 'discount' -%} {{- discount_application.title -}}
+                        </div>
 
-          <cart-note-dialog id="cart-drawer-note" class="cart-drawer__note">
-            <div class="cart-drawer__note-inner">
-              <div class="v-stack gap-4 sm:gap-6">
-                <p class="h5">{{ 'cart.general.order_note' | t }}</p>
+                        <span class="text-subdued">-{{ discount_application.total_allocated_amount | money }}</span>
+                    </div>
+                {% endfor %}
+                <div class="subtotal-wrap flex-column">
+                    {%- if product_total > 0 -%}
+                        <div class="flex-between w-full">
+                            <div
+                                class="totals__subtotal fw-500">{{ 'cart.general.total' | t }}</div>
+                            <div class="totals__discount black fw-700 lh-3">
+                                {{ product_total | money_with_currency }}</div>
+                        </div>
+                    {%- endif -%}
+                    {%- if total_saved > 0 -%}
+                        <div class="flex-between w-full">
+                            <div
+                                class="totals__subtotal fw-500">{{ 'cart.general.subtotal_saved' | t }}</div>
+                            <div class="totals__discount fw-700 lh-3">
+                                -{{ total_saved | money_with_currency }}</div>
+                        </div>
+                    {%- endif -%}
+                    {%- if cart.total_discount > 0 -%}
+                        <div class="flex-between w-full">
+                            <span
+                                class="totals__subtotal fw-500">{{ 'cart.general.subtotal_discount' | t }}</span>
+                            <div class="totals__discount fw-700 lh-3">
+                                -{{ cart.total_discount | money_with_currency }}</div>
+                        </div>
+                    {%- endif -%}
+                    <div class="flex-between w-full">
+                        <div
+                            class="totals__subtotal fw-500">{{ 'cart.general.subtotal' | t }}</div>
+                        <div
+                            class="totals__subtotal-value  fw-900 lh-3">{{ cart.total_price | money_with_currency }}</div>
+                    </div>
+                    <div class="tax-note text-xs rte">
+                        {%- liquid
+                            if cart.taxes_included and shop.shipping_policy.body != blank
+                                echo 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url
+                            elsif cart.taxes_included
+                                echo 'cart.general.taxes_included_but_shipping_at_checkout' | t
+                            elsif shop.shipping_policy.body != blank
+                                echo 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url
+                            else
+                                echo 'cart.general.taxes_and_shipping_at_checkout' | t
+                            endif
+                        -%}
+                    </div>
+                </div>
+                {% comment %}<div class="h-stack gap-4 justify-between">{% endcomment %}
+                {% comment %}<span class="h5">{{ 'cart.general.total' | t }}</span>{% endcomment %}
+                {% comment %}<span class="h5">{{- cart.total_price | money_with_currency -}}</span>{% endcomment %}
+                {% comment %}</div>{% endcomment %}
+                {% comment %}{% endcomment %}
+                {% comment %}{%- if section.settings.show_shipping_text -%}{% endcomment %}
+                {% comment %}{%- if cart.taxes_included and shop.shipping_policy.body != blank -%}{% endcomment %}
+                {% comment %}<p class="text-subdued text-sm">{{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}</p>{% endcomment %}
+                {% comment %}{%- elsif cart.taxes_included -%}{% endcomment %}
+                {% comment %}<p class="text-subdued text-sm">{{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}</p>{% endcomment %}
+                {% comment %}{%- elsif shop.shipping_policy.body != blank -%}{% endcomment %}
+                {% comment %}<p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}</p>{% endcomment %}
+                {% comment %}{%- else -%}{% endcomment %}
+                {% comment %}<p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>{% endcomment %}
+                {% comment %}{%- endif -%}{% endcomment %}
+                {% comment %}{%- endif -%}{% endcomment %}
 
-                <cart-note class="v-stack gap-4">
-                  {%- assign order_note = 'cart.general.order_note' | t -%}
-                  {%- assign order_save_label = 'cart.general.save_note' | t -%}
+                {%- if section.settings.show_cart_note -%}
+                    <button type="button" class="justify-self-start" aria-controls="cart-drawer-note">
+                        <span class="link text-sm text-subdued">
+                          {%- if cart.note == blank -%}
+                              {{- 'cart.general.add_order_note' | t -}}
+                          {%- else -%}
+                              {{- 'cart.general.edit_order_note' | t -}}
+                          {%- endif -%}
+                        </span>
+                    </button>
 
-                  {%- render 'input', name: 'note', multiline: 3, label: order_note, value: cart.note -%}
+                    <cart-note-dialog id="cart-drawer-note" class="cart-drawer__note">
+                        <div class="cart-drawer__note-inner">
+                            <div class="v-stack gap-4 sm:gap-6">
+                                <p class="h5">{{ 'cart.general.order_note' | t }}</p>
 
-                  <div class="justify-self-start">
-                    {%- render 'button', type: 'button', content: order_save_label, size: 'lg', is: 'close-button', secondary: true -%}
-                  </div>
-                </cart-note>
-              </div>
+                                <cart-note class="v-stack gap-4">
+                                    {%- assign order_note = 'cart.general.order_note' | t -%}
+                                    {%- assign order_save_label = 'cart.general.save_note' | t -%}
+
+                                    {%- render 'input', name: 'note', multiline: 3, label: order_note, value: cart.note -%}
+
+                                    <div class="justify-self-start">
+                                        {%- render 'button', type: 'button', content: order_save_label, size: 'lg', is: 'close-button', secondary: true -%}
+                                    </div>
+                                </cart-note>
+                            </div>
+                        </div>
+                    </cart-note-dialog>
+                {%- endif -%}
             </div>
-          </cart-note-dialog>
-        {%- endif -%}
-      </div>
 
-      <form action="{{ routes.cart_url }}" method="POST" class="buy-buttons {% if section.settings.show_checkout_button %}buy-buttons--compact{% endif %}">
-        {%- assign checkout_label = 'cart.general.checkout' | t -%}
+            <form action="{{ routes.cart_url }}" method="POST"
+                  class="buy-buttons {% if section.settings.show_checkout_button %}buy-buttons--compact{% endif %}">
+                {%- assign checkout_label = 'cart.general.checkout' | t -%}
 
-        {%- if section.settings.show_view_cart_button or section.settings.show_checkout_button == false -%}
-          <a href="{{ routes.cart_url }}" class="button button--xl {% if section.settings.show_checkout_button %}button--secondary{% endif %}" data-no-instant>
-            {{- 'cart.general.view_cart' | t -}}
-          </a>
-        {%- endif -%}
+                {%- if section.settings.show_view_cart_button or section.settings.show_checkout_button == false -%}
+                    <a href="{{ routes.cart_url }}"
+                       class="button overflow-hidden solid-translate button-translate button--xl {% if section.settings.show_checkout_button %}button--secondary{% endif %}"
+                       data-no-instant>
+                        <span class="relative">{{- 'cart.general.view_cart' | t -}}</span>
+                    </a>
+                {%- endif -%}
 
-        {%- if section.settings.show_checkout_button -%}
-          {%- render 'button', type: 'submit', content: checkout_label, icon: 'picto-lock', name: 'checkout', size: 'xl' -%}
-        {%- endif -%}
-      </form>
-    </div>
-  {%- endif -%}
+                {%- if section.settings.show_checkout_button -%}
+                    {%- render 'button', type: 'submit', content: checkout_label, icon: 'picto-lock', name: 'checkout', size: 'xl', custom_class: 'button-translate hollow-translate overflow-hidden' -%}
+                {%- endif -%}
+            </form>
+        </div>
+    {%- endif -%}
 </cart-drawer>
 
 {% schema %}
@@ -228,7 +384,7 @@
       "id": "products",
       "label": "Recommendations",
       "info": "Suggest additional products to your customers. Recommendations already in the cart are automatically hidden.",
-      "limit": 10
+      "limit": 15
     },
     {
       "type": "color",

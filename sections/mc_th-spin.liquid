@@ -67,10 +67,24 @@
         color: {{ ss.form_title_color }};
     }
 
+    .mc_th-spin .form-wrap .subtitle {
+        font-size: 24px;
+        color: {{ ss.form_subtitle_color }};
+        padding-top: 20px;
+    }
+
+    .mc_th-spin .form-wrap .subtitle strong {
+        color: {{ ss.form_subtitle_bold_color }};
+    }
+
     .mc_th-spin .form-wrap .intro {
         padding-top: 20px;
         font-size: 18px;
         color: {{ ss.form_desc_color }};
+    }
+
+    .mc_th-spin .form-wrap .intro strong {
+        color: {{ ss.form_desc_bold_color }};
     }
 
     .mc_th-spin .form-wrap .intro ul {
@@ -96,7 +110,7 @@
     }
 
     .mc_th-spin .form-wrap .form-info {
-        padding-top: 75px;
+        padding-top: {{ ss.form_top }}px;
     }
 
     .mc_th-spin .form-wrap .field {
@@ -218,6 +232,11 @@
             font-size: 2.1621621622vw;
         }
 
+        .mc_th-spin .form-wrap .subtitle {
+            padding-top: 1.3513513514vw;
+            font-size: 1.62162162vw;
+        }
+
         .mc_th-spin .form-wrap > .image {
             height: 17.5675675676vw;
             top: 1.7567567568vw;
@@ -234,7 +253,7 @@
         }
 
         .mc_th-spin .form-wrap .form-info {
-            padding-top: 5.0675675676vw;
+            padding-top: {{ ss.form_top | divided_by: 14.8 }}vw;
         }
 
         .mc_th-spin .form-wrap .field {
@@ -304,6 +323,11 @@
             font-size: 1rem;
         }
 
+        .mc_th-spin .form-wrap .subtitle {
+            padding-top: 1.125rem;
+            font-size: 0.85rem;
+        }
+
         .mc_th-spin .form-wrap .intro {
             padding-top: 1.125rem;
             font-size: 0.75rem;
@@ -365,6 +389,11 @@
                 <div class="title fw-600 relative z-1 lh-2">
                     {{ ss.form_title }}
                 </div>
+                {%- if ss.form_subtitle != blank -%}
+                    <div class="subtitle relative z-1 lh-2">
+                        {{ ss.form_subtitle }}
+                    </div>
+                {%- endif -%}
                 <div class="intro relative z-1 lh-2">
                     {{ ss.form_desc }}
                 </div>
@@ -403,318 +432,323 @@
     </div>
     {%- liquid
         assign discount = section.blocks | first
-        assign ds = discount.settings
-        render 'spin-popup', ds: ds
+        if discount != blank
+            assign ds = discount.settings
+            render 'spin-popup', ds: ds
+        endif
     -%}
 </div>
-{%- if discount != blank -%}
-    <script>
-        $heybike.ready(() => {
-            const node = document.getElementById('{{ section.id }}-spin');
-            const nodeList = $heybike.getNodeList(node);
-            const form = document.getElementById('{{ form_id }}');
-            const spinElem = node.querySelector('.spin-image');
-            let currentRotation = 0.0;
-            let animating = false;
-            let animStartTime = 0;
-            let startRotation = 0;
-            let targetRotation = 0;
-            let animationId = null;
-            let currentPrize = null;
-            let isOpen = false;
-            let scrollPos = 0;
+<script>
+    $heybike.ready(() => {
+        const node = document.getElementById('{{ section.id }}-spin');
+        const nodeList = $heybike.getNodeList(node);
+        const form = document.getElementById('{{ form_id }}');
+        {%- if discount != blank -%}
+        const spinElem = node.querySelector('.spin-image');
+        let currentRotation = 0.0;
+        let animating = false;
+        let animStartTime = 0;
+        let startRotation = 0;
+        let targetRotation = 0;
+        let animationId = null;
+        let currentPrize = null;
+        let isOpen = false;
+        let scrollPos = 0;
 
-            const prizes = [
-                {%- liquid
-                    assign angle = 0
-                -%}
-                {%- for v in (1..9) -%}
-                {%- liquid
-                    assign icon = 'gift_icon' | append: v
-                    assign code = 'discount_code' | append: v
-                    assign name = 'prize_name' | append: v
-                    assign weight = 'prize_weight' | append: v
-                -%}
-                {
-                    icon: '{{ ds[icon] | image_url: width: 300 }}',
-                    code: '{{ ds[code] }}',
-                    angle: {{ 360 | minus: angle }},
-                    title: `{{ ds[name] }}`,
-                    weight: {{ ds[weight] }}}{% if forloop.last == false %},{% endif %}
-                {%- liquid
-                    assign angle = angle | plus: 40
-                -%}
-                {%- endfor -%}
-            ];
+        const prizes = [
+            {%- liquid
+                assign angle = 0
+            -%}
+            {%- for v in (1..9) -%}
+            {%- liquid
+                assign icon = 'gift_icon' | append: v
+                assign code = 'discount_code' | append: v
+                assign name = 'prize_name' | append: v
+                assign weight = 'prize_weight' | append: v
+            -%}
+            {
+                icon: '{{ ds[icon] | image_url: width: 300 }}',
+                code: '{{ ds[code] }}',
+                angle: {{ 360 | minus: angle }},
+                title: `{{ ds[name] }}`,
+                weight: {{ ds[weight] }}}{% if forloop.last == false %},{% endif %}
+            {%- liquid
+                assign angle = angle | plus: 40
+            -%}
+            {%- endfor -%}
+        ];
 
-            const getSelectPrize = () => {
-                const list = prizes.filter(item => item.weight > 0);
-                const len = list.length;
-                const totalWeight = list.reduce((prev, cur) => cur.weight + prev, 0);
-                const r = Math.random() * totalWeight;
-                let cumulative = 0;
-                for (let k = 0; k < len; k++) {
-                    cumulative += list[k].weight;
-                    if (r <= cumulative) return list[k];
-                }
-                return list[len - 1];
-            };
-
-            function startWheel(rotateRad) {
-                spinElem.style.transform = `rotate(${rotateRad}deg)`;
+        const getSelectPrize = () => {
+            const list = prizes.filter(item => item.weight > 0);
+            const len = list.length;
+            const totalWeight = list.reduce((prev, cur) => cur.weight + prev, 0);
+            const r = Math.random() * totalWeight;
+            let cumulative = 0;
+            for (let k = 0; k < len; k++) {
+                cumulative += list[k].weight;
+                if (r <= cumulative) return list[k];
             }
+            return list[len - 1];
+        };
 
-            function easeOutCubic(t) {
-                return 1 - Math.pow(1 - t, 3);
-            }
+        function startWheel(rotateRad) {
+            spinElem.style.transform = `rotate(${rotateRad}deg)`;
+        }
 
-            function animateSpin(now) {
-                const elapsed = now - animStartTime;
-                let progress = Math.min(1, elapsed / 1800);
-                const easeProgress = easeOutCubic(progress);
-                currentRotation = startRotation + (targetRotation - startRotation) * easeProgress;
-                startWheel(currentRotation);
-                if (progress < 1) {
-                    animationId = requestAnimationFrame(animateSpin);
-                } else {
-                    if (animationId) cancelAnimationFrame(animationId);
-                    animationId = null;
-                    openModal();
-                }
-            }
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
 
-            function startSpin() {
-                if (animating) return;
-                const minRounds = 6;
-                const maxRounds = 14;
-                const rounds = Math.round(minRounds + Math.random() * (maxRounds - minRounds));
-                currentPrize = getSelectPrize();
-                const extraRad = currentPrize.angle;
-                const deltaRad = rounds * 360 + extraRad;
-                startRotation = currentRotation;
-                targetRotation = startRotation + deltaRad;
-                animating = true;
-                animStartTime = performance.now();
-                if (animationId) cancelAnimationFrame(animationId);
+        function animateSpin(now) {
+            const elapsed = now - animStartTime;
+            let progress = Math.min(1, elapsed / 1800);
+            const easeProgress = easeOutCubic(progress);
+            currentRotation = startRotation + (targetRotation - startRotation) * easeProgress;
+            startWheel(currentRotation);
+            if (progress < 1) {
                 animationId = requestAnimationFrame(animateSpin);
+            } else {
+                if (animationId) cancelAnimationFrame(animationId);
+                animationId = null;
+                openModal();
             }
+        }
 
-            const successText = () => {
-                nodeList.formInfo.innerHTML = `<div class="form-success flex-left">
-                    <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
-                        <path
-                            d="M512 1024A512 512 0 1 1 512 0a512 512 0 0 1 0 1024z m-49.590857-377.197714L315.977143 498.614857 219.428571 590.848c70.217143 37.814857 168.594286 106.788571 252.854858 213.723429C531.821714 692.662857 715.337143 463.725714 804.571429 443.245714c-14.409143-57.709714-22.528-166.034286 0-223.817143-183.003429 120.685714-342.162286 427.373714-342.162286 427.373715z"
-                            fill="#1afa29"></path>
-                    </svg>
-                    <span>{{ ss.success }}</span>
-                </div>`;
-            }
+        function startSpin() {
+            if (animating) return;
+            const minRounds = 6;
+            const maxRounds = 14;
+            const rounds = Math.round(minRounds + Math.random() * (maxRounds - minRounds));
+            currentPrize = getSelectPrize();
+            const extraRad = currentPrize.angle;
+            const deltaRad = rounds * 360 + extraRad;
+            startRotation = currentRotation;
+            targetRotation = startRotation + deltaRad;
+            animating = true;
+            animStartTime = performance.now();
+            if (animationId) cancelAnimationFrame(animationId);
+            animationId = requestAnimationFrame(animateSpin);
+        }
+        {%- endif -%}
 
-            const klaviyoSubscribe = async (email) => {
-                const createSubscriptionResponse = await fetch(`https://a.klaviyo.com/client/subscriptions/?company_id={{ ss.klaviyo_api_key }}`, {
-                    method: "POST",
-                    headers: {
-                        accept: "application/json",
-                        revision: "2026-04-15",
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        data: {
-                            type: "subscription",
-                            relationships: {
-                                list: {
-                                    data: {
-                                        type: "list",
-                                        id: '{{ ss.klaviyo_list_id }}'
-                                    }
+        const successText = () => {
+            nodeList.formInfo.innerHTML = `<div class="form-success flex-left">
+                <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+                    <path
+                        d="M512 1024A512 512 0 1 1 512 0a512 512 0 0 1 0 1024z m-49.590857-377.197714L315.977143 498.614857 219.428571 590.848c70.217143 37.814857 168.594286 106.788571 252.854858 213.723429C531.821714 692.662857 715.337143 463.725714 804.571429 443.245714c-14.409143-57.709714-22.528-166.034286 0-223.817143-183.003429 120.685714-342.162286 427.373714-342.162286 427.373715z"
+                        fill="#1afa29"></path>
+                </svg>
+                <span>{{ ss.success }}</span>
+            </div>`;
+        }
+
+        const klaviyoSubscribe = async (email) => {
+            const createSubscriptionResponse = await fetch(`https://a.klaviyo.com/client/subscriptions/?company_id={{ ss.klaviyo_api_key }}`, {
+                method: "POST",
+                headers: {
+                    accept: "application/json",
+                    revision: "2026-04-15",
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({
+                    data: {
+                        type: "subscription",
+                        relationships: {
+                            list: {
+                                data: {
+                                    type: "list",
+                                    id: '{{ ss.klaviyo_list_id }}'
                                 }
-                            },
-                            attributes: {
-                                profile: {
-                                    data: {
-                                        type: "profile",
-                                        attributes: {
-                                            email: email
-                                        }
+                            }
+                        },
+                        attributes: {
+                            profile: {
+                                data: {
+                                    type: "profile",
+                                    attributes: {
+                                        email: email
                                     }
                                 }
                             }
                         }
-                    })
-                });
-                if (!createSubscriptionResponse.ok) {
-                    return alert(` HTTP ${createSubscriptionResponse.status}`);
-                }
-                successText();
-                startSpin();
-            };
-
-            const omnisendSubscribe = async (email) => {
-                const createSubscriptionResponse = await fetch(`https://api.omnisend.com/api/contacts`, {
-                    method: "POST",
-                    headers: {
-                        Authorization: "Omnisend-API-Key 69de08bd3ff781a3a5fe5f9a-Ooeog9UU5A5v6oyim1QlAyD0OH4SoakwsxIAsZIMQdhaKY7sqH",
-                        "Omnisend-Version": "2026-03-15",
-                        accept: 'application/json',
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        address: '1234 Main St',
-                        birthdate: '1990-01-01',
-                        city: 'Los Angeles',
-                        country: 'United States',
-                        countryCode: 'US',
-                        createdAt: '2024-01-01T00:00:00Z',
-                        firstName: 'John',
-                        gender: 'm',
-                        identifiers: [
-                            {
-                                channels: {
-                                    additionalProp: {status: 'subscribed', statusChangedAt: '2024-01-01T00:00:00Z'},
-                                    email: email
-                                },
-                                consent: {
-                                    createdAt: '2026-01-01T00:00:00Z',
-                                    ip: '192.168.1.1',
-                                    source: 'omnisend-form',
-                                    userAgent: 'Mozilla/5.0'
-                                },
-                                id: email,
-                                sendWelcomeMessage: true,
-                                source: 'api',
-                                type: 'email'
-                            }
-                        ],
-                        lastName: 'Doe',
-                        postalCode: '90001',
-                        state: 'New York',
-                        tags: ['tag1', 'tag2']
-                    })
-                });
-                if (!createSubscriptionResponse.ok) {
-                    return alert(` HTTP ${createSubscriptionResponse.status}`);
-                }
-                successText();
-                startSpin();
-            };
-
-            form.addEventListener('submit', ev => {
-                klaviyoSubscribe(nodeList.email.value);
-                ev.preventDefault();
-                ev.stopPropagation();
+                    }
+                })
             });
-
-            nodeList.privacy?.addEventListener('click', (ev) => {
-                if (ev.target.tagName.toLocaleLowerCase() === 'a') {
-                    return false;
-                }
-                ev.preventDefault();
-                ev.stopPropagation();
-                nodeList.privacy.classList.toggle('checked');
-                if (nodeList.privacy.classList.contains('checked')) {
-                    nodeList.submit.removeAttribute('disabled');
-                } else {
-                    nodeList.submit.setAttribute('disabled', true);
-                }
-            });
-
-            function openModal() {
-                if (isOpen) return;
-                isOpen = true;
-                nodeList.prizeName.textContent = currentPrize.title;
-                nodeList.code.textContent = currentPrize.code;
-                nodeList.cover.innerHTML = `<img src="${currentPrize.icon}" class="image" alt="${currentPrize.code}"/>`
-                nodeList.btn.href = '/discount/' + currentPrize.code + '?redirect=' + encodeURIComponent('{{ ss.model_button_url }}');
-                nodeList.modal.style.setProperty('--background', `url("{{ ds.model_bg_image | image_url: width: 500 }}")`);
-                scrollPos = window.scrollY;
-                document.body.style.overflow = 'hidden';
-                document.body.style.position = 'fixed';
-                document.body.style.top = '-' + scrollPos + 'px';
-                document.body.style.width = '100%';
-                nodeList.overlay.style.display = 'flex';
-                history.pushState({easter: true}, '');
-                spawnConfetti();
+            if (!createSubscriptionResponse.ok) {
+                return alert(` HTTP ${createSubscriptionResponse.status}`);
             }
+            successText();
+            {%- if discount != blank -%}
+            startSpin();
+            {%- endif -%}
+        };
 
-            function closeModal() {
-                if (!isOpen) return;
-                isOpen = false;
-                nodeList.overlay.style.display = 'none';
-                document.body.style.overflow = '';
-                document.body.style.position = '';
-                document.body.style.top = '';
-                document.body.style.width = '';
-                window.scrollTo(0, scrollPos);
-                if (eggElement && eggElement.parentNode) {
-                    eggElement.parentNode.removeChild(eggElement);
-                    eggElement = null;
-                }
-            }
-
-            nodeList.close.addEventListener('click', closeModal);
-            nodeList.overlay.addEventListener('click', function (e) {
-                if (e.target === nodeList.overlay) closeModal();
+        const omnisendSubscribe = async (email) => {
+            const createSubscriptionResponse = await fetch(`https://api.omnisend.com/api/contacts`, {
+                method: "POST",
+                headers: {
+                    Authorization: "Omnisend-API-Key 69de08bd3ff781a3a5fe5f9a-Ooeog9UU5A5v6oyim1QlAyD0OH4SoakwsxIAsZIMQdhaKY7sqH",
+                    "Omnisend-Version": "2026-03-15",
+                    accept: 'application/json',
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({
+                    address: '1234 Main St',
+                    birthdate: '1990-01-01',
+                    city: 'Los Angeles',
+                    country: 'United States',
+                    countryCode: 'US',
+                    createdAt: '2024-01-01T00:00:00Z',
+                    firstName: 'John',
+                    gender: 'm',
+                    identifiers: [
+                        {
+                            channels: {
+                                additionalProp: {status: 'subscribed', statusChangedAt: '2024-01-01T00:00:00Z'},
+                                email: email
+                            },
+                            consent: {
+                                createdAt: '2026-01-01T00:00:00Z',
+                                ip: '192.168.1.1',
+                                source: 'omnisend-form',
+                                userAgent: 'Mozilla/5.0'
+                            },
+                            id: email,
+                            sendWelcomeMessage: true,
+                            source: 'api',
+                            type: 'email'
+                        }
+                    ],
+                    lastName: 'Doe',
+                    postalCode: '90001',
+                    state: 'New York',
+                    tags: ['tag1', 'tag2']
+                })
             });
-
-            window.addEventListener('popstate', function () {
-                if (isOpen) closeModal();
-            });
-
-            function spawnConfetti() {
-                // Clear existing confetti
-                while (nodeList.confetti.firstChild) {
-                    nodeList.confetti.removeChild(nodeList.confetti.firstChild);
-                }
-                const emojis = ['\uD83E\uDD5A', '\uD83D\uDC23', '\uD83D\uDC30', '\uD83C\uDF38', '\uD83C\uDF37', '\u2728'];
-                const pieces = 24;
-                for (let i = 0; i < pieces; i++) {
-                    let el = document.createElement('div');
-                    el.className = 'easter-confetti-piece';
-                    el.textContent = emojis[i % emojis.length];
-                    el.style.left = Math.random() * 100 + '%';
-                    el.style.fontSize = (14 + Math.random() * 14) + 'px';
-                    el.style.animationDelay = (Math.random() * 0.8) + 's';
-                    el.style.animationDuration = (2 + Math.random() * 1.5) + 's';
-                    nodeList.confetti.appendChild(el);
-                }
+            if (!createSubscriptionResponse.ok) {
+                return alert(` HTTP ${createSubscriptionResponse.status}`);
             }
+            successText();
+            startSpin();
+        };
 
-            nodeList.copy.addEventListener('click', function () {
-                const code = nodeList.code.textContent;
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(code).then(function () {
-                        nodeList.copy.classList.add('active');
-                        setTimeout(function () {
-                            nodeList.copy.classList.remove('active');
-                        }, 2000);
-                    });
-                } else {
-                    const ta = document.createElement('textarea');
-                    ta.value = code;
-                    ta.style.position = 'fixed';
-                    ta.style.left = '-9999px';
-                    document.body.appendChild(ta);
-                    ta.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(ta);
+        form.addEventListener('submit', ev => {
+            klaviyoSubscribe(nodeList.email.value);
+            ev.stopImmediatePropagation();
+            ev.preventDefault();
+        });
+
+        nodeList.privacy?.addEventListener('click', (ev) => {
+            if (ev.target.tagName.toLocaleLowerCase() === 'a') {
+                return false;
+            }
+            ev.preventDefault();
+            ev.stopPropagation();
+            nodeList.privacy.classList.toggle('checked');
+            if (nodeList.privacy.classList.contains('checked')) {
+                nodeList.submit.removeAttribute('disabled');
+            } else {
+                nodeList.submit.setAttribute('disabled', true);
+            }
+        });
+        {%- if discount != blank -%}
+        function openModal() {
+            if (isOpen) return;
+            isOpen = true;
+            nodeList.prizeName.textContent = currentPrize.title;
+            nodeList.code.textContent = currentPrize.code;
+            nodeList.cover.innerHTML = `<img src="${currentPrize.icon}" class="image" alt="${currentPrize.code}"/>`
+            nodeList.btn.href = '/discount/' + currentPrize.code + '?redirect=' + encodeURIComponent('{{ ss.model_button_url }}');
+            nodeList.modal.style.setProperty('--background', `url("{{ ds.model_bg_image | image_url: width: 500 }}")`);
+            scrollPos = window.scrollY;
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = '-' + scrollPos + 'px';
+            document.body.style.width = '100%';
+            nodeList.overlay.style.display = 'flex';
+            history.pushState({easter: true}, '');
+            spawnConfetti();
+        }
+
+        function closeModal() {
+            if (!isOpen) return;
+            isOpen = false;
+            nodeList.overlay.style.display = 'none';
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, scrollPos);
+            if (eggElement && eggElement.parentNode) {
+                eggElement.parentNode.removeChild(eggElement);
+                eggElement = null;
+            }
+        }
+
+        nodeList.close.addEventListener('click', closeModal);
+        nodeList.overlay.addEventListener('click', function (e) {
+            if (e.target === nodeList.overlay) closeModal();
+        });
+
+        window.addEventListener('popstate', function () {
+            if (isOpen) closeModal();
+        });
+
+        function spawnConfetti() {
+            // Clear existing confetti
+            while (nodeList.confetti.firstChild) {
+                nodeList.confetti.removeChild(nodeList.confetti.firstChild);
+            }
+            const emojis = ['\uD83E\uDD5A', '\uD83D\uDC23', '\uD83D\uDC30', '\uD83C\uDF38', '\uD83C\uDF37', '\u2728'];
+            const pieces = 24;
+            for (let i = 0; i < pieces; i++) {
+                let el = document.createElement('div');
+                el.className = 'easter-confetti-piece';
+                el.textContent = emojis[i % emojis.length];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.fontSize = (14 + Math.random() * 14) + 'px';
+                el.style.animationDelay = (Math.random() * 0.8) + 's';
+                el.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+                nodeList.confetti.appendChild(el);
+            }
+        }
+
+        nodeList.copy.addEventListener('click', function () {
+            const code = nodeList.code.textContent;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(code).then(function () {
                     nodeList.copy.classList.add('active');
                     setTimeout(function () {
                         nodeList.copy.classList.remove('active');
                     }, 2000);
-                }
-            });
-
-            function init() {
-                {%- if request.design_mode -%}
-                currentPrize = prizes[0];
-                openModal();
-                {%- endif -%}
+                });
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = code;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                nodeList.copy.classList.add('active');
+                setTimeout(function () {
+                    nodeList.copy.classList.remove('active');
+                }, 2000);
             }
-
-            // init();
         });
-    </script>
-{%- endif -%}
+
+        function init() {
+            {%- if request.design_mode -%}
+            currentPrize = prizes[0];
+            openModal();
+            {%- endif -%}
+        }
+
+        // init();
+        {%- endif -%}
+    });
+</script>
 {% schema %}
 {
   "name": "MC Th Spin",
@@ -885,6 +919,12 @@
       "content": "Form"
     },
     {
+      "type": "number",
+      "id": "form_top",
+      "label": "Desktop form margin top",
+      "default": 75
+    },
+    {
       "type": "text",
       "id": "klaviyo_api_key",
       "label": "Klaviyo API Key",
@@ -915,6 +955,23 @@
     },
     {
       "type": "richtext",
+      "id": "form_subtitle",
+      "label": "Form subtitle"
+    },
+    {
+      "type": "color",
+      "id": "form_subtitle_color",
+      "label": "Form subtitle color",
+      "default": "#666"
+    },
+    {
+      "type": "color",
+      "id": "form_subtitle_bold_color",
+      "label": "Form subtitle bold color",
+      "default": "#666"
+    },
+    {
+      "type": "richtext",
       "id": "form_desc",
       "label": "Form desc",
       "default": "<ul><li>1.<strong>How to Participate:</strong><br/>Subscribe to our newsletter to<br/>receive one spin of the wheel.</li><li>2.<strong>Prizes Include:</strong><br/>$100 Off Coupon,$50 Off Coupon,Free Bike,<br/>Free Order Opportunity,Battery (IN10),Keychain,Helmet</li><li>3.<strong>Winning Details:</strong><br/>Each subscriber is allowed one spin only.<br/>Prizes are subject to availability; first come, first served.</li></ul>"
@@ -923,6 +980,12 @@
       "type": "color",
       "id": "form_desc_color",
       "label": "Form title color",
+      "default": "#666"
+    },
+    {
+      "type": "color",
+      "id": "form_desc_bold_color",
+      "label": "Form title bold color",
       "default": "#666"
     },
     {
