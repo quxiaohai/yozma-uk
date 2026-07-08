@@ -1,0 +1,133 @@
+<style >
+    .desktop-add-accessories {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 223px;
+        height: 100%;
+        background-color: #f9f9f8;
+        padding: 0 24px;
+        display: none;
+    }
+
+    .desktop-add-accessories .accessories-title {
+        font-size: 20px;
+        padding: 28px 0 18px;
+    }
+
+    .desktop-add-accessories .price-list {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    .desktop-add-accessories .text-on-sale {
+        font-weight: 700;
+    }
+
+    .desktop-add-accessories .product-bundle-item {
+        width: 174px;
+        height: 196px;
+        background: #FFF;
+        border: 0 none;
+        gap: 18px;
+        padding-top: 6px;
+    }
+
+    .desktop-add-accessories .button {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .desktop-add-accessories .cover {
+        width: 100%;
+        height: 115px;
+    }
+
+    .desktop-add-accessories .image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .desktop-add-accessories .accessories-content {
+        flex: 1;
+        gap: 16px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .desktop-add-accessories.desktop .accessories-content::-webkit-scrollbar-thumb {
+        background-color: #ff0000;
+    }
+
+    .desktop-add-accessories.desktop .accessories-content::-webkit-scrollbar {
+        width: 0.25rem;
+        background: #f5f5f5;
+        display: none;
+    }
+
+    .desktop-add-accessories .product-bundle-info {
+        padding: 0 12px;
+    }
+
+    .desktop-add-accessories .product-bundle-inner {
+        flex: 1;
+    }
+
+    .desktop-add-accessories .product-bundle-title {
+        font-size: 14px;
+        max-width: 114px;
+        word-break: break-word;
+    }
+
+    @media screen and (max-width: 701px) {
+        .desktop-add-accessories.desktop {
+            display: none;
+        }
+        .cart-drawer__recommendations {
+            display: block;
+        }
+    }
+</style>
+<div class="desktop-add-accessories desktop flex-column" slot="accessories">
+    <div class="accessories-title lh-2 fw-600 title">
+        {{ title }}
+    </div>
+    <div class="accessories-content flex-column">
+        {%- for product in items -%}
+            {%- liquid
+                assign item_count_in_cart = cart | line_items_for: product
+            -%}
+            {%- if item_count_in_cart.size == 0 -%}
+                <div class="product-bundle-item flex-column">
+                    <div class="cover relative flex-center">
+                        {%- render 'global-image', image: product.featured_media, image_size: 120 -%}
+                    </div>
+                    <div class="flex-between-top product-bundle-info w-full">
+                        <a href="{{ product.url }}" class="product-bundle-inner">
+                            <div title="{{ product.title }}" class="product-bundle-title fw-500 line-clamp lh-1">
+                                {{ product.title }}
+                            </div>
+                            {%- render 'price-list', product: product -%}
+                        </a>
+                        <button
+                            type="button"
+                            onclick="$heybike.addToCart({items:[{quantity: 1, id: '{{ product.selected_or_first_available_variant.id }}'}], button: this}, false)"
+                            class="button overflow-hidden button-translate hollow-translate button--primary pointer-events-auto"
+                            is="custom-button"
+                            aria-label="{{ 'products.product.choose_options' | t | escape }}">
+                            <span class="btn-text relative flex-center">
+                              {%- render 'icon', icon: 'header_cart', size: 'sm' -%}
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+</div>

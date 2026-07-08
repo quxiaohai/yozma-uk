@@ -14,106 +14,138 @@ Supported variables
 {%- endcomment -%}
 
 {% liquid
-  assign max_quantity = nil
+    assign max_quantity = nil
 
-  if line_item.variant.inventory_management != blank and line_item.variant.inventory_policy == 'deny'
-    assign current_quantity_for_variant = cart | item_count_for_variant: line_item.variant.id
-    assign max_quantity = line_item.variant.inventory_quantity | minus: current_quantity_for_variant | plus: line_item.quantity
-  endif
+    if line_item.variant.inventory_management != blank and line_item.variant.inventory_policy == 'deny'
+        assign current_quantity_for_variant = cart | item_count_for_variant: line_item.variant.id
+        assign max_quantity = line_item.variant.inventory_quantity | minus: current_quantity_for_variant | plus: line_item.quantity
+    endif
 
-  if line_item.variant.quantity_rule.max != nil
-    assign max_quantity = max_quantity | default: 999999 | at_most: line_item.variant.quantity_rule.max
-  endif
+    if line_item.variant.quantity_rule.max != nil
+        assign max_quantity = max_quantity | default: 999999 | at_most: line_item.variant.quantity_rule.max
+    endif
 %}
 
 <line-item class="line-item">
-  {%- if line_item.image != blank -%}
-    <div class="line-item__media-wrapper">
-      {{- line_item.image | image_url: width: line_item.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 740px) 80px, 96px', widths: '80,96,160,192', class: 'line-item__media rounded-xs' -}}
+    {%- if line_item.image != blank -%}
+        <div class="line-item__media-wrapper">
+            {{- line_item.image | image_url: width: line_item.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 740px) 80px, 96px', widths: '80,96,160,192', class: 'line-item__media rounded-xs' -}}
 
-      <pill-loader class="pill-loader"></pill-loader>
-    </div>
-  {%- endif -%}
-
-  <div class="line-item__info">
-    <div class="v-stack gap-0.5">
-      {%- if line_item.url != blank -%}
-        <a href="{{ line_item.url }}" class="bold">
-          <span class="reversed-link hover:show">{{ line_item.product.title | default: line_item.title }}</span>
-        </a>
-      {%- else -%}
-        <p class="bold">{{ line_item.product.title | default: line_item.title }}</p>
-      {%- endif -%}
-
-      {%- render 'price-list', line_item: line_item -%}
-    </div>
-
-    {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
-      <p class="text-sm text-subdued">{{ line_item.variant.title }}</p>
-    {%- endunless -%}
-
-    {%- if line_item.selling_plan_allocation -%}
-      <p class="text-sm text-subdued">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
+            <pill-loader class="pill-loader"></pill-loader>
+        </div>
     {%- endif -%}
 
-    {%- unless line_item.properties == blank -%}
-      <ul class="list-disc">
-        {%- for property in line_item.properties -%}
-          {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
-
-          {%- if property.last == blank or first_character_in_key == '_' -%}
-            {%- continue -%}
-          {%- endif -%}
-
-          <li class="text-sm text-subdued">
-            {%- if property.last contains '/uploads/' -%}
-              <a href="{{ property.last }}" class="link">{{ property.last | split: '/' | last }}</a>
+    <div class="line-item__info">
+        <div class="v-stack gap-0.5">
+            {%- if line_item.url != blank -%}
+                <a href="{{ line_item.url }}" class="bold">
+                    <span
+                        class="reversed-link hover:show">{{ line_item.product.title | default: line_item.title }}</span>
+                </a>
             {%- else -%}
-              {{ property.first }}: {{ property.last }}
+                <p class="bold">{{ line_item.product.title | default: line_item.title }}</p>
             {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ul>
-    {%- endunless -%}
+            {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
+                <p class="text-sm text-subdued">{{ line_item.variant.title }}</p>
+            {%- endunless -%}
+            {%- render 'price-list', line_item: line_item -%}
+        </div>
 
-    <div class="text-sm text-subdued sm:hidden">
-      {%- if line_item.url_to_remove -%}
-        <line-item-quantity class="h-stack justify-center gap-3">
-          <input class="quantity-input" type="number" is="quantity-input" inputmode="numeric" min="{{ line_item.variant.quantity_rule.min }}" step="{{ line_item.variant.quantity_rule.increment }}" {% if max_quantity != nil %}max="{{ max_quantity }}"{% endif %} data-line-key="{{ line_item.key }}" aria-label="{{ 'cart.order.change_quantity' | t | escape }}" value="{{ line_item.quantity }}">
+        {%- if line_item.selling_plan_allocation -%}
+            <p class="text-sm text-subdued">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
+        {%- endif -%}
 
-          <span class="text-xs">
-            <a href="{{ line_item.url_to_remove }}" class="link" aria-label="{{ 'cart.order.remove_with_title' | t: title: line_item.title | escape }}">
-              {{- 'cart.order.remove' | t -}}
-            </a>
-          </span>
-        </line-item-quantity>
-      {%- else -%}
-        {{- 'customer.order.quantity' | t }}: {{ line_item.quantity -}}
-      {%- endif -%}
+        {%- unless line_item.properties == blank -%}
+            <ul class="list-disc">
+                {%- for property in line_item.properties -%}
+                    {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
+
+                    {%- if property.last == blank or first_character_in_key == '_' -%}
+                        {%- continue -%}
+                    {%- endif -%}
+
+                    <li class="text-sm text-subdued">
+                        {%- if property.last contains '/uploads/' -%}
+                            <a href="{{ property.last }}" class="link">{{ property.last | split: '/' | last }}</a>
+                        {%- else -%}
+                            {{ property.first }}: {{ property.last }}
+                        {%- endif -%}
+                    </li>
+                {%- endfor -%}
+            </ul>
+        {%- endunless -%}
+
+        <div class="text-sm text-subdued sm:hidden">
+            {%- if line_item.url_to_remove -%}
+                <line-item-quantity class="h-stack justify-center gap-3">
+                    <quantity-selector class="quantity fw-600 tw-mt-1 tw-inline-flex">
+                        <button type="button" name="minus" class="quantity__button tw-px-2"
+                                aria-label="Translation missing: en.products.quantity.decrease">
+                            <svg role="presentation" focusable="false" width="7" height="10"
+                                 class="transform icon icon-chevron-left" viewBox="0 0 7 10">
+                                <path d="M6 1 2 5l4 4" fill="none" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </button>
+                        <input class="quantity-selector__input" type="number" is="quantity-input" inputmode="numeric" min="{{ line_item.variant.quantity_rule.min }}" step="{{ line_item.variant.quantity_rule.increment }}" {% if max_quantity != nil %}max="{{ max_quantity }}"{% endif %} data-line-key="{{ line_item.key }}" aria-label="{{ 'cart.order.change_quantity' | t | escape }}" value="{{ line_item.quantity }}">
+                        <button type="button" name="plus" class="quantity__button tw-px-2"
+                                aria-label="Translation missing: en.products.quantity.increase">
+                            <svg role="presentation" focusable="false" width="7" height="10"
+                                 class="transf《》？orm icon icon-chevron-right" viewBox="0 0 7 10">
+                                <path d="m1 9 4-4-4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </button>
+                    </quantity-selector>
+                    <span class="text-xs">
+                        <a href="{{ line_item.url_to_remove }}" class="link"
+                           aria-label="{{ 'cart.order.remove_with_title' | t: title: line_item.title | escape }}">
+                          {{- 'cart.order.remove' | t -}}
+                        </a>
+                    </span>
+                </line-item-quantity>
+            {%- else -%}
+                {{- 'customer.order.quantity' | t }}: {{ line_item.quantity -}}
+            {%- endif -%}
+        </div>
+
+        {%- if line_item.line_level_discount_allocations != blank -%}
+            <ul class="contents" role="list">
+                {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+                    <li class="badge badge--onsale">
+                        {%- render 'icon' with 'discount' -%} {{ discount_allocation.discount_application.title }}
+                        (-{{ discount_allocation.amount | money }})
+                    </li>
+                {%- endfor -%}
+            </ul>
+        {%- endif -%}
     </div>
 
-    {%- if line_item.line_level_discount_allocations != blank -%}
-      <ul class="contents" role="list">
-        {%- for discount_allocation in line_item.line_level_discount_allocations -%}
-          <li class="badge">
-            {%- render 'icon' with 'discount' -%} {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
-          </li>
-        {%- endfor -%}
-      </ul>
+    {%- if show_desktop_quantity -%}
+        <div class="line-item__actions text-subdued hidden sm:block">
+            <line-item-quantity class="v-stack gap-2">
+                <quantity-selector class="quantity fw-600 tw-mt-1 tw-inline-flex">
+                    <button type="button" name="minus" class="quantity__button tw-px-2"
+                            aria-label="Translation missing: en.products.quantity.decrease">
+                        <svg role="presentation" focusable="false" width="7" height="10"
+                             class="transform icon icon-chevron-left" viewBox="0 0 7 10">
+                            <path d="M6 1 2 5l4 4" fill="none" stroke="currentColor" stroke-width="2"></path>
+                        </svg>
+                    </button>
+                    <input class="quantity-selector__input" type="number" is="quantity-input" inputmode="numeric" min="{{ line_item.variant.quantity_rule.min }}" step="{{ line_item.variant.quantity_rule.increment }}" {% if max_quantity != nil %}max="{{ max_quantity }}"{% endif %} data-line-key="{{ line_item.key }}" aria-label="{{ 'cart.order.change_quantity' | t | escape }}" value="{{ line_item.quantity }}">
+                    <button type="button" name="plus" class="quantity__button tw-px-2"
+                            aria-label="Translation missing: en.products.quantity.increase">
+                        <svg role="presentation" focusable="false" width="7" height="10"
+                             class="transform icon icon-chevron-right" viewBox="0 0 7 10">
+                            <path d="m1 9 4-4-4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
+                        </svg>
+                    </button>
+                </quantity-selector>
+                <span class="text-xs text-center">
+                  <a href="{{ line_item.url_to_remove }}" class="link"
+                     aria-label="{{ 'cart.order.remove_with_title' | t: title: line_item.title | escape }}">
+                    {{- 'cart.order.remove' | t -}}
+                  </a>
+                </span>
+            </line-item-quantity>
+        </div>
     {%- endif -%}
-  </div>
-
-  {%- if show_desktop_quantity -%}
-    <div class="line-item__actions text-subdued hidden sm:block">
-      <line-item-quantity class="v-stack gap-2">
-        <input class="quantity-input" type="number" is="quantity-input" inputmode="numeric" min="{{ line_item.variant.quantity_rule.min }}" step="{{ line_item.variant.quantity_rule.increment }}" {% if max_quantity != nil %}max="{{ max_quantity }}"{% endif %} data-line-key="{{ line_item.key }}" aria-label="{{ 'cart.order.change_quantity' | t | escape }}" value="{{ line_item.quantity }}">
-
-        <span class="text-xs text-center">
-          <a href="{{ line_item.url_to_remove }}" class="link" aria-label="{{ 'cart.order.remove_with_title' | t: title: line_item.title | escape }}">
-            {{- 'cart.order.remove' | t -}}
-          </a>
-        </span>
-      </line-item-quantity>
-    </div>
-  {%- endif -%}
 </line-item>
