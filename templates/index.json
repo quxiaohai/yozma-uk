@@ -29,6 +29,7 @@
         "play_R6WthU",
         "heading_GKtxaW"
       ],
+      "disabled": true,
       "name": "Video",
       "settings": {
         "full_width": true,
@@ -48,11 +49,10 @@
       "blocks": {
         "media_Yi7pih": {
           "type": "media",
-          "disabled": true,
           "settings": {
             "media_type": "image",
-            "pc_image_url": "shopify://shop_images/pc_48681696-9069-4c49-be4e-6f0e52159e52.jpg",
-            "mb_image_url": "shopify://shop_images/ed13e4d86e1ca03a001f26cc3557198e.jpg",
+            "pc_image_url": "shopify://shop_images/pc_da91cfb6-3701-424f-85da-8c1b6af187a2.jpg",
+            "mb_image_url": "shopify://shop_images/95737cf78b6d026b95e9df4ff112e86a.jpg",
             "image_link": "shopify://products/in-10",
             "enable_video_looping": true,
             "slide_tab": "",
@@ -80,6 +80,7 @@
         },
         "media3": {
           "type": "media",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "pc_image_url": "shopify://shop_images/uk6.11.jpg",
@@ -111,6 +112,7 @@
         },
         "media2": {
           "type": "media",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "pc_image_url": "shopify://shop_images/1_6.2_d404f35d-1bd3-4a89-8b59-f7eae9a5f6a3.jpg",
@@ -142,6 +144,7 @@
         },
         "media1": {
           "type": "media",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "pc_image_url": "shopify://shop_images/6.16.jpg",
@@ -178,7 +181,6 @@
         "media2",
         "media1"
       ],
-      "disabled": true,
       "name": "MC Banner Slide",
       "settings": {
         "page_color": "",
