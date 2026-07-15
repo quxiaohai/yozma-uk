@@ -6205,7 +6205,8 @@ customElements.define('scroll-area', class extends HTMLElement {
 });
 
 // 注册自定义元素
-customElements.define('hey-popup', class extends HTMLElement {
+
+class HeyPopup extends HTMLElement {
     constructor() {
         super();
     }
@@ -6222,10 +6223,11 @@ customElements.define('hey-popup', class extends HTMLElement {
         return this.getAttribute('data-section-id');
     }
 
-    onHide = (id) => {
-        if (this.sectionId !== id) {
-            return false;
-        }
+    get auto() {
+        return this.hasAttribute('auto');
+    }
+
+    onHide = () => {
         this.node.classList.remove('visible');
         setTimeout(() => {
             this.node.classList.remove('show');
@@ -6234,10 +6236,7 @@ customElements.define('hey-popup', class extends HTMLElement {
         }, 300);
     };
 
-    onShow = (id) => {
-        if (this.sectionId !== id) {
-            return false;
-        }
+    onShow = () => {
         this.node.classList.add('show');
         document.body.style.overflow = 'hidden';
         setTimeout(() => {
@@ -6248,22 +6247,16 @@ customElements.define('hey-popup', class extends HTMLElement {
 
     onInit = () => {
         this.node = this.querySelector(this.selector);
-        this.nodeList = $heybike.getNodeList(this.node);
-        this.nodeList.popup_close &&
-        this.nodeList.popup_close.addEventListener('click', () => {
-            this.onHide(this.sectionId);
-        });
-        if (this.hasAttribute('overlay-click-hide')) {
-            this.node.addEventListener('click', ev => {
-                if (ev.target === this.node) {
-                    this.onHide(this.sectionId);
-                }
-            });
-        }
-        $heybike.bind('POPUP.SHOW', this.onShow.bind(this));
-        $heybike.bind('POPUP.HIDE', this.onHide.bind(this));
+        this.auto && this.node.addEventListener('click', this.onHide.bind(this));
+        const close = this.node.querySelector('.popup--close');
+        close?.addEventListener('click',this.onHide.bind(this));
+        $heybike.bind(`${this.sectionId}:popup:show`, this.onShow.bind(this));
+        $heybike.bind(`${this.sectionId}:popup:hide`, this.onHide.bind(this));
     };
-});
+}
+
+// 注册自定义元素
+customElements.define('hey-popup', HeyPopup);
 
 class LazyImage extends HTMLImageElement {
     constructor() {
