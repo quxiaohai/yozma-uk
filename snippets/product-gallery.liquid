@@ -229,10 +229,20 @@ only way to do it on Shopify right now.
                             data-media-position="{{ media.position }}"
                             data-media-id="{{ media.id }}"
                             {% if filtered_indexes contains media.position %}hidden{% endif %}>
-                            {%- if default_media == media -%}
-                                {%- assign preload = true -%}
-                            {%- else -%}
-                                {%- assign preload = false -%}
+                            {%- liquid
+                                if default_media == media
+                                    assign preload = true
+                                else
+                                    assign preload = false
+                                endif
+                                assign tag_icon = product.metafields.custom.tag_icon.value
+                                assign tag_bg = product.metafields.custom.tag_border_image.value
+                            -%}
+                            {%- if tag_icon != blank and tag_bg != blank -%}
+                                <div class="absolute z-2 image-tag-box">
+                                    {%- render 'global-image', image: tag_bg, image_size: 200, media_type: 'icon', preload: preload, class: 'tag-backdrop' -%}
+                                    {%- render 'global-image', image: tag_icon, image_size: 150, media_type: 'icon', preload: preload, class: 'tag-icon absolute' -%}
+                                </div>
                             {%- endif -%}
                             {%- render 'media', media: media, sizes: sizes, rounded: '', preload: preload, autoplay: section.settings.enable_video_autoplay, loop: section.settings.enable_video_looping, group: 'product' -%}
                             {%- if section.settings.enable_image_zoom and layout contains 'grid' -%}

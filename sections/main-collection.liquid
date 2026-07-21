@@ -58,6 +58,28 @@
       }
     {%- endfor -%}
   }
+
+  .image-tag-box {
+      top: 15px;
+      right: 20px;
+      width: 150px;
+  }
+
+  .image-tag-box .tag-icon {
+      width: 70%;
+      height: auto;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-left: 5px;
+      object-fit: contain;
+  }
+
+  .image-tag-box .tag-backdrop {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+  }
 </style>
 
 <div class="container">
@@ -671,6 +693,12 @@
       "type": "checkbox",
       "id": "open_first_filter_group",
       "label": "Open first group by default",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_icon",
+      "label": "Show product badge icon",
       "default": false
     }
   ]
