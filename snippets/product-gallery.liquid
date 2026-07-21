@@ -238,7 +238,7 @@ only way to do it on Shopify right now.
                                 assign tag_icon = product.metafields.custom.tag_icon.value
                                 assign tag_bg = product.metafields.custom.tag_border_image.value
                             -%}
-                            {%- if tag_icon != blank and tag_bg != blank -%}
+                            {%- if tag_icon != blank and tag_bg != blank and preload -%}
                                 <div class="absolute z-2 image-tag-box">
                                     {%- render 'global-image', image: tag_bg, image_size: 200, media_type: 'icon', preload: preload, class: 'tag-backdrop' -%}
                                     {%- render 'global-image', image: tag_icon, image_size: 150, media_type: 'icon', preload: preload, class: 'tag-icon absolute' -%}
