@@ -10815,3 +10815,10 @@ shopify-accelerated-checkout, shopify-accelerated-checkout-cart {
         height: 1rem;
     }
 }
+
+.seo-tag-hidden {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
